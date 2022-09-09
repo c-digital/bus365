@@ -18,8 +18,13 @@
 
     <!-- sidebar menu -->
     <ul class="sidebar-menu">
- <li class="treeview <?php echo (($this->uri->segment(2)=="home" || $this->uri->segment(2)=="")?"active":null) ?>">
+        <li class="treeview <?php echo (($this->uri->segment(2)=="home" || $this->uri->segment(2)=="")?"active":null) ?>">
             <a href="<?php echo base_url('dashboard/home') ?>"><i class="ti-home"></i> <span><?php echo display('dashboard')?></span> 
+            </a>
+        </li>
+
+        <li class="treeview <?php echo (($this->uri->segment(2)=="companies" || $this->uri->segment(2)=="")?"active":null) ?>">
+            <a href="<?php echo base_url('dashboard/companies') ?>"><i class="fa fa-building"></i> <span><?php echo display('companies')?></span> 
             </a>
         </li>
       

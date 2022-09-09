@@ -29,18 +29,20 @@
                             <?php foreach ($companies as $company) { ?>
                             <tr>
                                 <td><?php echo $sl++; ?></td>
-                                <td><?php echo $company->type; ?></td>
-                                 <td><?php echo $company->total_seat; ?></td>
-                                  <td><?php echo $company->layout; ?></td>
-                                <td><?php echo (($company->status==1)?display('active'):display('inactive')); ?></td>
+                                <td><img width="100px" src="<?php echo '/uploads/' . $company->logo; ?>" alt=""></td>
+                                 <td><?php echo $company->nit; ?></td>
+                                  <td><?php echo $company->name; ?></td>
+                                  <td><?php echo $company->address; ?></td>
+                                  <td><?php echo $company->lane; ?></td>
+                                
                                 <td>
 
-                                <?php if($this->permission->method('company','update')->access()): ?>
-                                    <a href="<?php echo base_url("company/edit/$company->id") ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Update"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <?php if($this->permission->method('companies','update')->access()): ?>
+                                    <a href="<?php echo base_url("dashboard/companies/edit/$company->id") ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Update"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 <?php endif; ?>
 
-                                <?php if($this->permission->method('company','delete')->access()): ?>
-                                    <a href="<?php echo base_url("company/delete/$company->id") ?>" onclick="return confirm('<?php echo display("are_you_sure") ?>')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete "><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <?php if($this->permission->method('companies','delete')->access()): ?>
+                                    <a href="<?php echo base_url("dashboard/companies/delete/$company->id") ?>" onclick="return confirm('<?php echo display("are_you_sure") ?>')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete "><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                 <?php endif; ?>
                                 </td>
                             </tr>

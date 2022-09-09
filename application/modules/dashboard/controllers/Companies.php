@@ -68,15 +68,57 @@ class Companies extends MX_Controller {
         $this->load->library('upload', $config);
         $this->upload->do_upload('logo');
 
-        $filename = $this->upload->data()['file_name'];
-
-        print_r($this->input->post('nit'));
-        exit;
-
         $this->company_model->create([
-            'logo' => '',
+            'logo' => $this->upload->data()['file_name'],
+            'nit' => $this->input->post('nit'),
+            'name' => $this->input->post('name'),
+            'address' => $this->input->post('address'),
+            'lane' => $this->input->post('lane')
         ]);
 
+        return redirect('/dashboard/companies');
+    }
+
+    public function edit($id)
+    {
+        $data['title'] = display('companies');
+        $data['module'] = "dashboard";
+        $data['page']   = "companies/edit";
+
+        $data['company'] = $this->company_model->findById($id);
+        
+        echo Modules::run('template/layout', $data);
+    }
+
+    public function update()
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+
+        $this->load->library('upload', $config);
+        $this->upload->do_upload('logo');
+
+        if ($this->upload->data()['file_name'] != '') {
+            $this->company_model->update([
+                'id' => $this->input->post('id'),
+                'filename' => $this->upload->data()['file_name']
+            ]);
+        }
+
+        $this->company_model->update([
+            'id' => $this->input->post('id'),
+            'nit' => $this->input->post('nit'),
+            'name' => $this->input->post('name'),
+            'address' => $this->input->post('address'),
+            'lane' => $this->input->post('lane'),
+        ]);
+
+        return redirect('/dashboard/companies');
+    }
+
+    public function delete($id)
+    {
+        $this->company_model->delete($id);
         return redirect('/dashboard/companies');
     }
 }

@@ -19,5 +19,26 @@ class Company_model extends CI_Model
 	{
 		return $this->db->insert($this->table, $data);
 	}
+
+	public function findById($id)
+	{
+		return $this->db->select("*")
+			->from($this->table)
+			->where('id', $id) 
+			->get()
+			->row();
+	}
+
+	public function update($data)
+	{
+		return $this->db->where('id',$data['id'])
+			->update($this->table, $data); 
+	}
+
+	public function delete($id)
+	{
+		return $this->db->where('id', $id)
+			->delete($this->table);
+	}
 }
  

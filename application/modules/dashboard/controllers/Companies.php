@@ -48,6 +48,35 @@ class Companies extends MX_Controller {
 
 		$data['module'] = "dashboard";
 		$data['page']   = "companies/index";   
-		echo Modules::run('template/layout', $data);  
-	}	
+		echo Modules::run('template/layout', $data);
+	}
+
+    public function create()
+    {
+        $data['title'] = display('companies');
+        $data['module'] = "dashboard";
+        $data['page']   = "companies/create";
+        
+        echo Modules::run('template/layout', $data);
+    }
+
+    public function store()
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+
+        $this->load->library('upload', $config);
+        $this->upload->do_upload('logo');
+
+        $filename = $this->upload->data()['file_name'];
+
+        print_r($this->input->post('nit'));
+        exit;
+
+        $this->company_model->create([
+            'logo' => '',
+        ]);
+
+        return redirect('/dashboard/companies');
+    }
 }

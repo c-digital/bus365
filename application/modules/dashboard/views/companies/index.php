@@ -4,7 +4,7 @@
             <div class="panel-heading">
                 <div class="panel-title">
                     <h4> 
-                        <a href="<?php echo base_url('company/create') ?>" class="btn btn-sm btn-info" title="Add"><i class="fa fa-plus"></i> <?php echo display('add') ?></a>  
+                        <a href="<?php echo base_url('dashboard/companies/create') ?>" class="btn btn-sm btn-info" title="Add"><i class="fa fa-plus"></i> <?php echo display('add') ?></a>  
                     </h4>
                 </div>
             </div>

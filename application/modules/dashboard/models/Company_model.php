@@ -10,9 +10,14 @@ class Company_model extends CI_Model
 	{
 		return $this->db->select("*")
 			->from($this->table)
-			->order_by('type','asc')
+			->order_by('id','desc')
 			->get()
 			->result();
+	}
+
+	public function create($data)
+	{
+		return $this->db->insert($this->table, $data);
 	}
 }
  

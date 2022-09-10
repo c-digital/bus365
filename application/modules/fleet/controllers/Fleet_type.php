@@ -31,7 +31,9 @@ class Fleet_type extends MX_Controller {
 		$this->form_validation->set_rules('type',display('fleet_type')  ,'required|max_length[255]');
 		$this->form_validation->set_rules('status',display('status') ,'required');
 		$facilities = $this->input->post('fleet_facilities');
+		$facilities = $facilities ? $facilities : [];
 		$facilities = implode(',' , $facilities);
+
 		#-------------------------------#
 		$data['fleet_type'] = (Object) $postData = [
 			'id' 	         => $this->input->post('id'), 

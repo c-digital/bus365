@@ -62,6 +62,8 @@
 		$selected_stopage = array();
         $selected_stopage = array_map('trim', explode(',', $route->stoppage_points));
 
+        $html = '';
+
 			foreach ($data as $stopages) {
 		
 	
@@ -177,7 +179,8 @@ document.getElementById('stopagediv2').style.display = "none";
                      stopagediv.html(data);
                 }, 
                 error: function(xhr) {
-                    alert('failed!');
+                    data = xhr.responseText;
+                    stopagediv.html(data);
                 }
             });
         

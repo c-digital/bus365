@@ -84,9 +84,11 @@ class Search extends MX_Controller {
         /// Every Route Children and special seats info
         $rout_chsp_seat = $this->db->select('*')->from('trip_route')->where('id',$this->input->post('trip_route_id'))->get()->row();
 
+        $facilities = '';
+
         if($total_seats == $totl_inpt){
         #--------------------------------------
-        $request_facilities = $this->input->post('request_facilities');  
+        $request_facilities = $this->input->post('request_facilities') ? $this->input->post('request_facilities') : [];  
         if (sizeof($request_facilities) > 0) {
             $fa = "";
             foreach($request_facilities as $fa) {
@@ -150,7 +152,7 @@ class Search extends MX_Controller {
             ->get()
             ->row();
             $tcs = $cs->tchild+$this->input->post('child_no');
-            $tspecialck = $cs->tspecial+$this->input->post('special');
+            $tspecialck = (float)$cs->tspecial+(float)$this->input->post('special');
             $req_children_seat = (!empty($rout_chsp_seat->children_seat)?$rout_chsp_seat->children_seat:20);
             $req_special_seat = (!empty($rout_chsp_seat->special_seat)?$rout_chsp_seat->special_seat:20);
        if($tcs <= $req_children_seat){
@@ -736,7 +738,7 @@ foreach ($seatArray as $seat)
                 if ($requestSeat < $groupSeat||$groupSeat < 1) {
                     $total = ($adult * $singlePrice);
                     $total_childprice   = ($child * $childprice);
-                    $total_specialprice = ($specialprice * $special);
+                    $total_specialprice = ((float) $specialprice * (float) $special);
                     $data['status'] = true;
                     $data['price'] = '--';
                     $data['pricechild'] = $total_childprice;

@@ -26,7 +26,7 @@ class MyUpload
                 'upload_path'   => $file_path,
                 'allowed_types' => 'pdf|docx|rtf|jpg|png|jpeg|gif',
                 'max_filename'  => 5,
-                'overwrite'     => fales,
+                'overwrite'     => false,
                 'maintain_ratio' => true,
                 'encrypt_name'  => true,
                 'remove_spaces' => true,

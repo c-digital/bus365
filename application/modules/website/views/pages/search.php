@@ -429,7 +429,15 @@ $(document).ready(function() {
             },
             error: function(xhr)
             {
-                alert('test!');
+                console.log(xhr);
+                data = xhr.responseText;
+                data = JSON.parse(data);
+                if (data.status == true) {
+                    // outputPreview.empty().html(data.message).addClass('alert-success').removeClass('alert-danger').removeClass('hide');
+                    $('.modal-body').html(data.payment);
+                } else {
+                    outputPreview.empty().html(data.exception).addClass('alert-danger').removeClass('alert-success').removeClass('hide');
+                }
             }
         });
     });
@@ -470,7 +478,17 @@ $(document).ready(function() {
             },
             error   : function (xhr)
             {
-                alert('failed!');
+                data = xhr.responseText;
+                console.log(data);
+                modal.find('.modal-body input[name=trip_id_no]').val(data.trip_id_no); 
+                modal.find('.modal-body input[name=trip_route_id]').val(data.trip_route_id); 
+                modal.find('.modal-body input[name=fleet_registration_id]').val(data.fleet_registration_id); 
+                modal.find('.modal-body input[name=fleet_type_id]').val(data.fleet_type_id); 
+                modal.find('.modal-body input[name=booking_date]').val(data.booking_date); 
+                modal.find('.modal-body .location').html(data.location);
+                modal.find('.modal-body #facilities').html(data.facilities);
+                modal.find('.modal-body #prcss').html(data.child_pric);
+                modal.find('.modal-body .seatsList').html(data.seats);   
             }
         });
 
@@ -610,11 +628,31 @@ document.getElementById("adult").value = '';
                     totalPreview.html('0');
                     grandTotalPreview.html('0');
                     outputPreview.removeClass("hide").addClass('alert-danger').html(data.exception);
-                } 
+                }
             }, 
             error: function(xhr)
             {
-                alert('failed!');
+                data = xhr.responseText;
+
+                data = JSON.parse(data);
+
+                console.log(data.total);
+
+                if (data.status == true) {
+                    price.val(data.total);
+                    pricePreview.html(data.price);
+                    pricechild.html(data.pricechild);
+                    priceadult.html(data.priceadult);
+                    pricespecial.html(data.pricespecial);
+                    totalPreview.html(data.total);
+                    grandTotalPreview.html(data.total-discount.val());
+                    outputPreview.addClass("hide").html('');
+                } else {
+                    price.val('0');
+                    totalPreview.html('0');
+                    grandTotalPreview.html('0');
+                    outputPreview.removeClass("hide").addClass('alert-danger').html(data.exception);
+                } 
             }
         });
 
@@ -655,7 +693,18 @@ document.getElementById("adult").value = '';
                 },
                 error: function(e)
                 {
-                    alert('failed!');
+                    data = e.responseText;
+                    if (data.status == true) {
+                        offerDiscount = data.discount;
+                        outputPreview.removeClass('hide').removeClass('alert-danger').addClass('alert-success').html(data.message);
+                    } else {
+                        offerDiscount = 0; 
+                        outputPreview.removeClass('hide').removeClass('alert-success').addClass('alert-danger').html(data.message);
+                    } 
+                    discount.val(offerDiscount);
+                    offer_code.val($("#offerCode").val());
+                    discountPreview.html(offerDiscount); 
+                    grandTotalPreview.html(price.val() - offerDiscount);
                 }
             });
         }

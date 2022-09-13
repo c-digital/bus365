@@ -53,6 +53,7 @@ color:red;}</style>
                  <table class="summary-table">
                             <thead>
                                 <tr>
+                                    <th scope="col"><?php echo display('company') ?></th>
                                     <th scope="col"><?php echo display('route') ?></th>
                                     <th scope="col"><?php echo display('departure') ?></th>
                                     <th scope="col"><?php echo display('duration') ?></th>
@@ -68,19 +69,28 @@ color:red;}</style>
                                  <?php if (!empty($trip_list)) { ?>
                     <?php foreach ($trip_list as $trip) { ?>
                                 <tr>
+
+                                    <td data-label="Operator">
+                                        <div class="operator-type">
+                                            <h4 class="operator-name"><img width="100px" src="<?php echo base_url('uploads/' . $trip->logo) ?>" alt=""></h4>
+                                            <h4 class="operator-name"><?php echo $trip->company_name ?></h4>
+                                        </div>
+                                    </td>
+
                                     <td data-label="Operator">
                                        <div class="operator-type">
                                         <h4 class="operator-name"><?php echo $trip->trip_route_name ?></h4>
-                                        <div class="bus-type"><?php echo $trip->fleet_registration_no ?></div>
+                                        <div class="bus-type"><?php echo isset($trip->fleet_registration_no) ? $trip->fleet_registration_no : '' ?></div>
                                     </div>
                                     </td>
 
                                     <td data-label="Departure">
                                         <div class="dep-time-counter">
-                                        <div class="dep-time"><?php echo $trip->start ?></div>
-                                        <div class="dep-counter"><?php echo $trip->pickup_trip_location ?></div>
-                                    </div>
+                                            <div class="dep-time"><?php echo $trip->start ?></div>
+                                            <div class="dep-counter"><?php echo $trip->pickup_trip_location ?></div>
+                                        </div>
                                     </td>
+
                                     <td data-label="Duration">
                                          <div class="duration-inner">
                                         <div class="duration"><?php echo $trip->duration ?></div> 
@@ -113,7 +123,7 @@ color:red;}</style>
                                               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"
                                             data-trip-route-id="<?php echo $trip->route ?>" 
                                             data-trip-id-no="<?php echo $trip->trip_id_no ?>" 
-                                            data-fleet-registration-id="<?php echo $trip->fleet_registration_id ?>" 
+                                            data-fleet-registration-id="<?php echo isset($trip->fleet_registration_id) ? $trip->fleet_registration_id : '' ?>" 
                                             data-fleet-type-id="<?php echo $trip->type ?>" 
                                             data-booking-date="<?php echo $b_date ?>" 
                                         ><?php echo display('book') ?> </button>

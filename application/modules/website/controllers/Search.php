@@ -18,6 +18,8 @@ class Search extends MX_Controller {
         if ($setting->status == 0) 
             redirect(base_url('login'));
         #-----------Section-------------# 
+
+        $this->db->query('SET SESSION sql_mode = ""');
 	}
 
 	

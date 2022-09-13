@@ -62,7 +62,7 @@ class Assign extends MX_Controller {
 		#-------------------------------#
 		$this->form_validation->set_rules('fleet_registration_id',display('fleet_registration_no')  ,'required|max_length[11]');
 		
-		$this->form_validation->set_rules('driver_id',display('driver_name')  ,'required|max_length[11]');
+		$this->form_validation->set_rules('driver1_id',display('driver_name')  ,'required|max_length[11]');
 		$this->form_validation->set_rules('status',display('status') ,'required');	
 		/*-----------------------------------*/
 		$ids = $this->input->post('id');

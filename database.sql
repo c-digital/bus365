@@ -1,25 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 09-09-2022 a las 22:39:40
--- Versión del servidor: 5.7.34-log
--- Versión de PHP: 8.0.11
+-- Servidor: localhost:3306
+-- Tiempo de generación: 13-09-2022 a las 15:59:45
+-- Versión del servidor: 5.7.39
+-- Versión de PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Base de datos: `bus`
+-- Base de datos: `base_bus365`
 --
 
 -- --------------------------------------------------------
@@ -33,6 +27,13 @@ CREATE TABLE `acc_account_name` (
   `account_name` varchar(255) NOT NULL,
   `account_type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `acc_account_name`
+--
+
+INSERT INTO `acc_account_name` (`account_id`, `account_name`, `account_type`) VALUES
+(1, 'Caja Chica', 1);
 
 -- --------------------------------------------------------
 
@@ -75,6 +76,13 @@ CREATE TABLE `agent_info` (
   `status` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `agent_info`
+--
+
+INSERT INTO `agent_info` (`agent_id`, `agent_first_name`, `agent_second_name`, `agent_company_name`, `agent_document_id`, `agent_pic_document`, `agent_picture`, `agent_phone`, `agent_mobile`, `agent_email`, `agent_address_line_1`, `agent_address_line_2`, `agent_address_city`, `agent_address_zip_code`, `agent_country`, `agent_commission`, `status`) VALUES
+(1, 'Erick', 'Santos', 'Criative', '123456', './application/modules/agent/assets/images/064b21139c58ba68badaaa2894eccb37.png', './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '71608981', '+59171608981', 'criativedigitalbo@gmail.com', 'Calle Perú 235\r\nApto 08', 'Calle Perú 235\r\nApto 08', 'criativedigitalbo@gmail.com', '10699', 'Bolivia', 10, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -104,6 +112,13 @@ CREATE TABLE `bank_info` (
   `account_name` varchar(100) NOT NULL,
   `account_number` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `bank_info`
+--
+
+INSERT INTO `bank_info` (`id`, `bank_name`, `account_name`, `account_number`) VALUES
+(1, 'Caja Chica', '00', '000');
 
 -- --------------------------------------------------------
 
@@ -158,6 +173,13 @@ CREATE TABLE `companies` (
   `lane` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `companies`
+--
+
+INSERT INTO `companies` (`id`, `logo`, `nit`, `name`, `address`, `lane`) VALUES
+(1, 'captura.png', '12345', 'Rasth', 'Calle 90 Nueva Via', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -206,6 +228,14 @@ CREATE TABLE `employee_history` (
   `status` varchar(6) DEFAULT NULL,
   `is_assign` tinyint(2) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `employee_history`
+--
+
+INSERT INTO `employee_history` (`id`, `first_name`, `second_name`, `position`, `phone_no`, `email_no`, `document_id`, `document_pic`, `address_line_1`, `address_line_2`, `picture`, `blood_group`, `country`, `city`, `zip`, `status`, `is_assign`) VALUES
+(1, 'Motorista', '01', 'Driver', '000 00000', 'motorista@motorista.com', '123456', './application/modules/hr/assets/images/04b40a89a63527e901a20fad1a43709c.png', 'Calle Perú 235', 'Apto 08', './application/modules/hr/assets/images/741efc8a035bf00fe2eb7b1587d9d275.png', 'a-', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 1),
+(2, 'Assistente', '01', 'Assistant', '+59171608981', 'assistente@assistente.com', '01040502', NULL, 'Calle Perú 235', 'Apto 08', NULL, 'A+', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -275,6 +305,15 @@ CREATE TABLE `fleet_facilities` (
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `fleet_facilities`
+--
+
+INSERT INTO `fleet_facilities` (`id`, `name`, `description`, `status`) VALUES
+(1, 'CBBA', 'Cochabamba', 1),
+(2, 'La Paz', 'La Paz', 1),
+(3, 'Santa Cruz', 'Santa Cruz', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -296,6 +335,13 @@ CREATE TABLE `fleet_registration` (
   `is_assign` tinyint(2) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `fleet_registration`
+--
+
+INSERT INTO `fleet_registration` (`id`, `reg_no`, `fleet_type_id`, `engine_no`, `model_no`, `chasis_no`, `owner`, `owner_phone`, `company`, `ac_available`, `status`, `is_assign`) VALUES
+(1, '5200', 1, '010203', '2021', '010203040506', 'Bolpar', '71608981', 'En Bus', 0, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -312,6 +358,13 @@ CREATE TABLE `fleet_type` (
   `fleet_facilities` varchar(250) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `fleet_type`
+--
+
+INSERT INTO `fleet_type` (`id`, `type`, `layout`, `lastseat`, `total_seat`, `seat_numbers`, `fleet_facilities`, `status`) VALUES
+(1, 'Leito ', '2-1', '0', 43, '1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , , 9 , 10 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 , 21 , 22 , 23 , 24 , 25 , 26 , 27 , 28 , 29 , 30 , 31 , 32 , 33 , 34 , 35 , 36 , 37 , 38 , 39 , 40 , 41 , 42 , 43 , \" , ! , # , % , ¨. & , * , . ,', 'CBBA,La Paz,Santa Cruz', 1);
 
 -- --------------------------------------------------------
 
@@ -949,7 +1002,11 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (700, 'pass_username_cant_be_empty', 'Password, First Name, Last Name can\'t empty. Use New password to update password , otherwise type old password', 'Le mot de passe, le prénom et le nom de famille ne peuvent pas être vides. Utilisez Nouveau mot de passe pour mettre à jour le mot de passe, sinon tapez ancien mot de passe'),
 (701, 'no', 'NO', 'NON'),
 (702, 'login_again', 'Data Save Successfully. Please Login Again', 'Sauvegarde des données avec succès. Veuillez vous reconnecter'),
-(703, 'companies', 'Companies', 'Empresas');
+(703, 'companies', 'Companies', 'Empresas'),
+(704, 'lane', 'Lane', 'Lane'),
+(705, 'nit', 'NIT', 'NIT'),
+(706, 'driver_name_1', 'Driver name 1', 'Driver name 1'),
+(707, 'driver_name_2', 'Driver name 2', 'Driver name 2');
 
 -- --------------------------------------------------------
 
@@ -1052,6 +1109,13 @@ CREATE TABLE `pri_price` (
   `group_price_per_person` float DEFAULT '0',
   `group_size` int(15) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `pri_price`
+--
+
+INSERT INTO `pri_price` (`price_id`, `route_id`, `vehicle_type_id`, `price`, `children_price`, `special_price`, `group_price_per_person`, `group_size`) VALUES
+(1, '1', '1', 100, 80, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1221,67 +1285,67 @@ INSERT INTO `sec_role_permission` (`id`, `role_id`, `menu_id`, `can_access`, `ca
 (682, 1, 102, 0, 0, 0, 0, 2, '2018-09-06 11:03:51'),
 (683, 1, 103, 0, 0, 0, 0, 2, '2018-09-06 11:03:51'),
 (684, 1, 104, 0, 0, 0, 0, 2, '2018-09-06 11:03:51'),
-(1104, 2, 69, 1, 0, 0, 0, 2, '2018-11-15 01:11:30'),
-(1105, 2, 81, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1106, 2, 82, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1107, 2, 83, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1108, 2, 84, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1109, 2, 129, 1, 0, 0, 0, 2, '2018-11-15 01:11:30'),
-(1110, 2, 72, 1, 0, 0, 0, 2, '2018-11-15 01:11:30'),
-(1111, 2, 70, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1112, 2, 71, 0, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1113, 2, 73, 1, 0, 0, 0, 2, '2018-11-15 01:11:30'),
-(1114, 2, 74, 1, 0, 0, 0, 2, '2018-11-15 01:11:30'),
-(1115, 2, 75, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1116, 2, 76, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1117, 2, 77, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1118, 2, 78, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1119, 2, 79, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1120, 2, 80, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1121, 2, 111, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1122, 2, 112, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1123, 2, 113, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1124, 2, 109, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1125, 2, 110, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1126, 2, 85, 1, 0, 0, 0, 2, '2018-11-15 01:11:30'),
-(1127, 2, 86, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1128, 2, 87, 1, 0, 0, 0, 2, '2018-11-15 01:11:30'),
-(1129, 2, 88, 1, 0, 0, 0, 2, '2018-11-15 01:11:30'),
-(1130, 2, 130, 1, 1, 1, 1, 2, '2018-11-15 01:11:30'),
-(1131, 2, 131, 1, 0, 1, 0, 2, '2018-11-15 01:11:30'),
-(1132, 2, 89, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1133, 2, 90, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1134, 2, 91, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1135, 2, 92, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1136, 2, 93, 1, 1, 1, 1, 2, '2018-11-15 01:11:30'),
-(1137, 2, 94, 1, 1, 1, 1, 2, '2018-11-15 01:11:30'),
-(1138, 2, 105, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1139, 2, 108, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1140, 2, 114, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1141, 2, 115, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1142, 2, 116, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1143, 2, 117, 1, 1, 1, 0, 2, '2018-11-15 01:11:30'),
-(1144, 2, 95, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1145, 2, 96, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1146, 2, 97, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1147, 2, 98, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1148, 2, 99, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1149, 2, 100, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1150, 2, 118, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1151, 2, 119, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1152, 2, 120, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1153, 2, 121, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1154, 2, 122, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1155, 2, 123, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1156, 2, 124, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1157, 2, 125, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1158, 2, 126, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1159, 2, 127, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1160, 2, 128, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1161, 2, 101, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1162, 2, 102, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1163, 2, 103, 1, 1, 0, 0, 2, '2018-11-15 01:11:30'),
-(1164, 2, 104, 1, 1, 0, 0, 2, '2018-11-15 01:11:30');
+(1165, 2, 69, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
+(1166, 2, 81, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1167, 2, 82, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1168, 2, 83, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1169, 2, 84, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1170, 2, 129, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
+(1171, 2, 72, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
+(1172, 2, 70, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1173, 2, 71, 0, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1174, 2, 73, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
+(1175, 2, 74, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
+(1176, 2, 75, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1177, 2, 76, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1178, 2, 77, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1179, 2, 78, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1180, 2, 79, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1181, 2, 80, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1182, 2, 111, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1183, 2, 112, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1184, 2, 113, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1185, 2, 109, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1186, 2, 110, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1187, 2, 85, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
+(1188, 2, 86, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1189, 2, 87, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
+(1190, 2, 88, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
+(1191, 2, 130, 1, 1, 1, 1, 1, '2022-09-11 06:24:55'),
+(1192, 2, 131, 1, 0, 1, 0, 1, '2022-09-11 06:24:55'),
+(1193, 2, 89, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1194, 2, 90, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1195, 2, 91, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1196, 2, 92, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1197, 2, 93, 1, 1, 1, 1, 1, '2022-09-11 06:24:55'),
+(1198, 2, 94, 1, 1, 1, 1, 1, '2022-09-11 06:24:55'),
+(1199, 2, 105, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1200, 2, 108, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1201, 2, 114, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1202, 2, 115, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1203, 2, 116, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1204, 2, 117, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
+(1205, 2, 95, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1206, 2, 96, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1207, 2, 97, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1208, 2, 98, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1209, 2, 99, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1210, 2, 100, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1211, 2, 118, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1212, 2, 119, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1213, 2, 120, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1214, 2, 121, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1215, 2, 122, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1216, 2, 123, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1217, 2, 124, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1218, 2, 125, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1219, 2, 126, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1220, 2, 127, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1221, 2, 128, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1222, 2, 101, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1223, 2, 102, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1224, 2, 103, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
+(1225, 2, 104, 1, 1, 0, 0, 1, '2022-09-11 06:24:55');
 
 -- --------------------------------------------------------
 
@@ -1304,7 +1368,7 @@ CREATE TABLE `sec_role_tbl` (
 
 INSERT INTO `sec_role_tbl` (`role_id`, `role_name`, `role_description`, `create_by`, `date_time`, `role_status`) VALUES
 (1, 'Test Role', 'This is test role', 2, '2018-07-16 02:49:29', 1),
-(2, 'Agent Role', 'sjdf', 2, '2018-08-18 11:48:57', 1);
+(2, ' Rol Agente', 'Agente', 2, '2018-08-18 11:48:57', 1);
 
 -- --------------------------------------------------------
 
@@ -1328,7 +1392,8 @@ INSERT INTO `sec_user_access_tbl` (`role_acc_id`, `fk_role_id`, `fk_user_id`) VA
 (3, 2, 4),
 (4, 2, 5),
 (5, 2, 8),
-(6, 2, 9);
+(6, 2, 9),
+(7, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -1368,6 +1433,13 @@ CREATE TABLE `shedule` (
   `end` varchar(20) NOT NULL,
   `duration` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `shedule`
+--
+
+INSERT INTO `shedule` (`shedule_id`, `start`, `end`, `duration`) VALUES
+(1, '20:30:00', '06:00:00', -14);
 
 -- --------------------------------------------------------
 
@@ -1479,6 +1551,13 @@ CREATE TABLE `tkt_passenger` (
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tkt_passenger`
+--
+
+INSERT INTO `tkt_passenger` (`id`, `id_no`, `firstname`, `lastname`, `middle_name`, `phone`, `nid`, `email`, `password`, `password_reset_token`, `remember_token`, `image`, `address_line_1`, `address_line_2`, `city`, `zip_code`, `country`, `status`) VALUES
+(1, 'PWX3YAMT', 'Erick', 'Santos', NULL, '71608981', '10756000', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'bus', NULL, NULL, NULL, NULL, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1524,6 +1603,13 @@ CREATE TABLE `trip` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `trip`
+--
+
+INSERT INTO `trip` (`trip_id`, `trip_title`, `type`, `route`, `shedule_id`, `weekend`, `status`) VALUES
+(1, 'Leito -Santa Cruz x La Paz-20:30:00 - 06:00:00', 1, 1, 1, '1,2,3,4,5,6', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1535,8 +1621,10 @@ CREATE TABLE `trip_assign` (
   `id_no` varchar(20) DEFAULT NULL,
   `fleet_registration_id` int(11) DEFAULT NULL,
   `trip` varchar(30) NOT NULL,
+  `company_id` int(11) DEFAULT NULL,
   `assign_time` datetime NOT NULL,
-  `driver_id` int(11) DEFAULT NULL,
+  `driver1_id` int(11) DEFAULT NULL,
+  `driver2_id` int(11) DEFAULT NULL,
   `assistant_1` varchar(30) DEFAULT NULL,
   `assistant_2` varchar(30) DEFAULT NULL,
   `assistant_3` varchar(30) DEFAULT NULL,
@@ -1549,6 +1637,13 @@ CREATE TABLE `trip_assign` (
   `date` datetime DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `trip_assign`
+--
+
+INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `company_id`, `assign_time`, `driver1_id`, `driver2_id`, `assistant_1`, `assistant_2`, `assistant_3`, `sold_ticket`, `total_income`, `total_expense`, `total_fuel`, `trip_comment`, `closed_by_id`, `date`, `status`) VALUES
+(1, '220911044254', 1, '1', 1, '2022-09-13 13:46:00', 1, 1, '2', '', '', 0, 0, 0, 0, NULL, 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -1564,6 +1659,15 @@ CREATE TABLE `trip_location` (
   `image` varchar(255) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `trip_location`
+--
+
+INSERT INTO `trip_location` (`id`, `name`, `description`, `google_map`, `image`, `status`) VALUES
+(1, 'Santa Cruz', 'Santa Cruz', '', './application/modules/trip/assets/images/location/448fbbfb806b0c5ee5fdb2d12467ee1a.png', 1),
+(2, 'La Paz', 'La Paz', '', '', 1),
+(3, 'CBBA', 'CBBA', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -1583,6 +1687,13 @@ CREATE TABLE `trip_route` (
   `special_seat` int(11) NOT NULL DEFAULT '0',
   `status` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `trip_route`
+--
+
+INSERT INTO `trip_route` (`id`, `name`, `start_point`, `end_point`, `stoppage_points`, `distance`, `approximate_time`, `children_seat`, `special_seat`, `status`) VALUES
+(1, 'Santa Cruz x La Paz', '1', '2', 'Cochabamba,Santa Cruz,La Paz', '700', '8', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1611,7 +1722,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, NULL, NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-09 22:35:34', NULL, '38.25.210.52', 1, 1);
+(1, NULL, NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-13 17:42:28', '2022-09-13 17:41:05', '38.25.230.156', 1, 1),
+(2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1642,6 +1754,18 @@ CREATE TABLE `ws_booking_history` (
   `date` datetime DEFAULT NULL,
   `status` tinyint(4) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ws_booking_history`
+--
+
+INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `trip_route_id`, `pickup_trip_location`, `drop_trip_location`, `request_facilities`, `price`, `discount`, `adult`, `child`, `special`, `total_seat`, `seat_numbers`, `offer_code`, `tkt_refund_id`, `agent_id`, `booking_date`, `date`, `status`) VALUES
+(1, 'BI5VGB8N', '1', 'PNXRDS6V', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:06:53', '2022-09-10 19:06:53', 0),
+(2, 'BTCZITW6', '1', 'PTKBPOBB', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:09:40', '2022-09-10 19:09:40', 0),
+(3, 'B5QV04G0', '1', 'P1FK7GEA', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:10:25', '2022-09-10 19:10:25', 0),
+(4, 'BPSSM99U', '1', 'PHX0DUXF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:11:31', '2022-09-10 19:11:31', 0),
+(5, 'BAW1V8C5', '1', 'PWX3YAMT', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:12:17', '2022-09-10 19:12:17', 0),
+(6, 'BRAHHI1F', '1', 'PYA5AGMX', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, NULL, '2022-09-10 19:15:12', '2022-09-10 19:15:12', 0);
 
 -- --------------------------------------------------------
 
@@ -2003,7 +2127,7 @@ ALTER TABLE `ws_setting`
 -- AUTO_INCREMENT de la tabla `acc_account_name`
 --
 ALTER TABLE `acc_account_name`
-  MODIFY `account_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `account_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `acn_account_transaction`
@@ -2015,7 +2139,7 @@ ALTER TABLE `acn_account_transaction`
 -- AUTO_INCREMENT de la tabla `agent_info`
 --
 ALTER TABLE `agent_info`
-  MODIFY `agent_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `agent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `agent_ledger`
@@ -2027,7 +2151,7 @@ ALTER TABLE `agent_ledger`
 -- AUTO_INCREMENT de la tabla `bank_info`
 --
 ALTER TABLE `bank_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `bank_transaction`
@@ -2045,7 +2169,7 @@ ALTER TABLE `booking_downtime`
 -- AUTO_INCREMENT de la tabla `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `email_config`
@@ -2057,7 +2181,7 @@ ALTER TABLE `email_config`
 -- AUTO_INCREMENT de la tabla `employee_history`
 --
 ALTER TABLE `employee_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `employee_type`
@@ -2081,19 +2205,19 @@ ALTER TABLE `fit_fitness`
 -- AUTO_INCREMENT de la tabla `fleet_facilities`
 --
 ALTER TABLE `fleet_facilities`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `fleet_registration`
 --
 ALTER TABLE `fleet_registration`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `fleet_type`
 --
 ALTER TABLE `fleet_type`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ftn_fitness_period`
@@ -2111,7 +2235,7 @@ ALTER TABLE `how_to_use`
 -- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=704;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=708;
 
 --
 -- AUTO_INCREMENT de la tabla `message`
@@ -2147,7 +2271,7 @@ ALTER TABLE `payment_informations`
 -- AUTO_INCREMENT de la tabla `pri_price`
 --
 ALTER TABLE `pri_price`
-  MODIFY `price_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `sec_menu_item`
@@ -2159,7 +2283,7 @@ ALTER TABLE `sec_menu_item`
 -- AUTO_INCREMENT de la tabla `sec_role_permission`
 --
 ALTER TABLE `sec_role_permission`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1165;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1226;
 
 --
 -- AUTO_INCREMENT de la tabla `sec_role_tbl`
@@ -2171,7 +2295,7 @@ ALTER TABLE `sec_role_tbl`
 -- AUTO_INCREMENT de la tabla `sec_user_access_tbl`
 --
 ALTER TABLE `sec_user_access_tbl`
-  MODIFY `role_acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `role_acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `setting`
@@ -2183,7 +2307,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT de la tabla `shedule`
 --
 ALTER TABLE `shedule`
-  MODIFY `shedule_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `shedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `synchronizer_setting`
@@ -2213,7 +2337,7 @@ ALTER TABLE `tkt_feedback`
 -- AUTO_INCREMENT de la tabla `tkt_passenger`
 --
 ALTER TABLE `tkt_passenger`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tkt_referal`
@@ -2231,37 +2355,37 @@ ALTER TABLE `tkt_refund`
 -- AUTO_INCREMENT de la tabla `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `trip_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `trip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `trip_assign`
 --
 ALTER TABLE `trip_assign`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `trip_location`
 --
 ALTER TABLE `trip_location`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `trip_route`
 --
 ALTER TABLE `trip_route`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_offer`
@@ -2281,7 +2405,3 @@ ALTER TABLE `ws_payments`
 ALTER TABLE `ws_setting`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

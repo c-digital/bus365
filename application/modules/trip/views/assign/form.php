@@ -39,11 +39,25 @@
                            <input type="text" name="assign_date" class="form-control datetimepicker" value="" placeholder="<?php echo display('date')?>">
                         </div>
                     </div> 
+
+                    <div class="form-group row">
+                        <label for="company_id" class="col-sm-3 col-form-label"><?php echo display('company') ?> *</label>
+                        <div class="col-sm-9">
+                            <?php echo form_dropdown('company_id', $companies_dropdown, (!empty($assign->driver_id)?$assign->driver_id:null), ' class="form-control"') ?> 
+                        </div>
+                    </div>
                   
                     <div class="form-group row">
-                        <label for="driver_id" class="col-sm-3 col-form-label"><?php echo display('driver_name') ?> *</label>
+                        <label for="driver1_id" class="col-sm-3 col-form-label"><?php echo display('driver_name_1') ?> *</label>
                         <div class="col-sm-9">
-                            <?php echo form_dropdown('driver_id', $driver_dropdown, (!empty($assign->driver_id)?$assign->driver_id:null), ' class="form-control"') ?> 
+                            <?php echo form_dropdown('driver1_id', $driver_dropdown, (!empty($assign->driver_id)?$assign->driver_id:null), ' class="form-control"') ?> 
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="driver2_id" class="col-sm-3 col-form-label"><?php echo display('driver_name_2') ?> *</label>
+                        <div class="col-sm-9">
+                            <?php echo form_dropdown('driver2_id', $driver_dropdown, (!empty($assign->driver_id)?$assign->driver_id:null), ' class="form-control"') ?> 
                         </div>
                     </div> 
 

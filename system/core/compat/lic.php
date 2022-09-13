@@ -173,8 +173,8 @@ class Lic
             $this->html();
 
         } else if (isset($_SESSION['response']) && $_SESSION['response']) {
-            $this->message = "This copy of application is not genuine <br>Contact <i><a href='http://bdtask.com/#contact' target='_blank' style='color:#f5f5f5'>bdtask.com</a></i>";
-            $this->html();
+            /*$this->message = "This copy of application is not genuine <br>Contact <i><a href='http://bdtask.com/#contact' target='_blank' style='color:#f5f5f5'>bdtask.com</a></i>";
+            $this->html();*/
 
         } else if($this->update_day != $LicSysLog->update_day) {
 

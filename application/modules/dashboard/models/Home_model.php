@@ -82,7 +82,7 @@ class Home_model extends CI_Model {
 	      ->from("trip_assign a")
 	      ->join('trip c','a.trip = c.trip_id','left')
           ->join('fleet_registration b','a.fleet_registration_id = b.id','left')
-          ->join('employee_history d','a.driver_id = d.id','left')
+          ->join('employee_history d','a.driver1_id = d.id','left')
           ->join('trip_route e','c.route = e.id','left')
           ->join('shedule f','c.shedule_id = f.shedule_id','left')
 		  ->group_start()

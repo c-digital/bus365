@@ -152,10 +152,30 @@ class Assign_model extends CI_Model {
 		}
 	}
 
+	public function companies_dropdown()
+	{
+		$data = $this->db->select("id, name")
+			->from('companies')
+			->get()
+			->result();
+
+		$list[''] = display('select_option');
+
+		if (!empty($data)) {
+			foreach ($data as $value) {
+				$list[$value->id] = $value->name;
+			}
+
+			return $list;
+		}
+
+		return false;
+	}
+
 	public function driver_dropdown()
 	{
 
-    $data = $this->db->select("id, CONCAT_WS(' ',first_name, second_name) AS name")
+    	$data = $this->db->select("id, CONCAT_WS(' ',first_name, second_name) AS name")
 			->from("employee_history")
 			->where('position','Driver')
 			->where('is_assign',0)

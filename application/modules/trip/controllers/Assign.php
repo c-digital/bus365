@@ -76,14 +76,16 @@ class Assign extends MX_Controller {
 			'id' 	 			 => $ids, 
 			'id_no' 	 		 => $id_no, 
 			'fleet_registration_id' => $this->input->post('fleet_registration_id'), 
-			'driver_id'          => $this->input->post('driver_id'), 
-			'assistant_1'        => $this->input->post('assistant_1'), 
-			'assistant_2'        => $this->input->post('assistant_2'), 
-			'assistant_3'        => $this->input->post('assistant_3'), 
-			'status'             => $this->input->post('status'),
-			'assign_time'        => date('Y-m-d H:i:s', strtotime((!empty($assigndate)?$assigndate:date('Y-m-d H:i:s')))),
-			'trip'               => $this->input->post('trip'),
-			'date'               => 'NULl',
+			'driver1_id'          => $this->input->post('driver1_id'), 
+			'driver2_id'          => $this->input->post('driver2_id'), 
+			'company_id'          => $this->input->post('company_id'), 
+			'assistant_1'         => $this->input->post('assistant_1'), 
+			'assistant_2'         => $this->input->post('assistant_2'), 
+			'assistant_3'         => $this->input->post('assistant_3'), 
+			'status'              => $this->input->post('status'),
+			'assign_time'         => date('Y-m-d H:i:s', strtotime((!empty($assigndate)?$assigndate:date('Y-m-d H:i:s')))),
+			'trip'                => $this->input->post('trip'),
+			'date'                => 'NULl',
 		]; 
 
            $driverinfo =[
@@ -155,22 +157,26 @@ class Assign extends MX_Controller {
 
 		} else { 
 			if(!empty($id)) {
-			$data['title'] = display('update');
-		    $data['assign']   = $this->assign_model->findById($id);
-		    $data['fleet_dropdown'] = $this->assign_model->fleet_dropdown_update();
-		    $data['driver_dropdown'] = $this->assign_model->driver_dropdown_update();
-		    $data['assistant_dropdown'] = $this->assign_model->assistant_dropdown_update();
+				$data['title'] = display('update');
+			    $data['assign']   = $this->assign_model->findById($id);
+			    $data['fleet_dropdown'] = $this->assign_model->fleet_dropdown_update();
+			    $data['driver_dropdown'] = $this->assign_model->driver_dropdown_update();
+			    $data['assistant_dropdown'] = $this->assign_model->assistant_dropdown_update();
+			    $data['companies_dropdown'] = $this->assign_model->companies_dropdown();
 			}
 			if(empty($id)) {
-			$data['fleet_dropdown'] = $this->assign_model->fleet_dropdown();
-			$data['driver_dropdown'] = $this->assign_model->driver_dropdown();
-			$data['assistant_dropdown'] = $this->assign_model->assistant_dropdown();
+				$data['fleet_dropdown'] = $this->assign_model->fleet_dropdown();
+				$data['driver_dropdown'] = $this->assign_model->driver_dropdown();
+				$data['assistant_dropdown'] = $this->assign_model->assistant_dropdown();
+				$data['companies_dropdown'] = $this->assign_model->companies_dropdown();
 		    }
+
 			$data['route_dropdown'] = $this->route_model->dropdown();
 			$data['trip'] = $this->assign_model->trip_dropdown();
 			$data['shedule'] = $this->assign_model->shedule_dropdown();
 			$data['module'] = "trip";
 			$data['page']   = "assign/form";   
+
 			echo Modules::run('template/layout', $data); 
 		}   
 	}

@@ -13,6 +13,9 @@ class Home extends MX_Controller {
 
 		if (! $this->session->userdata('isLogIn'))
 			redirect('login');
+
+
+		$this->db->query('SET SESSION sql_mode = ""');
  	}
  
 	public function index()

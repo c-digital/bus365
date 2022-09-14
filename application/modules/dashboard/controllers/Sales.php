@@ -22,8 +22,9 @@ class Sales extends MX_Controller
  		$data['location_dropdown'] = $this->sales_model->location_dropdown();
 
  		$getStartPoint = $this->input->get('start_point');
- 		$getEndPoint   = $this->input->get('end_point');
- 		$getFleetType  = $this->input->get('fleet_type');
+ 		$getEndPoint = $this->input->get('end_point');
+ 		$getDate = $this->input->get('date');
+ 		$getFleetType = $this->input->get('fleet_type');
 
  		$data['b_date'] =  date('Y-m-d', strtotime($getDate));
 
@@ -36,7 +37,9 @@ class Sales extends MX_Controller
 
 		$data['fleet_dropdown'] = $this->sales_model->fleet_dropdown();
 
-		$data['trip_list'] = $this->sales_model->trip_list($postData);
+		if ($getStartPoint && $getEndPoint && $getDate && $getFleetType) {
+			$data['trip_list'] = $this->sales_model->trip_list($postData);
+		}
 
 		$data['appSetting'] = $this->sales_model->read_setting();
 

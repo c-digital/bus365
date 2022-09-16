@@ -99,6 +99,10 @@
 	    margin: 20px 0;
 	}
 
+    .actions > li {
+        list-style: none !important;
+    }
+
 </style>
 
 <div class="clearfix"></div>

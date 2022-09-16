@@ -9,6 +9,25 @@ foreach ($setting as $transactiontype) {
 $bank=$this->db->select('*')->from('bank_info')->get()->result();
 
  ?>
+
+<style>
+    .steps {
+        display: none !important;
+    }
+</style>
+
+ <script>
+     $("#example-basic").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        autoFocus: true,
+        enableFinishButton: false,
+        enableKeyPagination: false
+    });
+ </script>
+
+
    <div><input type="hidden" name="sesval" id="pas_ses_id" value="<?php echo $this->session->userdata('id_no'); ?>"></div>
    <span class="container">
       <div id="outputPreviewm" class="alert hide modal-title" role="alert" >
@@ -31,7 +50,22 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
   <div class="tab-content">
     
     <div id="home" class="tab-pane fade in active">
+
        <div class="passenger-form">
+
+            <div id="example-basic">
+                <h3>Pasajero 1</h3>
+                <section>Información del pasajero 1</section>
+
+                <h3>Pasajero 2</h3>
+                <section>Información del pasajero 2</section>
+
+                <h3>Pasajero 3</h3>
+                <section>Información del pasajero 3</section>
+            </div>
+
+            <hr>
+
             <h4><?php echo display('passenger_details'); ?></h4>
             <input type="hidden" name="booking_id_no" value="<?php echo (!empty($booking->id_no)?$booking->id_no:null) ?>">
             <input type="hidden" name="passenger_id_no" value="<?php echo (!empty($booking->tkt_passenger_id_no)?$booking->tkt_passenger_id_no:null) ?>" id="pid">

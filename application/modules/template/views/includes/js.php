@@ -33,6 +33,8 @@
 <script src="<?php echo base_url('assets/js/dashboard.js') ?>" type="text/javascript"></script>
 <!-- End Theme label Script-->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js" integrity="sha512-bE0ncA3DKWmKaF3w5hQjCq7ErHFiPdH2IGjXRyXXZSOokbimtUuufhgeDPeQPs51AI4XsqDZUK7qvrPZ5xboZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 <!-- Include module Script -->
 <?php

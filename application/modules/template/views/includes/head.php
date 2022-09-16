@@ -38,6 +38,8 @@
 <link href="<?php echo base_url('assets/css/bootstrap-tokenfield.min.css') ?>" type="text/css" rel="stylesheet"> 
 
 
+<link rel="stylesheet" href="<?php echo base_url('assets/steps.css') ?>">
+
 
 <!-- timepicker -->
 <link href="<?php echo base_url('assets/css/jquery-ui-timepicker-addon.min.css') ?>" rel="stylesheet" type="text/css"/>

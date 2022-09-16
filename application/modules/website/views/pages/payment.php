@@ -28,6 +28,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
  </script>
 
 
+
    <div><input type="hidden" name="sesval" id="pas_ses_id" value="<?php echo $this->session->userdata('id_no'); ?>"></div>
    <span class="container">
       <div id="outputPreviewm" class="alert hide modal-title" role="alert" >
@@ -35,11 +36,12 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                 </div>
     <ul class="nav nav-pills">
          <?php if(empty($this->session->userdata('id_no'))){?>
-    <li class="active"><button type="button" class="btn btn-primary btn-md ">Registration</button></li>
-   
-    <li><button type="button" class="btn btn-primary btn-md " data-target="#login_modal" data-toggle="modal"><?php echo display('login') ?></button></li>
-    <?php }else{ ?>
-    <?php } ?>
+            <?php if($show){?>
+                <li class="active"><button type="button" class="btn btn-primary btn-md ">Registration</button></li>
+               
+                <li><button type="button" class="btn btn-primary btn-md " data-target="#login_modal" data-toggle="modal"><?php echo display('login') ?></button></li>
+            <?php } ?>
+        <?php }else{} ?>
   </ul>
    <?php echo form_open('website/search/checkout', array('class'=>'row', 'id'=>'checkoutFrms')); ?>
     <div class="col-sm-5">
@@ -53,20 +55,43 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 
        <div class="passenger-form">
 
+            <h4><?php echo display('passenger_details'); ?></h4>
+
             <div id="example-basic">
-                <h3>Pasajero 1</h3>
-                <section>Información del pasajero 1</section>
+                <?php $j = 0; for ($i = 1; $i <= $total_seats; $i++): ?>
+                    <h3>Pasajero #<?php echo $i; ?></h3>
 
-                <h3>Pasajero 2</h3>
-                <section>Información del pasajero 2</section>
+                    <section>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="passengers[<?php echo $j; ?>][ci]"><?php echo display('ci') ?></label>
+                                    <input name="passengers[<?php echo $j; ?>][ci]" class="form-control" type="text">
+                                </div>
 
-                <h3>Pasajero 3</h3>
-                <section>Información del pasajero 3</section>
+                                <div class="form-group">
+                                    <label for="passengers[<?php echo $j; ?>][name]"><?php echo display('name') ?></label>
+                                    <input name="passengers[<?php echo $j; ?>][name]" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="passengers[<?php echo $j; ?>][phone]"><?php echo display('phone') ?></label>
+                                    <input name="passengers[<?php echo $j; ?>][phone]" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="passengers[<?php echo $j; ?>][date_birth]"><?php echo display('date_birth') ?></label>
+                                    <input name="passengers[<?php echo $j; ?>][date_birth]" class="form-control" type="date">
+                                </div>
+                            </div>                        
+                        </div>
+                    </section>
+                <?php $j++; endforeach; ?>
             </div>
 
             <hr>
 
-            <h4><?php echo display('passenger_details'); ?></h4>
+            <h4><?php echo display('bill_details'); ?></h4>
             <input type="hidden" name="booking_id_no" value="<?php echo (!empty($booking->id_no)?$booking->id_no:null) ?>">
             <input type="hidden" name="passenger_id_no" value="<?php echo (!empty($booking->tkt_passenger_id_no)?$booking->tkt_passenger_id_no:null) ?>" id="pid">
             <input type="hidden" name="hdn_passenger_id" id="psid" value="<?php echo $this->session->userdata('id_no'); ?>">

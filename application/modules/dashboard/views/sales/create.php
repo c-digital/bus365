@@ -352,6 +352,9 @@
 
                     <div class="col-sm-7 col-xs-12"> 
                         <?php echo form_open('website/search/booking/', array('class' => 'price-details', 'id'=>'bookingFrm')) ?>
+
+                            <input type="hidden" name="show" value="0">
+
                             <div class="form-group">
                                 <label for="pickup_location"><?php echo display('pickup_location') ?>*</label>
                                 <select name="pickup_location" id="pickup_location" class="select2 location" style="width:100%">

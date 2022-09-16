@@ -190,6 +190,9 @@ class Search extends MX_Controller {
                         $obj['commission_per']=$comission->bank_commission;
                         $obj['routePrice'] = $this->db->select('*')->from('pri_price')->where('route_id',$this->input->post('trip_route_id'))->get()->row();
 
+                        $obj['total_seat'] = $this->input->post('total_seat');
+                        $obj['show'] = $this->input->post('show');
+
                         $data['payment'] = $this->load->view('pages/payment', $obj, true);
 
                         $data['status']  = true; 

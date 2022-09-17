@@ -190,8 +190,12 @@ class Search extends MX_Controller {
                         $obj['commission_per']=$comission->bank_commission;
                         $obj['routePrice'] = $this->db->select('*')->from('pri_price')->where('route_id',$this->input->post('trip_route_id'))->get()->row();
 
-                        $obj['total_seat'] = $this->input->post('total_seat');
+                        $obj['total_seats'] = $this->input->post('total_seat');
                         $obj['show'] = $this->input->post('show');
+                        $obj['adult'] = $this->input->post('adult');
+                        $obj['child'] = $this->input->post('child_no');
+                        $obj['special'] = $this->input->post('special');
+                        $obj['seat_numbers'] = $this->input->post('seat_number');
 
                         $data['payment'] = $this->load->view('pages/payment', $obj, true);
 
@@ -281,6 +285,9 @@ class Search extends MX_Controller {
       'amount'         => $this->input->post('amount',true),
       'note'           => 'bank booking'
         );
+
+
+
         $obj['booking'] =$binfo= $this->db->select("
                             bh.*,
                             tr.name AS route_name,
@@ -302,6 +309,21 @@ class Search extends MX_Controller {
                         $obj['commission_per']=$comission->bank_commission;
                         $obj['routePrice'] = $this->db->select('*')->from('pri_price')->where('route_id',$this->input->post('trip_route_id'))->get()->row();
         #--------------------------------------
+
+
+        foreach ($_POST['passengers'] as $passenger) {
+            $this->db->insert('sales', [
+                'booking_id' => $this->input->post('booking_id_no',true),
+                'seat_type' => $passenger['seat_type'],
+                'seat_number' => $passenger['seat_number'],
+                'name' => $passenger['name'],
+                'ci' => $passenger['ci'],
+                'phone' => $passenger['phone'],
+                'birth' => $passenger['date_birth'],
+            ]);
+        }
+
+
         if ($this->form_validation->run())
         {
             if($this->website_model->email_check($this->input->post('email'))){

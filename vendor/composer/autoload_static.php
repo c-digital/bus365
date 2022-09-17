@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8d23c9fc4293289eeea34c52e59f1bc3
+class ComposerStaticInit17143e95e37d061ad8ce480ea1b06413
 {
     public static $classMap = array (
         'Absolute_Positioner' => __DIR__ . '/..' . '/dompdf/dompdf/include/absolute_positioner.cls.php',
@@ -21,6 +21,7 @@ class ComposerStaticInit8d23c9fc4293289eeea34c52e59f1bc3
         'Canvas' => __DIR__ . '/..' . '/dompdf/dompdf/include/canvas.cls.php',
         'Canvas_Factory' => __DIR__ . '/..' . '/dompdf/dompdf/include/canvas_factory.cls.php',
         'Cellmap' => __DIR__ . '/..' . '/dompdf/dompdf/include/cellmap.cls.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DOMPDF' => __DIR__ . '/..' . '/dompdf/dompdf/include/dompdf.cls.php',
         'DOMPDF_Exception' => __DIR__ . '/..' . '/dompdf/dompdf/include/dompdf_exception.cls.php',
         'DOMPDF_Image_Exception' => __DIR__ . '/..' . '/dompdf/dompdf/include/dompdf_image_exception.cls.php',
@@ -117,7 +118,7 @@ class ComposerStaticInit8d23c9fc4293289eeea34c52e59f1bc3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit8d23c9fc4293289eeea34c52e59f1bc3::$classMap;
+            $loader->classMap = ComposerStaticInit17143e95e37d061ad8ce480ea1b06413::$classMap;
 
         }, null, ClassLoader::class);
     }

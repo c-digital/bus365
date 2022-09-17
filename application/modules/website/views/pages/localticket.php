@@ -36,7 +36,7 @@
                                 <tr>
                                     <td>
                                         <div class="ticket-logo">
-                                            <img src="<?php echo base_url(!empty($appSetting->logo)?$appSetting->logo:null) ?>" class="img-responsive" alt="">
+                                            <img src="<?php echo base_url(!empty($logo->logo)?'/uploads/'.$logo->logo:null) ?>" class="img-responsive" alt="">
                                         </div>
                                     </td>
                                     <td style="vertical-align:middle;">
@@ -51,6 +51,7 @@
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
+                                    <td><strong><?php echo display('company') ?>:</strong> <?php echo $logo->name ?></td>
                                     <td><strong><?php echo display('pickup_location'); ?>:</strong> <?php echo (!empty($ticket->pickup_trip_location)?$ticket->pickup_trip_location:null) ?></td>
                                     <td><strong><?php echo display('drop_location'); ?>:</strong> <?php echo (!empty($ticket->drop_trip_location)?$ticket->drop_trip_location:null) ?></td>
                                     <td><strong>Date:</strong> <?php echo (!empty($ticket->booking_date)?$ticket->booking_date:null) ?></td>

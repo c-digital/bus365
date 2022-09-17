@@ -25,6 +25,31 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
         enableFinishButton: false,
         enableKeyPagination: false
     });
+
+    $('.passenger-data').on('keyup', function () {
+        ci = $(this).val();
+
+        that = $(this);
+
+        $.ajax({
+            type: 'GET',
+            url: '/dashboard/sales/getInfo',
+            data: {
+                nid: ci
+            },
+            success: function (response) {
+                if (response) {
+                    response = JSON.parse(response);
+                    that.parent().parent().find('.passenger-name').val(response.name);
+                    that.parent().parent().find('.passenger-phone').val(response.phone);
+                    that.parent().parent().find('.passenger-birth').val(response.birth);
+                }
+            },
+            error: function (error) {
+                
+            }
+        });
+    });
  </script>
 
 
@@ -59,34 +84,66 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 
             <div id="example-basic">
                 <?php $j = 0; for ($i = 1; $i <= $total_seats; $i++): ?>
-                    <h3>Pasajero #<?php echo $i; ?></h3>
+                    <h3><?php echo display('Passenger') ?> #<?php echo $i; ?></h3>
 
                     <section>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
+                                    <label for="passengers[<?php echo $j; ?>][seat_type]"><?php echo display('seat_type') ?></label>
+
+                                    <select name="passengers[<?php echo $j; ?>][seat_type]" class="form-control">
+                                        <option value=""></option>
+
+                                        <?php if ($child): ?>
+                                            <option value="<?php echo display('child'); ?>"><?php echo display('child'); ?></option>
+                                        <?php endif; ?>
+
+                                        <?php if ($adult): ?>
+                                            <option value="<?php echo display('adult'); ?>"><?php echo display('adult'); ?></option>
+                                        <?php endif; ?>
+
+                                        <?php if ($special): ?>
+                                            <option value="<?php echo display('special'); ?>"><?php echo display('special'); ?></option>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="passengers[<?php echo $j; ?>][seat_number]"><?php echo display('seat_number') ?></label>
+
+                                    <select name="passengers[<?php echo $j; ?>][seat_number]" class="form-control">
+                                        <option value=""></option>
+
+                                        <?php foreach (explode(',', $seat_numbers) as $number): ?>
+                                            <option value="<?php echo $number; ?>"><?php echo $number; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="passengers[<?php echo $j; ?>][ci]"><?php echo display('ci') ?></label>
-                                    <input name="passengers[<?php echo $j; ?>][ci]" class="form-control" type="text">
+                                    <input name="passengers[<?php echo $j; ?>][ci]" class="form-control passenger-data" type="text">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="passengers[<?php echo $j; ?>][name]"><?php echo display('name') ?></label>
-                                    <input name="passengers[<?php echo $j; ?>][name]" class="form-control" type="text">
+                                    <input name="passengers[<?php echo $j; ?>][name]" class="form-control passenger-name" type="text">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="passengers[<?php echo $j; ?>][phone]"><?php echo display('phone') ?></label>
-                                    <input name="passengers[<?php echo $j; ?>][phone]" class="form-control" type="text">
+                                    <input name="passengers[<?php echo $j; ?>][phone]" class="form-control passenger-phone" type="text">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="passengers[<?php echo $j; ?>][date_birth]"><?php echo display('date_birth') ?></label>
-                                    <input name="passengers[<?php echo $j; ?>][date_birth]" class="form-control" type="date">
+                                    <input name="passengers[<?php echo $j; ?>][date_birth]" class="form-control passenger-birth" type="date">
                                 </div>
                             </div>                        
                         </div>
                     </section>
-                <?php $j++; endforeach; ?>
+                <?php $j++; endfor; ?>
             </div>
 
             <hr>

@@ -17,6 +17,19 @@ class Sales extends MX_Controller
 		}
  	}
 
+ 	public function index()
+ 	{
+ 		$data['module'] = "dashboard";
+		$data['page']   = "sales/index";
+
+		$data['sales'] = $this->db->select('*')
+							->from('sales')
+							->get()
+							->result();
+
+		echo Modules::run('template/layout', $data);
+ 	}
+
  	public function create()
  	{
  		$data['location_dropdown'] = $this->sales_model->location_dropdown();
@@ -47,5 +60,24 @@ class Sales extends MX_Controller
 		$data['page']   = "sales/create";
 
 		echo Modules::run('template/layout', $data);
+ 	}
+
+ 	public function getInfo()
+ 	{
+ 		$nid = $this->input->get('nid');
+
+ 		$select = "
+ 			CONCAT(firstname, ' ', lastname) AS name,
+ 			phone,
+ 			date_birth AS birth
+ 		";
+
+ 		$result = $this->db->select($select)
+ 			->from('tkt_passenger')
+ 			->where('nid', $nid)
+ 			->get()
+ 			->row();
+
+ 		echo json_encode($result);
  	}
 }

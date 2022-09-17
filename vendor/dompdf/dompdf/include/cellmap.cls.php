@@ -434,23 +434,31 @@ class Cellmap {
     $node = $frame->get_node();
     
     // Determine where this cell is going
+    if(method_exists($node, 'getAttribute')){
+        $colspan = $node->getAttribute("colspan");
+        $rowspan = $node->getAttribute("rowspan");
+    }else{
+        $colspan = false;
+        $rowspan = false;
+    }
+
+
+    if ( !$colspan ) {
+      $colspan = 1;
+      if(method_exists($node, 'setAttribute')){
+        $node->setAttribute("colspan",1);
+      }
+    }
+
+    if ( !$rowspan ) {
+      $rowspan = 1;
+       if(method_exists($node, 'setAttribute')){
+        $node->setAttribute("rowspan",1);
+       }
+    }
     
 
-   if (get_class($node) != 'DOMText') {
-$colspan = $node->getAttribute("colspan");
-$rowspan = $node->getAttribute("rowspan");
-
-if ( !$colspan ) {
-   $colspan = 1;
-   $node->setAttribute("colspan",1);
-}
-
-if ( !$rowspan ) {
-   $rowspan = 1;
-   $node->setAttribute("rowspan",1);
-}
-}
-$key = $frame->get_id();
+    $key = $frame->get_id();
 
     $bp = $style->get_border_properties();
 

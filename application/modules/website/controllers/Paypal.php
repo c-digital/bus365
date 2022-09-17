@@ -312,7 +312,23 @@ $setting_detail = $this->db->select('*')->from('email_config')->get()->row();
         $data['pricess']=$this->db->select('*')->from('pri_price')->where('route_id',$rokute_id)->get()->row();
         $data['currency']   = $currency;
         $data['module'] = "website";
-        $data['page']   = "pages/localticket";   
+        $data['page']   = "pages/localticket";
+
+        $trip_id = $data['ticket']->trip_id_no;
+
+        $sql = "
+            SELECT
+                logo,
+                name
+            FROM
+                companies c
+                INNER JOIN trip_assign a ON c.id = a.company_id
+            WHERE
+                a.trip = $trip_id
+        ";
+
+        $data['logo'] = $this->db->query($sql)->row();
+
         $this->load->view('layout', $data); 
     }
 

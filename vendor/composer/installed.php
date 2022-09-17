@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => 'dompdf/codeigniter',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'e634581ec0cbb806a449264b236ce58bed9d09a7',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        'dompdf/codeigniter' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'e634581ec0cbb806a449264b236ce58bed9d09a7',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'dompdf/dompdf' => array(
+            'pretty_version' => 'v0.6.2',
+            'version' => '0.6.2.0',
+            'reference' => 'cc06008f75262510ee135b8cbb14e333a309f651',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../dompdf/dompdf',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'phenx/php-font-lib' => array(
+            'pretty_version' => '0.2.2',
+            'version' => '0.2.2.0',
+            'reference' => 'c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phenx/php-font-lib',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);

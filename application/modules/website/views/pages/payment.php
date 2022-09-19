@@ -50,6 +50,37 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
             }
         });
     });
+
+    $('.passenger-birth').on('keyup', function () {
+        date = $(this).val();
+
+        that = $(this);
+
+        today = new Date();
+        birth = new Date(date);
+
+        age = today.getFullYear() - birth.getFullYear();
+
+        month = today.getMonth() - birth.getMonth();
+
+        if (month < 0 || (month === 0 && today.getDate() < birth.getDate())) {
+            age--;
+        }
+
+        if (!isNaN(age)) {
+            that.parent().parent().find('.passenger-age').val(age);
+        }
+    });
+
+    $('.copy-passengr-data').click(function () {
+        name = $('.passenger-name')[0].value;
+        phone = $('.passenger-phone')[0].value;
+        ci = $('.passenger-data')[0].value;
+
+        $('#name').val(name);
+        $('#phone').val(phone);
+        $('#nid').val(ci);
+    });
  </script>
 
 
@@ -140,6 +171,11 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                                     <label for="passengers[<?php echo $j; ?>][date_birth]"><?php echo display('date_birth') ?></label>
                                     <input name="passengers[<?php echo $j; ?>][date_birth]" class="form-control passenger-birth" type="date">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="passengers[<?php echo $j; ?>][age]"><?php echo display('age') ?></label>
+                                    <input name="passengers[<?php echo $j; ?>][age]" class="form-control passenger-age" readonly type="text">
+                                </div>
                             </div>                        
                         </div>
                     </section>
@@ -148,7 +184,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 
             <hr>
 
-            <h4><?php echo display('bill_details'); ?></h4>
+            <h4><?php echo display('bill_details'); ?> <button class="btn btn-primary btn-md copy-passengr-data" type="button"><?php echo display('copy_passenger_data') ?></button></h4>
             <input type="hidden" name="booking_id_no" value="<?php echo (!empty($booking->id_no)?$booking->id_no:null) ?>">
             <input type="hidden" name="passenger_id_no" value="<?php echo (!empty($booking->tkt_passenger_id_no)?$booking->tkt_passenger_id_no:null) ?>" id="pid">
             <input type="hidden" name="hdn_passenger_id" id="psid" value="<?php echo $this->session->userdata('id_no'); ?>">

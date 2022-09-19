@@ -224,7 +224,10 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
         <script src="<?php echo base_url('application/modules/website/assets/js/rating.min.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('application/modules/website/assets/js/select2.min.js') ?>" type="text/javascript"></script> 
         <script src="<?php echo base_url('application/modules/website/assets/js/website.js') ?>" type="text/javascript"></script> 
-        <script src="<?php echo base_url('application/modules/website/assets/js/script.js') ?>" type="text/javascript"></script> 
+        <script src="<?php echo base_url('application/modules/website/assets/js/script.js') ?>" type="text/javascript"></script>
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js" integrity="sha512-bE0ncA3DKWmKaF3w5hQjCq7ErHFiPdH2IGjXRyXXZSOokbimtUuufhgeDPeQPs51AI4XsqDZUK7qvrPZ5xboZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 
 
         <script type="text/javascript">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 13-09-2022 a las 15:59:45
+-- Tiempo de generación: 19-09-2022 a las 16:31:39
 -- Versión del servidor: 5.7.39
 -- Versión de PHP: 7.4.30
 
@@ -235,7 +235,10 @@ CREATE TABLE `employee_history` (
 
 INSERT INTO `employee_history` (`id`, `first_name`, `second_name`, `position`, `phone_no`, `email_no`, `document_id`, `document_pic`, `address_line_1`, `address_line_2`, `picture`, `blood_group`, `country`, `city`, `zip`, `status`, `is_assign`) VALUES
 (1, 'Motorista', '01', 'Driver', '000 00000', 'motorista@motorista.com', '123456', './application/modules/hr/assets/images/04b40a89a63527e901a20fad1a43709c.png', 'Calle Perú 235', 'Apto 08', './application/modules/hr/assets/images/741efc8a035bf00fe2eb7b1587d9d275.png', 'a-', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 1),
-(2, 'Assistente', '01', 'Assistant', '+59171608981', 'assistente@assistente.com', '01040502', NULL, 'Calle Perú 235', 'Apto 08', NULL, 'A+', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 1);
+(2, 'Assistente', '01', 'Assistant', '+59171608981', 'assistente@assistente.com', '01040502', NULL, 'Calle Perú 235', 'Apto 08', NULL, 'A+', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 1),
+(3, 'Motorista', '02', 'Driver', '6984217777', 'motorista02@motorista.com', '010203', NULL, 'calle Florida', 'Centro', NULL, 'ab+', 'Bolivia', 'Vilhena ro', '76980-000', NULL, 0),
+(4, 'Motorista 03', '03', 'Driver', '71608981', 'criativedigitalbo@gmail.com', '', NULL, 'Bush', 'Calle', NULL, '', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 0),
+(5, 'Asistente 02', '02', 'Assistant', '75602777', 'criativedigitalbo@gmail.com', '', NULL, 'Calle Perú 235', 'Apto 08', NULL, '', 'Bolivia', 'santa cruz', '10699', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -340,7 +343,8 @@ CREATE TABLE `fleet_registration` (
 --
 
 INSERT INTO `fleet_registration` (`id`, `reg_no`, `fleet_type_id`, `engine_no`, `model_no`, `chasis_no`, `owner`, `owner_phone`, `company`, `ac_available`, `status`, `is_assign`) VALUES
-(1, '5200', 1, '010203', '2021', '010203040506', 'Bolpar', '71608981', 'En Bus', 0, 1, 1);
+(1, '5200', 1, '010203', '2021', '010203040506', 'Bolpar', '71608981', 'En Bus', 0, 1, 1),
+(2, '1100', 1, '010203', '000000000', '1111111111111111111', 'Teste', '71608981', 'TEste', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1006,7 +1010,16 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (704, 'lane', 'Lane', 'Lane'),
 (705, 'nit', 'NIT', 'NIT'),
 (706, 'driver_name_1', 'Driver name 1', 'Driver name 1'),
-(707, 'driver_name_2', 'Driver name 2', 'Driver name 2');
+(707, 'driver_name_2', 'Driver name 2', 'Driver name 2'),
+(708, 'sales', 'Sales', 'Sales'),
+(709, 'ci', 'CI', 'CI'),
+(710, 'date_birth', 'Date birth', 'Date birth'),
+(711, 'seat_type', 'Seat type', 'Seat type'),
+(712, 'bill_details', 'Bill details', 'Bill details'),
+(713, 'passenger', 'Passenger', 'Passenger'),
+(714, 'birth', 'Birth', 'Birth'),
+(715, 'copy_passenger_data', 'Copy passenger data', 'Copy passenger data'),
+(716, 'age', 'Age', 'Age');
 
 -- --------------------------------------------------------
 
@@ -1116,6 +1129,47 @@ CREATE TABLE `pri_price` (
 
 INSERT INTO `pri_price` (`price_id`, `route_id`, `vehicle_type_id`, `price`, `children_price`, `special_price`, `group_price_per_person`, `group_size`) VALUES
 (1, '1', '1', 100, 80, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sales`
+--
+
+CREATE TABLE `sales` (
+  `id` int(11) NOT NULL,
+  `booking_id` varchar(256) DEFAULT NULL,
+  `seat_type` varchar(256) DEFAULT NULL,
+  `seat_number` varchar(256) DEFAULT NULL,
+  `name` varchar(256) DEFAULT NULL,
+  `ci` varchar(256) DEFAULT NULL,
+  `phone` varchar(256) DEFAULT NULL,
+  `birth` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `sales`
+--
+
+INSERT INTO `sales` (`id`, `booking_id`, `seat_type`, `seat_number`, `name`, `ci`, `phone`, `birth`) VALUES
+(3, 'BKLCXZ5E', 'Adult', '4', 'Nisa Delgado', '24370873', '+58 246402701', ''),
+(4, 'BVUZ7OLA', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(5, 'BVUZ7OLA', 'Adult', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
+(6, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(7, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(8, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '2022-09-17'),
+(9, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(10, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(11, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '2022-09-17'),
+(12, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(13, 'BN60ELPC', 'Adult', '9', 'Camile Vitoria', '010203', '71608981', '2016-11-08'),
+(14, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '2022-09-17'),
+(15, 'BER6J5Z2', 'Adult', '2', 'Nisa Delgado', '24370873', '04246402701', '2022-09-01'),
+(16, 'BC2UZE8X', '', '', '', '', '', ''),
+(17, 'BBQIIL15', 'Adult', '1', 'Nisa Delgado', '24370873', '04246402701', ''),
+(18, 'BSUFGAJI', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', ''),
+(19, 'B8O1TRF4', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', ''),
+(20, 'BLKG0SCA', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', '');
 
 -- --------------------------------------------------------
 
@@ -1285,67 +1339,67 @@ INSERT INTO `sec_role_permission` (`id`, `role_id`, `menu_id`, `can_access`, `ca
 (682, 1, 102, 0, 0, 0, 0, 2, '2018-09-06 11:03:51'),
 (683, 1, 103, 0, 0, 0, 0, 2, '2018-09-06 11:03:51'),
 (684, 1, 104, 0, 0, 0, 0, 2, '2018-09-06 11:03:51'),
-(1165, 2, 69, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
-(1166, 2, 81, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1167, 2, 82, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1168, 2, 83, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1169, 2, 84, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1170, 2, 129, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
-(1171, 2, 72, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
-(1172, 2, 70, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1173, 2, 71, 0, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1174, 2, 73, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
-(1175, 2, 74, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
-(1176, 2, 75, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1177, 2, 76, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1178, 2, 77, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1179, 2, 78, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1180, 2, 79, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1181, 2, 80, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1182, 2, 111, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1183, 2, 112, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1184, 2, 113, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1185, 2, 109, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1186, 2, 110, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1187, 2, 85, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
-(1188, 2, 86, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1189, 2, 87, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
-(1190, 2, 88, 1, 0, 0, 0, 1, '2022-09-11 06:24:55'),
-(1191, 2, 130, 1, 1, 1, 1, 1, '2022-09-11 06:24:55'),
-(1192, 2, 131, 1, 0, 1, 0, 1, '2022-09-11 06:24:55'),
-(1193, 2, 89, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1194, 2, 90, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1195, 2, 91, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1196, 2, 92, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1197, 2, 93, 1, 1, 1, 1, 1, '2022-09-11 06:24:55'),
-(1198, 2, 94, 1, 1, 1, 1, 1, '2022-09-11 06:24:55'),
-(1199, 2, 105, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1200, 2, 108, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1201, 2, 114, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1202, 2, 115, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1203, 2, 116, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1204, 2, 117, 1, 1, 1, 0, 1, '2022-09-11 06:24:55'),
-(1205, 2, 95, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1206, 2, 96, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1207, 2, 97, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1208, 2, 98, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1209, 2, 99, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1210, 2, 100, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1211, 2, 118, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1212, 2, 119, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1213, 2, 120, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1214, 2, 121, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1215, 2, 122, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1216, 2, 123, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1217, 2, 124, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1218, 2, 125, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1219, 2, 126, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1220, 2, 127, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1221, 2, 128, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1222, 2, 101, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1223, 2, 102, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1224, 2, 103, 1, 1, 0, 0, 1, '2022-09-11 06:24:55'),
-(1225, 2, 104, 1, 1, 0, 0, 1, '2022-09-11 06:24:55');
+(1226, 2, 69, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1227, 2, 81, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1228, 2, 82, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1229, 2, 83, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1230, 2, 84, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1231, 2, 129, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1232, 2, 72, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1233, 2, 70, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1234, 2, 71, 0, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1235, 2, 73, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1236, 2, 74, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1237, 2, 75, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1238, 2, 76, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1239, 2, 77, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1240, 2, 78, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1241, 2, 79, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1242, 2, 80, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1243, 2, 111, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1244, 2, 112, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1245, 2, 113, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1246, 2, 109, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1247, 2, 110, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1248, 2, 85, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1249, 2, 86, 1, 0, 1, 0, 1, '2022-09-14 02:04:56'),
+(1250, 2, 87, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1251, 2, 88, 1, 0, 0, 0, 1, '2022-09-14 02:04:56'),
+(1252, 2, 130, 1, 1, 1, 1, 1, '2022-09-14 02:04:56'),
+(1253, 2, 131, 1, 0, 1, 0, 1, '2022-09-14 02:04:56'),
+(1254, 2, 89, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1255, 2, 90, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1256, 2, 91, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1257, 2, 92, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1258, 2, 93, 1, 1, 1, 1, 1, '2022-09-14 02:04:56'),
+(1259, 2, 94, 1, 1, 1, 1, 1, '2022-09-14 02:04:56'),
+(1260, 2, 105, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1261, 2, 108, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1262, 2, 114, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1263, 2, 115, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1264, 2, 116, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1265, 2, 117, 1, 1, 1, 0, 1, '2022-09-14 02:04:56'),
+(1266, 2, 95, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1267, 2, 96, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1268, 2, 97, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1269, 2, 98, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1270, 2, 99, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1271, 2, 100, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1272, 2, 118, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1273, 2, 119, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1274, 2, 120, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1275, 2, 121, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1276, 2, 122, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1277, 2, 123, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1278, 2, 124, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1279, 2, 125, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1280, 2, 126, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1281, 2, 127, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1282, 2, 128, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1283, 2, 101, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1284, 2, 102, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1285, 2, 103, 1, 1, 0, 0, 1, '2022-09-14 02:04:56'),
+(1286, 2, 104, 1, 1, 0, 0, 1, '2022-09-14 02:04:56');
 
 -- --------------------------------------------------------
 
@@ -1548,15 +1602,25 @@ CREATE TABLE `tkt_passenger` (
   `city` varchar(255) DEFAULT NULL,
   `zip_code` varchar(10) DEFAULT NULL,
   `country` varchar(20) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `date_birth` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tkt_passenger`
 --
 
-INSERT INTO `tkt_passenger` (`id`, `id_no`, `firstname`, `lastname`, `middle_name`, `phone`, `nid`, `email`, `password`, `password_reset_token`, `remember_token`, `image`, `address_line_1`, `address_line_2`, `city`, `zip_code`, `country`, `status`) VALUES
-(1, 'PWX3YAMT', 'Erick', 'Santos', NULL, '71608981', '10756000', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'bus', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `tkt_passenger` (`id`, `id_no`, `firstname`, `lastname`, `middle_name`, `phone`, `nid`, `email`, `password`, `password_reset_token`, `remember_token`, `image`, `address_line_1`, `address_line_2`, `city`, `zip_code`, `country`, `status`, `date_birth`) VALUES
+(1, 'PWX3YAMT', 'Erick', 'Santos', NULL, '71608981', '10756000', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'bus', NULL, NULL, NULL, NULL, 1, NULL),
+(2, 'P1OIB79X', 'Nisa', 'Delgado', NULL, '+58 246402701', '24370873', 'nisadelgado@gmail.com', '202cb962ac59075b964b07152d234b70', '', NULL, NULL, 'Barrio Nueva Via', NULL, NULL, NULL, NULL, 1, NULL),
+(3, 'PQ2PL8MX', 'Nisa', 'Delgado', NULL, '+58 246402701', '24370873', 'nisadelgado@live.com', '202cb962ac59075b964b07152d234b70', '', NULL, NULL, 'Nueva Via', NULL, NULL, NULL, NULL, 1, NULL),
+(4, 'PV98EB8G', 'Nisa', 'Delgado', NULL, '04246402701', '', 'nisadelgado@grupop.com', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+(5, 'PQ5GFQOX', 'Nisa', 'Delgado', NULL, '24370873', '24370873', 'nisadelgado@livee.com', '202cb962ac59075b964b07152d234b70', '', NULL, NULL, 'Nueva Via', NULL, NULL, NULL, NULL, 1, NULL),
+(6, 'PHF8EZU7', 'Nisa Delgado', 'Delgado', NULL, '04246402701', '', 'nisadelgado@live.com2', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+(7, 'PQQNIL5Q', 'Nisa Delgado', '123', NULL, '04246402701', '', 'ndelgado@grupop.com.ve1', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+(8, 'PT7WJN81', 'Nisa Delgado', 'Delgado', NULL, '04246402701', '', 'nisadelgado@live.com12', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+(9, 'PF25A5KE', 'Nisa Delgado', '213', NULL, '04246402701', '', 'Lion20393@netarmyve.com', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+(10, 'PDA9SUP6', 'Erick', 'Santos', NULL, '71608981', '10756777', 'dr.ericksantos@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'Av Bush 590', NULL, NULL, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1643,7 +1707,8 @@ CREATE TABLE `trip_assign` (
 --
 
 INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `company_id`, `assign_time`, `driver1_id`, `driver2_id`, `assistant_1`, `assistant_2`, `assistant_3`, `sold_ticket`, `total_income`, `total_expense`, `total_fuel`, `trip_comment`, `closed_by_id`, `date`, `status`) VALUES
-(1, '220911044254', 1, '1', 1, '2022-09-13 13:46:00', 1, 1, '2', '', '', 0, 0, 0, 0, NULL, 0, '0000-00-00 00:00:00', 1);
+(1, '220911044254', 1, '1', 1, '2022-09-13 13:46:00', 1, 1, '2', '', '', 0, 0, 0, 0, NULL, 0, '0000-00-00 00:00:00', 1),
+(2, '220914031233', 2, '1', 1, '2022-09-15 20:30:00', 3, 4, '5', '5', '', 0, 0, 0, 0, NULL, 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -1722,7 +1787,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, NULL, NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-13 17:42:28', '2022-09-13 17:41:05', '38.25.230.156', 1, 1),
+(1, NULL, NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-17 22:18:31', '2022-09-13 17:41:05', '186.121.195.82', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
@@ -1765,7 +1830,95 @@ INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id
 (3, 'B5QV04G0', '1', 'P1FK7GEA', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:10:25', '2022-09-10 19:10:25', 0),
 (4, 'BPSSM99U', '1', 'PHX0DUXF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:11:31', '2022-09-10 19:11:31', 0),
 (5, 'BAW1V8C5', '1', 'PWX3YAMT', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:12:17', '2022-09-10 19:12:17', 0),
-(6, 'BRAHHI1F', '1', 'PYA5AGMX', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, NULL, '2022-09-10 19:15:12', '2022-09-10 19:15:12', 0);
+(6, 'BRAHHI1F', '1', 'PYA5AGMX', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, NULL, '2022-09-10 19:15:12', '2022-09-10 19:15:12', 0),
+(7, 'BJTG3I0A', '1', 'P1OIB79X', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '1970-01-01 11:59:21', '2022-09-14 11:59:21', 0),
+(8, 'B61VIOYR', '1', 'P2FJNFBH', 1, 'Santa', 'Cochabamba', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-11 12:34:07', '2022-09-14 12:34:07', 0),
+(9, 'BEB6UDAB', '1', 'PIY74QMW', 1, 'Santa', 'La', '', 80, 0, 0, 1, 0, 1, '8, ', '', NULL, NULL, '2022-09-14 12:45:23', '2022-09-14 12:45:23', 0),
+(10, 'BLCJD4FU', '1', 'P412LSRQ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-14 12:47:15', '2022-09-14 12:47:15', 0),
+(11, 'BX83WDAJ', '1', 'PGEN7F0Q', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 11:48:21', '2022-09-16 11:48:21', 0),
+(12, 'BDKI7S49', '1', 'PDNCRFKG', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '7, 8, ', '', NULL, NULL, '2022-09-16 11:56:35', '2022-09-16 11:56:35', 0),
+(13, 'B6167V5D', '1', 'P6UWTI87', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, NULL, '2022-09-16 12:02:41', '2022-09-16 12:02:41', 0),
+(14, 'BHUYQEB8', '1', 'PUGTCHUL', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, NULL, '2022-09-16 12:05:06', '2022-09-16 12:05:06', 0),
+(15, 'B6CFRBNE', '1', 'PCU7C4NF', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 6, ', '', NULL, NULL, '2022-09-16 12:06:15', '2022-09-16 12:06:15', 0),
+(16, 'BP7YO05F', '1', 'P78Q731Q', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 12:06:30', '2022-09-16 12:06:30', 0),
+(17, 'BRCE5NCY', '1', 'PBM2P6IJ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:08:01', '2022-09-16 12:08:01', 0),
+(18, 'B16U6TZP', '1', 'PA69B7Y0', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 12:10:15', '2022-09-16 12:10:15', 0),
+(19, 'BX0WFWNS', '1', 'PUZ434V7', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:10:32', '2022-09-16 12:10:32', 0),
+(20, 'B5Z3183D', '1', 'PDC80RTL', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '8, ', '', NULL, NULL, '2022-09-16 12:13:35', '2022-09-16 12:13:35', 0),
+(21, 'BRC8SAW4', '1', 'PGKUZSIJ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:16:11', '2022-09-16 12:16:11', 0),
+(22, 'BHTVG98Q', '1', 'PFIIOL26', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:35:08', '2022-09-16 12:35:08', 0),
+(23, 'BSNFJXR6', '1', 'PZZQBB6J', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:37:04', '2022-09-16 12:37:04', 0),
+(24, 'BX803T02', '1', 'PQ2PL8MX', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '2, 5, ', '', NULL, NULL, '2022-09-16 12:38:33', '2022-09-16 12:38:33', 0),
+(25, 'BI5GLLHL', '1', 'P0BLJILT', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '7, 8, ', '', NULL, NULL, '2022-09-14 12:57:07', '2022-09-16 12:57:07', 0),
+(26, 'BUKX88CS', '1', 'PGAMUWNC', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:25:23', '2022-09-16 14:25:23', 0),
+(27, 'BFCN580A', '1', 'P6MYPK99', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 5, ', '', NULL, NULL, '2022-09-16 14:26:06', '2022-09-16 14:26:06', 0),
+(28, 'BQO5YVUT', '1', 'PC8VNVBX', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:37:07', '2022-09-16 14:37:07', 0),
+(29, 'BRQGKK3Y', '1', 'PV1QK79R', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:42:17', '2022-09-16 14:42:17', 0),
+(30, 'BLIJ8VAH', '1', 'PPD1IA7T', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:43:41', '2022-09-16 14:43:41', 0),
+(31, 'BT7M2T9Q', '1', 'PI8ZK7IQ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 14:49:16', '2022-09-16 14:49:16', 0),
+(32, 'BKWIK690', '1', 'PZM2CKD5', 1, 'La', 'Santa', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:51:50', '2022-09-16 14:51:50', 0),
+(33, 'BXCARYNC', '1', 'PXQI27R5', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 5, ', '', NULL, NULL, '2022-09-16 14:52:56', '2022-09-16 14:52:56', 0),
+(34, 'BKCCQKC7', '1', 'P4UMK3HQ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '6, ', '', NULL, NULL, '2022-09-16 14:53:52', '2022-09-16 14:53:52', 0),
+(35, 'BWK8H9W7', '1', 'PDRUSNDE', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-16 14:55:12', '2022-09-16 14:55:12', 0),
+(36, 'BIWWJFNB', '1', 'P5HF1XBZ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:56:50', '2022-09-16 14:56:50', 0),
+(37, 'B6SZV2GO', '1', 'P5ZCZAMI', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '5, ', '', NULL, NULL, '2022-09-16 14:57:34', '2022-09-16 14:57:34', 0),
+(38, 'B1XNMC3B', '1', 'PSI8DAN8', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 80, 0, 0, 1, 0, 1, '1, ', '', NULL, NULL, '2022-09-13 19:16:41', '2022-09-16 19:16:41', 0),
+(39, 'BI8FEW9I', '1', 'PRWOV7ZZ', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 80, 0, 0, 1, 0, 1, '1, ', '', NULL, NULL, '2022-09-13 19:16:44', '2022-09-16 19:16:44', 0),
+(40, 'BBLHA2M1', '1', 'PJURBY5N', 1, 'Santa', 'Cochabamba', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-13 19:21:21', '2022-09-16 19:21:21', 0),
+(41, 'BRGKO86W', '1', 'PRENNVX0', 1, 'Santa', 'Cochabamba', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-13 19:21:28', '2022-09-16 19:21:28', 0),
+(42, 'B9SCY5C0', '1', 'PCBR6RR8', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 19:24:53', '2022-09-16 19:24:53', 0),
+(43, 'B0E8K28Z', '1', 'P1X2DHU6', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 19:29:02', '2022-09-16 19:29:02', 0),
+(44, 'BEYXOFME', '1', 'PDFXJEMS', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 3, ', '', NULL, NULL, '2022-09-16 19:29:57', '2022-09-16 19:29:57', 0),
+(45, 'BPUZQN0Q', '1', 'PC806K22', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-12 21:51:32', '2022-09-16 21:51:32', 0),
+(46, 'B2MNXJB9', '1', 'PFD10Y9E', 1, 'Santa', 'La', '', 400, 0, 4, 0, 0, 4, '1, 2, 4, 5, ', '', NULL, NULL, '2022-09-12 21:52:21', '2022-09-16 21:52:21', 0),
+(47, 'BD3KVODW', '1', 'PC7MD3JH', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-12 11:35:25', '2022-09-17 11:35:25', 0),
+(48, 'BWPY9L15', '1', 'PTZUE0HY', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 13:06:48', '2022-09-17 13:06:48', 0),
+(49, 'BLJ6QNB5', '1', 'PV2FZDS0', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-16 13:07:59', '2022-09-17 13:07:59', 0),
+(50, 'BTPI0QJ6', '1', 'PJBYN9LT', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 13:16:03', '2022-09-17 13:16:03', 0),
+(51, 'BIV9NLVM', '1', 'PLKP0DHF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 13:16:41', '2022-09-17 13:16:41', 0),
+(52, 'BHJVIQU6', '1', 'PWEJVJ5T', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 13:19:08', '2022-09-17 13:19:08', 0),
+(53, 'BLN63EWT', '1', 'PAT127FR', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-16 13:20:26', '2022-09-17 13:20:26', 0),
+(54, 'BOSEAWZV', '1', 'PNL7OZIF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 13:21:38', '2022-09-17 13:21:38', 0),
+(55, 'BXFG0J7A', '1', 'PV98EB8G', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 14:22:35', '2022-09-17 14:22:35', 0),
+(56, 'BGOUK3UY', '1', 'P2IAL068', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-16 16:07:31', '2022-09-17 16:07:31', 0),
+(57, 'BPEFACPJ', '1', 'P4HPSMYU', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 16:08:05', '2022-09-17 16:08:05', 0),
+(58, 'B9OTGOQX', '1', 'PDWALNAW', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 16:19:09', '2022-09-17 16:19:09', 0),
+(59, 'BQQOS2G2', '1', 'PDDJ5RVQ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:20:05', '2022-09-17 16:20:05', 0),
+(60, 'B1NYLC2S', '1', 'PBJMQZM8', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:20:55', '2022-09-17 16:20:55', 0),
+(61, 'BGAC8VK5', '1', 'PDU93S15', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:21:27', '2022-09-17 16:21:27', 0),
+(62, 'B25UPEQM', '1', 'PPIXU5AZ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:22:12', '2022-09-17 16:22:12', 0),
+(63, 'B97XNWSN', '1', 'PDXZWMWN', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-16 16:23:05', '2022-09-17 16:23:05', 0),
+(64, 'BA8TRDE6', '1', 'PZEG2R2J', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-16 16:23:36', '2022-09-17 16:23:36', 0),
+(65, 'BCZEHC5N', '1', 'PSKQ1KOM', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-16 16:24:21', '2022-09-17 16:24:21', 0),
+(66, 'B7FZVGDX', '1', 'PMQEUFTH', 1, 'La', 'Santa', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:25:35', '2022-09-17 16:25:35', 0),
+(67, 'BH2GB1ZH', '1', 'P0SFNP00', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:26:23', '2022-09-17 16:26:23', 0),
+(68, 'BHCOZE96', '1', 'PYHHQL9D', 1, 'Santa', 'La', '', 80, 0, 0, 1, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:27:05', '2022-09-17 16:27:05', 0),
+(69, 'BG71M5PP', '1', 'PT3UQ7RP', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:27:40', '2022-09-17 16:27:40', 0),
+(70, 'B6DP0JNK', '1', 'PQ5GFQOX', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 17:51:46', '2022-09-17 17:51:46', 0),
+(71, 'BIWUQ7BC', '1', 'PHF8EZU7', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-16 18:07:48', '2022-09-17 18:07:48', 0),
+(72, 'BZDW11KB', '1', 'PQQNIL5Q', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '5, ', '', NULL, NULL, '2022-09-16 18:09:52', '2022-09-17 18:09:52', 0),
+(73, 'B8PFDAC6', '1', 'PT7WJN81', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-16 18:11:29', '2022-09-17 18:11:29', 0),
+(74, 'BKLCXZ5E', '1', 'PF25A5KE', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '4, ', '', NULL, NULL, '2022-09-16 18:34:31', '2022-09-17 18:34:31', 0),
+(75, 'BVUZ7OLA', '1', 'PDA9SUP6', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-13 19:14:52', '2022-09-17 19:14:52', 0),
+(76, 'BN60ELPC', '1', 'PJAGCN3F', 1, 'Santa', 'La', '', 300, 0, 3, 0, 0, 3, '9, 10, 11, ', '', NULL, NULL, '2022-09-13 19:20:43', '2022-09-17 19:20:43', 0),
+(77, 'BER6J5Z2', '1', 'PF6GWINM', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-19 13:09:20', '2022-09-19 13:09:20', 0),
+(78, 'BC2UZE8X', '1', 'PNK3LISI', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 13:12:38', '2022-09-19 13:12:38', 0),
+(79, 'BBQIIL15', '1', 'P00DYD29', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 13:15:15', '2022-09-19 13:15:15', 0),
+(80, 'BSUFGAJI', '1', 'P4W9DF96', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 13:16:17', '2022-09-19 13:16:17', 0),
+(81, 'B8O1TRF4', '1', 'PY1SQRMU', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 13:17:38', '2022-09-19 13:17:38', 0),
+(82, 'B7HYX7H2', '1', 'PSM6TB2P', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 13:18:18', '2022-09-19 13:18:18', 0),
+(83, 'BQ533FAN', '1', 'PF7HU37O', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-19 13:20:30', '2022-09-19 13:20:30', 0),
+(84, 'BXDTE9KR', '1', 'P5ST6IH6', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 13:21:52', '2022-09-19 13:21:52', 0),
+(85, 'BLKG0SCA', '1', 'PPFZXB89', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 13:25:35', '2022-09-19 13:25:35', 0),
+(86, 'BE2MI6A5', '1', 'P9EBFJQG', 1, 'La', 'Santa', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 15:12:31', '2022-09-19 15:12:31', 0),
+(87, 'BW51EG2B', '1', 'PRR33WFD', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 15:13:22', '2022-09-19 15:13:22', 0),
+(88, 'BLIAD5GR', '1', 'PH3XT3T9', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-19 15:16:19', '2022-09-19 15:16:19', 0),
+(89, 'B620XBU1', '1', 'PNNZ6CW6', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 16:15:20', '2022-09-19 16:15:20', 0),
+(90, 'B5R97HW7', '1', 'P712H7EG', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 16:17:35', '2022-09-19 16:17:35', 0),
+(91, 'B8WWA86M', '1', 'P08ZJPD1', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 16:18:02', '2022-09-19 16:18:02', 0),
+(92, 'BVKWLTXG', '1', 'PW7H1D70', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:19:31', '2022-09-19 16:19:31', 0),
+(93, 'BUGZ7QCR', '1', 'PDYUQJB5', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:20:12', '2022-09-19 16:20:12', 0),
+(94, 'BUN2QW4J', '1', 'PHYSOGE2', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:23:14', '2022-09-19 16:23:14', 0);
 
 -- --------------------------------------------------------
 
@@ -1985,6 +2138,12 @@ ALTER TABLE `pri_price`
   ADD PRIMARY KEY (`price_id`);
 
 --
+-- Indices de la tabla `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `sec_menu_item`
 --
 ALTER TABLE `sec_menu_item`
@@ -2181,7 +2340,7 @@ ALTER TABLE `email_config`
 -- AUTO_INCREMENT de la tabla `employee_history`
 --
 ALTER TABLE `employee_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `employee_type`
@@ -2211,7 +2370,7 @@ ALTER TABLE `fleet_facilities`
 -- AUTO_INCREMENT de la tabla `fleet_registration`
 --
 ALTER TABLE `fleet_registration`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `fleet_type`
@@ -2235,7 +2394,7 @@ ALTER TABLE `how_to_use`
 -- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=708;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=717;
 
 --
 -- AUTO_INCREMENT de la tabla `message`
@@ -2274,6 +2433,12 @@ ALTER TABLE `pri_price`
   MODIFY `price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT de la tabla `sec_menu_item`
 --
 ALTER TABLE `sec_menu_item`
@@ -2283,7 +2448,7 @@ ALTER TABLE `sec_menu_item`
 -- AUTO_INCREMENT de la tabla `sec_role_permission`
 --
 ALTER TABLE `sec_role_permission`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1226;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1287;
 
 --
 -- AUTO_INCREMENT de la tabla `sec_role_tbl`
@@ -2325,7 +2490,7 @@ ALTER TABLE `ticket_notification`
 -- AUTO_INCREMENT de la tabla `tkt_booking`
 --
 ALTER TABLE `tkt_booking`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `tkt_feedback`
@@ -2337,7 +2502,7 @@ ALTER TABLE `tkt_feedback`
 -- AUTO_INCREMENT de la tabla `tkt_passenger`
 --
 ALTER TABLE `tkt_passenger`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tkt_referal`
@@ -2361,7 +2526,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT de la tabla `trip_assign`
 --
 ALTER TABLE `trip_assign`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `trip_location`
@@ -2385,7 +2550,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_offer`

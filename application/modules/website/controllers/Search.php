@@ -326,25 +326,12 @@ class Search extends MX_Controller {
 
         if ($this->form_validation->run())
         {
-            if($this->website_model->email_check($this->input->post('email'))){
-   
-            if ($this->website_model->createPassenger($postData)) 
-            {
-                $data['status']    = true;
-                $data['booking_id_no'] = $this->input->post('booking_id_no',true);
-                $data['payment'] = $this->load->view('pages/payment_confirm', $obj, true);
-                $data['success']   = display('save_successfully');
-                 if(!empty($this->input->post('tran_num',true))){
-                $this->db->insert('bank_transaction',$bankdata);
-            }
-            } else {
-                $data['status']    = false;
-                $data['exception'] = display('please_try_again');
-            } 
-                
-            }else {
-            $data['status']    = false;
-            $data['exception'] = 'Email already exist,Please login';
+            $data['status']    = true;
+            $data['booking_id_no'] = $this->input->post('booking_id_no',true);
+            $data['payment'] = $this->load->view('pages/payment_confirm', $obj, true);
+            $data['success']   = display('save_successfully');
+             if(!empty($this->input->post('tran_num',true))){
+            $this->db->insert('bank_transaction',$bankdata);
         }
         
              

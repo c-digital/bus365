@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 19-09-2022 a las 16:31:39
+-- Tiempo de generación: 20-09-2022 a las 17:16:02
 -- Versión del servidor: 5.7.39
 -- Versión de PHP: 7.4.30
 
@@ -157,6 +157,34 @@ CREATE TABLE `booking_downtime` (
 
 INSERT INTO `booking_downtime` (`id`, `reg_no`, `downtime`) VALUES
 (1, '', '3');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cash`
+--
+
+CREATE TABLE `cash` (
+  `id` int(11) NOT NULL,
+  `type_move` varchar(256) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `amount` varchar(256) DEFAULT NULL,
+  `payment_method` varchar(256) DEFAULT NULL,
+  `concept` varchar(256) DEFAULT NULL,
+  `balance` varchar(256) DEFAULT NULL,
+  `status` varchar(256) DEFAULT NULL,
+  `casher` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cash`
+--
+
+INSERT INTO `cash` (`id`, `type_move`, `date`, `amount`, `payment_method`, `concept`, `balance`, `status`, `casher`) VALUES
+(1, 'in', '2022-09-19 00:00:00', '0', '', 'Apertura de caja', '0', 'Open', 'admin@admin.com'),
+(2, 'out', '2022-09-18 00:00:00', '0', NULL, 'Cierre de caja', '0', 'Close', 'admin@admin.com'),
+(3, 'In', '2022-09-20 12:47:30', '150', 'cash', 'Pago', '150', 'Open', 'admin@admin.com'),
+(4, 'out', '2022-09-20 15:11:59', '150', NULL, 'Close cash', '0', 'Close', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -1019,7 +1047,34 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (713, 'passenger', 'Passenger', 'Passenger'),
 (714, 'birth', 'Birth', 'Birth'),
 (715, 'copy_passenger_data', 'Copy passenger data', 'Copy passenger data'),
-(716, 'age', 'Age', 'Age');
+(716, 'age', 'Age', 'Age'),
+(717, 'outs', 'Outs', 'Outs'),
+(718, 'ins', 'Ins', 'Ins'),
+(719, 'money_in_cash', 'Money in cash', 'Money in cash'),
+(720, 'all', 'All', 'All'),
+(721, 'date_start', 'Date start', 'Date start'),
+(722, 'date_end', 'Date end', 'Date end'),
+(723, 'payment_method', 'Payment method', 'Payment method'),
+(724, 'type_move', 'Type move', 'Type move'),
+(725, 'check', 'Check', 'Check'),
+(726, 'transfer', 'Transfer', 'Transfer'),
+(727, 'in', 'In', 'In'),
+(728, 'out', 'Out', 'Out'),
+(729, 'casher', 'Casher', 'Casher'),
+(730, 'add_move', 'Add move', 'Add move'),
+(731, 'open_cash', 'Open cash', 'Open cash'),
+(732, 'id', 'ID', 'ID'),
+(733, 'close_cash', 'Close cash', 'Close cash'),
+(734, 'concept', 'Concept', 'Concept'),
+(735, 'close_modal', 'Close', 'Close'),
+(737, 'signature', 'Signature', 'Signature'),
+(738, 'back_to_cash', 'Back to cash', 'Back to cash'),
+(739, 'totals', 'Totals', 'Totals'),
+(740, 'moves', 'Moves', 'Moves'),
+(741, 'travel_info', 'Travel info', 'Travel info'),
+(742, 'seat', 'Seat', 'Seat'),
+(743, 'shipment', 'Shipment', 'Shipment'),
+(744, 'disembarkation', 'Disembarkation', 'Disembarkation');
 
 -- --------------------------------------------------------
 
@@ -1787,7 +1842,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, NULL, NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-17 22:18:31', '2022-09-13 17:41:05', '186.121.195.82', 1, 1),
+(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-20 15:44:34', '2022-09-13 17:41:05', '38.25.197.55', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
@@ -1918,7 +1973,10 @@ INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id
 (91, 'B8WWA86M', '1', 'P08ZJPD1', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 16:18:02', '2022-09-19 16:18:02', 0),
 (92, 'BVKWLTXG', '1', 'PW7H1D70', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:19:31', '2022-09-19 16:19:31', 0),
 (93, 'BUGZ7QCR', '1', 'PDYUQJB5', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:20:12', '2022-09-19 16:20:12', 0),
-(94, 'BUN2QW4J', '1', 'PHYSOGE2', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:23:14', '2022-09-19 16:23:14', 0);
+(94, 'BUN2QW4J', '1', 'PHYSOGE2', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:23:14', '2022-09-19 16:23:14', 0),
+(95, 'BUTQKCSK', '1', 'P0C9GSRW', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 16:33:22', '2022-09-19 16:33:22', 0),
+(96, 'BY0YB3ML', '1', 'PU5S6WI9', 1, 'Santa', 'La', '', 80, 0, 0, 1, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:33:56', '2022-09-19 16:33:56', 0),
+(97, 'BY1PBUL6', '1', 'PWT1GDVJ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-20 16:17:19', '2022-09-20 16:17:19', 0);
 
 -- --------------------------------------------------------
 
@@ -2027,6 +2085,12 @@ ALTER TABLE `bank_transaction`
 -- Indices de la tabla `booking_downtime`
 --
 ALTER TABLE `booking_downtime`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `cash`
+--
+ALTER TABLE `cash`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2325,6 +2389,12 @@ ALTER TABLE `booking_downtime`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `cash`
+--
+ALTER TABLE `cash`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `companies`
 --
 ALTER TABLE `companies`
@@ -2394,7 +2464,7 @@ ALTER TABLE `how_to_use`
 -- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=717;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=745;
 
 --
 -- AUTO_INCREMENT de la tabla `message`
@@ -2550,7 +2620,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_offer`

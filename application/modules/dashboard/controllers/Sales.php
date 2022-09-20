@@ -84,12 +84,22 @@ class Sales extends MX_Controller
  	public function ticket($id)
  	{
  		$select = "
- 			s.booking_id
+ 			s.booking_id,
+ 			c.logo AS company_logo,
+ 			c.name AS company_name,
+ 			c.nit AS company_nit,
+ 			c.address AS company_address,
+ 			b.booking_date AS date,
+ 			CONCAT(u.agent_first_name, ' ', u.agent_second_name) AS agent
  		";
 
  		$data['sale'] = $this->db->select($select)
  			->from('sales s')
- 			->where('id', $id)
+ 			->join('ws_booking_history b', 'b.id_no = s.booking_id', 'left')
+ 			->join('trip_assign a', 'b.trip_id_no = a.trip', 'left')
+ 			->join('companies c', 'a.company_id = c.id', 'left')
+ 			->join('agent_info u', 'b.agent_id = u.agent_id', 'left')
+ 			->where('s.id', $id)
  			->get()
  			->row();
 

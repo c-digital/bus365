@@ -32,6 +32,11 @@
             <a href="<?php echo base_url('dashboard/sales') ?>"><i class="fa fa-money"></i> <span><?php echo display('sales')?></span> 
             </a>
         </li>
+
+        <li class="treeview <?php echo (($this->uri->segment(2)=="cash" || $this->uri->segment(2)=="")?"active":null) ?>">
+            <a href="<?php echo base_url('dashboard/cash') ?>"><i class="fa fa-money"></i> <span><?php echo display('cash')?></span> 
+            </a>
+        </li>
       
 <?php if($this->uri->segment(2) !=='User'){?>
   

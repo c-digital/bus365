@@ -80,4 +80,19 @@ class Sales extends MX_Controller
 
  		echo json_encode($result);
  	}
+
+ 	public function ticket($id)
+ 	{
+ 		$select = "
+ 			s.booking_id
+ 		";
+
+ 		$data['sale'] = $this->db->select($select)
+ 			->from('sales s')
+ 			->where('id', $id)
+ 			->get()
+ 			->row();
+
+ 		echo $this->load->view('print', $data);
+ 	}
 }

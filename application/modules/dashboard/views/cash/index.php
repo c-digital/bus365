@@ -206,7 +206,9 @@
         <h4 class="modal-title" id="myModalLabel"><?php echo display('close_cash') ?></h4>
       </div>
 
-      <form action="/billing/caja/cierre" method="POST">
+      <form action="/dashboard/cash/close" method="POST">
+          <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+
           <div class="modal-body">
             <div class="form-group">
                 <label for="amount"><?php echo display('amount') ?></label>
@@ -230,7 +232,9 @@
         <h4 class="modal-title" id="myModalLabel"><?php echo display('open_cash') ?></h4>
       </div>
 
-      <form action="/billing/caja/apertura" method="POST">
+      <form action="/dashboard/cash/open" method="POST">
+          <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+          
           <div class="modal-body">
             <div class="form-group">
                 <label for="amount"><?php echo display('amount') ?></label>

@@ -170,7 +170,7 @@
                  <div class="ticket-content" style="margin-top:20px">
                     <h4><?php echo display('payment_status');?></h4>
                     <span><?php echo display('amount'); ?> : 
-                        <strong><?php echo $st = $ticket->payment_status;
+                        <strong><?php echo $st = isset($ticket->payment_status) ? $ticket->payment_status : 0;
                         if($st = 1){
                         echo 'pending';
                         }else{

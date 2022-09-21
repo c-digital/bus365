@@ -315,7 +315,6 @@ class Search extends MX_Controller {
             $this->db->insert('sales', [
                 'booking_id' => $this->input->post('booking_id_no',true),
                 'seat_type' => $passenger['seat_type'],
-                'seat_number' => $passenger['seat_number'],
                 'name' => $passenger['name'],
                 'ci' => $passenger['ci'],
                 'phone' => $passenger['phone'],

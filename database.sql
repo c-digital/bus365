@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 20-09-2022 a las 17:16:02
+-- Tiempo de generación: 21-09-2022 a las 17:15:51
 -- Versión del servidor: 5.7.39
 -- Versión de PHP: 7.4.30
 
@@ -184,7 +184,8 @@ INSERT INTO `cash` (`id`, `type_move`, `date`, `amount`, `payment_method`, `conc
 (1, 'in', '2022-09-19 00:00:00', '0', '', 'Apertura de caja', '0', 'Open', 'admin@admin.com'),
 (2, 'out', '2022-09-18 00:00:00', '0', NULL, 'Cierre de caja', '0', 'Close', 'admin@admin.com'),
 (3, 'In', '2022-09-20 12:47:30', '150', 'cash', 'Pago', '150', 'Open', 'admin@admin.com'),
-(4, 'out', '2022-09-20 15:11:59', '150', NULL, 'Close cash', '0', 'Close', 'admin@admin.com');
+(4, 'out', '2022-09-20 15:11:59', '150', NULL, 'Close cash', '0', 'Close', 'admin@admin.com'),
+(5, 'in', '2022-09-21 10:38:49', '100', 'Cash', 'Open cash', '', 'Open', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -207,6 +208,28 @@ CREATE TABLE `companies` (
 
 INSERT INTO `companies` (`id`, `logo`, `nit`, `name`, `address`, `lane`) VALUES
 (1, 'captura.png', '12345', 'Rasth', 'Calle 90 Nueva Via', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `couriers`
+--
+
+CREATE TABLE `couriers` (
+  `id` int(11) NOT NULL,
+  `nid` varchar(256) DEFAULT NULL,
+  `name` varchar(256) DEFAULT NULL,
+  `email` varchar(256) DEFAULT NULL,
+  `phone` varchar(256) DEFAULT NULL,
+  `date_birth` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `couriers`
+--
+
+INSERT INTO `couriers` (`id`, `nid`, `name`, `email`, `phone`, `date_birth`) VALUES
+(1, '243708731', 'Javier Gonzalez1', 'jgzz93@gmail.com', '04246402701', '1993-10-01');
 
 -- --------------------------------------------------------
 
@@ -263,7 +286,7 @@ CREATE TABLE `employee_history` (
 
 INSERT INTO `employee_history` (`id`, `first_name`, `second_name`, `position`, `phone_no`, `email_no`, `document_id`, `document_pic`, `address_line_1`, `address_line_2`, `picture`, `blood_group`, `country`, `city`, `zip`, `status`, `is_assign`) VALUES
 (1, 'Motorista', '01', 'Driver', '000 00000', 'motorista@motorista.com', '123456', './application/modules/hr/assets/images/04b40a89a63527e901a20fad1a43709c.png', 'Calle Perú 235', 'Apto 08', './application/modules/hr/assets/images/741efc8a035bf00fe2eb7b1587d9d275.png', 'a-', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 1),
-(2, 'Assistente', '01', 'Assistant', '+59171608981', 'assistente@assistente.com', '01040502', NULL, 'Calle Perú 235', 'Apto 08', NULL, 'A+', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 1),
+(2, 'Assistente', '01', 'Assistant', '+59171608981', 'assistente@assistente.com', '01040502', NULL, 'Calle Perú 235', 'Apto 08', NULL, 'A+', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 0),
 (3, 'Motorista', '02', 'Driver', '6984217777', 'motorista02@motorista.com', '010203', NULL, 'calle Florida', 'Centro', NULL, 'ab+', 'Bolivia', 'Vilhena ro', '76980-000', NULL, 0),
 (4, 'Motorista 03', '03', 'Driver', '71608981', 'criativedigitalbo@gmail.com', '', NULL, 'Bush', 'Calle', NULL, '', 'Bolivia', 'Santa Cruz de la Sierra', '10699', NULL, 0),
 (5, 'Asistente 02', '02', 'Assistant', '75602777', 'criativedigitalbo@gmail.com', '', NULL, 'Calle Perú 235', 'Apto 08', NULL, '', 'Bolivia', 'santa cruz', '10699', NULL, 1);
@@ -371,7 +394,7 @@ CREATE TABLE `fleet_registration` (
 --
 
 INSERT INTO `fleet_registration` (`id`, `reg_no`, `fleet_type_id`, `engine_no`, `model_no`, `chasis_no`, `owner`, `owner_phone`, `company`, `ac_available`, `status`, `is_assign`) VALUES
-(1, '5200', 1, '010203', '2021', '010203040506', 'Bolpar', '71608981', 'En Bus', 0, 1, 1),
+(1, '5200', 1, '010203', '2021', '010203040506', 'Bolpar', '71608981', 'En Bus', 0, 1, 0),
 (2, '1100', 1, '010203', '000000000', '1111111111111111111', 'Teste', '71608981', 'TEste', 0, 1, 1);
 
 -- --------------------------------------------------------
@@ -1074,7 +1097,49 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (741, 'travel_info', 'Travel info', 'Travel info'),
 (742, 'seat', 'Seat', 'Seat'),
 (743, 'shipment', 'Shipment', 'Shipment'),
-(744, 'disembarkation', 'Disembarkation', 'Disembarkation');
+(744, 'disembarkation', 'Disembarkation', 'Disembarkation'),
+(745, 'merchandise', 'Merchandise', 'Merchandise'),
+(746, 'create_merchandise', 'Create merchandise', 'Create merchandise'),
+(747, 'courier', 'Courier', 'Courier'),
+(748, 'origin', 'Origin', 'Origin'),
+(749, 'destination', 'Destination', 'Destination'),
+(750, 'courier_details', 'Courier details', 'Courier details'),
+(751, 'package_details', 'Package details', 'Package details'),
+(752, 'package_description', 'Package description', 'Package description'),
+(753, 'price_per_kg', 'Price per kg', 'Price per kg'),
+(754, 'weight', 'Weight', 'Price per kg'),
+(755, 'recipient_details', 'Recipient details', 'Recipient details'),
+(756, 'billing_details', 'Billing details', 'Billing details'),
+(757, 'addresse', 'Addresse', 'Addresse'),
+(758, 'receipt', 'Receipt', 'Receipt'),
+(759, 'adjustment', 'Adjustment', 'Adjustment'),
+(760, 'package_price', 'Package price', 'Package price'),
+(761, 'receipt', 'Receipt', 'Receipt'),
+(762, 'receipt_phone', 'Receipt phone', 'Receipt phone'),
+(763, 'billing_type', 'Billing type', 'Billing type');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `merchandise`
+--
+
+CREATE TABLE `merchandise` (
+  `id` int(11) NOT NULL,
+  `package_origin` varchar(256) DEFAULT NULL,
+  `package_destination` varchar(256) DEFAULT NULL,
+  `package_description` text,
+  `package_weight` varchar(256) DEFAULT NULL,
+  `package_price` varchar(256) DEFAULT NULL,
+  `receipt_nid` varchar(256) DEFAULT NULL,
+  `receipt_name` varchar(256) DEFAULT NULL,
+  `receipt_email` varchar(256) DEFAULT NULL,
+  `receipt_phone` varchar(256) DEFAULT NULL,
+  `billing_type` varchar(256) DEFAULT NULL,
+  `billing_adjustment` varchar(256) DEFAULT NULL,
+  `billing_adiscount` varchar(256) DEFAULT NULL,
+  `billing_total` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1212,19 +1277,37 @@ INSERT INTO `sales` (`id`, `booking_id`, `seat_type`, `seat_number`, `name`, `ci
 (5, 'BVUZ7OLA', 'Adult', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
 (6, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
 (7, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
-(8, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '2022-09-17'),
+(8, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '1993-10-01'),
 (9, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
 (10, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
 (11, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '2022-09-17'),
 (12, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
 (13, 'BN60ELPC', 'Adult', '9', 'Camile Vitoria', '010203', '71608981', '2016-11-08'),
-(14, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '2022-09-17'),
-(15, 'BER6J5Z2', 'Adult', '2', 'Nisa Delgado', '24370873', '04246402701', '2022-09-01'),
+(14, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '1993-10-01'),
+(15, 'BER6J5Z2', 'Adult', '2', 'Nisa Delgado', '24370873', '04246402701', '1993-10-01'),
 (16, 'BC2UZE8X', '', '', '', '', '', ''),
-(17, 'BBQIIL15', 'Adult', '1', 'Nisa Delgado', '24370873', '04246402701', ''),
+(17, 'BBQIIL15', 'Adult', '1', 'Nisa Delgado', '24370873', '04246402701', '1993-10-01'),
 (18, 'BSUFGAJI', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', ''),
 (19, 'B8O1TRF4', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', ''),
-(20, 'BLKG0SCA', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', '');
+(20, 'BLKG0SCA', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', ''),
+(21, 'BH1XZFAU', 'Child', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(22, 'BH1XZFAU', 'Child', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
+(23, 'BH1XZFAU', 'Child', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(24, 'BH1XZFAU', 'Child', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
+(25, 'B2RJLZZ3', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-09-20'),
+(26, 'B2RJLZZ3', 'Adult', ' 2', 'Daiane Marques', '10756777', '75602777', '1989-01-09'),
+(27, 'B1I7WCHD', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(28, 'B1I7WCHD', 'Adult', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
+(29, 'BLL7MK6V', '', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01'),
+(30, 'BLL7MK6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01'),
+(31, 'BLL7MK6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01'),
+(32, 'BJF1KA15', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(33, 'B02LKS0X', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(34, 'B7MYNYH3', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(35, 'B7MYNYH3', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(36, 'BLSUM8JQ', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(37, 'BLSUM8JQ', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(38, 'B8NLSPEK', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01');
 
 -- --------------------------------------------------------
 
@@ -1603,9 +1686,9 @@ CREATE TABLE `tkt_booking` (
   `request_facilities` text,
   `price` float DEFAULT NULL,
   `discount` float DEFAULT NULL,
-  `adult` int(11) NOT NULL DEFAULT '0',
-  `child` int(11) NOT NULL DEFAULT '0',
-  `special` int(11) NOT NULL DEFAULT '0',
+  `adult` int(11) DEFAULT '0',
+  `child` int(11) DEFAULT '0',
+  `special` int(11) DEFAULT '0',
   `total_seat` int(11) DEFAULT NULL,
   `seat_numbers` varchar(255) DEFAULT NULL,
   `offer_code` varchar(255) DEFAULT NULL,
@@ -1666,16 +1749,9 @@ CREATE TABLE `tkt_passenger` (
 --
 
 INSERT INTO `tkt_passenger` (`id`, `id_no`, `firstname`, `lastname`, `middle_name`, `phone`, `nid`, `email`, `password`, `password_reset_token`, `remember_token`, `image`, `address_line_1`, `address_line_2`, `city`, `zip_code`, `country`, `status`, `date_birth`) VALUES
-(1, 'PWX3YAMT', 'Erick', 'Santos', NULL, '71608981', '10756000', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'bus', NULL, NULL, NULL, NULL, 1, NULL),
-(2, 'P1OIB79X', 'Nisa', 'Delgado', NULL, '+58 246402701', '24370873', 'nisadelgado@gmail.com', '202cb962ac59075b964b07152d234b70', '', NULL, NULL, 'Barrio Nueva Via', NULL, NULL, NULL, NULL, 1, NULL),
-(3, 'PQ2PL8MX', 'Nisa', 'Delgado', NULL, '+58 246402701', '24370873', 'nisadelgado@live.com', '202cb962ac59075b964b07152d234b70', '', NULL, NULL, 'Nueva Via', NULL, NULL, NULL, NULL, 1, NULL),
-(4, 'PV98EB8G', 'Nisa', 'Delgado', NULL, '04246402701', '', 'nisadelgado@grupop.com', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
-(5, 'PQ5GFQOX', 'Nisa', 'Delgado', NULL, '24370873', '24370873', 'nisadelgado@livee.com', '202cb962ac59075b964b07152d234b70', '', NULL, NULL, 'Nueva Via', NULL, NULL, NULL, NULL, 1, NULL),
-(6, 'PHF8EZU7', 'Nisa Delgado', 'Delgado', NULL, '04246402701', '', 'nisadelgado@live.com2', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
-(7, 'PQQNIL5Q', 'Nisa Delgado', '123', NULL, '04246402701', '', 'ndelgado@grupop.com.ve1', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
-(8, 'PT7WJN81', 'Nisa Delgado', 'Delgado', NULL, '04246402701', '', 'nisadelgado@live.com12', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
-(9, 'PF25A5KE', 'Nisa Delgado', '213', NULL, '04246402701', '', 'Lion20393@netarmyve.com', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
-(10, 'PDA9SUP6', 'Erick', 'Santos', NULL, '71608981', '10756777', 'dr.ericksantos@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'Av Bush 590', NULL, NULL, NULL, NULL, 1, NULL);
+(1, 'PWX3YAMT', 'Erick', 'Santos', NULL, '71608981', '10756000', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'bus', NULL, NULL, NULL, NULL, 1, ''),
+(5, 'PQ5GFQOX', 'Nisa', 'Delgado', NULL, '0424642701', '24370873', 'nisadelgado@livee.com', '202cb962ac59075b964b07152d234b70', '', NULL, NULL, 'Nueva Via', NULL, NULL, NULL, NULL, 1, '1993-10-01'),
+(10, 'PDA9SUP6', 'Camile', 'Valeria', NULL, '71608981', '10756777', 'dr.ericksantos@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'Av Bush 590', NULL, NULL, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1762,7 +1838,7 @@ CREATE TABLE `trip_assign` (
 --
 
 INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `company_id`, `assign_time`, `driver1_id`, `driver2_id`, `assistant_1`, `assistant_2`, `assistant_3`, `sold_ticket`, `total_income`, `total_expense`, `total_fuel`, `trip_comment`, `closed_by_id`, `date`, `status`) VALUES
-(1, '220911044254', 1, '1', 1, '2022-09-13 13:46:00', 1, 1, '2', '', '', 0, 0, 0, 0, NULL, 0, '0000-00-00 00:00:00', 1),
+(1, '220911044254', 1, '1', 1, '2022-09-13 13:46:00', 1, 1, '2', '', '', 10, 100, 50, 10, 'ok', 1, '2022-09-21 00:28:00', 1),
 (2, '220914031233', 2, '1', 1, '2022-09-15 20:30:00', 3, 4, '5', '5', '', 0, 0, 0, 0, NULL, 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
@@ -1842,7 +1918,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-20 15:44:34', '2022-09-13 17:41:05', '38.25.197.55', 1, 1),
+(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-21 18:13:52', '2022-09-13 17:41:05', '38.25.184.76', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
@@ -1976,7 +2052,22 @@ INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id
 (94, 'BUN2QW4J', '1', 'PHYSOGE2', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:23:14', '2022-09-19 16:23:14', 0),
 (95, 'BUTQKCSK', '1', 'P0C9GSRW', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-19 16:33:22', '2022-09-19 16:33:22', 0),
 (96, 'BY0YB3ML', '1', 'PU5S6WI9', 1, 'Santa', 'La', '', 80, 0, 0, 1, 0, 1, '1, ', '', NULL, NULL, '2022-09-19 16:33:56', '2022-09-19 16:33:56', 0),
-(97, 'BY1PBUL6', '1', 'PWT1GDVJ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-20 16:17:19', '2022-09-20 16:17:19', 0);
+(97, 'BY1PBUL6', '1', 'PWT1GDVJ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-20 16:17:19', '2022-09-20 16:17:19', 0),
+(98, 'BH1XZFAU', '1', 'PAQFYXST', 1, 'Santa', 'La', '', 160, 0, 0, 2, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-12 19:04:28', '2022-09-20 19:04:28', 0),
+(99, 'B2RJLZZ3', '1', 'P2T23PD7', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-20 19:10:57', '2022-09-20 19:10:57', 0),
+(100, 'B1I7WCHD', '1', 'P49QH1AY', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-21 21:16:07', '2022-09-20 21:16:07', 0),
+(101, 'B1W2F61A', '1', 'PO2A7ZVO', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-21 10:46:06', '2022-09-21 10:46:06', 0),
+(102, 'BWSOVZ5J', '1', 'P2IBIWT9', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-21 10:54:25', '2022-09-21 10:54:25', 0),
+(103, 'BLL7MK6V', '1', 'PE7YAQ9Z', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-21 10:57:29', '2022-09-21 10:57:29', 0),
+(104, 'BYKKRR8L', '1', 'PVHG8SAX', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-21 11:04:54', '2022-09-21 11:04:54', 0),
+(105, 'BJF1KA15', '1', 'P3AEJ3KL', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-21 11:30:35', '2022-09-21 11:30:35', 0),
+(106, 'B02LKS0X', '1', 'PDK68DA6', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-21 11:39:01', '2022-09-21 11:39:01', 0),
+(107, 'B7MYNYH3', '1', 'P8OB66WA', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-21 11:40:21', '2022-09-21 11:40:21', 0),
+(108, 'BLSUM8JQ', '1', 'P5141M61', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-21 11:41:30', '2022-09-21 11:41:30', 0),
+(109, 'BA943113', '1', 'PKZJPSPO', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-21 11:45:10', '2022-09-21 11:45:10', 0),
+(110, 'BR3GHJXZ', '1', 'PN8QRIC3', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-21 11:45:14', '2022-09-21 11:45:14', 0),
+(111, 'BOPD5DYB', '1', 'PDWKPZMN', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-21 11:45:15', '2022-09-21 11:45:15', 0),
+(112, 'B8NLSPEK', '1', 'PKJBN966', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-21 12:09:17', '2022-09-21 12:09:17', 0);
 
 -- --------------------------------------------------------
 
@@ -2100,6 +2191,12 @@ ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `couriers`
+--
+ALTER TABLE `couriers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `email_config`
 --
 ALTER TABLE `email_config`
@@ -2163,6 +2260,12 @@ ALTER TABLE `how_to_use`
 -- Indices de la tabla `language`
 --
 ALTER TABLE `language`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `merchandise`
+--
+ALTER TABLE `merchandise`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2392,12 +2495,18 @@ ALTER TABLE `booking_downtime`
 -- AUTO_INCREMENT de la tabla `cash`
 --
 ALTER TABLE `cash`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `companies`
 --
 ALTER TABLE `companies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `couriers`
+--
+ALTER TABLE `couriers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -2464,7 +2573,13 @@ ALTER TABLE `how_to_use`
 -- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=745;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=764;
+
+--
+-- AUTO_INCREMENT de la tabla `merchandise`
+--
+ALTER TABLE `merchandise`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `message`
@@ -2506,7 +2621,7 @@ ALTER TABLE `pri_price`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `sec_menu_item`
@@ -2560,7 +2675,7 @@ ALTER TABLE `ticket_notification`
 -- AUTO_INCREMENT de la tabla `tkt_booking`
 --
 ALTER TABLE `tkt_booking`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `tkt_feedback`
@@ -2620,7 +2735,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_offer`

@@ -221,13 +221,7 @@ class Paypal extends CI_Controller
                  $send_email = '';
              
                  if($insertdata){
-                 if (!empty($email)) {
-                    $send_email = $this->setmail($email,$file_path,$id,$name);
-                  // redirect("website/Paypal/local_success/". $id);
-                   echo '<script>window.location.href = "'.base_url().'website/Paypal/local_success/'. $id.'"</script>';
-                 }else{
-                    echo 'Email NOt SEND';
-                 }
+                 echo '<script>window.location.href = "'.base_url().'website/Paypal/local_success/'. $id.'"</script>';
              }
                  
  

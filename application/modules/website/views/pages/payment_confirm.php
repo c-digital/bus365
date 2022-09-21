@@ -317,15 +317,15 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                     </tr>
                     <tr>
                      <td class="text-right"><?php echo display('child_price'); ?></td>
-                                            <th class="text-right"><?php echo $booking->child*$routePrice->children_price; ?></th>
+                                            <th class="text-right"><?php echo (isset($booking) && isset($routePrice)) ? $booking->child*$routePrice->children_price : 0; ?></th>
                                         </tr>
                                          <tr>
                                             <td class="text-right"><?php echo display('adult_price'); ?></td>
-                                            <th class="text-right"><?php echo $booking->adult*$routePrice->price; ?></th>
+                                            <th class="text-right"><?php echo (isset($booking) && isset($routePrice)) ? $booking->adult*$routePrice->price : 0; ?></th>
                                         </tr>
                                          <tr>
                                             <td class="text-right"><?php echo display('special_price'); ?></td>
-                                            <th class="text-right"><?php echo $booking->special*$routePrice->special_price; ?></th>
+                                            <th class="text-right"><?php echo (isset($booking) && isset($routePrice)) ? $booking->special*$routePrice->special_price : 0; ?></th>
                                         </tr>
                     <tr>
                         <td class="text-right"><?php echo display('total'); ?></td>

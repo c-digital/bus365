@@ -43,6 +43,23 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                     that.parent().parent().find('.passenger-name').val(response.name);
                     that.parent().parent().find('.passenger-phone').val(response.phone);
                     that.parent().parent().find('.passenger-birth').val(response.birth);
+
+                    if (response.birth) {
+                        today = new Date();
+                        birth = new Date(response.birth);
+
+                        age = today.getFullYear() - birth.getFullYear();
+
+                        month = today.getMonth() - birth.getMonth();
+
+                        if (month < 0 || (month === 0 && today.getDate() < birth.getDate())) {
+                            age--;
+                        }
+
+                        if (!isNaN(age)) {
+                            that.parent().parent().find('.passenger-age').val(age);
+                        }
+                    }
                 }
             },
             error: function (error) {
@@ -137,18 +154,6 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                                         <?php if ($special): ?>
                                             <option value="<?php echo display('special'); ?>"><?php echo display('special'); ?></option>
                                         <?php endif; ?>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="passengers[<?php echo $j; ?>][seat_number]"><?php echo display('seat_number') ?></label>
-
-                                    <select name="passengers[<?php echo $j; ?>][seat_number]" class="form-control">
-                                        <option value=""></option>
-
-                                        <?php foreach (explode(',', $seat_numbers) as $number): ?>
-                                            <option value="<?php echo $number; ?>"><?php echo $number; ?></option>
-                                        <?php endforeach; ?>
                                     </select>
                                 </div>
 
@@ -414,9 +419,9 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                 }
            
             },
-            error: function()
+            error: function(error)
             {
-                alert('failed...');
+                console.log(error);
             }
         }); 
     });
@@ -469,7 +474,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
             },
             error: function(xhr)
             {
-                alert('failed!');
+                console.log(xhr);
             }
 
         });

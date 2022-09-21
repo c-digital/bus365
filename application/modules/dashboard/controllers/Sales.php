@@ -67,16 +67,40 @@ class Sales extends MX_Controller
  		$nid = $this->input->get('nid');
 
  		$select = "
- 			CONCAT(firstname, ' ', lastname) AS name,
+ 			name,
  			phone,
- 			date_birth AS birth
+ 			birth
  		";
 
- 		$result = $this->db->select($select)
- 			->from('tkt_passenger')
- 			->where('nid', $nid)
+ 		$result = [];
+
+ 		$name = $this->db->select($select)
+ 			->from('sales')
+ 			->where('ci', $nid)
+ 			->where('name !=', '')
  			->get()
- 			->row();
+ 			->row()
+ 			->name;
+
+ 		$phone = $this->db->select($select)
+ 			->from('sales')
+ 			->where('ci', $nid)
+ 			->where('phone !=', '')
+ 			->get()
+ 			->row()
+ 			->phone;
+
+ 		$birth = $this->db->select($select)
+ 			->from('sales')
+ 			->where('ci', $nid)
+ 			->where('birth !=', '')
+ 			->get()
+ 			->row()
+ 			->birth;
+
+ 		$result['name'] = $name;
+ 		$result['phone'] = $phone;
+ 		$result['birth'] = $birth;
 
  		echo json_encode($result);
  	}

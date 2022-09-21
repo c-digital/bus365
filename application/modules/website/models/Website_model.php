@@ -334,8 +334,8 @@ public function getlocal($booking_id_no = null)
                 bh.special 
             ")
             ->from('ws_booking_history AS bh')
-            ->join('tkt_passenger AS tp', 'bh.tkt_passenger_id_no = tp.id_no' ,'full')
-            ->join('trip_route AS tr', 'tr.id = bh.trip_route_id','full')
+            ->join('tkt_passenger AS tp', 'bh.tkt_passenger_id_no = tp.id_no' ,'left')
+            ->join('trip_route AS tr', 'tr.id = bh.trip_route_id','left')
             ->where('bh.id_no', $booking_id_no)
             ->get()
             ->row();
@@ -471,8 +471,8 @@ public function email_check($email){
 
             ")
             ->from('tkt_booking AS tb')
-            ->join('tkt_passenger AS tp', 'tb.tkt_passenger_id_no = tp.id_no' ,'full')
-            ->join('trip_route AS tr', 'tr.id = tb.trip_route_id','full')
+            ->join('tkt_passenger AS tp', 'tb.tkt_passenger_id_no = tp.id_no' ,'left')
+            ->join('trip_route AS tr', 'tr.id = tb.trip_route_id','left')
             ->where('tb.id_no', $booking_id_no)
             ->get()
             ->row();

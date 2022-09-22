@@ -38,9 +38,18 @@
             </a>
         </li>
 
-        <li class="treeview <?php echo (($this->uri->segment(2)=="merchandise" || $this->uri->segment(2)=="")?"active":null) ?>">
-            <a href="<?php echo base_url('dashboard/merchandise') ?>"><i class="fa fa-truck"></i> <span><?php echo display('merchandise')?></span> 
+        <li class="treeview <?php echo (($this->uri->segment(2)=="merchandise")?"active":null) ?>">
+            <a href="#">
+                <i class="fa fa-truck"></i><span><?php echo display('merchandise')?></span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
             </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo base_url('dashboard/merchandise/create') ?>"><?php echo display('add_merchandise')?></a></li>
+                <li><a href="<?php echo base_url('dashboard/merchandise/index') ?>"><?php echo display('list_merchandise')?></a></li> 
+                <li><a href="<?php echo base_url('dashboard/merchandise/pricePerKg') ?>"><?php echo display('price_per_kg')?></a></li> 
+            </ul>
         </li>
       
 <?php if($this->uri->segment(2) !=='User'){?>

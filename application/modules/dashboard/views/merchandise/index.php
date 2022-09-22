@@ -22,23 +22,36 @@
                                 <th><?php echo display('receipt_phone') ?></th>
                                 <th><?php echo display('billing_type') ?></th> 
                                 <th><?php echo display('total') ?></th> 
+                                <th><?php echo display('status') ?></th>
                                 <th></th> 
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (!empty($merchandise)) ?>
                             <?php $sl = 1; ?>
-                            <?php foreach ($merchandise as $company) { ?>
+                            <?php foreach ($merchandise as $item) { ?>
                             <tr>
                                 <td><?php echo $sl++; ?></td>
-                                 <td><?php echo $company->courier; ?></td>
-                                  <td><?php echo $company->destination; ?></td>
-                                  <td><?php echo $company->origin; ?></td>
-                                  <td><?php echo $company->receipt; ?></td>
-                                  <td><?php echo $company->receipt_phone; ?></td>
-                                  <td><?php echo $company->billing_type; ?></td>
-                                  <td><?php echo $company->total; ?></td>
+                                 <td><?php echo $item->courier; ?></td>
+                                  <td><?php echo $item->destination; ?></td>
+                                  <td><?php echo $item->origin; ?></td>
+                                  <td><?php echo $item->receipt; ?></td>
+                                  <td><?php echo $item->receipt_phone; ?></td>
+                                  <td><?php echo $item->billing_type; ?></td>
+                                  <td><?php echo $item->total; ?></td>
+                                  <td><?php echo $item->status; ?></td>
+                                  <td nowrap>
+                                    <a href="<?php echo base_url("dashboard/merchandise/show/$item->id") ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('view') ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                    <a href="" data-toggle="modal" data-target="#assign" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('assign_to_trip') ?>"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+
+                                    <a href="<?php echo base_url("dashboard/merchandise/delivered/$item->id") ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('mark_as_delivered') ?>"><i class="fa fa-check" aria-hidden="true"></i></a>
+
+                                    <a href="<?php echo base_url("dashboard/merchandise/delete/$item->id") ?>" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('delete') ?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                  </td>
                             </tr>
+
+                            <?php $this->load->view('merchandise/assign') ?>
                             <?php } ?> 
                         </tbody>
                     </table>
@@ -48,4 +61,3 @@
     </div>
 </div>
 
- 

@@ -24,6 +24,35 @@
                 }
             });
         });
+
+        $('[name=package_weight]').keyup(function () {
+            weight = $(this).val();
+            weight = weight ? weight : 0;
+
+            price_per_kg = $('[name=price_per_kg]').val();
+            package_price = parseFloat(weight) * parseFloat(price_per_kg);
+            $('[name=package_price]').val(package_price);
+
+            package_price = $('[name=package_price]').val();
+            package_price = package_price ? package_price : 0;
+
+            billing_discount = $('[name=billing_discount]').val();
+            billing_discount = billing_discount ? billing_discount : 0;
+
+            total = parseFloat(package_price) - parseFloat(billing_discount);
+            $('[name=billing_total]').val(total);
+        });
+
+        $('[name=billing_discount]').keyup(function () {
+            package_price = $('[name=package_price]').val();
+            package_price = package_price ? package_price : 0;
+
+            billing_discount = $('[name=billing_discount]').val();
+            billing_discount = billing_discount ? billing_discount : 0;
+
+            total = parseFloat(package_price) - parseFloat(billing_discount);
+            $('[name=billing_total]').val(total);
+        });
     });
 </script>
 
@@ -111,7 +140,7 @@
 
                         <div class="col-sm-4">
                             <label for="price_per_kg"><?php echo display('price_per_kg') ?></label>
-                            <input type="text" name="price_per_kg" readonly class="form-control">
+                            <input type="text" name="price_per_kg" readonly class="form-control" value="<?php echo $price_per_kg; ?>">
                         </div>
 
                         <div class="col-sm-4">
@@ -122,32 +151,32 @@
 
                     <br>
 
-                    <h4><?php echo display('recipient_details') ?></h4>
+                    <h4><?php echo display('receipt_details') ?></h4>
 
                     <div class="form-group row">
                         <div class="col-sm-3">
-                            <label for="recipient_name"><?php echo display('name') ?></label>
-                            <input type="name" name="recipient_name" class="form-control">
+                            <label for="receipt_name"><?php echo display('name') ?></label>
+                            <input type="name" name="receipt_name" class="form-control">
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="recipient_email"><?php echo display('email') ?></label>
-                            <input type="email" name="recipient_email" class="form-control">
+                            <label for="receipt_email"><?php echo display('email') ?></label>
+                            <input type="email" name="receipt_email" class="form-control">
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="recipient_phone"><?php echo display('phone') ?></label>
-                            <input type="text" name="recipient_phone" class="form-control">
+                            <label for="receipt_phone"><?php echo display('phone') ?></label>
+                            <input type="text" name="receipt_phone" class="form-control">
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="recipient_date_birth"><?php echo display('date_birth') ?></label>
-                            <input type="text" name="recipient_date_birth" class="form-control">
+                            <label for="receipt_date_birth"><?php echo display('date_birth') ?></label>
+                            <input type="date" name="receipt_date_birth" class="form-control">
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="recipient_nid"><?php echo display('nid') ?></label>
-                            <input type="text" name="recipient_nid" class="form-control">
+                            <label for="receipt_nid"><?php echo display('nid') ?></label>
+                            <input type="text" name="receipt_nid" class="form-control">
                         </div>
                     </div>
 
@@ -160,14 +189,9 @@
                             <label for="billing_type"><?php echo display('type') ?></label>
                             <select name="billing_type" class="form-control">
                                 <option value=""></option>
-                                <option value="<?php echo display('addresse') ?>"><?php echo display('addresse') ?></option>
-                                <option value="<?php echo display('receipt') ?>"><?php echo display('receipt') ?></option>
+                                <option value="addresse"><?php echo display('addresse') ?></option>
+                                <option value="receipt"><?php echo display('receipt') ?></option>
                             </select>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="billing_adjustment"><?php echo display('adjustment') ?></label>
-                            <input type="text" name="billing_adjustment" class="form-control">
                         </div>
 
                         <div class="col-sm-3">

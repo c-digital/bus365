@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-09-2022 a las 17:15:51
+-- Tiempo de generación: 22-09-2022 a las 17:16:11
 -- Versión del servidor: 5.7.39
 -- Versión de PHP: 7.4.30
 
@@ -183,7 +183,7 @@ CREATE TABLE `cash` (
 INSERT INTO `cash` (`id`, `type_move`, `date`, `amount`, `payment_method`, `concept`, `balance`, `status`, `casher`) VALUES
 (1, 'in', '2022-09-19 00:00:00', '0', '', 'Apertura de caja', '0', 'Open', 'admin@admin.com'),
 (2, 'out', '2022-09-18 00:00:00', '0', NULL, 'Cierre de caja', '0', 'Close', 'admin@admin.com'),
-(3, 'In', '2022-09-20 12:47:30', '150', 'cash', 'Pago', '150', 'Open', 'admin@admin.com'),
+(3, 'in', '2022-09-20 12:47:30', '150', 'cash', 'Pago', '150', 'Open', 'admin@admin.com'),
 (4, 'out', '2022-09-20 15:11:59', '150', NULL, 'Close cash', '0', 'Close', 'admin@admin.com'),
 (5, 'in', '2022-09-21 10:38:49', '100', 'Cash', 'Open cash', '', 'Open', 'admin@admin.com');
 
@@ -1116,7 +1116,15 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (760, 'package_price', 'Package price', 'Package price'),
 (761, 'receipt', 'Receipt', 'Receipt'),
 (762, 'receipt_phone', 'Receipt phone', 'Receipt phone'),
-(763, 'billing_type', 'Billing type', 'Billing type');
+(763, 'billing_type', 'Billing type', 'Billing type'),
+(764, 'add_merchandise', 'Add', 'Add'),
+(765, 'list_merchandise', 'List', 'List'),
+(766, 'price_per_kg', 'Price per kg', 'Price per kg'),
+(767, 'mark_as_delivered', 'Mark as delivered', 'Mark as delivered'),
+(768, 'assign_to_trip', 'Assign to trip', 'Assign to trip'),
+(769, 'view', 'View', 'View'),
+(770, 'assign_merchandise_to_trip', 'Assign merchandise to trip', 'Assign merchandise to trip'),
+(771, 'select_trip', 'Select a trip', 'Select a trip');
 
 -- --------------------------------------------------------
 
@@ -1126,6 +1134,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 
 CREATE TABLE `merchandise` (
   `id` int(11) NOT NULL,
+  `trip_id` int(11) DEFAULT NULL,
+  `courier_id` int(11) DEFAULT NULL,
   `package_origin` varchar(256) DEFAULT NULL,
   `package_destination` varchar(256) DEFAULT NULL,
   `package_description` text,
@@ -1135,11 +1145,19 @@ CREATE TABLE `merchandise` (
   `receipt_name` varchar(256) DEFAULT NULL,
   `receipt_email` varchar(256) DEFAULT NULL,
   `receipt_phone` varchar(256) DEFAULT NULL,
+  `receipt_date_birth` varchar(256) DEFAULT NULL,
   `billing_type` varchar(256) DEFAULT NULL,
-  `billing_adjustment` varchar(256) DEFAULT NULL,
-  `billing_adiscount` varchar(256) DEFAULT NULL,
-  `billing_total` varchar(256) DEFAULT NULL
+  `billing_discount` varchar(256) DEFAULT NULL,
+  `billing_total` varchar(256) DEFAULT NULL,
+  `status` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `merchandise`
+--
+
+INSERT INTO `merchandise` (`id`, `trip_id`, `courier_id`, `package_origin`, `package_destination`, `package_description`, `package_weight`, `package_price`, `receipt_nid`, `receipt_name`, `receipt_email`, `receipt_phone`, `receipt_date_birth`, `billing_type`, `billing_discount`, `billing_total`, `status`) VALUES
+(2, NULL, 1, '1', '2', 'Test', '6', '12', '123tgf', 'Edw', 'ea@ecorp.com', '123', '1985-12-21', 'addresse', '2', '10', 'open');
 
 -- --------------------------------------------------------
 
@@ -1225,6 +1243,24 @@ CREATE TABLE `payment_informations` (
   `how_to_pay` text NOT NULL,
   `terms_and_condition` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `price_per_kg`
+--
+
+CREATE TABLE `price_per_kg` (
+  `id` int(11) NOT NULL,
+  `value` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `price_per_kg`
+--
+
+INSERT INTO `price_per_kg` (`id`, `value`) VALUES
+(1, '2');
 
 -- --------------------------------------------------------
 
@@ -1918,7 +1954,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-21 18:13:52', '2022-09-13 17:41:05', '38.25.184.76', 1, 1),
+(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-22 18:07:53', '2022-09-13 17:41:05', '38.25.184.76', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
@@ -2299,6 +2335,12 @@ ALTER TABLE `payment_informations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `price_per_kg`
+--
+ALTER TABLE `price_per_kg`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `pri_price`
 --
 ALTER TABLE `pri_price`
@@ -2573,13 +2615,13 @@ ALTER TABLE `how_to_use`
 -- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=764;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=772;
 
 --
 -- AUTO_INCREMENT de la tabla `merchandise`
 --
 ALTER TABLE `merchandise`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `message`
@@ -2610,6 +2652,12 @@ ALTER TABLE `ofr_offer`
 --
 ALTER TABLE `payment_informations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `price_per_kg`
+--
+ALTER TABLE `price_per_kg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pri_price`

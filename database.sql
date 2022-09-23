@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 22-09-2022 a las 17:16:11
+-- Tiempo de generación: 23-09-2022 a las 16:19:51
 -- Versión del servidor: 5.7.39
 -- Versión de PHP: 7.4.30
 
@@ -185,7 +185,11 @@ INSERT INTO `cash` (`id`, `type_move`, `date`, `amount`, `payment_method`, `conc
 (2, 'out', '2022-09-18 00:00:00', '0', NULL, 'Cierre de caja', '0', 'Close', 'admin@admin.com'),
 (3, 'in', '2022-09-20 12:47:30', '150', 'cash', 'Pago', '150', 'Open', 'admin@admin.com'),
 (4, 'out', '2022-09-20 15:11:59', '150', NULL, 'Close cash', '0', 'Close', 'admin@admin.com'),
-(5, 'in', '2022-09-21 10:38:49', '100', 'Cash', 'Open cash', '', 'Open', 'admin@admin.com');
+(5, 'in', '2022-09-21 10:38:49', '100', 'Cash', 'Open cash', '', 'Open', 'admin@admin.com'),
+(6, 'in', '2022-09-23 15:01:44', '1.6', 'cash', 'Envio de mercadería #3', '1.6', 'Open', 'admin@admin.com'),
+(7, 'in', '2022-09-23 15:09:58', '100', 'cash', 'Teste', '101.6', 'Open', 'admin@admin.com'),
+(8, 'out', '2022-09-23 15:10:43', '5', 'cash', 'Teste02', '96.6', 'Open', 'admin@admin.com'),
+(9, 'out', '2022-09-23 15:11:01', '96.6', NULL, 'Close cash', '0', 'Close', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -229,7 +233,8 @@ CREATE TABLE `couriers` (
 --
 
 INSERT INTO `couriers` (`id`, `nid`, `name`, `email`, `phone`, `date_birth`) VALUES
-(1, '243708731', 'Javier Gonzalez1', 'jgzz93@gmail.com', '04246402701', '1993-10-01');
+(1, '243708731', 'Javier Gonzalez1', 'jgzz93@gmail.com', '04246402701', '1993-10-01'),
+(2, '10756777', 'Erick Santos ', 'dr.ericksantos@gmail.com', '71608981', '2022-09-23');
 
 -- --------------------------------------------------------
 
@@ -1124,7 +1129,10 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (768, 'assign_to_trip', 'Assign to trip', 'Assign to trip'),
 (769, 'view', 'View', 'View'),
 (770, 'assign_merchandise_to_trip', 'Assign merchandise to trip', 'Assign merchandise to trip'),
-(771, 'select_trip', 'Select a trip', 'Select a trip');
+(771, 'select_trip', 'Select a trip', 'Select a trip'),
+(772, 'current_status', 'Current status', 'Current status'),
+(773, 'start_trip', 'Start trip', 'Start trip'),
+(774, 'check_in', 'Check in', 'Check in');
 
 -- --------------------------------------------------------
 
@@ -1157,7 +1165,8 @@ CREATE TABLE `merchandise` (
 --
 
 INSERT INTO `merchandise` (`id`, `trip_id`, `courier_id`, `package_origin`, `package_destination`, `package_description`, `package_weight`, `package_price`, `receipt_nid`, `receipt_name`, `receipt_email`, `receipt_phone`, `receipt_date_birth`, `billing_type`, `billing_discount`, `billing_total`, `status`) VALUES
-(2, NULL, 1, '1', '2', 'Test', '6', '12', '123tgf', 'Edw', 'ea@ecorp.com', '123', '1985-12-21', 'addresse', '2', '10', 'open');
+(2, 1, 1, '1', '2', 'Test', '6', '12', '123tgf', 'Edw', 'ea@ecorp.com', '123', '1985-12-21', 'addresse', '2', '10', 'assigned'),
+(3, NULL, 2, '1', '2', 'Caja de cosas', '0.8', '1.6', '123456', 'Nisaul enrolado ', 'nisadelgado@gmail.com', 'Q23445', '2022-09-23', 'addresse', '', '1.6', 'open');
 
 -- --------------------------------------------------------
 
@@ -1866,16 +1875,17 @@ CREATE TABLE `trip_assign` (
   `trip_comment` text,
   `closed_by_id` int(11) DEFAULT '0',
   `date` datetime DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `check_in` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `trip_assign`
 --
 
-INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `company_id`, `assign_time`, `driver1_id`, `driver2_id`, `assistant_1`, `assistant_2`, `assistant_3`, `sold_ticket`, `total_income`, `total_expense`, `total_fuel`, `trip_comment`, `closed_by_id`, `date`, `status`) VALUES
-(1, '220911044254', 1, '1', 1, '2022-09-13 13:46:00', 1, 1, '2', '', '', 10, 100, 50, 10, 'ok', 1, '2022-09-21 00:28:00', 1),
-(2, '220914031233', 2, '1', 1, '2022-09-15 20:30:00', 3, 4, '5', '5', '', 0, 0, 0, 0, NULL, 0, '0000-00-00 00:00:00', 1);
+INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `company_id`, `assign_time`, `driver1_id`, `driver2_id`, `assistant_1`, `assistant_2`, `assistant_3`, `sold_ticket`, `total_income`, `total_expense`, `total_fuel`, `trip_comment`, `closed_by_id`, `date`, `status`, `check_in`) VALUES
+(1, '220911044254', 1, '1', 1, '2022-09-13 13:46:00', 1, 1, '2', '', '', 10, 100, 50, 10, 'ok', 1, '2022-09-21 00:28:00', 1, NULL),
+(2, '220914031233', 2, '1', 1, '2022-09-15 20:30:00', 3, 4, '5', '5', '', 0, 0, 0, 0, NULL, 0, '0000-00-00 00:00:00', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1917,15 +1927,16 @@ CREATE TABLE `trip_route` (
   `approximate_time` varchar(100) DEFAULT NULL,
   `children_seat` int(11) NOT NULL DEFAULT '0',
   `special_seat` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(1) DEFAULT '1'
+  `status` tinyint(1) DEFAULT '1',
+  `current_status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `trip_route`
 --
 
-INSERT INTO `trip_route` (`id`, `name`, `start_point`, `end_point`, `stoppage_points`, `distance`, `approximate_time`, `children_seat`, `special_seat`, `status`) VALUES
-(1, 'Santa Cruz x La Paz', '1', '2', 'Cochabamba,Santa Cruz,La Paz', '700', '8', 0, 0, 1);
+INSERT INTO `trip_route` (`id`, `name`, `start_point`, `end_point`, `stoppage_points`, `distance`, `approximate_time`, `children_seat`, `special_seat`, `status`, `current_status`) VALUES
+(1, 'Santa Cruz x La Paz', '1', '2', 'Cochabamba,Santa Cruz,La Paz', '700', '8', 0, 0, 1, 'No started');
 
 -- --------------------------------------------------------
 
@@ -1954,7 +1965,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-22 18:07:53', '2022-09-13 17:41:05', '38.25.184.76', 1, 1),
+(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-23 18:07:28', '2022-09-13 17:41:05', '38.25.168.3', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
@@ -2537,7 +2548,7 @@ ALTER TABLE `booking_downtime`
 -- AUTO_INCREMENT de la tabla `cash`
 --
 ALTER TABLE `cash`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `companies`
@@ -2549,7 +2560,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT de la tabla `couriers`
 --
 ALTER TABLE `couriers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `email_config`
@@ -2615,13 +2626,13 @@ ALTER TABLE `how_to_use`
 -- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=772;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=775;
 
 --
 -- AUTO_INCREMENT de la tabla `merchandise`
 --
 ALTER TABLE `merchandise`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `message`

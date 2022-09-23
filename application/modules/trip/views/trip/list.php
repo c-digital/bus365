@@ -23,6 +23,7 @@
                                 <th><?php echo display('distance') ?></th>
                                 <th><?php echo display('approximate_time') ?></th>
                                 <th><?php echo display('status') ?></th>
+                                <th><?php echo display('current_status') ?></th>
                                 <th><?php echo display('action') ?></th> 
                             </tr>
                         </thead>
@@ -40,10 +41,15 @@
                                 <td><?php echo $trips->distance; ?></td>
                                 <td><?php echo $trips->approximate_time; ?></td>
                                 <td><?php echo (($trips->status==1)?display('active'):display('inactive')); ?></td>
-                                <td>
+                                <td><?php echo $trips->current_status; ?></td>
+                                <td nowrap>
 
                                 <?php if($this->permission->method('trip','update')->access()): ?>
                                     <a href="<?php echo base_url("trip/trip/form/$trips->trip_id") ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Update"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <?php endif; ?>
+
+                                <?php if ($trips->current_status == 'Not started'): ?>
+                                    <a href="<?php echo base_url("trip/trip/start/$trips->trip_id") ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('start_trip') ?>"><i class="fa fa-play" aria-hidden="true"></i></a>
                                 <?php endif; ?>
 
                                 <?php if($this->permission->method('trip','delete')->access()): ?>

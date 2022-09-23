@@ -41,17 +41,23 @@
                                   <td><?php echo $item->total; ?></td>
                                   <td><?php echo $item->status; ?></td>
                                   <td nowrap>
-                                    <a href="<?php echo base_url("dashboard/merchandise/show/$item->id") ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('view') ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="<?php echo base_url("dashboard/merchandise/show/$item->id") ?>" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('view') ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                    <a href="" data-toggle="modal" data-target="#assign" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('assign_to_trip') ?>"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                    <a href="<?php echo base_url("dashboard/merchandise/ticket/$item->id") ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('view') ?>"><i class="fa fa-print" aria-hidden="true"></i></a>
 
-                                    <a href="<?php echo base_url("dashboard/merchandise/delivered/$item->id") ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('mark_as_delivered') ?>"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                    <?php if (!$item->trip_id): ?>
+                                        <a href="" data-toggle="modal" data-target="#assign" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('assign_to_trip') ?>"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                    <?php endif; ?>
+
+                                    <?php if ($item->status != 'delivered' && $item->trip_id): ?>
+                                        <a href="<?php echo base_url("dashboard/merchandise/delivered/$item->id") ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('mark_as_delivered') ?>"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                    <?php endif; ?>
 
                                     <a href="<?php echo base_url("dashboard/merchandise/delete/$item->id") ?>" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('delete') ?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                   </td>
                             </tr>
 
-                            <?php $this->load->view('merchandise/assign') ?>
+                            <?php include 'assign.php' ?>
                             <?php } ?> 
                         </tbody>
                     </table>

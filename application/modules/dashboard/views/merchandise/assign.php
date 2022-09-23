@@ -9,6 +9,8 @@
             </button>
           </div>
           <div class="modal-body">
+            <input type="hidden" name="id" value="<?php echo $item->id; ?>">
+
             <div class="form-group">
                 <label for="trip_id"><?php echo display('select_trip'); ?></label>
                 <select name="trip_id" class="form-control" required>

@@ -18,6 +18,7 @@ class Merchandise extends MX_Controller
 			m.receipt_phone AS receipt_phone,
 			m.billing_type,
 			m.billing_total AS total,
+			m.trip_id,
 			m.status
 		";
 
@@ -100,12 +101,12 @@ class Merchandise extends MX_Controller
 			$total = $post['billing_total'];
 			$concept = 'Envio de mercadería #' . $this->db->insert_id();
 
+			$casher = $_SESSION['email'];
+
 			$caja = $this->db->query("SELECT * FROM cash WHERE casher = '$casher' ORDER BY date DESC")->row();
 
 			$status = $caja->status;
 			$balance = $caja->balance + $total;
-
-			$casher = $_SESSION['email'];
 
 			if ($status == 'Open') {
 				$this->db->query("INSERT INTO cash (type_move, date, amount, payment_method, concept, balance, status, casher) VALUES ('in', NOW(), '$total', 'cash', '$concept', '$balance', 'Open', '$casher')");
@@ -174,14 +175,37 @@ class Merchandise extends MX_Controller
 		echo Modules::run('template/layout', $data);
 	}
 
-	public function assign($id)
+	public function assign()
 	{
+		$trip_id = $this->input->post('trip_id');
+		$id = $this->input->post('id');
 
+		$this->db->query("UPDATE merchandise SET trip_id = '$trip_id', status = 'assigned' WHERE id = $id");
+
+		return redirect('/dashboard/merchandise');
 	}
 
 	public function delivered($id)
 	{
 		$this->db->query("UPDATE merchandise SET status = 'delivered' WHERE id = $id");
+
+		$merchandise = $this->db->query("UPDATE merchandise SET status = 'delivered' WHERE id = $id")->row();
+
+		$casher = $_SESSION['email'];
+
+		$caja = $this->db->query("SELECT * FROM cash WHERE casher = '$casher' ORDER BY date DESC")->row();
+
+		$total = $merchandise->billing_total;
+
+		$status = $caja->status;
+		$balance = $caja->balance + $total;
+
+		$concept = 'Envío de mercadería #' . $merchandise->id;
+
+		if ($status == 'Open') {
+			$this->db->query("INSERT INTO cash (type_move, date, amount, payment_method, concept, balance, status, casher) VALUES ('in', NOW(), '$total', 'cash', '$concept', '$balance', 'Open', '$casher')");
+		}
+
 		return redirect('/dashboard/merchandise');
 	}
 

@@ -51,7 +51,14 @@
                         <div class="col-sm-9">
                             <textarea name="trip_comment" class="form-control" type="text" placeholder="<?php echo display('trip_comment') ?>" id="trip_comment"><?php echo $close->trip_comment ?></textarea>
                         </div>
-                    </div> 
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="check_in" class="col-sm-3 col-form-label"><?php echo display('check_in') ?> *</label>
+                        <div class="col-sm-9">
+                            <input name="check_in" class="form-control" type="text" placeholder="<?php echo display('check_in') ?>" id="check_in" value="<?php echo $close->check_in ?>">
+                        </div>
+                    </div>
  
  
                     <div class="form-group row">

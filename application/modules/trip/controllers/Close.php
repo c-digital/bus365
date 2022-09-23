@@ -81,7 +81,8 @@ class Close extends MX_Controller {
 			'trip_comment'  => $this->input->post('trip_comment'), 
 			'closed_by_id'  => $this->session->userdata('id'), 
 			'date'      	=> date('Y-m-d H:i'), 
-			'status'        => $this->input->post('status'), 
+			'status'        => $this->input->post('status'),
+			'check_in'        => $this->input->post('check_in'),
 		]; 
 		     $driverinfo =[
                 'is_assign' => 0,

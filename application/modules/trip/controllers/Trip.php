@@ -25,6 +25,14 @@ class Trip extends MX_Controller {
 		echo Modules::run('template/layout', $data); 
 	}  
 
+	public function start($id)
+	{
+		$this->db->query("UPDATE trip SET current_status = 'Started' WHERE trip_id = '$id'");
+		$this->db->query("UPDATE merchandise SET status = 'On way' WHERE trip_id = '$id'");
+
+		return redirect('trip/trip');
+	}
+
  	public function form($id = null)
 	{ 
         $this->permission->module()->create()->redirect(); 
@@ -50,7 +58,8 @@ class Trip extends MX_Controller {
 			'shedule_id' 	     => $shedule->shedule_id, 
 			'type' 	             => $types->id,
 			'weekend'            => (!empty($weekday)?$weekday:8),
-			'status'             => $this->input->post('status'), 
+			'status'             => $this->input->post('status'),
+			'current_status'     => 'No started',
 		];  
 
 		#-------------------------------#

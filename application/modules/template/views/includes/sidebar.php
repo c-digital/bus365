@@ -33,8 +33,8 @@
             </a>
         </li>
 
-        <li class="treeview <?php echo (($this->uri->segment(2)=="cash" || $this->uri->segment(2)=="")?"active":null) ?>">
-            <a href="<?php echo base_url('dashboard/cash') ?>"><i class="fa fa-money"></i> <span><?php echo display('cash')?></span> 
+        <li class="treeview <?php echo (($this->uri->segment(2)=="caja" || $this->uri->segment(2)=="")?"active":null) ?>">
+            <a href="<?php echo base_url('dashboard/caja') ?>"><i class="fa fa-money"></i> <span><?php echo 'Caja' ?></span> 
             </a>
         </li>
 

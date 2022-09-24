@@ -8,10 +8,10 @@
 
                     <button onclick="printContent('printMe')" type="button" class="btn btn-danger"><i class="fa fa-print"></i> <?php echo display("print") ?></button>
 
-                    <a class="btn btn-primary" href="<?php echo base_url("dashboard/cash") ?>"> <i class="fa fa-list"></i>  <?php echo display('back_to_cash') ?> </a> 
+                    <a class="btn btn-primary" href="<?php echo base_url("billing/caja") ?>"> <i class="fa fa-list"></i>  Volver a caja </a> 
 
                 </div>
-                <h2 class="col-xs-8 text-left text-success"><?php echo display('Close cash') ?></h2>
+                <h2 class="col-xs-8 text-left text-success"><?php echo 'Cierre de caja' ?></h2>
             </div>  
 
 
@@ -21,24 +21,24 @@
             <div class="panel-body" id="printMe">
                 <div class="row">
                     <div class="col-xs-6 logo_bar">
-                        <img src="<?php echo base_url("$setting->logo") ?>" class="img-responsive" alt=""></br>
-                        <?php echo display('phone') ?>: <?php echo $setting->phone; ?></br>
-                        <?php echo display('email') ?>: <?php echo $setting->email; ?>
+                        <img src="<?php echo base_url("$website->logo") ?>" class="img-responsive" alt=""></br>
+                        <?php echo display('phone') ?>: <?php echo $website->phone; ?></br>
+                        <?php echo display('email') ?>: <?php echo $website->email; ?>
                         <br>
                     </div>
                     <div class="col-xs-6 address_bar">
                         <div class="address_inner">
                             <address>
                                 <strong><?php echo display('address') ?></strong><br>
-                                <strong><?php echo $setting->title; ?></strong><br>
-                                <?php echo $setting->address; ?>
+                                <strong><?php echo $website->title; ?></strong><br>
+                                <?php echo $website->address; ?>
                             </address>
                         </div>
                     </div>
                 </div> <hr>
                 <!-- Patient Info -->
                 <div class="row patient_info">
-                    <table class="info table">
+                    <table class="info">
                         <tbody>
                             <tr>
                                 <td><?php echo 'Fecha'; ?>:</td>
@@ -52,41 +52,41 @@
                     <table class="charge table">
                         <thead>
                             <tr>
-                                <th colspan="6"><?php echo display('moves') ?></th>
+                                <th colspan="6">Movimientos</th>
                             </tr>
 
                             <tr>
                                 <th><?php echo '#'; ?></th>
-                                <th><?php echo display('type_move'); ?></th>
-                                <th><?php echo display('date'); ?></th>
-                                <th><?php echo display('amount'); ?></th>
-                                <th><?php echo display('payment_method'); ?></th> 
-                                <th><?php echo display('concept'); ?></th>
+                                <th><?php echo 'Tipo de movimiento'; ?></th>
+                                <th><?php echo 'Fecha'; ?></th>
+                                <th><?php echo 'Monto'; ?></th>
+                                <th><?php echo 'Método de pago'; ?></th> 
+                                <th><?php echo 'Concepto'; ?></th>
                             </tr>
                         </thead>
                         <tbody>
-                        	<?php $i = 1; foreach ($moves as $move): ?>
-	                        <tr>
-	                            <td class="description">
-	                                <p><?php echo $i; ?></p> 
-	                            </td>
-	                            <td class="description">
-	                                <p><?php echo $move->type_move ; ?></p> 
-	                            </td>
-	                            <td class="charge">
-	                                <p><?php echo $move->date; ?></p> 
-	                            </td>
-	                            <td class="discount">
-	                                <p><?php echo $move->amount; ?></p> 
-	                            </td>
-	                            <td class="ballance">
-	                                <p><?php echo $move->payment_method; ?></p>
-	                            </td>
-	                            <td class="ballance">
-	                                <p><?php echo $move->concept; ?></p>
-	                            </td>
-	                        </tr>
-	                    	<?php $i++; endforeach; ?>
+                            <?php $i = 1; foreach ($movimientos as $item): ?>
+                            <tr>
+                                <td class="description">
+                                    <p><?php echo $i; ?></p> 
+                                </td>
+                                <td class="description">
+                                    <p><?php echo $item->tipo_movimiento; ?></p> 
+                                </td>
+                                <td class="charge">
+                                    <p><?php echo $item->fecha; ?></p> 
+                                </td>
+                                <td class="discount">
+                                    <p><?php echo $item->monto; ?></p> 
+                                </td>
+                                <td class="ballance">
+                                    <p><?php echo $item->metodo_pago; ?></p>
+                                </td>
+                                <td class="ballance">
+                                    <p><?php echo $item->concepto; ?></p>
+                                </td>
+                            </tr>
+                            <?php $i++; endforeach; ?>
                         </tbody> 
                     </table>
 
@@ -96,52 +96,52 @@
                         <div class="col-md-8"></div>
 
                         <div class="col-md-4">
-                            <table class="table charge">
+                            <table class="charge table">
                                 <thead>
                                     <tr>
-                                        <th colspan="2"><?php echo display('totals'); ?></th>
+                                        <th colspan="2"><?php echo 'Totales'; ?></th>
                                     </tr>
 
                                     <tr>
-                                        <th><?php echo display('type'); ?></th>
-                                        <th><?php echo display('amount'); ?></th>
+                                        <th><?php echo 'Tipo'; ?></th>
+                                        <th><?php echo 'Monto'; ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td class="description">
-                                            <p><?php echo display('ins'); ?></p> 
+                                            <p><?php echo 'Entradas'; ?></p> 
                                         </td>
                                         <td class="description">
-                                            <p><?php echo number_format($ins, 2); ?></p> 
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="description">
-                                            <p><?php echo display('outs'); ?></p> 
-                                        </td>
-                                        <td class="description">
-                                            <p><?php echo number_format($outs, 2); ?></p> 
+                                            <p><?php echo number_format($entradas, 2); ?></p> 
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td class="description">
-                                            <p><?php echo display('money_in_cash'); ?></p> 
+                                            <p><?php echo 'Salidas'; ?></p> 
                                         </td>
                                         <td class="description">
-                                            <p><?php echo number_format($balance, 2); ?></p> 
+                                            <p><?php echo number_format($salidas, 2); ?></p> 
                                         </td>
                                     </tr>
 
-                                    <?php foreach ($types as $type): ?>
                                     <tr>
                                         <td class="description">
-                                            <p><?php echo $type->payment_method; ?></p> 
+                                            <p><?php echo 'Dinero en caja'; ?></p> 
                                         </td>
                                         <td class="description">
-                                            <p><?php echo number_format($type->total, 2); ?></p> 
+                                            <p><?php echo number_format($saldo, 2); ?></p> 
+                                        </td>
+                                    </tr>
+
+                                    <?php foreach ($tipos as $tipo): ?>
+                                    <tr>
+                                        <td class="description">
+                                            <p><?php echo $tipo->metodo_pago; ?></p> 
+                                        </td>
+                                        <td class="description">
+                                            <p><?php echo number_format($tipo->total, 2); ?></p> 
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

@@ -191,6 +191,12 @@ switch (ENVIRONMENT)
  * ---------------------------------------------------------------
  */
 
+function dd($var)
+{
+	print_r($var);
+	exit;
+}
+
 	// Set the current directory correctly for CLI requests
 	if (defined('STDIN'))
 	{

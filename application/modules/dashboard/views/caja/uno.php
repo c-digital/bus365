@@ -7,10 +7,10 @@
 
 
                     <button onclick="printContent('printMe')" type="button" class="btn btn-danger"><i class="fa fa-print"></i> <?php echo display("print") ?></button>
-                    <a class="btn btn-primary" href="<?php echo base_url("dashboard/cash") ?>"> <i class="fa fa-list"></i>  <?php echo display('back_to_cash'); ?> </a> 
+                    <a class="btn btn-primary" href="<?php echo base_url("billing/caja") ?>"> <i class="fa fa-list"></i>  Volver a caja </a> 
 
                 </div>
-                <h2 class="col-xs-8 text-left text-success"><?php echo display('cash_receipt') ?></h2>
+                <h2 class="col-xs-8 text-left text-success"><?php echo 'Recibo de caja' ?></h2>
             </div>  
 
 
@@ -20,71 +20,70 @@
             <div class="panel-body" id="printMe">
                 <div class="row">
                     <div class="col-xs-6 logo_bar">
-                        <img src="<?php echo base_url("$setting->logo") ?>" class="img-responsive" alt=""></br>
-                        <?php echo display('phone') ?>: <?php echo $setting->phone; ?></br>
-                        <?php echo display('email') ?>: <?php echo $setting->email; ?>
+                        <img src="<?php echo base_url("$website->logo") ?>" class="img-responsive" alt=""></br>
+                        <?php echo display('phone') ?>: <?php echo $website->phone; ?></br>
+                        <?php echo display('email') ?>: <?php echo $website->email; ?>
                         <br>
                     </div>
                     <div class="col-xs-6 address_bar">
                         <div class="address_inner">
                             <address>
-                                <strong><?php echo display('address') ?>:</strong><br>
-                                <?php echo $setting->address; ?><br>
+                                <strong><?php echo display('address') ?></strong><br>
+                                <strong><?php echo $website->title; ?></strong><br>
+                                <?php echo $website->address; ?>
                             </address>
                         </div>
                     </div>
-                </div>
-
-                <hr>
-                
+                </div> <hr>
                 <!-- Patient Info -->
-                <div class="patient_info">
+                <div class="row patient_info">
                     <table class="info">
                         <tbody>
                             <tr>
-                                <td><?php echo 'Fecha'; ?>: <?php echo date('d/m/Y h:i A'); ?></td>
+                                <td><?php echo 'Fecha'; ?>:</td>
+                                <td><?php echo date('d/m/Y h:i A'); ?></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <!-- Patient Charge -->
                 <div class="patient_charge">
-                    <table class="table charge">
+                    <table class="charge table">
                         <thead>
                             <tr>
-                                <th colspan="6"><?php echo display('move'); ?></th>
+                                <th colspan="6">Movimiento</th>
                             </tr>
 
                             <tr>
                                 <th><?php echo '#'; ?></th>
-                                <th><?php echo display('type_move'); ?></th>
-                                <th><?php echo display('date'); ?></th>
-                                <th><?php echo display('amount'); ?></th>
-                                <th><?php echo display('payment_method'); ?></th> 
-                                <th><?php echo display('concept'); ?></th>
+                                <th><?php echo 'Tipo de movimiento'; ?></th>
+                                <th><?php echo 'Fecha'; ?></th>
+                                <th><?php echo 'Monto'; ?></th>
+                                <th><?php echo 'Método de pago'; ?></th> 
+                                <th><?php echo 'Concepto'; ?></th>
                             </tr>
                         </thead>
                         <tbody>
-	                        <tr>
-	                            <td class="description">
-	                                <p><?php echo 1; ?></p> 
-	                            </td>
-	                            <td class="description">
-	                                <p><?php echo $move->type_move; ?></p> 
-	                            </td>
-	                            <td class="charge">
-	                                <p><?php echo $move->date; ?></p> 
-	                            </td>
-	                            <td class="discount">
-	                                <p><?php echo number_format($move->amount, 2); ?></p> 
-	                            </td>
-	                            <td class="ballance">
-	                                <p><?php echo $move->payment_method; ?></p>
-	                            </td>
-	                            <td class="ballance">
-	                                <p><?php echo $move->concept; ?></p>
-	                            </td>
-	                        </tr>
+                            <tr>
+                                <td class="description">
+                                    <p><?php echo 1; ?></p> 
+                                </td>
+                                <td class="description">
+                                    <p><?php echo $movimiento->tipo_movimiento; ?></p> 
+                                </td>
+                                <td class="charge">
+                                    <p><?php echo $movimiento->fecha; ?></p> 
+                                </td>
+                                <td class="discount">
+                                    <p><?php echo number_format($movimiento->monto, 2); ?></p> 
+                                </td>
+                                <td class="ballance">
+                                    <p><?php echo $movimiento->metodo_pago; ?></p>
+                                </td>
+                                <td class="ballance">
+                                    <p><?php echo $movimiento->concepto; ?></p>
+                                </td>
+                            </tr>
                         </tbody> 
                     </table>
                 </div>

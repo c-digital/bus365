@@ -8,7 +8,7 @@
                             <span class="info-box-icon"><i class="fa fa-arrow-up"></i></span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text">Entradas</span>
+                              <span class="info-box-text">Entradas</span><br>
                               <span class="info-box-number">BOB <?php echo number_format($entradas, 2) ?></span>
                             </div>
                         </div>
@@ -19,7 +19,7 @@
                             <span class="info-box-icon"><i class="fa fa-arrow-down"></i></span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text">Salidas</span>
+                              <span class="info-box-text">Salidas</span><br>
                               <span class="info-box-number">BOB <?php echo number_format($salidas, 2) ?></span>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                             <span class="info-box-icon"><i class="fa fa-money"></i></span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text"><?= 'Dinero en caja' ?></span>
+                              <span class="info-box-text"><?= 'Dinero en caja' ?></span><br>
                               <span class="info-box-number">BOB <?php echo number_format((float) $saldo, 2); ?></span>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <span class="info-box-icon"><i class="fa <?php echo ($estado == 'Caja abierta') ? 'fa-check' : 'fa-times' ?>"></i></span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text"><?= 'Estado' ?></span>
+                              <span class="info-box-text"><?= 'Estado' ?></span><br>
                               <span class="info-box-number"><?php echo $estado ?></span>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                     <?php endif; ?>
 
                     <?php if ($estado == 'Caja abierta'): ?>
-                        <a href="/dashboard/caja/cierre" class="btn btn-primary">Cierre de caja</a>
+                        <a data-toggle="modal" data-target="#cierre_caja" href="" class="btn btn-primary">Cierre de caja</a>
                     <?php else: ?>
                         <a data-toggle="modal" data-target="#apertura_caja" href="" class="btn btn-primary">Aperturar caja</a>
                     <?php endif; ?>
@@ -201,8 +201,23 @@
       <?php echo form_open('/dashboard/caja/cierre') ?>
           <div class="modal-body">
             <div class="form-group">
-                <label for="monto">Monto</label>
-                <input type="number" required class="form-control" name="monto">
+                <label for="monto[efectivo]">Efectivo</label>
+                <input type="number" required class="form-control" value="0" name="monto[efectivo]">
+            </div>
+
+            <div class="form-group">
+                <label for="monto[tarjeta]">Tarjeta</label>
+                <input type="number" required class="form-control" value="0" name="monto[tarjeta]">
+            </div>
+
+            <div class="form-group">
+                <label for="monto[transferencia]">Transferencia</label>
+                <input type="number" required class="form-control" value="0" name="monto[transferencia]">
+            </div>
+
+            <div class="form-group">
+                <label for="monto[cheque]">Cheque</label>
+                <input type="number" required class="form-control" value="0" name="monto[cheque]">
             </div>
           </div>
           <div class="modal-footer">

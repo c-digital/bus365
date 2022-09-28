@@ -7,7 +7,7 @@
 
 
                     <button onclick="printContent('printMe')" type="button" class="btn btn-danger"><i class="fa fa-print"></i> <?php echo display("print") ?></button>
-                    <a class="btn btn-primary" href="<?php echo base_url("billing/caja") ?>"> <i class="fa fa-list"></i>  Volver a caja </a> 
+                    <a class="btn btn-primary" href="<?php echo base_url("dashboard/caja") ?>"> <i class="fa fa-list"></i>  Volver a caja </a> 
 
                 </div>
                 <h2 class="col-xs-8 text-left text-success"><?php echo 'Recibo de caja' ?></h2>

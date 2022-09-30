@@ -2,10 +2,10 @@
 -- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 24, 2022 at 08:54 PM
--- Server version: 5.7.39
--- PHP Version: 7.4.30
+-- Servidor: localhost:3306
+-- Tiempo de generación: 30-09-2022 a las 17:16:27
+-- Versión del servidor: 5.7.39
+-- Versión de PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -13,13 +13,13 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Database: `base_bus365`
+-- Base de datos: `base_bus365`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acc_account_name`
+-- Estructura de tabla para la tabla `acc_account_name`
 --
 
 CREATE TABLE `acc_account_name` (
@@ -29,7 +29,7 @@ CREATE TABLE `acc_account_name` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `acc_account_name`
+-- Volcado de datos para la tabla `acc_account_name`
 --
 
 INSERT INTO `acc_account_name` (`account_id`, `account_name`, `account_type`) VALUES
@@ -38,7 +38,7 @@ INSERT INTO `acc_account_name` (`account_id`, `account_name`, `account_type`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acn_account_transaction`
+-- Estructura de tabla para la tabla `acn_account_transaction`
 --
 
 CREATE TABLE `acn_account_transaction` (
@@ -53,7 +53,7 @@ CREATE TABLE `acn_account_transaction` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agent_info`
+-- Estructura de tabla para la tabla `agent_info`
 --
 
 CREATE TABLE `agent_info` (
@@ -77,7 +77,7 @@ CREATE TABLE `agent_info` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `agent_info`
+-- Volcado de datos para la tabla `agent_info`
 --
 
 INSERT INTO `agent_info` (`agent_id`, `agent_first_name`, `agent_second_name`, `agent_company_name`, `agent_document_id`, `agent_pic_document`, `agent_picture`, `agent_phone`, `agent_mobile`, `agent_email`, `agent_address_line_1`, `agent_address_line_2`, `agent_address_city`, `agent_address_zip_code`, `agent_country`, `agent_commission`, `status`) VALUES
@@ -86,7 +86,7 @@ INSERT INTO `agent_info` (`agent_id`, `agent_first_name`, `agent_second_name`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agent_ledger`
+-- Estructura de tabla para la tabla `agent_ledger`
 --
 
 CREATE TABLE `agent_ledger` (
@@ -103,7 +103,7 @@ CREATE TABLE `agent_ledger` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bank_info`
+-- Estructura de tabla para la tabla `bank_info`
 --
 
 CREATE TABLE `bank_info` (
@@ -114,7 +114,7 @@ CREATE TABLE `bank_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bank_info`
+-- Volcado de datos para la tabla `bank_info`
 --
 
 INSERT INTO `bank_info` (`id`, `bank_name`, `account_name`, `account_number`) VALUES
@@ -123,7 +123,7 @@ INSERT INTO `bank_info` (`id`, `bank_name`, `account_name`, `account_number`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bank_transaction`
+-- Estructura de tabla para la tabla `bank_transaction`
 --
 
 CREATE TABLE `bank_transaction` (
@@ -142,7 +142,7 @@ CREATE TABLE `bank_transaction` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `booking_downtime`
+-- Estructura de tabla para la tabla `booking_downtime`
 --
 
 CREATE TABLE `booking_downtime` (
@@ -152,7 +152,7 @@ CREATE TABLE `booking_downtime` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `booking_downtime`
+-- Volcado de datos para la tabla `booking_downtime`
 --
 
 INSERT INTO `booking_downtime` (`id`, `reg_no`, `downtime`) VALUES
@@ -161,7 +161,7 @@ INSERT INTO `booking_downtime` (`id`, `reg_no`, `downtime`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `caja`
+-- Estructura de tabla para la tabla `caja`
 --
 
 CREATE TABLE `caja` (
@@ -177,19 +177,52 @@ CREATE TABLE `caja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `caja`
+-- Volcado de datos para la tabla `caja`
 --
 
 INSERT INTO `caja` (`id`, `tipo_movimiento`, `fecha`, `monto`, `metodo_pago`, `concepto`, `saldo`, `estado`, `cajero`) VALUES
 (73, 'Salida', '2022-06-22 14:14:37', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja cerrada', 'Admin'),
 (74, 'Entrada', '2022-09-24 12:55:13', '100', 'Efectivo', 'Apertura de caja', '', 'Caja abierta', 'Admin'),
 (75, 'Entrada', '2022-09-24 12:55:26', '50', 'Efectivo', '123', '50', 'Caja abierta', 'Admin'),
-(76, 'Salida', '2022-09-24 12:57:25', '50', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin');
+(76, 'Salida', '2022-09-24 12:57:25', '50', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
+(77, 'Entrada', '2022-09-27 21:00:58', '100', 'Efectivo', 'Apertura de caja', '', 'Caja abierta', 'Admin'),
+(78, 'Entrada', '2022-09-27 21:01:14', '200', 'Efectivo', 'teste', '200', 'Caja abierta', 'Admin'),
+(79, 'Salida', '2022-09-27 21:01:49', '50', 'Efectivo', 'teste', '150', 'Caja abierta', 'Admin'),
+(80, 'Salida', '2022-09-27 21:04:28', '150', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
+(82, 'Entrada', '2022-09-28 13:18:44', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin'),
+(83, 'Entrada', '2022-09-28 14:09:51', '250', 'Efectivo', 'teste', '350', 'Caja abierta', 'Admin'),
+(84, 'Entrada', '2022-09-28 14:10:10', '100', 'Transferencia', 'prueba', '450', 'Caja abierta', 'Admin'),
+(85, 'Salida', '2022-09-28 14:10:34', '100', 'Efectivo', 'PAgo', '350', 'Caja abierta', 'Admin'),
+(86, 'Salida', '2022-09-28 14:10:44', '350', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
+(87, 'Entrada', '2022-09-28 14:32:49', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin'),
+(88, 'Entrada', '2022-09-28 14:33:08', '100', 'Efectivo', '01', '200', 'Caja abierta', 'Admin'),
+(89, 'Entrada', '2022-09-28 14:33:25', '100', 'Efectivo', '02', '300', 'Caja abierta', 'Admin'),
+(90, 'Entrada', '2022-09-28 14:33:40', '100', 'Transferencia', '03', '400', 'Caja abierta', 'Admin'),
+(91, 'Entrada', '2022-09-28 14:33:57', '100', 'Cheque', '04', '500', 'Caja abierta', 'Admin'),
+(92, 'Salida', '2022-09-28 14:34:14', '50', 'Efectivo', '05', '450', 'Caja abierta', 'Admin'),
+(93, 'Salida', '2022-09-28 14:34:33', '50', 'Efectivo', '06', '400', 'Caja abierta', 'Admin'),
+(94, 'Salida', '2022-09-28 14:34:47', '400', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
+(95, 'Entrada', '2022-09-28 14:40:37', '10', 'Efectivo', 'Apertura de caja', '10', 'Caja abierta', 'Admin'),
+(97, 'Entrada', '2022-09-28 15:40:45', '15', 'Efectivo', 'Prueba 1', '25', 'Caja abierta', 'Admin'),
+(98, 'Salida', '2022-09-28 15:41:09', '5', 'Efectivo', 'Prueba 2', '20', 'Caja abierta', 'Admin'),
+(99, 'Entrada', '2022-09-28 15:41:32', '8', 'Transferencia', 'Prueba 3', '28', 'Caja abierta', 'Admin'),
+(100, 'Salida', '2022-09-28 15:41:50', '3', 'Transferencia', 'Prueba 4', '25', 'Caja abierta', 'Admin'),
+(101, 'Salida', '2022-09-28 15:42:57', '{\"efectivo\":\"10\",\"tarjeta\":\"0\",\"transferencia\":\"1\",\"cheque\":\"0\"}', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
+(102, 'Entrada', '2022-09-28 20:23:37', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin'),
+(103, 'Entrada', '2022-09-28 20:23:55', '100', 'Efectivo', 'teste 01', '200', 'Caja abierta', 'Admin'),
+(104, 'Entrada', '2022-09-28 20:24:20', '100', 'Efectivo', 'teste 02', '300', 'Caja abierta', 'Admin'),
+(105, 'Entrada', '2022-09-28 20:24:39', '100', 'Transferencia', 'teste 03\r\n', '400', 'Caja abierta', 'Admin'),
+(106, 'Entrada', '2022-09-28 20:25:03', '100', 'Cheque', 'teste 04', '500', 'Caja abierta', 'Admin'),
+(107, 'Salida', '2022-09-28 20:25:32', '50', 'Efectivo', 'salida teste', '450', 'Caja abierta', 'Admin'),
+(108, 'Salida', '2022-09-28 20:25:48', '50', 'Transferencia', 'teste', '400', 'Caja abierta', 'Admin'),
+(109, 'Salida', '2022-09-28 20:27:06', '{\"efectivo\":\"250\",\"tarjeta\":\"0\",\"transferencia\":\"50\",\"cheque\":\"50\"}', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
+(110, 'Entrada', '2022-09-30 10:02:49', '50', 'Efectivo', 'Apertura de caja', '50', 'Caja abierta', 'Admin'),
+(111, 'Entrada', '2022-09-30 16:38:31', '26', 'Efectivo', 'Envio de mercadería #6', '76', 'Caja abierta', 'Admin');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `companies`
+-- Estructura de tabla para la tabla `companies`
 --
 
 CREATE TABLE `companies` (
@@ -202,7 +235,7 @@ CREATE TABLE `companies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `companies`
+-- Volcado de datos para la tabla `companies`
 --
 
 INSERT INTO `companies` (`id`, `logo`, `nit`, `name`, `address`, `lane`) VALUES
@@ -211,7 +244,7 @@ INSERT INTO `companies` (`id`, `logo`, `nit`, `name`, `address`, `lane`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `couriers`
+-- Estructura de tabla para la tabla `couriers`
 --
 
 CREATE TABLE `couriers` (
@@ -224,7 +257,7 @@ CREATE TABLE `couriers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `couriers`
+-- Volcado de datos para la tabla `couriers`
 --
 
 INSERT INTO `couriers` (`id`, `nid`, `name`, `email`, `phone`, `date_birth`) VALUES
@@ -234,7 +267,7 @@ INSERT INTO `couriers` (`id`, `nid`, `name`, `email`, `phone`, `date_birth`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email_config`
+-- Estructura de tabla para la tabla `email_config`
 --
 
 CREATE TABLE `email_config` (
@@ -248,7 +281,7 @@ CREATE TABLE `email_config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `email_config`
+-- Volcado de datos para la tabla `email_config`
 --
 
 INSERT INTO `email_config` (`id`, `protocol`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `mailtype`) VALUES
@@ -257,7 +290,7 @@ INSERT INTO `email_config` (`id`, `protocol`, `smtp_host`, `smtp_port`, `smtp_us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee_history`
+-- Estructura de tabla para la tabla `employee_history`
 --
 
 CREATE TABLE `employee_history` (
@@ -281,7 +314,7 @@ CREATE TABLE `employee_history` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `employee_history`
+-- Volcado de datos para la tabla `employee_history`
 --
 
 INSERT INTO `employee_history` (`id`, `first_name`, `second_name`, `position`, `phone_no`, `email_no`, `document_id`, `document_pic`, `address_line_1`, `address_line_2`, `picture`, `blood_group`, `country`, `city`, `zip`, `status`, `is_assign`) VALUES
@@ -294,7 +327,7 @@ INSERT INTO `employee_history` (`id`, `first_name`, `second_name`, `position`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee_type`
+-- Estructura de tabla para la tabla `employee_type`
 --
 
 CREATE TABLE `employee_type` (
@@ -305,7 +338,7 @@ CREATE TABLE `employee_type` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `employee_type`
+-- Volcado de datos para la tabla `employee_type`
 --
 
 INSERT INTO `employee_type` (`type_id`, `type_name`, `details`, `status`) VALUES
@@ -317,7 +350,7 @@ INSERT INTO `employee_type` (`type_id`, `type_name`, `details`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enquiry`
+-- Estructura de tabla para la tabla `enquiry`
 --
 
 CREATE TABLE `enquiry` (
@@ -337,7 +370,7 @@ CREATE TABLE `enquiry` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fit_fitness`
+-- Estructura de tabla para la tabla `fit_fitness`
 --
 
 CREATE TABLE `fit_fitness` (
@@ -349,7 +382,7 @@ CREATE TABLE `fit_fitness` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fleet_facilities`
+-- Estructura de tabla para la tabla `fleet_facilities`
 --
 
 CREATE TABLE `fleet_facilities` (
@@ -360,7 +393,7 @@ CREATE TABLE `fleet_facilities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fleet_facilities`
+-- Volcado de datos para la tabla `fleet_facilities`
 --
 
 INSERT INTO `fleet_facilities` (`id`, `name`, `description`, `status`) VALUES
@@ -371,7 +404,7 @@ INSERT INTO `fleet_facilities` (`id`, `name`, `description`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fleet_registration`
+-- Estructura de tabla para la tabla `fleet_registration`
 --
 
 CREATE TABLE `fleet_registration` (
@@ -390,7 +423,7 @@ CREATE TABLE `fleet_registration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fleet_registration`
+-- Volcado de datos para la tabla `fleet_registration`
 --
 
 INSERT INTO `fleet_registration` (`id`, `reg_no`, `fleet_type_id`, `engine_no`, `model_no`, `chasis_no`, `owner`, `owner_phone`, `company`, `ac_available`, `status`, `is_assign`) VALUES
@@ -400,7 +433,7 @@ INSERT INTO `fleet_registration` (`id`, `reg_no`, `fleet_type_id`, `engine_no`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fleet_type`
+-- Estructura de tabla para la tabla `fleet_type`
 --
 
 CREATE TABLE `fleet_type` (
@@ -415,7 +448,7 @@ CREATE TABLE `fleet_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fleet_type`
+-- Volcado de datos para la tabla `fleet_type`
 --
 
 INSERT INTO `fleet_type` (`id`, `type`, `layout`, `lastseat`, `total_seat`, `seat_numbers`, `fleet_facilities`, `status`) VALUES
@@ -424,7 +457,7 @@ INSERT INTO `fleet_type` (`id`, `type`, `layout`, `lastseat`, `total_seat`, `sea
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ftn_fitness_period`
+-- Estructura de tabla para la tabla `ftn_fitness_period`
 --
 
 CREATE TABLE `ftn_fitness_period` (
@@ -440,7 +473,7 @@ CREATE TABLE `ftn_fitness_period` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `how_to_use`
+-- Estructura de tabla para la tabla `how_to_use`
 --
 
 CREATE TABLE `how_to_use` (
@@ -449,7 +482,7 @@ CREATE TABLE `how_to_use` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `how_to_use`
+-- Volcado de datos para la tabla `how_to_use`
 --
 
 INSERT INTO `how_to_use` (`id`, `description`) VALUES
@@ -458,7 +491,7 @@ INSERT INTO `how_to_use` (`id`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `language`
+-- Estructura de tabla para la tabla `language`
 --
 
 CREATE TABLE `language` (
@@ -469,7 +502,7 @@ CREATE TABLE `language` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `language`
+-- Volcado de datos para la tabla `language`
 --
 
 INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
@@ -1127,12 +1160,13 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (771, 'select_trip', 'Select a trip', 'Select a trip'),
 (772, 'current_status', 'Current status', 'Current status'),
 (773, 'start_trip', 'Start trip', 'Start trip'),
-(774, 'check_in', 'Check in', 'Check in');
+(774, 'check_in', 'Check in', 'Check in'),
+(775, 'receipt_details', 'Receipt details', 'Receipt details');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `merchandise`
+-- Estructura de tabla para la tabla `merchandise`
 --
 
 CREATE TABLE `merchandise` (
@@ -1156,17 +1190,20 @@ CREATE TABLE `merchandise` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `merchandise`
+-- Volcado de datos para la tabla `merchandise`
 --
 
 INSERT INTO `merchandise` (`id`, `trip_id`, `courier_id`, `package_origin`, `package_destination`, `package_description`, `package_weight`, `package_price`, `receipt_nid`, `receipt_name`, `receipt_email`, `receipt_phone`, `receipt_date_birth`, `billing_type`, `billing_discount`, `billing_total`, `status`) VALUES
 (2, 1, 1, '1', '2', 'Test', '6', '12', '123tgf', 'Edw', 'ea@ecorp.com', '123', '1985-12-21', 'addresse', '2', '10', 'assigned'),
-(3, NULL, 2, '1', '2', 'Caja de cosas', '0.8', '1.6', '123456', 'Nisaul enrolado ', 'nisadelgado@gmail.com', 'Q23445', '2022-09-23', 'addresse', '', '1.6', 'open');
+(3, NULL, 2, '1', '2', 'Caja de cosas', '0.8', '1.6', '123456', 'Nisaul enrolado ', 'nisadelgado@gmail.com', 'Q23445', '2022-09-23', 'addresse', '', '1.6', 'open'),
+(4, NULL, 2, '1', '2', '', '15', '30', '010203', 'Camile Vitoria', 'camile@camile.com', '69149198', '2016-11-08', 'addresse', '', '30', 'open'),
+(5, NULL, 2, '1', '2', 'Teste', '13', '26', '010203', 'Camile Vitoria', 'camile@camile.com', '6984217777', '', 'addresse', '', '26', 'open'),
+(6, NULL, 2, '1', '2', 'Teste', '13', '26', '010203', 'Camile Vitoria', 'camile@camile.com', '6984217777', '2016-11-08', 'addresse', '', '26', 'open');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Estructura de tabla para la tabla `message`
 --
 
 CREATE TABLE `message` (
@@ -1183,7 +1220,7 @@ CREATE TABLE `message` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `module`
+-- Estructura de tabla para la tabla `module`
 --
 
 CREATE TABLE `module` (
@@ -1196,7 +1233,7 @@ CREATE TABLE `module` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `module`
+-- Volcado de datos para la tabla `module`
 --
 
 INSERT INTO `module` (`id`, `name`, `description`, `image`, `directory`, `status`) VALUES
@@ -1205,7 +1242,7 @@ INSERT INTO `module` (`id`, `name`, `description`, `image`, `directory`, `status
 -- --------------------------------------------------------
 
 --
--- Table structure for table `module_permission`
+-- Estructura de tabla para la tabla `module_permission`
 --
 
 CREATE TABLE `module_permission` (
@@ -1221,7 +1258,7 @@ CREATE TABLE `module_permission` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ofr_offer`
+-- Estructura de tabla para la tabla `ofr_offer`
 --
 
 CREATE TABLE `ofr_offer` (
@@ -1239,7 +1276,7 @@ CREATE TABLE `ofr_offer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_informations`
+-- Estructura de tabla para la tabla `payment_informations`
 --
 
 CREATE TABLE `payment_informations` (
@@ -1251,7 +1288,7 @@ CREATE TABLE `payment_informations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `price_per_kg`
+-- Estructura de tabla para la tabla `price_per_kg`
 --
 
 CREATE TABLE `price_per_kg` (
@@ -1260,7 +1297,7 @@ CREATE TABLE `price_per_kg` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `price_per_kg`
+-- Volcado de datos para la tabla `price_per_kg`
 --
 
 INSERT INTO `price_per_kg` (`id`, `value`) VALUES
@@ -1269,7 +1306,7 @@ INSERT INTO `price_per_kg` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pri_price`
+-- Estructura de tabla para la tabla `pri_price`
 --
 
 CREATE TABLE `pri_price` (
@@ -1284,7 +1321,7 @@ CREATE TABLE `pri_price` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `pri_price`
+-- Volcado de datos para la tabla `pri_price`
 --
 
 INSERT INTO `pri_price` (`price_id`, `route_id`, `vehicle_type_id`, `price`, `children_price`, `special_price`, `group_price_per_person`, `group_size`) VALUES
@@ -1293,7 +1330,7 @@ INSERT INTO `pri_price` (`price_id`, `route_id`, `vehicle_type_id`, `price`, `ch
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sales`
+-- Estructura de tabla para la tabla `sales`
 --
 
 CREATE TABLE `sales` (
@@ -1308,7 +1345,7 @@ CREATE TABLE `sales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sales`
+-- Volcado de datos para la tabla `sales`
 --
 
 INSERT INTO `sales` (`id`, `booking_id`, `seat_type`, `seat_number`, `name`, `ci`, `phone`, `birth`) VALUES
@@ -1352,7 +1389,7 @@ INSERT INTO `sales` (`id`, `booking_id`, `seat_type`, `seat_number`, `name`, `ci
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sec_menu_item`
+-- Estructura de tabla para la tabla `sec_menu_item`
 --
 
 CREATE TABLE `sec_menu_item` (
@@ -1367,7 +1404,7 @@ CREATE TABLE `sec_menu_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sec_menu_item`
+-- Volcado de datos para la tabla `sec_menu_item`
 --
 
 INSERT INTO `sec_menu_item` (`menu_id`, `menu_title`, `page_url`, `module`, `parent_menu`, `is_report`, `createby`, `createdate`) VALUES
@@ -1436,7 +1473,7 @@ INSERT INTO `sec_menu_item` (`menu_id`, `menu_title`, `page_url`, `module`, `par
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sec_role_permission`
+-- Estructura de tabla para la tabla `sec_role_permission`
 --
 
 CREATE TABLE `sec_role_permission` (
@@ -1452,7 +1489,7 @@ CREATE TABLE `sec_role_permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sec_role_permission`
+-- Volcado de datos para la tabla `sec_role_permission`
 --
 
 INSERT INTO `sec_role_permission` (`id`, `role_id`, `menu_id`, `can_access`, `can_create`, `can_edit`, `can_delete`, `createby`, `createdate`) VALUES
@@ -1582,7 +1619,7 @@ INSERT INTO `sec_role_permission` (`id`, `role_id`, `menu_id`, `can_access`, `ca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sec_role_tbl`
+-- Estructura de tabla para la tabla `sec_role_tbl`
 --
 
 CREATE TABLE `sec_role_tbl` (
@@ -1595,7 +1632,7 @@ CREATE TABLE `sec_role_tbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sec_role_tbl`
+-- Volcado de datos para la tabla `sec_role_tbl`
 --
 
 INSERT INTO `sec_role_tbl` (`role_id`, `role_name`, `role_description`, `create_by`, `date_time`, `role_status`) VALUES
@@ -1605,7 +1642,7 @@ INSERT INTO `sec_role_tbl` (`role_id`, `role_name`, `role_description`, `create_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sec_user_access_tbl`
+-- Estructura de tabla para la tabla `sec_user_access_tbl`
 --
 
 CREATE TABLE `sec_user_access_tbl` (
@@ -1615,7 +1652,7 @@ CREATE TABLE `sec_user_access_tbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sec_user_access_tbl`
+-- Volcado de datos para la tabla `sec_user_access_tbl`
 --
 
 INSERT INTO `sec_user_access_tbl` (`role_acc_id`, `fk_role_id`, `fk_user_id`) VALUES
@@ -1630,7 +1667,7 @@ INSERT INTO `sec_user_access_tbl` (`role_acc_id`, `fk_role_id`, `fk_user_id`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `setting`
+-- Estructura de tabla para la tabla `setting`
 --
 
 CREATE TABLE `setting` (
@@ -1647,7 +1684,7 @@ CREATE TABLE `setting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `setting`
+-- Volcado de datos para la tabla `setting`
 --
 
 INSERT INTO `setting` (`id`, `title`, `address`, `email`, `phone`, `logo`, `favicon`, `language`, `site_align`, `footer_text`) VALUES
@@ -1656,7 +1693,7 @@ INSERT INTO `setting` (`id`, `title`, `address`, `email`, `phone`, `logo`, `favi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shedule`
+-- Estructura de tabla para la tabla `shedule`
 --
 
 CREATE TABLE `shedule` (
@@ -1667,7 +1704,7 @@ CREATE TABLE `shedule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `shedule`
+-- Volcado de datos para la tabla `shedule`
 --
 
 INSERT INTO `shedule` (`shedule_id`, `start`, `end`, `duration`) VALUES
@@ -1676,7 +1713,7 @@ INSERT INTO `shedule` (`shedule_id`, `start`, `end`, `duration`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `synchronizer_setting`
+-- Estructura de tabla para la tabla `synchronizer_setting`
 --
 
 CREATE TABLE `synchronizer_setting` (
@@ -1692,7 +1729,7 @@ CREATE TABLE `synchronizer_setting` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ticket_notification`
+-- Estructura de tabla para la tabla `ticket_notification`
 --
 
 CREATE TABLE `ticket_notification` (
@@ -1712,7 +1749,7 @@ CREATE TABLE `ticket_notification` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_booking`
+-- Estructura de tabla para la tabla `tkt_booking`
 --
 
 CREATE TABLE `tkt_booking` (
@@ -1744,7 +1781,7 @@ CREATE TABLE `tkt_booking` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_feedback`
+-- Estructura de tabla para la tabla `tkt_feedback`
 --
 
 CREATE TABLE `tkt_feedback` (
@@ -1759,7 +1796,7 @@ CREATE TABLE `tkt_feedback` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_passenger`
+-- Estructura de tabla para la tabla `tkt_passenger`
 --
 
 CREATE TABLE `tkt_passenger` (
@@ -1785,7 +1822,7 @@ CREATE TABLE `tkt_passenger` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tkt_passenger`
+-- Volcado de datos para la tabla `tkt_passenger`
 --
 
 INSERT INTO `tkt_passenger` (`id`, `id_no`, `firstname`, `lastname`, `middle_name`, `phone`, `nid`, `email`, `password`, `password_reset_token`, `remember_token`, `image`, `address_line_1`, `address_line_2`, `city`, `zip_code`, `country`, `status`, `date_birth`) VALUES
@@ -1796,7 +1833,7 @@ INSERT INTO `tkt_passenger` (`id`, `id_no`, `firstname`, `lastname`, `middle_nam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_referal`
+-- Estructura de tabla para la tabla `tkt_referal`
 --
 
 CREATE TABLE `tkt_referal` (
@@ -1808,7 +1845,7 @@ CREATE TABLE `tkt_referal` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_refund`
+-- Estructura de tabla para la tabla `tkt_refund`
 --
 
 CREATE TABLE `tkt_refund` (
@@ -1825,7 +1862,7 @@ CREATE TABLE `tkt_refund` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip`
+-- Estructura de tabla para la tabla `trip`
 --
 
 CREATE TABLE `trip` (
@@ -1839,7 +1876,7 @@ CREATE TABLE `trip` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `trip`
+-- Volcado de datos para la tabla `trip`
 --
 
 INSERT INTO `trip` (`trip_id`, `trip_title`, `type`, `route`, `shedule_id`, `weekend`, `status`) VALUES
@@ -1848,7 +1885,7 @@ INSERT INTO `trip` (`trip_id`, `trip_title`, `type`, `route`, `shedule_id`, `wee
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip_assign`
+-- Estructura de tabla para la tabla `trip_assign`
 --
 
 CREATE TABLE `trip_assign` (
@@ -1875,7 +1912,7 @@ CREATE TABLE `trip_assign` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `trip_assign`
+-- Volcado de datos para la tabla `trip_assign`
 --
 
 INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `company_id`, `assign_time`, `driver1_id`, `driver2_id`, `assistant_1`, `assistant_2`, `assistant_3`, `sold_ticket`, `total_income`, `total_expense`, `total_fuel`, `trip_comment`, `closed_by_id`, `date`, `status`, `check_in`) VALUES
@@ -1885,7 +1922,7 @@ INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `comp
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip_location`
+-- Estructura de tabla para la tabla `trip_location`
 --
 
 CREATE TABLE `trip_location` (
@@ -1898,7 +1935,7 @@ CREATE TABLE `trip_location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `trip_location`
+-- Volcado de datos para la tabla `trip_location`
 --
 
 INSERT INTO `trip_location` (`id`, `name`, `description`, `google_map`, `image`, `status`) VALUES
@@ -1909,7 +1946,7 @@ INSERT INTO `trip_location` (`id`, `name`, `description`, `google_map`, `image`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip_route`
+-- Estructura de tabla para la tabla `trip_route`
 --
 
 CREATE TABLE `trip_route` (
@@ -1927,7 +1964,7 @@ CREATE TABLE `trip_route` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `trip_route`
+-- Volcado de datos para la tabla `trip_route`
 --
 
 INSERT INTO `trip_route` (`id`, `name`, `start_point`, `end_point`, `stoppage_points`, `distance`, `approximate_time`, `children_seat`, `special_seat`, `status`, `current_status`) VALUES
@@ -1936,7 +1973,7 @@ INSERT INTO `trip_route` (`id`, `name`, `start_point`, `end_point`, `stoppage_po
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estructura de tabla para la tabla `user`
 --
 
 CREATE TABLE `user` (
@@ -1956,17 +1993,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-24 15:32:37', '2022-09-13 17:41:05', '38.25.168.41', 1, 1),
+(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-09-30 19:40:57', '2022-09-13 17:41:05', '38.25.206.251', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ws_booking_history`
+-- Estructura de tabla para la tabla `ws_booking_history`
 --
 
 CREATE TABLE `ws_booking_history` (
@@ -1994,7 +2031,7 @@ CREATE TABLE `ws_booking_history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ws_booking_history`
+-- Volcado de datos para la tabla `ws_booking_history`
 --
 
 INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `trip_route_id`, `pickup_trip_location`, `drop_trip_location`, `request_facilities`, `price`, `discount`, `adult`, `child`, `special`, `total_seat`, `seat_numbers`, `offer_code`, `tkt_refund_id`, `agent_id`, `booking_date`, `date`, `status`) VALUES
@@ -2114,7 +2151,7 @@ INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ws_offer`
+-- Estructura de tabla para la tabla `ws_offer`
 --
 
 CREATE TABLE `ws_offer` (
@@ -2127,7 +2164,7 @@ CREATE TABLE `ws_offer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ws_payments`
+-- Estructura de tabla para la tabla `ws_payments`
 --
 
 CREATE TABLE `ws_payments` (
@@ -2144,7 +2181,7 @@ CREATE TABLE `ws_payments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ws_setting`
+-- Estructura de tabla para la tabla `ws_setting`
 --
 
 CREATE TABLE `ws_setting` (
@@ -2168,643 +2205,643 @@ CREATE TABLE `ws_setting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ws_setting`
+-- Volcado de datos para la tabla `ws_setting`
 --
 
 INSERT INTO `ws_setting` (`id`, `title`, `slogan`, `address`, `email`, `phone`, `favicon`, `logo`, `status`, `timezone`, `about`, `description`, `payment_type`, `paypal_email`, `bank_commission`, `currency`, `google_map`) VALUES
 (1, 'Bus 365', 'Bus 365', '123, demo street, demo-city, 0000', 'business@test.com', '0123456789', 'application/modules/website/assets/images/icons/e5a567074086228d72ee40cf50163276.png', 'application/modules/website/assets/images/icons/4b2915e727770499a6811a7b4f193ce5.png', 1, 'America/Sao_Paulo', '', '', 'disable', 'business@test.com', 3, 'USD', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.7724407117266!2d90.38595131408418!3d23.75549289450067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a4136c4b61%3A0x19549f5462616f04!2sBDTASK!5e0!3m2!1sen!2sbd!4v1531724548584\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `acc_account_name`
+-- Indices de la tabla `acc_account_name`
 --
 ALTER TABLE `acc_account_name`
   ADD PRIMARY KEY (`account_id`);
 
 --
--- Indexes for table `acn_account_transaction`
+-- Indices de la tabla `acn_account_transaction`
 --
 ALTER TABLE `acn_account_transaction`
   ADD PRIMARY KEY (`account_tran_id`);
 
 --
--- Indexes for table `agent_info`
+-- Indices de la tabla `agent_info`
 --
 ALTER TABLE `agent_info`
   ADD PRIMARY KEY (`agent_id`);
 
 --
--- Indexes for table `agent_ledger`
+-- Indices de la tabla `agent_ledger`
 --
 ALTER TABLE `agent_ledger`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `bank_info`
+-- Indices de la tabla `bank_info`
 --
 ALTER TABLE `bank_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `bank_transaction`
+-- Indices de la tabla `bank_transaction`
 --
 ALTER TABLE `bank_transaction`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `booking_downtime`
+-- Indices de la tabla `booking_downtime`
 --
 ALTER TABLE `booking_downtime`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `caja`
+-- Indices de la tabla `caja`
 --
 ALTER TABLE `caja`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `companies`
+-- Indices de la tabla `companies`
 --
 ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `couriers`
+-- Indices de la tabla `couriers`
 --
 ALTER TABLE `couriers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `email_config`
+-- Indices de la tabla `email_config`
 --
 ALTER TABLE `email_config`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `employee_history`
+-- Indices de la tabla `employee_history`
 --
 ALTER TABLE `employee_history`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `employee_type`
+-- Indices de la tabla `employee_type`
 --
 ALTER TABLE `employee_type`
   ADD PRIMARY KEY (`type_id`);
 
 --
--- Indexes for table `enquiry`
+-- Indices de la tabla `enquiry`
 --
 ALTER TABLE `enquiry`
   ADD PRIMARY KEY (`enquiry_id`);
 
 --
--- Indexes for table `fit_fitness`
+-- Indices de la tabla `fit_fitness`
 --
 ALTER TABLE `fit_fitness`
   ADD PRIMARY KEY (`fitness_id`);
 
 --
--- Indexes for table `fleet_facilities`
+-- Indices de la tabla `fleet_facilities`
 --
 ALTER TABLE `fleet_facilities`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `fleet_registration`
+-- Indices de la tabla `fleet_registration`
 --
 ALTER TABLE `fleet_registration`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `fleet_type`
+-- Indices de la tabla `fleet_type`
 --
 ALTER TABLE `fleet_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ftn_fitness_period`
+-- Indices de la tabla `ftn_fitness_period`
 --
 ALTER TABLE `ftn_fitness_period`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `how_to_use`
+-- Indices de la tabla `how_to_use`
 --
 ALTER TABLE `how_to_use`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `language`
+-- Indices de la tabla `language`
 --
 ALTER TABLE `language`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `merchandise`
+-- Indices de la tabla `merchandise`
 --
 ALTER TABLE `merchandise`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `message`
+-- Indices de la tabla `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `module`
+-- Indices de la tabla `module`
 --
 ALTER TABLE `module`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `module_permission`
+-- Indices de la tabla `module_permission`
 --
 ALTER TABLE `module_permission`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ofr_offer`
+-- Indices de la tabla `ofr_offer`
 --
 ALTER TABLE `ofr_offer`
   ADD PRIMARY KEY (`offer_id`);
 
 --
--- Indexes for table `payment_informations`
+-- Indices de la tabla `payment_informations`
 --
 ALTER TABLE `payment_informations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `price_per_kg`
+-- Indices de la tabla `price_per_kg`
 --
 ALTER TABLE `price_per_kg`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pri_price`
+-- Indices de la tabla `pri_price`
 --
 ALTER TABLE `pri_price`
   ADD PRIMARY KEY (`price_id`);
 
 --
--- Indexes for table `sales`
+-- Indices de la tabla `sales`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sec_menu_item`
+-- Indices de la tabla `sec_menu_item`
 --
 ALTER TABLE `sec_menu_item`
   ADD PRIMARY KEY (`menu_id`);
 
 --
--- Indexes for table `sec_role_permission`
+-- Indices de la tabla `sec_role_permission`
 --
 ALTER TABLE `sec_role_permission`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sec_role_tbl`
+-- Indices de la tabla `sec_role_tbl`
 --
 ALTER TABLE `sec_role_tbl`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indexes for table `sec_user_access_tbl`
+-- Indices de la tabla `sec_user_access_tbl`
 --
 ALTER TABLE `sec_user_access_tbl`
   ADD PRIMARY KEY (`role_acc_id`);
 
 --
--- Indexes for table `setting`
+-- Indices de la tabla `setting`
 --
 ALTER TABLE `setting`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `shedule`
+-- Indices de la tabla `shedule`
 --
 ALTER TABLE `shedule`
   ADD PRIMARY KEY (`shedule_id`);
 
 --
--- Indexes for table `synchronizer_setting`
+-- Indices de la tabla `synchronizer_setting`
 --
 ALTER TABLE `synchronizer_setting`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ticket_notification`
+-- Indices de la tabla `ticket_notification`
 --
 ALTER TABLE `ticket_notification`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tkt_booking`
+-- Indices de la tabla `tkt_booking`
 --
 ALTER TABLE `tkt_booking`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_no` (`id_no`);
 
 --
--- Indexes for table `tkt_feedback`
+-- Indices de la tabla `tkt_feedback`
 --
 ALTER TABLE `tkt_feedback`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tkt_passenger`
+-- Indices de la tabla `tkt_passenger`
 --
 ALTER TABLE `tkt_passenger`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tkt_referal`
+-- Indices de la tabla `tkt_referal`
 --
 ALTER TABLE `tkt_referal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tkt_refund`
+-- Indices de la tabla `tkt_refund`
 --
 ALTER TABLE `tkt_refund`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_tkt_refund_tkt_booking` (`tkt_booking_id_no`);
 
 --
--- Indexes for table `trip`
+-- Indices de la tabla `trip`
 --
 ALTER TABLE `trip`
   ADD PRIMARY KEY (`trip_id`);
 
 --
--- Indexes for table `trip_assign`
+-- Indices de la tabla `trip_assign`
 --
 ALTER TABLE `trip_assign`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `trip_location`
+-- Indices de la tabla `trip_location`
 --
 ALTER TABLE `trip_location`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `trip_route`
+-- Indices de la tabla `trip_route`
 --
 ALTER TABLE `trip_route`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ws_booking_history`
+-- Indices de la tabla `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_no` (`id_no`);
 
 --
--- Indexes for table `ws_offer`
+-- Indices de la tabla `ws_offer`
 --
 ALTER TABLE `ws_offer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ws_payments`
+-- Indices de la tabla `ws_payments`
 --
 ALTER TABLE `ws_payments`
   ADD PRIMARY KEY (`payment_id`);
 
 --
--- Indexes for table `ws_setting`
+-- Indices de la tabla `ws_setting`
 --
 ALTER TABLE `ws_setting`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `acc_account_name`
+-- AUTO_INCREMENT de la tabla `acc_account_name`
 --
 ALTER TABLE `acc_account_name`
   MODIFY `account_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `acn_account_transaction`
+-- AUTO_INCREMENT de la tabla `acn_account_transaction`
 --
 ALTER TABLE `acn_account_transaction`
   MODIFY `account_tran_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `agent_info`
+-- AUTO_INCREMENT de la tabla `agent_info`
 --
 ALTER TABLE `agent_info`
   MODIFY `agent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `agent_ledger`
+-- AUTO_INCREMENT de la tabla `agent_ledger`
 --
 ALTER TABLE `agent_ledger`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `bank_info`
+-- AUTO_INCREMENT de la tabla `bank_info`
 --
 ALTER TABLE `bank_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `bank_transaction`
+-- AUTO_INCREMENT de la tabla `bank_transaction`
 --
 ALTER TABLE `bank_transaction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `booking_downtime`
+-- AUTO_INCREMENT de la tabla `booking_downtime`
 --
 ALTER TABLE `booking_downtime`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `caja`
+-- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
--- AUTO_INCREMENT for table `companies`
+-- AUTO_INCREMENT de la tabla `companies`
 --
 ALTER TABLE `companies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `couriers`
+-- AUTO_INCREMENT de la tabla `couriers`
 --
 ALTER TABLE `couriers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `email_config`
+-- AUTO_INCREMENT de la tabla `email_config`
 --
 ALTER TABLE `email_config`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `employee_history`
+-- AUTO_INCREMENT de la tabla `employee_history`
 --
 ALTER TABLE `employee_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `employee_type`
+-- AUTO_INCREMENT de la tabla `employee_type`
 --
 ALTER TABLE `employee_type`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `enquiry`
+-- AUTO_INCREMENT de la tabla `enquiry`
 --
 ALTER TABLE `enquiry`
   MODIFY `enquiry_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `fit_fitness`
+-- AUTO_INCREMENT de la tabla `fit_fitness`
 --
 ALTER TABLE `fit_fitness`
   MODIFY `fitness_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `fleet_facilities`
+-- AUTO_INCREMENT de la tabla `fleet_facilities`
 --
 ALTER TABLE `fleet_facilities`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `fleet_registration`
+-- AUTO_INCREMENT de la tabla `fleet_registration`
 --
 ALTER TABLE `fleet_registration`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `fleet_type`
+-- AUTO_INCREMENT de la tabla `fleet_type`
 --
 ALTER TABLE `fleet_type`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `ftn_fitness_period`
+-- AUTO_INCREMENT de la tabla `ftn_fitness_period`
 --
 ALTER TABLE `ftn_fitness_period`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `how_to_use`
+-- AUTO_INCREMENT de la tabla `how_to_use`
 --
 ALTER TABLE `how_to_use`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `language`
+-- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=775;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=776;
 
 --
--- AUTO_INCREMENT for table `merchandise`
+-- AUTO_INCREMENT de la tabla `merchandise`
 --
 ALTER TABLE `merchandise`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `message`
+-- AUTO_INCREMENT de la tabla `message`
 --
 ALTER TABLE `message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `module`
+-- AUTO_INCREMENT de la tabla `module`
 --
 ALTER TABLE `module`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `module_permission`
+-- AUTO_INCREMENT de la tabla `module_permission`
 --
 ALTER TABLE `module_permission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ofr_offer`
+-- AUTO_INCREMENT de la tabla `ofr_offer`
 --
 ALTER TABLE `ofr_offer`
   MODIFY `offer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `payment_informations`
+-- AUTO_INCREMENT de la tabla `payment_informations`
 --
 ALTER TABLE `payment_informations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `price_per_kg`
+-- AUTO_INCREMENT de la tabla `price_per_kg`
 --
 ALTER TABLE `price_per_kg`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `pri_price`
+-- AUTO_INCREMENT de la tabla `pri_price`
 --
 ALTER TABLE `pri_price`
   MODIFY `price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `sales`
+-- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT for table `sec_menu_item`
+-- AUTO_INCREMENT de la tabla `sec_menu_item`
 --
 ALTER TABLE `sec_menu_item`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
--- AUTO_INCREMENT for table `sec_role_permission`
+-- AUTO_INCREMENT de la tabla `sec_role_permission`
 --
 ALTER TABLE `sec_role_permission`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1287;
 
 --
--- AUTO_INCREMENT for table `sec_role_tbl`
+-- AUTO_INCREMENT de la tabla `sec_role_tbl`
 --
 ALTER TABLE `sec_role_tbl`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `sec_user_access_tbl`
+-- AUTO_INCREMENT de la tabla `sec_user_access_tbl`
 --
 ALTER TABLE `sec_user_access_tbl`
   MODIFY `role_acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `setting`
+-- AUTO_INCREMENT de la tabla `setting`
 --
 ALTER TABLE `setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `shedule`
+-- AUTO_INCREMENT de la tabla `shedule`
 --
 ALTER TABLE `shedule`
   MODIFY `shedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `synchronizer_setting`
+-- AUTO_INCREMENT de la tabla `synchronizer_setting`
 --
 ALTER TABLE `synchronizer_setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ticket_notification`
+-- AUTO_INCREMENT de la tabla `ticket_notification`
 --
 ALTER TABLE `ticket_notification`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tkt_booking`
+-- AUTO_INCREMENT de la tabla `tkt_booking`
 --
 ALTER TABLE `tkt_booking`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tkt_feedback`
+-- AUTO_INCREMENT de la tabla `tkt_feedback`
 --
 ALTER TABLE `tkt_feedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tkt_passenger`
+-- AUTO_INCREMENT de la tabla `tkt_passenger`
 --
 ALTER TABLE `tkt_passenger`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tkt_referal`
+-- AUTO_INCREMENT de la tabla `tkt_referal`
 --
 ALTER TABLE `tkt_referal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tkt_refund`
+-- AUTO_INCREMENT de la tabla `tkt_refund`
 --
 ALTER TABLE `tkt_refund`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `trip`
+-- AUTO_INCREMENT de la tabla `trip`
 --
 ALTER TABLE `trip`
   MODIFY `trip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `trip_assign`
+-- AUTO_INCREMENT de la tabla `trip_assign`
 --
 ALTER TABLE `trip_assign`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `trip_location`
+-- AUTO_INCREMENT de la tabla `trip_location`
 --
 ALTER TABLE `trip_location`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `trip_route`
+-- AUTO_INCREMENT de la tabla `trip_route`
 --
 ALTER TABLE `trip_route`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `ws_booking_history`
+-- AUTO_INCREMENT de la tabla `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
--- AUTO_INCREMENT for table `ws_offer`
+-- AUTO_INCREMENT de la tabla `ws_offer`
 --
 ALTER TABLE `ws_offer`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ws_payments`
+-- AUTO_INCREMENT de la tabla `ws_payments`
 --
 ALTER TABLE `ws_payments`
   MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ws_setting`
+-- AUTO_INCREMENT de la tabla `ws_setting`
 --
 ALTER TABLE `ws_setting`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

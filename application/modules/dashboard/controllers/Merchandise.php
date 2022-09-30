@@ -99,17 +99,17 @@ class Merchandise extends MX_Controller
 
 		if ($post['billing_type'] == 'addresse') {
 			$total = $post['billing_total'];
-			$concept = 'Envio de mercadería #' . $this->db->insert_id();
+			$concepto = 'Envio de mercadería #' . $this->db->insert_id();
 
-			$casher = $_SESSION['email'];
+			$cajero = $this->session->userdata('fullname');
 
-			$caja = $this->db->query("SELECT * FROM cash WHERE casher = '$casher' ORDER BY date DESC")->row();
+			$caja = $this->db->query("SELECT * FROM caja WHERE cajero = '$cajero' ORDER BY fecha DESC")->row();
 
-			$status = $caja->status;
-			$balance = $caja->balance + $total;
+			$estado = $caja->estado;
+			$saldo = $caja->saldo + $total;
 
-			if ($status == 'Open') {
-				$this->db->query("INSERT INTO cash (type_move, date, amount, payment_method, concept, balance, status, casher) VALUES ('in', NOW(), '$total', 'cash', '$concept', '$balance', 'Open', '$casher')");
+			if ($estado == 'Caja abierta') {
+				$this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero) VALUES ('Entrada', NOW(), '$total', 'Efectivo', '$concepto', '$saldo', 'Caja abierta', '$cajero')");
 			}
 		}
 
@@ -191,19 +191,19 @@ class Merchandise extends MX_Controller
 
 		$merchandise = $this->db->query("UPDATE merchandise SET status = 'delivered' WHERE id = $id")->row();
 
-		$casher = $_SESSION['email'];
+		$cajero = $this->session->userdata('fullname');
 
-		$caja = $this->db->query("SELECT * FROM cash WHERE casher = '$casher' ORDER BY date DESC")->row();
+		$caja = $this->db->query("SELECT * FROM caja WHERE cajero = '$cajero' ORDER BY fecha DESC")->row();
 
 		$total = $merchandise->billing_total;
 
-		$status = $caja->status;
-		$balance = $caja->balance + $total;
+		$estado = $caja->estado;
+		$saldo = $caja->saldo + $total;
 
-		$concept = 'Envío de mercadería #' . $merchandise->id;
+		$concepto = 'Envío de mercadería #' . $merchandise->id;
 
-		if ($status == 'Open') {
-			$this->db->query("INSERT INTO cash (type_move, date, amount, payment_method, concept, balance, status, casher) VALUES ('in', NOW(), '$total', 'cash', '$concept', '$balance', 'Open', '$casher')");
+		if ($estado == 'Caja abierta') {
+			$this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero) VALUES ('Entrada', NOW(), '$total', 'Efectivo', '$concepto', '$saldo', 'Caja abierta', '$cajero')");
 		}
 
 		return redirect('/dashboard/merchandise');
@@ -213,5 +213,16 @@ class Merchandise extends MX_Controller
 	{
 		$this->db->query("DELETE FROM merchandise WHERE id = $id");
 		return redirect('/dashboard/merchandise');
+	}
+
+	public function ticket($id)
+	{
+		$data['title'] = 'Ticket';
+        $data['module'] = "dashboard";
+        $data['page']   = "merchandise/ticket";
+
+        $data['sale'] = $this->db->query("SELECT * FROM sales WHERE id = $id");
+
+        echo Modules::run('template/layout', $data);
 	}
 }

@@ -11,7 +11,7 @@ class Merchandise extends MX_Controller
 
 		$select = "
 			m.id,
-			c.name AS courier,
+			receipt_name AS courier,
 			d.name AS destination,
 			o.name AS origin,
 			m.receipt_name AS receipt,
@@ -221,7 +221,39 @@ class Merchandise extends MX_Controller
         $data['module'] = "dashboard";
         $data['page']   = "merchandise/ticket";
 
-        $data['sale'] = $this->db->query("SELECT * FROM sales WHERE id = $id");
+        $data['website'] = $this->db->query("SELECT * FROM setting")->row();
+
+        $sql = "
+        	SELECT
+        		m.id,
+
+        		c.name AS courier_name,
+        		c.nid AS courier_nid,
+        		c.phone AS courier_phone,
+
+        		o.name AS package_origin,
+        		d.name AS package_destination,
+        		m.package_weight AS package_weight,
+        		(m.package_price / m.package_weight) AS price_per_kg,
+        		m.package_price AS package_price,
+
+        		receipt_name,
+        		receipt_nid,
+        		receipt_phone,
+
+        		billing_type,
+        		billing_discount,
+        		billing_total
+        	FROM
+        		merchandise m
+        			INNER JOIN couriers c ON m.courier_id = c.id
+        			INNER JOIN trip_location o ON m.package_origin = o.id
+        			INNER JOIN trip_location d ON m.package_destination = d.id
+        	WHERE
+        		m.id = $id
+        ";
+
+        $data['merchandise'] = $this->db->query($sql)->row();
 
         echo Modules::run('template/layout', $data);
 	}

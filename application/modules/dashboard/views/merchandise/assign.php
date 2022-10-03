@@ -17,7 +17,7 @@
                     <option value=""></option>
 
                     <?php foreach ($trips as $trip): ?>
-                        <option value="<?php echo $trip->trip_id; ?>"><?php echo $trip->trip_id; ?></option>
+                        <option value="<?php echo $trip->trip_id; ?>"><?php echo $trip->trip_id . ' - ' . $trip->trip_title; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

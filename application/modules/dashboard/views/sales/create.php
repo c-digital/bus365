@@ -151,6 +151,7 @@
     <div class="container">
         <div class="row tour-content">
             <div class="col-sm-11"> 
+                <div class="table-responsive">
                  <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -276,7 +277,7 @@
                 <?php } ?>
                             </tbody>
                         </table>
-                
+                </div>
 
 
             </div>

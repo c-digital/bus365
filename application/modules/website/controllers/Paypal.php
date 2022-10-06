@@ -221,8 +221,15 @@ class Paypal extends CI_Controller
                  $send_email = '';
              
                  if($insertdata){
-                 echo '<script>window.location.href = "'.base_url().'website/Paypal/local_success/'. $id.'"</script>';
-             }
+
+                    $query = $this->db->query("SELECT * FROM sales WHERE booking_id = '$booking_id_no'")->result();
+
+                     if (count($query)) {
+                        echo '<script>window.location.href="'.base_url().'dashboard/sales/ticket/'.$id.'"</script>';
+                      } else {
+                        echo '<script>window.location.href = "'.base_url().'website/Paypal/local_success/'. $id.'"</script>';
+                      }
+                 }
                  
  
     }

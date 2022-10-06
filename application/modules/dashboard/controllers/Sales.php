@@ -15,6 +15,8 @@ class Sales extends MX_Controller
 		if (!$this->session->userdata('isLogIn')) {
 			redirect('login');
 		}
+
+		$this->db->query("SET sql_mode = ''");
  	}
 
  	public function index()
@@ -108,25 +110,40 @@ class Sales extends MX_Controller
  	public function ticket($id)
  	{
  		$select = "
+ 			s.id,
  			s.booking_id,
- 			c.logo AS company_logo,
- 			c.name AS company_name,
- 			c.nit AS company_nit,
- 			c.address AS company_address,
+ 			r.name AS route,
+ 			s.name AS name,
+ 			s.ci AS ci,
+ 			s.seat_number AS seat,
  			b.booking_date AS date,
- 			CONCAT(u.agent_first_name, ' ', u.agent_second_name) AS agent
+ 			TIMESTAMPDIFF(YEAR, s.birth, CURDATE()) AS age,
+ 			ls.name AS shipment,
+ 			ld.name AS disembarkation,
+ 			b.agent_id AS agent,
  		";
 
  		$data['sale'] = $this->db->select($select)
  			->from('sales s')
  			->join('ws_booking_history b', 'b.id_no = s.booking_id', 'left')
- 			->join('trip_assign a', 'b.trip_id_no = a.trip', 'left')
- 			->join('companies c', 'a.company_id = c.id', 'left')
- 			->join('agent_info u', 'b.agent_id = u.agent_id', 'left')
- 			->where('s.id', $id)
+ 			->join('trip_route r', 'r.id = b.trip_route_id', 'left')
+ 			->join('trip_location ls', 'ls.id = r.start_point', 'left')
+ 			->join('trip_location ld', 'ld.id = r.end_point', 'left')
+ 			->where('s.booking_id', $id)
  			->get()
  			->row();
 
- 		echo $this->load->view('print', $data);
+ 		$data['setting'] = $this->db->from('setting')->get()->row();
+
+ 		$data['bookings'] = $this->db->from('ws_booking_history')->where('id_no', $id)->get()->row();
+
+ 		$data['seats'] = explode(',', $data['bookings']->seat_numbers);
+ 		$data['seats'] = array_map('trim', $data['seats']);
+ 		$data['seats'] = array_filter($data['seats']);
+
+ 		$data['module'] = "dashboard";
+		$data['page']   = "sales/print";
+
+		echo Modules::run('template/layout', $data);
  	}
 }

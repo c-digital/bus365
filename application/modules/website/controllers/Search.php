@@ -114,6 +114,8 @@ class Search extends MX_Controller {
         }else{
            $passengerid = $this->randdomString("P");
         }
+
+        $agent_id = $_SESSION['id'] ? $_SESSION['id'] : null;
  
 
         #--------------------------------------
@@ -135,7 +137,7 @@ class Search extends MX_Controller {
             'seat_numbers'         => $this->input->post('seat_number'),
             'offer_code'           => $this->input->post('offer_code'),
             'tkt_refund_id'        => null, 
-            'agent_id'             => null, 
+            'agent_id'             => $agent_id, 
             'booking_date'         => $booking_date,
             'date'                 => date('Y-m-d H:i:s'),
             'status'               => '0'
@@ -250,7 +252,6 @@ class Search extends MX_Controller {
         $this->form_validation->set_rules('firstname', display('firstname') ,'required|max_length[50]');
         $this->form_validation->set_rules('lastname', display('lastname') ,'required|max_length[50]');
         $this->form_validation->set_rules('phone', display('phone') ,'required|max_length[20]');
-        $this->form_validation->set_rules('email', display('email') ,'required|valid_email|max_length[100]');
         $this->form_validation->set_rules('password', display('password') ,'max_length[100]');
         $this->form_validation->set_rules('address_line_1', display('address') ,'max_length[255]');
         $password =(!empty($this->input->post('old_password'))?$this->input->post('old_password'):md5($this->input->post('password')));

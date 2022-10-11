@@ -21,92 +21,135 @@
 
 		table {
 			margin: 10px auto 10px auto;
+			width: 100%;
 		}
 
 		td, th {
 			padding: 5px;
 		}
+
+		@media print {
+		  body * {
+		    visibility: hidden;
+		  }
+		  #tickets, #tickets * {
+		    visibility: visible;
+		  }
+		  #tickets {
+		    position: absolute;
+		    left: 0;
+		    top: 0;
+		  }
+		}
 	</style>
 
 </head>
 <body>
-	<?php foreach ($seats as $seat): ?>
 
-		<div class="text-center">
-			<div><span class="font-weight-bold">Ticket Nro:</span> <?php echo $sale->booking_id . '-' . $sale->id; ?></div>
+	<a href="javascript:window.print()" class="btn btn-primary btn-sm">
+		<i class="fa fa-print"></i> Imprimir
+	</a>
 
-			<hr>
+	<a href="/dashboard/sales" class="btn btn-default btn-sm">
+		<i class="fa fa-arrow-left"></i> Atrás
+	</a>
 
-			<img width="300px" src="<?php echo base_url($setting->logo); ?>" alt="">
+	<div id="tickets">
+		<?php foreach ($seats as $seat): ?>
 
-			<div class="font-weight-bold"><?php echo $setting->title; ?></div>
-			<div><span class="font-weight-bold"><?php echo display('address'); ?>:</span> <?php echo $setting->address; ?></div>
+			<?php
+				$seat_type = strtolower($sale->seat_type);
 
-			<hr>
+				if ($seat_type == 'adult') {
+					$seat_type = 'price';
+				} else {
+					$seat_type = $seat_type . '_price';
+				}
 
-			<div class="font-weight-bold"><?php echo display('travel_info'); ?></div>
+				$route_id = $sale->route_id;
+				$ci =& get_instance();
+				$price = $ci->db->query("SELECT $seat_type FROM pri_price WHERE route_id = $route_id")->row()->$seat_type;
+			?>
 
-			<table>
-				<tr>
-					<th colspan="3"><?php echo display('route') ?>:</th>
-				</tr>
+			<div class="text-center">
+				<div><span class="font-weight-bold">Ticket Nro:</span> <?php echo $sale->booking_id . '-' . $sale->id; ?></div>
 
-				<tr>
-					<td colspan="3"><?php echo $sale->route; ?></td>
-				</tr>
+				<hr>
 
-				<tr>
-					<th><?php echo display('date') ?></th>
-					<th><?php echo display('shipment') ?></th>
-					<th><?php echo display('disembarkation') ?></th>
-				</tr>
+				<img width="300px" src="<?php echo base_url($sale->logo); ?>" alt="">
 
-				<tr>
-					<td><?php echo $sale->date; ?></td>
-					<td><?php echo $sale->shipment; ?></td>
-					<td><?php echo $sale->disembarkation; ?></td>
-				</tr>
+				<div class="font-weight-bold"><?php echo $sale->title; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('nit'); ?>:</span> <?php echo $sale->nit; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('address'); ?>:</span> <?php echo $sale->address; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('lane'); ?>:</span> <?php echo $sale->lane; ?></div>
 
-				<tr>
-					<th><?php echo display('price') ?></th>
-					<th><?php echo display('payment_method') ?></th>
-				</tr>
+				<hr>
 
-				<tr>
-					<td>BOB 90.00</td>
-					<td>Efectivo</td>
-				</tr>
-			</table>
+				<div class="font-weight-bold"><?php echo display('travel_info'); ?></div>
 
-			<div class="font-weight-bold"><?php echo display('passenger_Details'); ?></div>
+				<table>
+					<tr>
+						<th colspan="3"><?php echo display('route') ?>:</th>
+					</tr>
 
-			<table>
-				<tr>
-					<th colspan="3"><?php echo display('name') ?></th>
-				</tr>
+					<tr>
+						<td colspan="3"><?php echo $sale->route; ?></td>
+					</tr>
 
-				<tr>
-					<td colspan="3"><?php echo $sale->name; ?></td>
-				</tr>
+					<tr>
+						<th><?php echo display('date') ?></th>
+						<th><?php echo display('shipment') ?></th>
+						<th><?php echo display('disembarkation') ?></th>
+					</tr>
 
-				<tr>
-					<th><?php echo display('ci') ?></th>
-					<th><?php echo display('age') ?></th>
-					<th><?php echo display('seat') ?></th>
-				</tr>
+					<tr>
+						<td><?php echo $sale->date; ?></td>
+						<td><?php echo $sale->shipment; ?></td>
+						<td><?php echo $sale->disembarkation; ?></td>
+					</tr>
 
-				<tr>
-					<td><?php echo $sale->ci; ?></td>
-					<td><?php echo $sale->age; ?></td>
-					<td><?php echo $seat; ?></td>
-				</tr>
-			</table>
+					<tr>
+						<th><?php echo display('price') ?></th>
+						<th><?php echo display('payment_method') ?></th>
+					</tr>
 
-			<hr>
+					<tr>
+						<td>BOB <?php echo $price; ?></td>
+						<td>Efectivo</td>
+					</tr>
+				</table>
 
-			<div><span class="font-weight-bold"><?php echo display('date') ?>:</span> <?php echo $sale->date; ?></div>
-			<div><span class="font-weight-bold"><?php echo display('agent') ?>:</span> <?php echo $sale->agent; ?></div>
-		</div>
-	<?php endforeach; ?>
+				<div class="font-weight-bold"><?php echo display('passenger_Details'); ?></div>
+
+				<table>
+					<tr>
+						<th colspan="3"><?php echo display('name') ?></th>
+					</tr>
+
+					<tr>
+						<td colspan="3"><?php echo $sale->name; ?></td>
+					</tr>
+
+					<tr>
+						<th><?php echo display('ci') ?></th>
+						<th><?php echo display('age') ?></th>
+						<th><?php echo display('seat') ?></th>
+					</tr>
+
+					<tr>
+						<td><?php echo $sale->ci; ?></td>
+						<td><?php echo $sale->age; ?></td>
+						<td><?php echo $seat; ?></td>
+					</tr>
+				</table>
+
+				<hr>
+
+				<div><span class="font-weight-bold"><?php echo display('date') ?>:</span> <?php echo $sale->date; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('agent') ?>:</span> <?php echo $sale->agent; ?></div>
+			</div>
+		<?php endforeach; ?>
+	</div>
+
 </body>
 </html>

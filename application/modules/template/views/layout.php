@@ -36,7 +36,7 @@
 
 
                 <!-- Main content -->
-                <div class="content">
+                <div class="content" id="content-print">
                     <!-- load messages -->
                     <?php $this->load->view('includes/messages') ?>
                     <!-- load custom page -->

@@ -149,8 +149,23 @@
 
                             <!-- endif -->
                             <?php } ?>
+
                         <!-- endforeach -->
                         <?php } ?>
+
+                        <?php if ($moduleName == 'reports'): ?>
+                            <li class="<?php echo (($this->uri->segment(1)=='reports' && $this->uri->segment(2)=='cash')?"active":null) ?>">
+                                <a href="/reports/cash"><?php echo display('cash') ?></a>
+                            </li>
+
+                            <li class="<?php echo (($this->uri->segment(1)=='reports' && $this->uri->segment(2)=='sales')?"active":null) ?>">
+                                <a href="/reports/sales"><?php echo display('sales') ?></a>
+                            </li>
+
+                            <li class="<?php echo (($this->uri->segment(1)=='reports' && $this->uri->segment(2)=='passengers')?"active":null) ?>">
+                                <a href="/reports/passengers"><?php echo display('passengers') ?></a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </li> 
             <!-- end if -->

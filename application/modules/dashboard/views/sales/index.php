@@ -22,6 +22,7 @@
                                 <th><?php echo display('ci') ?></th>
                                 <th><?php echo display('phone') ?></th>
                                 <th><?php echo display('birth') ?></th>  
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,6 +42,11 @@
                                 <td><?php echo $booking->ci; ?></td>
                                 <td><?php echo $booking->phone; ?></td>
                                 <td><?php echo $booking->birth; ?></td>
+                                <td>
+                                    <a href="<?php echo '/dashboard/sales/ticket/' . $booking->booking_id; ?>" class="btn btn-default btn-sm">
+                                        <i class="fa fa-print"></i> Ver ticket
+                                    </a>
+                                </td>
                             </tr>
                             <?php } ?> 
                         </tbody>

@@ -113,14 +113,20 @@ class Sales extends MX_Controller
  			s.id,
  			s.booking_id,
  			r.name AS route,
+ 			r.id AS route_id,
  			s.name AS name,
  			s.ci AS ci,
- 			s.seat_number AS seat,
+ 			s.seat_type AS seat_type,
  			b.booking_date AS date,
  			TIMESTAMPDIFF(YEAR, s.birth, CURDATE()) AS age,
  			ls.name AS shipment,
  			ld.name AS disembarkation,
  			b.agent_id AS agent,
+ 			c.logo,
+ 			c.name AS title,
+ 			c.address,
+ 			c.nit,
+ 			c.lane
  		";
 
  		$data['sale'] = $this->db->select($select)
@@ -129,11 +135,11 @@ class Sales extends MX_Controller
  			->join('trip_route r', 'r.id = b.trip_route_id', 'left')
  			->join('trip_location ls', 'ls.id = r.start_point', 'left')
  			->join('trip_location ld', 'ld.id = r.end_point', 'left')
+ 			->join('trip_assign ta', 'ta.trip = b.trip_id_no', 'left')
+ 			->join('companies c', 'ta.company_id = c.id', 'left')
  			->where('s.booking_id', $id)
  			->get()
  			->row();
-
- 		$data['setting'] = $this->db->from('setting')->get()->row();
 
  		$data['bookings'] = $this->db->from('ws_booking_history')->where('id_no', $id)->get()->row();
 

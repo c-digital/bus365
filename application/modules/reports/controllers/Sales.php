@@ -46,7 +46,8 @@ class Sales extends MX_Controller
 			SELECT
 				*
 			FROM
-				sales
+				sales s
+					LEFT JOIN ws_booking_history wbh ON s.booking_id = wbh.id_no
 			WHERE
 				$where
 		";

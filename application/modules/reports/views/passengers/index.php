@@ -15,23 +15,23 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-7">
                                         <label for="trip"><?php echo display('trip1') ?></label>
 
-                                        <select name="trip" id="trip" class="form-control">
+                                        <select name="trip" id="trip" class="form-control" required>
                                             <option value=""></option>
-                                            <?php foreach ($routes as $route): ?>
-                                                <option value="<?php echo $route->id ?>"><?php echo $route->name ?></option>
+                                            <?php foreach ($trips as $trip): ?>
+                                                <option <?php echo isset($_GET['trip']) && $_GET['trip'] == $trip->trip_id ? 'selected' : ''; ?> value="<?php echo $trip->trip_id ?>"><?php echo $trip->trip_title ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <label for="date"><?php echo display('date') ?></label>
-                                        <input name="date" id="date" type="text" placeholder="<?php echo display('date') ?>" class="form-control datepicker">
+                                        <input name="date" required id="date" type="text" placeholder="<?php echo display('date') ?>" value="<?php echo isset($_GET['date']) && $_GET['date'] != '' ? $_GET['date'] : ''; ?>" class="form-control datepicker">
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <label for="date"><?php echo display('search1') ?></label>
                                         <button type="submit"  class="form-control btn btn-success"><?php echo display('search') ?></button>
                                     </div>
@@ -39,95 +39,132 @@
                             </div>
                         </div>                         
                     <?php echo form_close() ?>
-                </div> 
-
-                <div class="col-sm-12">
-                     <div class="table-responsive">
-                    <table class="bookingDataTable table table-bordered ">
-                        <thead>
-                            <tr>
-                                <th><?php echo display('sl_no') ?></th>
-                                <th><?php echo display('route') ?></th>
-                                <th><?php echo display('trip1') ?></th>
-                                <th><?php echo display('date') ?></th>
-                                <th><?php echo display('no_fleet') ?></th>
-                                <th><?php echo display('no_chasis') ?></th>
-                                <th><?php echo display('driver_name_1') ?></th>
-                                <th><?php echo display('driver_ci_1') ?></th>
-                                <th><?php echo display('driver_name_2') ?></th>
-                                <th><?php echo display('driver_ci_2') ?></th>
-                                <th><?php echo display('assistant_name_1') ?></th>
-                                <th><?php echo display('assistant_ci_1') ?></th>
-                                <th><?php echo display('assistant_name_2') ?></th>
-                                <th><?php echo display('assistant_ci_2') ?></th>
-                                <th><?php echo display('assistant_name_3') ?></th>
-                                <th><?php echo display('assistant_ci_3') ?></th>
-                                <th><?php echo display('passengers_count') ?></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-
-                        <tfoot>
-                            <tr>
-                                <th colspan="6"></th> 
-                                <th></th> 
-                                <th></th> 
-                                <th></th> 
-                                <th></th> 
-                            </tr>
-                        </tfoot>
-
-                        <tbody>
-                            <?php if (!empty($trips)) ?>
-                            <?php $sl = 1; ?>
-                            <?php foreach ($trips as $trip) { ?>
-                            <tr class="<?php echo (!empty($trip->tkt_refund_id) ? "bg-danger" : null ) ?>">
-                                <td><?php echo $sl++; ?></td>
-                                <td><?php echo $trip->ruta; ?></td>
-                                <td><?php echo $trip->viaje; ?></td>
-                                <td><?php echo $trip->fecha; ?></td>
-                                <td><?php echo $trip->numero_bus; ?></td>
-                                <td><?php echo $trip->numero_chasis; ?></td>
-                                <td><?php echo $trip->nombre_conductor_1; ?></td>
-                                <td><?php echo $trip->ci_conductor_1; ?></td>
-                                <td><?php echo $trip->nombre_conductor_2; ?></td>
-                                <td><?php echo $trip->ci_conductor_2; ?></td>
-                                <td><?php echo $trip->nombre_asistente_1; ?></td>
-                                <td><?php echo $trip->ci_asistente_1; ?></td>
-                                <td><?php echo $trip->nombre_asistente_2; ?></td>
-                                <td><?php echo $trip->ci_asistente_2; ?></td>
-                                <td><?php echo $trip->nombre_asistente_3; ?></td>
-                                <td><?php echo $trip->ci_asistente_3; ?></td>
-                                <td><?php echo $trip->cantidad_pasajeros; ?></td>
-                                <td>
-                                    <a href="/reports/passengers/list/<?php echo $trip->id; ?>" class="btn btn-default btn-sm">Ver pasajeros</a>
-                                </td>
-                            </tr>
-                            <?php } ?> 
-                        </tbody>
-                    </table>
                 </div>
-                </div>
+
+                <?php if (isset($_GET['trip']) && $_GET['trip'] != ''): ?>
+                    <div class="col-sm-12" style="margin-bottom:30px">
+                        <a target="_blank" href="/reports/passengers/pdf?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-danger">
+                            <i class="fa fa-file-pdf-o"></i> PDF
+                        </a>
+
+                        <a target="_blank" href="/reports/passengers/excel?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-success">
+                            <i class="fa fa-file-excel-o"></i> Excel
+                        </a>
+
+                        <a target="_blank" href="/reports/passengers/export?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-default">
+                            <i class="fa fa-print"></i> Imprimir
+                        </a>
+                    </div>
+
+                    <div class="col-sm-12">
+                         <div class="table-responsive">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo display('date') ?></th>
+                                        <th><?php echo display('route') ?></th>
+                                        <th><?php echo display('trip1') ?></th>
+                                        <th><?php echo display('no_fleet') ?></th>
+                                        <th><?php echo display('no_chasis') ?></th>
+                                        <th><?php echo display('driver_name_1') ?></th>
+                                        <th><?php echo display('driver_ci_1') ?></th>
+                                        <th><?php echo display('driver_name_2') ?></th>
+                                        <th><?php echo display('driver_ci_2') ?></th>
+                                        <th><?php echo display('assistant_name_1') ?></th>
+                                        <th><?php echo display('assistant_ci_1') ?></th>
+                                        <th><?php echo display('assistant_name_2') ?></th>
+                                        <th><?php echo display('assistant_ci_2') ?></th>
+                                        <th><?php echo display('assistant_name_3') ?></th>
+                                        <th><?php echo display('assistant_ci_3') ?></th>
+                                    </tr>
+                                </thead>
+
+                                <tfoot>
+                                    <tr>
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th>
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th>
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+
+                                <tbody>
+                                    <tr>
+                                        <td><?php echo $_GET['date']; ?></td>
+                                        <td><?php echo $info->route; ?></td>
+                                        <td><?php echo $info->trip; ?></td>
+                                        <td><?php echo $info->no_fleet; ?></td>
+                                        <td><?php echo $info->no_chasis; ?></td>
+                                        <td><?php echo $info->driver_name_1; ?></td>
+                                        <td><?php echo $info->driver_ci_1; ?></td>
+                                        <td><?php echo $info->driver_name_2; ?></td>
+                                        <td><?php echo $info->driver_ci_2; ?></td>
+                                        <td><?php echo $info->assistant_name_1; ?></td>
+                                        <td><?php echo $info->assistant_ci_1; ?></td>
+                                        <td><?php echo $info->assistant_name_2; ?></td>
+                                        <td><?php echo $info->assistant_ci_2; ?></td>
+                                        <td><?php echo $info->assistant_name_3; ?></td>
+                                        <td><?php echo $info->assistant_ci_3; ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo display('sl_no') ?></th>
+                                        <th><?php echo display('ticket_no') ?></th>
+                                        <th><?php echo display('seat_type') ?></th>
+                                        <th><?php echo display('name') ?></th>
+                                        <th><?php echo display('ci') ?></th>
+                                        <th><?php echo display('phone') ?></th>
+                                        <th><?php echo display('birth') ?></th>
+                                    </tr>
+                                </thead>
+
+                                <tfoot>
+                                    <tr>
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                        <th></th> 
+                                    </tr>
+                                </tfoot>
+
+                                <tbody>
+                                    <?php if (!empty($passengers)) ?>
+                                    <?php $sl = 1; ?>
+                                    <?php foreach ($passengers as $passenger) { ?>
+                                        <tr class="<?php echo (!empty($passenger->tkt_refund_id) ? "bg-danger" : null ) ?>">
+                                            <td><?php echo $sl++; ?></td>
+                                            <td><?php echo $passenger->booking_id . '-' . $passenger->id ?></td>
+                                            <td><?php echo $passenger->seat_type; ?></td>
+                                            <td><?php echo $passenger->name; ?></td>
+                                            <td><?php echo $passenger->ci; ?></td>
+                                            <td><?php echo $passenger->phone; ?></td>
+                                            <td><?php echo $passenger->birth; ?></td>
+                                        </tr>
+                                    <?php } ?> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div> 
         </div>
     </div>
 </div>
-
-
-<script type="text/javascript">
-$(document).ready(function() {
-
-    $('.bookingDataTable').DataTable( {
-        searching: true, 
-        responsive: true, 
-        dom: "<'row'<'col-sm-8'B><'col-sm-4'f>>tp", 
-        buttons: [  
-            {extend: 'copy', className: 'btn-sm', footer: true}, 
-            {extend: 'csv', title: 'ExampleFile', className: 'btn-sm', footer: true}, 
-            {extend: 'excel', title: 'ExampleFile', className: 'btn-sm', footer: true, title: 'exportTitle'}, 
-            {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm', footer: true}, 
-            {extend: 'print', className: 'btn-sm', footer: true} 
-        ]
-    });
-});
-</script>

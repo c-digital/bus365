@@ -18,23 +18,16 @@ class Passengers extends MX_Controller
 		$data['module'] = "reports";
 		$data['page']   = "passengers/index";
 
-		$sql = "
-			SELECT
-				tr.name AS ruta,
-				t.trip_title AS viaje,
-				DATE(wsbh.booking_date) AS fecha
-			FROM
-				ws_booking_history wsbh
-					LEFT JOIN trip_route tr ON wsbh.trip_route_id = tr.id
-					LEFT JOIN trip t ON wsbh.trip_id_no = t.trip_id
-			GROUP BY
-				tr.name, DATE(wsbh.booking_date)
+
 		";
 
-		$data['trips'] = $this->db->query($sql)->result();
+		$data['passengers'] = $this->db->query($sql)->result();
 
-		$data['routes'] = $this->db->from('trip_route')->get()->result();
+		$this->load->view('passengers/export', $data);
 
-		echo Modules::run('template/layout', $data); 
+		$dompdf = new DOMPDF();
+        $dompdf->load_html(utf8_encode(ob_get_clean()));
+        $dompdf->render();
+        $dompdf->stream('export.pdf');
 	}
 }

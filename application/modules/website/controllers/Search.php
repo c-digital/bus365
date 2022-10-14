@@ -323,6 +323,19 @@ class Search extends MX_Controller {
             ]);
         }
 
+        $caja = $this->db->query("SELECT * FROM caja ORDER BY id DESC")->row();
+
+        $tipo_movimiento = 'Entrada';
+        $monto = $this->input->post('amount',true);
+        $metodo_pago = 'Efectivo';
+        $concepto = 'Venta de ticket #' . $obj['booking']->booking_id;
+
+        $saldo = (float) $caja->saldo + (float) $monto;
+
+        $cajero = $this->session->userdata('fullname');
+
+        $this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero) VALUES ('$tipo_movimiento', NOW(), '$monto', '$metodo_pago', '$concepto', '$saldo', 'Caja abierta', '$cajero')");
+
 
         if ($this->form_validation->run())
         {

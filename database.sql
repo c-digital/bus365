@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 11-10-2022 a las 15:59:22
+-- Tiempo de generación: 14-10-2022 a las 15:25:56
 -- Versión del servidor: 5.7.40
 -- Versión de PHP: 7.4.30
 
@@ -1173,7 +1173,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (784, 'assistant_ci_1', 'Assistant CI 1', 'Assistant CI 1'),
 (785, 'assistant_ci_2', 'Assistant CI 2', 'Assistant CI 2'),
 (786, 'assistant_ci_3', 'Assistant CI 3', 'Assistant CI 3'),
-(787, 'passengers_count', 'Passengers count', 'Passengers count');
+(787, 'passengers_count', 'Passengers count', 'Passengers count'),
+(788, 'ticket_no', 'Ticket nro.', 'Ticket nro.'),
+(789, 'assistant_name_3', 'Assistant name 3', 'Assistant name 3');
 
 -- --------------------------------------------------------
 
@@ -1422,7 +1424,9 @@ INSERT INTO `sales` (`id`, `booking_id`, `seat_type`, `seat_number`, `name`, `ci
 (61, 'BWERLF6M', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
 (62, 'BD47UD9K', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
 (63, 'BSPIMYTN', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
-(64, 'BS777URP', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11');
+(64, 'BS777URP', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(66, 'B56IHLDL', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(67, 'BV3C3GNK', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11');
 
 -- --------------------------------------------------------
 
@@ -1746,7 +1750,8 @@ CREATE TABLE `shedule` (
 --
 
 INSERT INTO `shedule` (`shedule_id`, `start`, `end`, `duration`) VALUES
-(1, '20:30:00', '06:00:00', -14);
+(1, '20:30:00', '06:00:00', 14),
+(2, '19:00:00', '07:00:00', -12);
 
 -- --------------------------------------------------------
 
@@ -1815,6 +1820,14 @@ CREATE TABLE `tkt_booking` (
   `payment_status` varchar(20) DEFAULT NULL,
   `booked_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tkt_booking`
+--
+
+INSERT INTO `tkt_booking` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `trip_route_id`, `pickup_trip_location`, `drop_trip_location`, `request_facilities`, `price`, `discount`, `adult`, `child`, `special`, `total_seat`, `seat_numbers`, `offer_code`, `tkt_refund_id`, `agent_id`, `booking_date`, `date`, `booking_type`, `payment_status`, `booked_by`) VALUES
+(1, 'B56IHLDL', '1', 'PJCFGQHF', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', NULL, NULL, 1, '2022-10-17 11:18:08', '2022-10-14 11:18:08', 'Cash', '', 0),
+(2, 'BV3C3GNK', '1', 'PKMDF658', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', NULL, NULL, 1, '2022-10-14 11:18:30', '2022-10-14 11:18:30', 'Cash', '2', 0);
 
 -- --------------------------------------------------------
 
@@ -1979,7 +1992,9 @@ CREATE TABLE `trip_location` (
 INSERT INTO `trip_location` (`id`, `name`, `description`, `google_map`, `image`, `status`) VALUES
 (1, 'Santa Cruz', 'Santa Cruz', '', './application/modules/trip/assets/images/location/448fbbfb806b0c5ee5fdb2d12467ee1a.png', 1),
 (2, 'La Paz', 'La Paz', '', '', 1),
-(3, 'CBBA', 'CBBA', '', '', 1);
+(3, 'CBBA', 'CBBA', '', '', 1),
+(4, 'Puerto Quijaro', 'Fronteira de Brasil', '', '', 1),
+(5, 'Parada 01', 'Parada 01', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -2006,7 +2021,8 @@ CREATE TABLE `trip_route` (
 --
 
 INSERT INTO `trip_route` (`id`, `name`, `start_point`, `end_point`, `stoppage_points`, `distance`, `approximate_time`, `children_seat`, `special_seat`, `status`, `current_status`) VALUES
-(1, 'Santa Cruz x La Paz', '1', '2', 'Cochabamba,Santa Cruz,La Paz', '700', '8', 0, 0, 1, 'No started');
+(1, 'Santa Cruz x La Paz', '1', '2', 'Cochabamba,Santa Cruz,La Paz', '700', '8', 0, 0, 1, 'No started'),
+(2, 'Santa Cruz x Puerto Quijaro', '1', '4', 'Parada 01,Santa Cruz,Puerto Quijaro', '760', '7:00 Hrs', 0, 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -2035,7 +2051,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-10-11 14:30:16', '2022-09-13 17:41:05', '38.25.253.17', 1, 1),
+(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-10-14 14:10:42', '2022-09-13 17:41:05', '38.25.253.17', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
@@ -2074,66 +2090,66 @@ CREATE TABLE `ws_booking_history` (
 --
 
 INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `trip_route_id`, `pickup_trip_location`, `drop_trip_location`, `request_facilities`, `price`, `discount`, `adult`, `child`, `special`, `total_seat`, `seat_numbers`, `offer_code`, `tkt_refund_id`, `agent_id`, `booking_date`, `date`, `status`, `dashboard`) VALUES
-(1, 'BI5VGB8N', '1', 'PNXRDS6V', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-10 19:06:53', '2022-09-10 19:06:53', 0, 0),
-(2, 'BTCZITW6', '1', 'PTKBPOBB', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-10 19:09:40', '2022-09-10 19:09:40', 0, 0),
-(3, 'B5QV04G0', '1', 'P1FK7GEA', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-10 19:10:25', '2022-09-10 19:10:25', 0, 0),
-(4, 'BPSSM99U', '1', 'PHX0DUXF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-10 19:11:31', '2022-09-10 19:11:31', 0, 0),
-(5, 'BAW1V8C5', '1', 'PWX3YAMT', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-10 19:12:17', '2022-09-10 19:12:17', 0, 0),
-(6, 'BRAHHI1F', '1', 'PYA5AGMX', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, 1, '2022-09-10 19:15:12', '2022-09-10 19:15:12', 0, 0),
-(7, 'BJTG3I0A', '1', 'P1OIB79X', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '1970-01-01 11:59:21', '2022-09-14 11:59:21', 0, 0),
-(8, 'B61VIOYR', '1', 'P2FJNFBH', 1, 'Santa', 'Cochabamba', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-09-11 12:34:07', '2022-09-14 12:34:07', 0, 0),
-(9, 'BEB6UDAB', '1', 'PIY74QMW', 1, 'Santa', 'La', '', 80, 0, 0, 1, 0, 1, '8, ', '', NULL, 1, '2022-09-14 12:45:23', '2022-09-14 12:45:23', 0, 0),
-(10, 'BLCJD4FU', '1', 'P412LSRQ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-14 12:47:15', '2022-09-14 12:47:15', 0, 0),
-(11, 'BX83WDAJ', '1', 'PGEN7F0Q', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 11:48:21', '2022-09-16 11:48:21', 0, 0),
-(12, 'BDKI7S49', '1', 'PDNCRFKG', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '7, 8, ', '', NULL, 1, '2022-09-16 11:56:35', '2022-09-16 11:56:35', 0, 0),
-(13, 'B6167V5D', '1', 'P6UWTI87', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, 1, '2022-09-16 12:02:41', '2022-09-16 12:02:41', 0, 0),
-(14, 'BHUYQEB8', '1', 'PUGTCHUL', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, 1, '2022-09-16 12:05:06', '2022-09-16 12:05:06', 0, 0),
-(15, 'B6CFRBNE', '1', 'PCU7C4NF', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 6, ', '', NULL, 1, '2022-09-16 12:06:15', '2022-09-16 12:06:15', 0, 0),
-(16, 'BP7YO05F', '1', 'P78Q731Q', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 12:06:30', '2022-09-16 12:06:30', 0, 0),
-(17, 'BRCE5NCY', '1', 'PBM2P6IJ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, 1, '2022-09-16 12:08:01', '2022-09-16 12:08:01', 0, 0),
-(18, 'B16U6TZP', '1', 'PA69B7Y0', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 12:10:15', '2022-09-16 12:10:15', 0, 0),
-(19, 'BX0WFWNS', '1', 'PUZ434V7', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, 1, '2022-09-16 12:10:32', '2022-09-16 12:10:32', 0, 0),
-(20, 'B5Z3183D', '1', 'PDC80RTL', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '8, ', '', NULL, 1, '2022-09-16 12:13:35', '2022-09-16 12:13:35', 0, 0),
-(21, 'BRC8SAW4', '1', 'PGKUZSIJ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, 1, '2022-09-16 12:16:11', '2022-09-16 12:16:11', 0, 0),
-(22, 'BHTVG98Q', '1', 'PFIIOL26', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '5, 8, ', '', NULL, 1, '2022-09-16 12:35:08', '2022-09-16 12:35:08', 0, 0),
-(23, 'BSNFJXR6', '1', 'PZZQBB6J', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, 1, '2022-09-16 12:37:04', '2022-09-16 12:37:04', 0, 0),
-(24, 'BX803T02', '1', 'PQ2PL8MX', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '2, 5, ', '', NULL, 1, '2022-09-16 12:38:33', '2022-09-16 12:38:33', 0, 0),
-(25, 'BI5GLLHL', '1', 'P0BLJILT', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '7, 8, ', '', NULL, 1, '2022-09-14 12:57:07', '2022-09-16 12:57:07', 0, 0),
-(26, 'BUKX88CS', '1', 'PGAMUWNC', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 14:25:23', '2022-09-16 14:25:23', 0, 0),
-(27, 'BFCN580A', '1', 'P6MYPK99', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 5, ', '', NULL, 1, '2022-09-16 14:26:06', '2022-09-16 14:26:06', 0, 0),
-(28, 'BQO5YVUT', '1', 'PC8VNVBX', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 14:37:07', '2022-09-16 14:37:07', 0, 0),
-(29, 'BRQGKK3Y', '1', 'PV1QK79R', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 14:42:17', '2022-09-16 14:42:17', 0, 0),
-(30, 'BLIJ8VAH', '1', 'PPD1IA7T', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 14:43:41', '2022-09-16 14:43:41', 0, 0),
-(31, 'BT7M2T9Q', '1', 'PI8ZK7IQ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, 1, '2022-09-16 14:49:16', '2022-09-16 14:49:16', 0, 0),
-(32, 'BKWIK690', '1', 'PZM2CKD5', 1, 'La', 'Santa', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 14:51:50', '2022-09-16 14:51:50', 0, 0),
-(33, 'BXCARYNC', '1', 'PXQI27R5', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 5, ', '', NULL, 1, '2022-09-16 14:52:56', '2022-09-16 14:52:56', 0, 0),
-(34, 'BKCCQKC7', '1', 'P4UMK3HQ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '6, ', '', NULL, 1, '2022-09-16 14:53:52', '2022-09-16 14:53:52', 0, 0),
-(35, 'BWK8H9W7', '1', 'PDRUSNDE', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, 1, '2022-09-16 14:55:12', '2022-09-16 14:55:12', 0, 0),
-(36, 'BIWWJFNB', '1', 'P5HF1XBZ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 14:56:50', '2022-09-16 14:56:50', 0, 0),
-(37, 'B6SZV2GO', '1', 'P5ZCZAMI', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '5, ', '', NULL, 1, '2022-09-16 14:57:34', '2022-09-16 14:57:34', 0, 0),
-(38, 'B1XNMC3B', '1', 'PSI8DAN8', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 80, 0, 0, 1, 0, 1, '1, ', '', NULL, 1, '2022-09-13 19:16:41', '2022-09-16 19:16:41', 0, 0),
-(39, 'BI8FEW9I', '1', 'PRWOV7ZZ', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 80, 0, 0, 1, 0, 1, '1, ', '', NULL, 1, '2022-09-13 19:16:44', '2022-09-16 19:16:44', 0, 0),
-(40, 'BBLHA2M1', '1', 'PJURBY5N', 1, 'Santa', 'Cochabamba', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-13 19:21:21', '2022-09-16 19:21:21', 0, 0),
-(41, 'BRGKO86W', '1', 'PRENNVX0', 1, 'Santa', 'Cochabamba', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-13 19:21:28', '2022-09-16 19:21:28', 0, 0),
-(42, 'B9SCY5C0', '1', 'PCBR6RR8', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 19:24:53', '2022-09-16 19:24:53', 0, 0),
-(43, 'B0E8K28Z', '1', 'P1X2DHU6', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 19:29:02', '2022-09-16 19:29:02', 0, 0),
-(44, 'BEYXOFME', '1', 'PDFXJEMS', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 3, ', '', NULL, 1, '2022-09-16 19:29:57', '2022-09-16 19:29:57', 0, 0),
-(45, 'BPUZQN0Q', '1', 'PC806K22', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-12 21:51:32', '2022-09-16 21:51:32', 0, 0),
-(46, 'B2MNXJB9', '1', 'PFD10Y9E', 1, 'Santa', 'La', '', 400, 0, 4, 0, 0, 4, '1, 2, 4, 5, ', '', NULL, 1, '2022-09-12 21:52:21', '2022-09-16 21:52:21', 0, 0),
-(47, 'BD3KVODW', '1', 'PC7MD3JH', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-12 11:35:25', '2022-09-17 11:35:25', 0, 0),
-(48, 'BWPY9L15', '1', 'PTZUE0HY', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 13:06:48', '2022-09-17 13:06:48', 0, 0),
-(49, 'BLJ6QNB5', '1', 'PV2FZDS0', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, 1, '2022-09-16 13:07:59', '2022-09-17 13:07:59', 0, 0),
-(50, 'BTPI0QJ6', '1', 'PJBYN9LT', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 13:16:03', '2022-09-17 13:16:03', 0, 0),
-(51, 'BIV9NLVM', '1', 'PLKP0DHF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '5, 8, ', '', NULL, 1, '2022-09-16 13:16:41', '2022-09-17 13:16:41', 0, 0),
-(52, 'BHJVIQU6', '1', 'PWEJVJ5T', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 13:19:08', '2022-09-17 13:19:08', 0, 0),
-(53, 'BLN63EWT', '1', 'PAT127FR', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-16 13:20:26', '2022-09-17 13:20:26', 0, 0),
-(54, 'BOSEAWZV', '1', 'PNL7OZIF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 13:21:38', '2022-09-17 13:21:38', 0, 0),
-(55, 'BXFG0J7A', '1', 'PV98EB8G', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, 1, '2022-09-16 14:22:35', '2022-09-17 14:22:35', 0, 0),
-(56, 'BGOUK3UY', '1', 'P2IAL068', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, 1, '2022-09-16 16:07:31', '2022-09-17 16:07:31', 0, 0),
-(57, 'BPEFACPJ', '1', 'P4HPSMYU', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 16:08:05', '2022-09-17 16:08:05', 0, 0),
-(58, 'B9OTGOQX', '1', 'PDWALNAW', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, 1, '2022-09-16 16:19:09', '2022-09-17 16:19:09', 0, 0),
-(59, 'BQQOS2G2', '1', 'PDDJ5RVQ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, 1, '2022-09-16 16:20:05', '2022-09-17 16:20:05', 0, 0),
-(60, 'B1NYLC2S', '1', 'PBJMQZM8', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, 1, '2022-09-16 16:20:55', '2022-09-17 16:20:55', 0, 0),
+(1, 'BI5VGB8N', '1', 'PNXRDS6V', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:06:53', '2022-09-10 19:06:53', 0, 0),
+(2, 'BTCZITW6', '1', 'PTKBPOBB', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:09:40', '2022-09-10 19:09:40', 0, 0),
+(3, 'B5QV04G0', '1', 'P1FK7GEA', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:10:25', '2022-09-10 19:10:25', 0, 0),
+(4, 'BPSSM99U', '1', 'PHX0DUXF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:11:31', '2022-09-10 19:11:31', 0, 0),
+(5, 'BAW1V8C5', '1', 'PWX3YAMT', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-10 19:12:17', '2022-09-10 19:12:17', 0, 0),
+(6, 'BRAHHI1F', '1', 'PYA5AGMX', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, NULL, '2022-09-10 19:15:12', '2022-09-10 19:15:12', 0, 0),
+(7, 'BJTG3I0A', '1', 'P1OIB79X', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '1970-01-01 11:59:21', '2022-09-14 11:59:21', 0, 0),
+(8, 'B61VIOYR', '1', 'P2FJNFBH', 1, 'Santa', 'Cochabamba', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-09-11 12:34:07', '2022-09-14 12:34:07', 0, 0),
+(9, 'BEB6UDAB', '1', 'PIY74QMW', 1, 'Santa', 'La', '', 80, 0, 0, 1, 0, 1, '8, ', '', NULL, NULL, '2022-09-14 12:45:23', '2022-09-14 12:45:23', 0, 0),
+(10, 'BLCJD4FU', '1', 'P412LSRQ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-14 12:47:15', '2022-09-14 12:47:15', 0, 0),
+(11, 'BX83WDAJ', '1', 'PGEN7F0Q', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 11:48:21', '2022-09-16 11:48:21', 0, 0),
+(12, 'BDKI7S49', '1', 'PDNCRFKG', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '7, 8, ', '', NULL, NULL, '2022-09-16 11:56:35', '2022-09-16 11:56:35', 0, 0),
+(13, 'B6167V5D', '1', 'P6UWTI87', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, NULL, '2022-09-16 12:02:41', '2022-09-16 12:02:41', 0, 0),
+(14, 'BHUYQEB8', '1', 'PUGTCHUL', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '4, 5, ', '', NULL, NULL, '2022-09-16 12:05:06', '2022-09-16 12:05:06', 0, 0),
+(15, 'B6CFRBNE', '1', 'PCU7C4NF', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 6, ', '', NULL, NULL, '2022-09-16 12:06:15', '2022-09-16 12:06:15', 0, 0),
+(16, 'BP7YO05F', '1', 'P78Q731Q', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 12:06:30', '2022-09-16 12:06:30', 0, 0),
+(17, 'BRCE5NCY', '1', 'PBM2P6IJ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:08:01', '2022-09-16 12:08:01', 0, 0),
+(18, 'B16U6TZP', '1', 'PA69B7Y0', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 12:10:15', '2022-09-16 12:10:15', 0, 0),
+(19, 'BX0WFWNS', '1', 'PUZ434V7', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:10:32', '2022-09-16 12:10:32', 0, 0),
+(20, 'B5Z3183D', '1', 'PDC80RTL', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '8, ', '', NULL, NULL, '2022-09-16 12:13:35', '2022-09-16 12:13:35', 0, 0),
+(21, 'BRC8SAW4', '1', 'PGKUZSIJ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:16:11', '2022-09-16 12:16:11', 0, 0),
+(22, 'BHTVG98Q', '1', 'PFIIOL26', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:35:08', '2022-09-16 12:35:08', 0, 0),
+(23, 'BSNFJXR6', '1', 'PZZQBB6J', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 12:37:04', '2022-09-16 12:37:04', 0, 0),
+(24, 'BX803T02', '1', 'PQ2PL8MX', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '2, 5, ', '', NULL, NULL, '2022-09-16 12:38:33', '2022-09-16 12:38:33', 0, 0),
+(25, 'BI5GLLHL', '1', 'P0BLJILT', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '7, 8, ', '', NULL, NULL, '2022-09-14 12:57:07', '2022-09-16 12:57:07', 0, 0),
+(26, 'BUKX88CS', '1', 'PGAMUWNC', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:25:23', '2022-09-16 14:25:23', 0, 0),
+(27, 'BFCN580A', '1', 'P6MYPK99', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 5, ', '', NULL, NULL, '2022-09-16 14:26:06', '2022-09-16 14:26:06', 0, 0),
+(28, 'BQO5YVUT', '1', 'PC8VNVBX', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:37:07', '2022-09-16 14:37:07', 0, 0),
+(29, 'BRQGKK3Y', '1', 'PV1QK79R', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:42:17', '2022-09-16 14:42:17', 0, 0),
+(30, 'BLIJ8VAH', '1', 'PPD1IA7T', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:43:41', '2022-09-16 14:43:41', 0, 0),
+(31, 'BT7M2T9Q', '1', 'PI8ZK7IQ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 14:49:16', '2022-09-16 14:49:16', 0, 0),
+(32, 'BKWIK690', '1', 'PZM2CKD5', 1, 'La', 'Santa', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:51:50', '2022-09-16 14:51:50', 0, 0),
+(33, 'BXCARYNC', '1', 'PXQI27R5', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 5, ', '', NULL, NULL, '2022-09-16 14:52:56', '2022-09-16 14:52:56', 0, 0),
+(34, 'BKCCQKC7', '1', 'P4UMK3HQ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '6, ', '', NULL, NULL, '2022-09-16 14:53:52', '2022-09-16 14:53:52', 0, 0),
+(35, 'BWK8H9W7', '1', 'PDRUSNDE', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-16 14:55:12', '2022-09-16 14:55:12', 0, 0),
+(36, 'BIWWJFNB', '1', 'P5HF1XBZ', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 14:56:50', '2022-09-16 14:56:50', 0, 0),
+(37, 'B6SZV2GO', '1', 'P5ZCZAMI', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '5, ', '', NULL, NULL, '2022-09-16 14:57:34', '2022-09-16 14:57:34', 0, 0),
+(38, 'B1XNMC3B', '1', 'PSI8DAN8', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 80, 0, 0, 1, 0, 1, '1, ', '', NULL, NULL, '2022-09-13 19:16:41', '2022-09-16 19:16:41', 0, 0),
+(39, 'BI8FEW9I', '1', 'PRWOV7ZZ', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 80, 0, 0, 1, 0, 1, '1, ', '', NULL, NULL, '2022-09-13 19:16:44', '2022-09-16 19:16:44', 0, 0),
+(40, 'BBLHA2M1', '1', 'PJURBY5N', 1, 'Santa', 'Cochabamba', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-13 19:21:21', '2022-09-16 19:21:21', 0, 0),
+(41, 'BRGKO86W', '1', 'PRENNVX0', 1, 'Santa', 'Cochabamba', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-13 19:21:28', '2022-09-16 19:21:28', 0, 0),
+(42, 'B9SCY5C0', '1', 'PCBR6RR8', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 19:24:53', '2022-09-16 19:24:53', 0, 0),
+(43, 'B0E8K28Z', '1', 'P1X2DHU6', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 19:29:02', '2022-09-16 19:29:02', 0, 0),
+(44, 'BEYXOFME', '1', 'PDFXJEMS', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '2, 3, ', '', NULL, NULL, '2022-09-16 19:29:57', '2022-09-16 19:29:57', 0, 0),
+(45, 'BPUZQN0Q', '1', 'PC806K22', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-12 21:51:32', '2022-09-16 21:51:32', 0, 0),
+(46, 'B2MNXJB9', '1', 'PFD10Y9E', 1, 'Santa', 'La', '', 400, 0, 4, 0, 0, 4, '1, 2, 4, 5, ', '', NULL, NULL, '2022-09-12 21:52:21', '2022-09-16 21:52:21', 0, 0),
+(47, 'BD3KVODW', '1', 'PC7MD3JH', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-12 11:35:25', '2022-09-17 11:35:25', 0, 0),
+(48, 'BWPY9L15', '1', 'PTZUE0HY', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 13:06:48', '2022-09-17 13:06:48', 0, 0),
+(49, 'BLJ6QNB5', '1', 'PV2FZDS0', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-09-16 13:07:59', '2022-09-17 13:07:59', 0, 0),
+(50, 'BTPI0QJ6', '1', 'PJBYN9LT', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 13:16:03', '2022-09-17 13:16:03', 0, 0),
+(51, 'BIV9NLVM', '1', 'PLKP0DHF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '5, 8, ', '', NULL, NULL, '2022-09-16 13:16:41', '2022-09-17 13:16:41', 0, 0),
+(52, 'BHJVIQU6', '1', 'PWEJVJ5T', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 13:19:08', '2022-09-17 13:19:08', 0, 0),
+(53, 'BLN63EWT', '1', 'PAT127FR', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-16 13:20:26', '2022-09-17 13:20:26', 0, 0),
+(54, 'BOSEAWZV', '1', 'PNL7OZIF', 1, 'Santa', 'La', '', 180, 0, 1, 1, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 13:21:38', '2022-09-17 13:21:38', 0, 0),
+(55, 'BXFG0J7A', '1', 'PV98EB8G', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 14:22:35', '2022-09-17 14:22:35', 0, 0),
+(56, 'BGOUK3UY', '1', 'P2IAL068', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '1, 2, ', '', NULL, NULL, '2022-09-16 16:07:31', '2022-09-17 16:07:31', 0, 0),
+(57, 'BPEFACPJ', '1', 'P4HPSMYU', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 16:08:05', '2022-09-17 16:08:05', 0, 0),
+(58, 'B9OTGOQX', '1', 'PDWALNAW', 1, 'Santa', 'La', '', 200, 0, 2, 0, 0, 2, '3, 6, ', '', NULL, NULL, '2022-09-16 16:19:09', '2022-09-17 16:19:09', 0, 0),
+(59, 'BQQOS2G2', '1', 'PDDJ5RVQ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:20:05', '2022-09-17 16:20:05', 0, 0),
+(60, 'B1NYLC2S', '1', 'PBJMQZM8', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-09-16 16:20:55', '2022-09-17 16:20:55', 0, 0),
 (61, 'BGAC8VK5', '1', 'PDU93S15', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, 1, '2022-09-16 16:21:27', '2022-09-17 16:21:27', 0, 0),
 (62, 'B25UPEQM', '1', 'PPIXU5AZ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, 1, '2022-09-16 16:22:12', '2022-09-17 16:22:12', 0, 0),
 (63, 'B97XNWSN', '1', 'PDXZWMWN', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-09-16 16:23:05', '2022-09-17 16:23:05', 0, 0),
@@ -2202,7 +2218,9 @@ INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id
 (126, 'BWERLF6M', '1', 'P2KQNPX9', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-10-06 13:11:54', '2022-10-06 13:11:54', 0, 0),
 (127, 'BD47UD9K', '1', 'P7JR2M7S', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '8, ', '', NULL, 1, '2022-10-06 13:13:13', '2022-10-06 13:13:13', 0, 0),
 (128, 'BSPIMYTN', '1', 'PBQT8EB6', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-10-06 13:26:58', '2022-10-06 13:26:58', 0, 0),
-(129, 'BS777URP', '1', 'PVTXDQPT', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-10-07 21:33:24', '2022-10-06 21:33:24', 0, 0);
+(129, 'BS777URP', '1', 'PVTXDQPT', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-10-07 21:33:24', '2022-10-06 21:33:24', 0, 0),
+(130, 'B56IHLDL', '1', 'PJCFGQHF', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, 1, '2022-10-17 11:18:08', '2022-10-14 11:18:08', 0, 0),
+(131, 'BV3C3GNK', '1', 'PKMDF658', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-10-14 11:18:30', '2022-10-14 11:18:30', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2714,7 +2732,7 @@ ALTER TABLE `how_to_use`
 -- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=788;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=790;
 
 --
 -- AUTO_INCREMENT de la tabla `merchandise`
@@ -2768,7 +2786,7 @@ ALTER TABLE `pri_price`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `sec_menu_item`
@@ -2804,7 +2822,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT de la tabla `shedule`
 --
 ALTER TABLE `shedule`
-  MODIFY `shedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `shedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `synchronizer_setting`
@@ -2822,7 +2840,7 @@ ALTER TABLE `ticket_notification`
 -- AUTO_INCREMENT de la tabla `tkt_booking`
 --
 ALTER TABLE `tkt_booking`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tkt_feedback`
@@ -2864,13 +2882,13 @@ ALTER TABLE `trip_assign`
 -- AUTO_INCREMENT de la tabla `trip_location`
 --
 ALTER TABLE `trip_location`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `trip_route`
 --
 ALTER TABLE `trip_route`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
@@ -2882,7 +2900,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_offer`

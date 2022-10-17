@@ -325,10 +325,12 @@ class Search extends MX_Controller {
 
         $caja = $this->db->query("SELECT * FROM caja ORDER BY id DESC")->row();
 
+        $booking = $this->db->where('id_no', $this->input->post('booking_id_no',true))->row();
+
         $tipo_movimiento = 'Entrada';
-        $monto = $this->input->post('amount',true);
+        $monto = $booking->price;
         $metodo_pago = 'Efectivo';
-        $concepto = 'Venta de ticket #' . $obj['booking']->booking_id;
+        $concepto = 'Venta de ticket #' . $booking->booking_id;
 
         $saldo = (float) $caja->saldo + (float) $monto;
 

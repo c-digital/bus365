@@ -116,7 +116,7 @@ class Sales extends MX_Controller
  			r.id AS route_id,
  			s.name AS name,
  			s.ci AS ci,
- 			s.seat_type AS seat_type,
+ 			s.seat_type,
  			b.booking_date AS date,
  			TIMESTAMPDIFF(YEAR, s.birth, CURDATE()) AS age,
  			ls.name AS shipment,

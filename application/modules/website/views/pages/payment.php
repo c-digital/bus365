@@ -63,7 +63,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                 }
             },
             error: function (error) {
-                
+                console.log(error);
             }
         });
     });

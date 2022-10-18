@@ -41,16 +41,36 @@
                             <th class="text-center">ID</th>
                             <th class="text-center">Fecha</th>
                             <th class="text-center">Monto</th>
+                            <th class="text-center">Número de ticket</th>
+                            <th class="text-center">Pasajero</th>
                             <th class="text-center">Método de pago</th>
                             <th class="text-center">Cajero</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($ticket as $item): ?>
+                            <?php
+                                $numero_ticket = str_replace('Venta de ticket #', '', $item->concepto);
+
+                                $sql = "
+                                    SELECT
+                                        name AS pasajero
+                                    FROM
+                                        sales
+                                    WHERE
+                                        booking_id = '$numero_ticket'
+                                ";
+
+                                $row = $this->db->query($sql)->row();
+                                $pasajero = $row->pasajero;
+                            ?>
+
                             <tr> 
                                 <td class="text-center"><?php echo $item->id; ?></td>
                                 <td class="text-center"><?php echo $item->fecha; ?></td>
                                 <td class="text-center"><?php echo $item->monto; ?></td>
+                                <td class="text-center"><?php echo $numero_ticket; ?></td>
+                                <td class="text-center"><?php echo $pasajero; ?></td>
                                 <td class="text-center"><?php echo $item->metodo_pago; ?></td>
                                 <td class="text-center"><?php echo $item->cajero; ?></td>
                             </tr>

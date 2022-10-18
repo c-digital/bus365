@@ -12,15 +12,15 @@ class Sales extends MX_Controller
 			'sales_model'
 		));
 
-		if (!$this->session->userdata('isLogIn')) {
-			redirect('login');
-		}
-
 		$this->db->query("SET sql_mode = ''");
  	}
 
  	public function index()
  	{
+ 		if (!$this->session->userdata('isLogIn')) {
+			redirect('login');
+		}
+
  		$data['module'] = "dashboard";
 		$data['page']   = "sales/index";
 
@@ -34,6 +34,10 @@ class Sales extends MX_Controller
 
  	public function create()
  	{
+ 		if (!$this->session->userdata('isLogIn')) {
+			redirect('login');
+		}
+
  		$data['location_dropdown'] = $this->sales_model->location_dropdown();
 
  		$getStartPoint = $this->input->get('start_point');
@@ -109,6 +113,10 @@ class Sales extends MX_Controller
 
  	public function ticket($id)
  	{
+ 		if (!$this->session->userdata('isLogIn')) {
+			redirect('login');
+		}
+		
  		$select = "
  			s.id,
  			s.booking_id,

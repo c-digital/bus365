@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li><a href="<?php echo base_url('userlog') ?>"><i class="fa fa-print"></i><?php echo display('print_ticket') ?></a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#check-ticket"><i class="fa fa-print"></i><?php echo display('check_ticket') ?></a></li>
                         <li><a href="<?php echo base_url('userlog') ?>"><i class="fal fa-times-hexagon"></i><?php echo display('cancel_ticket') ?></a></li>
                         <li class="dropdown dropdown-user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><?php 
@@ -361,4 +361,24 @@ $(document).ready(function() {
             });
         </script>
     </body> 
+
+    <div class="modal" tabindex="-1" id="check-ticket" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-sm">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </html>

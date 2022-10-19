@@ -365,19 +365,22 @@ $(document).ready(function() {
     <div class="modal" tabindex="-1" id="check-ticket" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content modal-sm">
-          <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Modal body text goes here.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+            <?php echo form_open('/website/Check', ['method' => 'POST']) ?>
+              <div class="modal-header">
+                <h5 class="modal-title"><?php echo display('check_ticket'); ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for=""><?php echo display('enter_ticket_to_check') ?></label>
+                <input type="text" class="form-control" name="ticket" required>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary"><?php echo display('check') ?></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo display('close1') ?></button>
+              </div>
+            </form>
         </div>
       </div>
     </div>

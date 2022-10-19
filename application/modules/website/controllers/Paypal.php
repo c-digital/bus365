@@ -330,6 +330,8 @@ $setting_detail = $this->db->select('*')->from('email_config')->get()->row();
 
         $data['logo'] = $this->db->query($sql)->row();
 
+        $data['passenger'] = $this->db->query("SELECT * FROM sales WHERE booking_id = '$booking_id_no'")->row();
+
         $this->load->view('layout', $data); 
     }
 

@@ -465,12 +465,12 @@ public function email_check($email){
                 tb.adult,
                 tb.child,
                 tb.special,
-                tb.booking_type,
+                'Cash' AS booking_type,
                 tb.trip_route_id,
                 tp.nid
 
             ")
-            ->from('tkt_booking AS tb')
+            ->from('ws_booking_history AS tb')
             ->join('tkt_passenger AS tp', 'tb.tkt_passenger_id_no = tp.id_no' ,'left')
             ->join('trip_route AS tr', 'tr.id = tb.trip_route_id','left')
             ->where('tb.id_no', $booking_id_no)

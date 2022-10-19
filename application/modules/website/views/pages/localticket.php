@@ -67,16 +67,13 @@
                                     <td>
                                         <ul class="list-unstyled">
                                               <li><strong><?php echo display('passenger_name') ?> :</strong>
-                                            <?php echo (!empty($ticket->passenger_name)?$ticket->passenger_name:null) ?>
+                                            <?php echo (!empty($passenger->name)?$passenger->name:null) ?>
                                             </li>
                                              <li><strong><?php echo display('nid') ?> :</strong>
-                                            <?php echo (!empty($ticket->nid)?$ticket->nid:null) ?>
+                                            <?php echo (!empty($passenger->name)?$passenger->name:null) ?>
                                             </li>
                                             <li><strong><?php echo display('phone') ?> :</strong>
-                                                <?php echo (!empty($appSetting->phone)?$appSetting->phone:null) ?></li>
-                                                  <li>
-                                            <strong><?php echo display('passenger_id') ?> :</strong> 
-                                            <?php echo (!empty($ticket->tkt_passenger_id_no)?$ticket->tkt_passenger_id_no:null) ?></li>
+                                                <?php echo (!empty($passenger->name)?$passenger->name:null) ?></li>
                                             <li>
                                             <li><strong><?php echo display('facilities') ?> :</strong>
                                                 <ul class="list-inline">

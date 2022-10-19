@@ -20,17 +20,17 @@ class Cash extends MX_Controller
 
 		$where = [];
 
-		if (isset($_GET['inicio']) && $_GET['inicio']) {
+		if (isset($_GET['inicio']) && $_GET['inicio'] != '') {
 			$inicio = $_GET['inicio'];
-			$where[] = "DATE(fecha) >= $inicio";
+			$where[] = "DATE(fecha) >= '$inicio'";
 		}
 
-		if (isset($_GET['fin']) && $_GET['fin']) {
+		if (isset($_GET['fin']) && $_GET['fin'] != '') {
 			$fin = $_GET['fin'];
-			$where[] = "DATE(fecha) >= $fin";
+			$where[] = "DATE(fecha) <= '$fin'";
 		}
 
-		if (isset($_GET['cajero']) && $_GET['cajero']) {
+		if (isset($_GET['cajero']) && $_GET['cajero'] != '' && $_GET['cajero'] != 'Todos') {
 			$cajero = $_GET['cajero'];
 			$where[] = "cajero = '$cajero'";
 		}
@@ -55,17 +55,17 @@ class Cash extends MX_Controller
 
 		$where = [];
 
-		if (isset($_GET['inicio']) && $_GET['inicio']) {
+		if (isset($_GET['inicio']) && $_GET['inicio'] != '') {
 			$inicio = $_GET['inicio'];
-			$where[] = "DATE(fecha) >= $inicio";
+			$where[] = "DATE(fecha) >= '$inicio'";
 		}
 
-		if (isset($_GET['fin']) && $_GET['fin']) {
+		if (isset($_GET['fin']) && $_GET['fin'] != '') {
 			$fin = $_GET['fin'];
-			$where[] = "DATE(fecha) >= $fin";
+			$where[] = "DATE(fecha) <= '$fin'";
 		}
 
-		if (isset($_GET['cajero']) && $_GET['cajero']) {
+		if (isset($_GET['cajero']) && $_GET['cajero'] != '' && $_GET['cajero'] != 'Todos') {
 			$cajero = $_GET['cajero'];
 			$where[] = "cajero = '$cajero'";
 		}
@@ -90,17 +90,17 @@ class Cash extends MX_Controller
 
 		$where = [];
 
-		if (isset($_GET['inicio']) && $_GET['inicio']) {
+		if (isset($_GET['inicio']) && $_GET['inicio'] != '') {
 			$inicio = $_GET['inicio'];
-			$where[] = "DATE(fecha) >= $inicio";
+			$where[] = "DATE(fecha) >= '$inicio'";
 		}
 
-		if (isset($_GET['fin']) && $_GET['fin']) {
+		if (isset($_GET['fin']) && $_GET['fin'] != '') {
 			$fin = $_GET['fin'];
-			$where[] = "DATE(fecha) >= $fin";
+			$where[] = "DATE(fecha) <= '$fin'";
 		}
 
-		if (isset($_GET['cajero']) && $_GET['cajero']) {
+		if (isset($_GET['cajero']) && $_GET['cajero'] != '' && $_GET['cajero'] != 'Todos') {
 			$cajero = $_GET['cajero'];
 			$where[] = "cajero = '$cajero'";
 		}

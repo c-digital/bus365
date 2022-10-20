@@ -237,7 +237,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 
     </div>
     <div class="col-sm-7">
-        <a style="background-color:#0b2a5b;color:white;text-decoration: none;" href="<?php echo base_url('website/website/how_to_pay') ?>"  class="btn btn-block"  onclick="window.open(this.href, '_blank'); return false;"><h4 style="color:white"><?php echo display('how_to_pay');?></h4> </a>
+        
         <br>
         <div class="journey-details">
            
@@ -339,7 +339,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 
             <div class="modal-body">
                  <div class="col-sm-7">
-        <a style="background-color:#0b2a5b;color:white;text-decoration: none;" href="<?php echo base_url('website/website/how_to_pay') ?>"  class="btn btn-block"  onclick="window.open(this.href, '_blank'); return false;"><h4 style="color:white"><?php echo display('how_to_pay');?></h4> </a>
+                    
         <br>
         <div class="journey-details">
            

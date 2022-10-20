@@ -81,7 +81,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 
     </div>
     <div class="col-sm-5">
-        <a style="background-color:#0b2a5b;color:white;text-decoration: none;" href="<?php echo base_url('website/website/how_to_pay') ?>"  class="btn btn-block"  onclick="window.open(this.href, '_blank'); return false;"><h4 style="color:white"><?php echo display('how_to_pay');?></h4> </a>
+        
         <br>
   
         <div class="pament-details">
@@ -342,7 +342,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                 </tbody>
             </table> 
          
-          <button class="btn btn-block btn-primary" id="local"><?php echo display('book_for_one_hour') ?></button>
+          <button class="btn btn-block btn-primary" id="local"><?php echo display('register') ?></button>
               <?php echo form_close() ?>
             </div>
 

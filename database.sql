@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 18-10-2022 a las 17:18:18
+-- Tiempo de generación: 20-10-2022 a las 13:16:11
 -- Versión del servidor: 5.7.40
 -- Versión de PHP: 7.4.30
 
@@ -220,7 +220,13 @@ INSERT INTO `caja` (`id`, `tipo_movimiento`, `fecha`, `monto`, `metodo_pago`, `c
 (111, 'Entrada', '2022-09-30 16:38:31', '26', 'Efectivo', 'Envio de mercadería #6', '76', 'Caja abierta', 'Admin'),
 (122, 'Entrada', '2022-10-17 16:54:27', '100', 'Efectivo', 'Venta de ticket #BYRX6HBV', '276', 'Caja abierta', ''),
 (123, 'Entrada', '2022-10-17 17:17:09', '100', 'Efectivo', 'Venta de ticket #BEU5BRSO', '376', 'Caja abierta', 'Admin'),
-(124, 'Entrada', '2022-10-17 17:46:32', '100', 'Efectivo', 'Venta de ticket #BDT7IUYH', '476', 'Caja abierta', 'Admin');
+(124, 'Entrada', '2022-10-17 17:46:32', '100', 'Efectivo', 'Venta de ticket #BDT7IUYH', '476', 'Caja abierta', 'Admin'),
+(125, 'Entrada', '2022-10-19 13:15:38', '100', 'Efectivo', 'Venta de ticket #BPACOH6V', '576', 'Caja abierta', ''),
+(126, 'Entrada', '2022-10-19 13:19:56', '100', 'Efectivo', 'Venta de ticket #BHYT99KR', '676', 'Caja abierta', 'Admin'),
+(127, 'Entrada', '2022-10-19 13:46:56', '100', 'Efectivo', 'Venta de ticket #BRG73NA8', '776', 'Caja abierta', 'Admin'),
+(128, 'Entrada', '2022-10-20 10:45:29', '100', 'Efectivo', 'Venta de ticket #BSSQCYV6', '876', 'Caja abierta', ''),
+(129, 'Entrada', '2022-10-20 10:47:38', '100', 'Efectivo', 'Venta de ticket #BYXG4CDD', '976', 'Caja abierta', ''),
+(130, 'Entrada', '2022-10-20 10:48:35', '100', 'Efectivo', 'Venta de ticket #BX663VI6', '1076', 'Caja abierta', '');
 
 -- --------------------------------------------------------
 
@@ -1181,7 +1187,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
 (788, 'ticket_no', 'Ticket nro.', 'Ticket nro.'),
 (789, 'assistant_name_3', 'Assistant name 3', 'Assistant name 3'),
 (790, 'ticket_sold_by_company', 'Ticket sold by company', 'Ticket sold by company'),
-(791, 'check_ticket', 'Check ticket', 'Check ticket');
+(791, 'check_ticket', 'Check ticket', 'Check ticket'),
+(792, 'close1', 'Close', 'Close'),
+(793, 'enter_ticket_to_check', 'Enter ticket to check', 'Enter ticket to check');
 
 -- --------------------------------------------------------
 
@@ -1464,7 +1472,13 @@ INSERT INTO `sales` (`id`, `booking_id`, `seat_type`, `seat_number`, `name`, `ci
 (97, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
 (98, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
 (99, 'BEU5BRSO', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
-(100, 'BDT7IUYH', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04');
+(100, 'BDT7IUYH', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(101, 'BPACOH6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(102, 'BHYT99KR', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(103, 'BRG73NA8', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(104, 'BSSQCYV6', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(105, 'BYXG4CDD', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(106, 'BX663VI6', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01');
 
 -- --------------------------------------------------------
 
@@ -2088,7 +2102,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-10-18 16:27:10', '2022-09-13 17:41:05', '38.25.228.240', 1, 1),
+(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-10-19 16:16:46', '2022-09-13 17:41:05', '38.25.228.240', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
@@ -2273,7 +2287,15 @@ INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id
 (144, 'BYRX6HBV', '1', 'P2SVRVP5', 1, 'La', 'Santa', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-10-17 17:46:53', '2022-10-17 17:46:53', 0, 0),
 (145, 'BEU5BRSO', '1', 'POUUH2PI', 1, 'Santa', 'Cochabamba', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-10-17 18:16:52', '2022-10-17 18:16:52', 0, 0),
 (146, 'BCXH1U1U', '1', 'P8VDUT73', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-17 18:33:58', '2022-10-17 18:33:58', 0, 0),
-(147, 'BDT7IUYH', '1', 'PWZ9K3DM', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-10-17 18:46:16', '2022-10-17 18:46:16', 0, 0);
+(147, 'BDT7IUYH', '1', 'PWZ9K3DM', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-10-17 18:46:16', '2022-10-17 18:46:16', 0, 0),
+(148, 'BPACOH6V', '1', 'PEE4GAH9', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-10-19 14:15:18', '2022-10-19 14:15:18', 0, 0),
+(149, 'B3J8EHN9', '1', 'PTP2NGD4', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, 1, '2022-10-19 14:18:05', '2022-10-19 14:18:05', 0, 0),
+(150, 'BHYT99KR', '1', 'P2OL52NJ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, 1, '2022-10-19 14:19:42', '2022-10-19 14:19:42', 0, 0),
+(151, 'BRG73NA8', '1', 'PJX8ED2H', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, 1, '2022-10-19 14:46:40', '2022-10-19 14:46:40', 0, 0),
+(152, 'BSSQCYV6', '1', 'PUWNK2KB', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-20 11:45:20', '2022-10-20 11:45:20', 0, 0),
+(153, 'B6QCXJ9G', '1', 'PNBZ35JM', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-20 11:46:50', '2022-10-20 11:46:50', 0, 0),
+(154, 'BYXG4CDD', '1', 'P33NTGWK', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-20 11:47:29', '2022-10-20 11:47:29', 0, 0),
+(155, 'BX663VI6', '1', 'PQJCCDT8', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-20 11:48:24', '2022-10-20 11:48:24', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2707,7 +2729,7 @@ ALTER TABLE `booking_downtime`
 -- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT de la tabla `companies`
@@ -2785,7 +2807,7 @@ ALTER TABLE `how_to_use`
 -- AUTO_INCREMENT de la tabla `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=792;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=794;
 
 --
 -- AUTO_INCREMENT de la tabla `merchandise`
@@ -2839,7 +2861,7 @@ ALTER TABLE `pri_price`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT de la tabla `sec_menu_item`
@@ -2893,7 +2915,7 @@ ALTER TABLE `ticket_notification`
 -- AUTO_INCREMENT de la tabla `tkt_booking`
 --
 ALTER TABLE `tkt_booking`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tkt_feedback`
@@ -2953,7 +2975,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_offer`

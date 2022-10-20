@@ -204,7 +204,7 @@ color:red;}</style>
                     <div class="col-sm-5 col-xs-12">
 
                         <div class="price-details">
-                             <a style="background-color:#0b2a5b;color:white;text-decoration: none;" href="<?php echo base_url('website/website/how_to_use') ?>"  class="btn btn-block"  onclick="window.open(this.href, '_blank'); return false;"><h4 style="color:white"><?php echo display('how_to_use');?></h4> </a>
+                             
                             <div class="seatsList"></div>
                         </div> 
 

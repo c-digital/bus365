@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brands" href="<?php echo base_url('website') ?>"><img src="<?php echo base_url((!empty($appSetting->logo)?$appSetting->logo:'application/modules/website/assets/images/logo.png')) ?>" class="logo" alt=""></a>
+                    <a class="navbar-brands" href="<?php echo '/mobile' ?>"><img src="<?php echo base_url((!empty($appSetting->logo)?$appSetting->logo:'application/modules/website/assets/images/logo.png')) ?>" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,19 +59,19 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                     <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="dropdown dropdown-user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><?php 
-             if(empty($this->session->userdata('id_no'))){
+             if(!isset($_SESSION['auth'])){
                 echo display('login');
              }else{
-               echo  $username=$this->session->userdata('firstname');
+               echo $_SESSION['auth']->name;
              }
 
                  ?></a>
                 <ul class="dropdown-menu">
-                    <?php if(empty($this->session->userdata('id_no'))){ ?>
+                    <?php if(!isset($_SESSION['auth'])){ ?>
                     <li><a href="<?php echo base_url('mobile/userlog') ?>"><i class="pe-7s-users"></i> User Login</a></li>
                     <li><a href="<?php echo base_url('mobile/login') ?>"><i class="pe-7s-settings"></i> Admin Login</a></li>
                     <?php }else{ ?>
-                    <li><a href="<?php echo base_url('pass_logout') ?>"><i class="pe-7s-key"></i>  <?php echo display('logout') ?></a></li>
+                        <li><a href="<?php echo base_url('pass_logout') ?>"><i class="pe-7s-key"></i>  <?php echo display('logout') ?></a></li>
                     <?php } ?>
                 </ul>
             </li>

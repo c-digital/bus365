@@ -38,7 +38,7 @@ class Mobile extends MX_Controller {
     }
 
 	public function index()
-	{		
+	{	
 		$data['title'] = display("home");
 		#---------------GET DATA------------------
 		$getStartPoint = $this->input->get('start_point');

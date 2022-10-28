@@ -18,7 +18,7 @@
                         <h3 class="form-block_title"><?php echo display('search_tour'); ?></h3>
                         <div class="form-block_des"><?php echo display('find_dream'); ?></div>
                        
-                        <form action="<?php echo base_url('website/search') ?>"  style="padding:29px 0">
+                        <form action="<?php echo base_url('mobile/search') ?>"  style="padding:29px 0">
                             <div class="form-group custom-select">
                                 <?php echo form_dropdown('start_point', $location_dropdown, $search->start_point, array('class'=>'select2 form-control','required'=>'required', 'data-placeholder'=>display('start_point')) ) ?> 
                                 <i class="fa fa-map-marker"></i>

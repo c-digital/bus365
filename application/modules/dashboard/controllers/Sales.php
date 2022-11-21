@@ -2,6 +2,11 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
+
 class Sales extends MX_Controller
 {
 	public function __construct()
@@ -158,6 +163,24 @@ class Sales extends MX_Controller
  		$data['module'] = "dashboard";
 		$data['page']   = "sales/print";
 
+		$renderer = new ImageRenderer(
+		    new RendererStyle(400),
+		    new ImagickImageBackEnd()
+		);
+
+		$id = $data['sale']->booking_id . '-' . $data['sale']->id;
+
+		$writer = new Writer($renderer);
+		$writer->writeFile("https://bus365.base-php.com/dashboard/sales/markedAsEmbarked/$id", 'qrcode.png');
+
 		echo Modules::run('template/layout', $data);
+ 	}
+
+ 	public function markedAsEmbarked($ticket)
+ 	{
+ 		$ticket = explode('-', $ticket);
+ 		$sale_id = $ticket[1];
+ 		$this->db->query("UPDATE sales SET embarked = 1 WHERE id = $sale_id");
+ 		echo 'success';
  	}
 }

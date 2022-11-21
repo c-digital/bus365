@@ -76,6 +76,10 @@
 
 				<hr>
 
+				<img width="80px" src="/qrcode.png" alt="">
+
+				<hr>
+
 				<img width="300px" src="<?php echo base_url($sale->logo); ?>" alt="">
 
 				<div class="font-weight-bold"><?php echo $sale->title; ?></div>
@@ -111,11 +115,13 @@
 					<tr>
 						<th><?php echo display('price') ?></th>
 						<th><?php echo display('payment_method') ?></th>
+						<th></th>
 					</tr>
 
 					<tr>
 						<td>BOB <?php echo $price; ?></td>
 						<td>Efectivo</td>
+						<td></td>
 					</tr>
 				</table>
 

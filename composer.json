@@ -1,6 +1,7 @@
 {
 	"name" : "dompdf/codeigniter",
   "require": {
-    "dompdf/dompdf" : "0.6.2"
+    "dompdf/dompdf" : "0.6.2",
+		"bacon/bacon-qr-code": "^2.0"
   }
 }

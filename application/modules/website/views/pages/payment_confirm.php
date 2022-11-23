@@ -185,7 +185,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 </div>
 <!-- paypal modal end -->
 <!-- Bank modal start -->
-    <div class="modal fade" id="bank_modal" tabindex="-1" role="dialog" style="margin:100px;">
+    <div class="modal fade" id="bank_modal" tabindex="-1" role="dialog">
     <div class="modal-md" role="document">
         <div class="modal-content"> 
 
@@ -244,9 +244,33 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                         <td class="text-right"><b><?php echo display('grand_total'); ?></b></td>
                         <th class="text-right"><?php echo (!empty($booking->price)?($booking->price-$booking->discount+$b_commission):0) ?><input type="hidden" name="amount" value="<?php echo (!empty($booking->price)?($booking->price-$booking->discount):0) ?>"></th>
                     </tr>
+
+                    <tr>
+                        <td>
+                            <label for="bank_id"><?php echo display('select_bank_name'); ?> *</label>
+
+                            <select name="bank_id" class="form-control" required>
+                               <option value="">Select Bank</option>
+                               <?php foreach ($bank as $b) {?>
+                                  <option value="<?php echo $b->id;?>"><?php echo $b->bank_name;?></option>
+                               <?php } ?>
+                           </select>
+                        </td>
+
+                        <td>
+                            <label for="trip_route_id"><?php echo display('enter_transaction_id'); ?>*</label>
+                            <input type="text" name="tran_num" class="form-control" placeholder="Transaction Id" required>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <button class="btn btn-block btn-primary"><?php echo display('confirm_booking') ?></button>
+                        </td>
+                    </tr>
                 </tbody>
             </table> 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                         <label for="bank_id" class="col-sm-4 col-form-label text-right"><?php echo display('select_bank_name'); ?> *</label>
                         <div class="col-sm-6">
                          
@@ -268,7 +292,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                             <input type="text" name="tran_num" class="form-control" placeholder="Transaction Id" required>
                         </div>
                     </div> 
-             <button class="btn btn-block btn-primary"><?php echo display('confirm_booking') ?></button>
+             <button class="btn btn-block btn-primary"><?php echo display('confirm_booking') ?></button> -->
               <?php echo form_close() ?>
             </div>
 

@@ -116,7 +116,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
             <?php } ?>
         <?php }else{} ?>
   </ul>
-   <?php echo form_open('mobile/search/checkout', array('class'=>'row', 'id'=>'checkoutFrms')); ?>
+   <?php echo form_open('website/search/checkout', array('class'=>'row', 'id'=>'checkoutFrms')); ?>
     <div class="col-sm-5">
 
 <div id="ps_inf">

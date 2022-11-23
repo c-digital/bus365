@@ -112,7 +112,6 @@ class Passengers extends MX_Controller
 				DATE(b.booking_date) = '$booking_date'
 				AND b.trip_id_no = '$trip_id'
 			LIMIT 1
->>>>>>> 9da2946 (Reportes)
 		";
 
 		$data['info'] = $this->db->query($sql)->row();

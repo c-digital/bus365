@@ -302,7 +302,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 <!-- Bank modal end -->
 
 <!-- Cash Modal start -->
-<div class="modal fade" id="cash_modal" tabindex="-1" role="dialog" style="margin:100px;">
+<div class="modal fade" id="cash_modal" tabindex="-1" role="dialog">
     <div class="modal-md" role="document">
         <div class="modal-content"> 
 

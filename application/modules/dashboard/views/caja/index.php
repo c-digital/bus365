@@ -154,10 +154,20 @@
           <div class="modal-body">
             <div class="form-group">
                 <label for="tipo_movimiento">Tipo de movimiento</label>
-                <select name="tipo_movimiento" class="form-control" required>
+                <select style="width: 100%" name="tipo_movimiento" class="form-control" required>
                     <option value=""></option>
                     <option value="Entrada">Entrada</option>
                     <option value="Salida">Salida</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="trip_assign_id">Número de viaje</label>
+                <select style="width: 100%" name="trip_assign_id" class="form-control" required>
+                    <option value=""></option>
+                    <?php foreach ($travels as $travel): ?>
+                        <option value="<?php echo $travel->id; ?>"><?php echo $travel->id; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 
@@ -168,7 +178,7 @@
 
             <div class="form-group">
                 <label for="metodo_pago">Método de pago</label>
-                <select name="metodo_pago" class="form-control" required>
+                <select style="width: 100%" name="metodo_pago" class="form-control" required>
                     <option value=""></option>
                     <option value="Efectivo">Efectivo</option>
                     <option value="Transferencia">Transferencia</option>

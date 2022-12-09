@@ -15,28 +15,6 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            <label for="viaje">Viaje</label>
-                            <select name="viaje" class="form-control">
-                                <option value="Todas">Todas</option>
-                                <?php foreach ($viajes as $viaje): ?>
-                                    <option <?php echo (isset($_GET['viaje']) && $_GET['viaje'] == $viaje->id) ? 'selected' : '' ?> value="<?php echo $viaje->id; ?>"><?php echo $viaje->id; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            <label for="cajero">Cajero</label>
-                            <select name="cajero" class="form-control">
-                                <option value="Todas">Todas</option>
-                                <?php foreach ($cajeros as $cajero): ?>
-                                    <option <?php echo (isset($_GET['cajero']) && $_GET['cajero'] == $cajero->cajero) ? 'selected' : '' ?> value="<?php echo $cajero->cajero; ?>"><?php echo $cajero->cajero; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                             <label for="empresa">Empresa</label>
                             <select name="empresa" class="form-control">
                                 <option value="Todas">Todas</option>
@@ -54,7 +32,9 @@
                                 <option <?php echo (isset($_GET['tipo']) && $_GET['tipo'] == 'Egreso') ? 'selected' : '' ?> value="Egreso">Egreso</option>
                             </select>
                         </div>
+                    </div>
 
+                    <div class="row" style="margin-top: 20px">
                         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                             <label for="metodo_pago">Método de pago</label>
                             <select name="metodo_pago" class="form-control">
@@ -85,15 +65,15 @@
 
                     <div class="row" style="margin-top: 20px">
                         <div class="col-sm-12" style="margin-bottom:30px">
-                            <a target="_blank" href="/reports/cash/pdf?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-danger">
+                            <a target="_blank" href="/reports/salesByCompany/pdf?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-danger">
                                 <i class="fa fa-file-pdf-o"></i> PDF
                             </a>
 
-                            <a target="_blank" href="/reports/cash/excel?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-success">
+                            <a target="_blank" href="/reports/salesByCompany/excel?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-success">
                                 <i class="fa fa-file-excel-o"></i> Excel
                             </a>
 
-                            <a target="_blank" href="/reports/cash/export?print=1&<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-default">
+                            <a target="_blank" href="/reports/salesByCompany/export?print=1&<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-sm btn-default">
                                 <i class="fa fa-print"></i> Imprimir
                             </a>
                         </div>
@@ -116,14 +96,6 @@
 
                             if (isset($_GET['tipo']) && $_GET['tipo'] != 'Todos') {
                                 $where[] = "tipo = '{$_GET['tipo']}'";
-                            }
-
-                            if (isset($_GET['cajero']) && $_GET['cajero'] != 'Todos') {
-                                $where[] = "cajero = '{$_GET['cajero']}'";
-                            }
-
-                            if (isset($_GET['viaje']) && $_GET['viaje'] != 'Todos') {
-                                $where[] = "viaje = '{$_GET['viaje']}'";
                             }
 
                             $where[] = '1';
@@ -228,7 +200,6 @@
                                     <th>Tipo</th>
                                     <th>Cajero</th>
                                     <th>Transacción</th>
-                                    <th>Viaje</th>
                                     <th>Monto</th>
                                     <th>Método</th>
                                 </tr>
@@ -240,7 +211,6 @@
                                         <td><?php echo $item->tipo_movimiento; ?></td>
                                         <td><?php echo $item->cajero; ?></td>
                                         <td><?php echo $item->concepto; ?></td>
-                                        <td><?php echo $item->trip_assign_id; ?></td>
                                         <td><?php echo number_format($item->monto, 2); ?></td>
                                         <td><?php echo $item->metodo_pago; ?></td>
                                     </tr>

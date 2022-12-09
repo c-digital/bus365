@@ -169,6 +169,10 @@
                             <li class="<?php echo (($this->uri->segment(1)=='reports' && $this->uri->segment(2)=='tickets')?"active":null) ?>">
                                 <a href="/reports/tickets"><?php echo display('ticket_sold_by_company') ?></a>
                             </li>
+
+                            <li class="<?php echo (($this->uri->segment(1)=='reports' && $this->uri->segment(2)=='tickets')?"active":null) ?>">
+                                <a href="/reports/salesByCompany"><?php echo display('sales_by_company') ?></a>
+                            </li>
                         <?php endif; ?>
                     </ul>
                 </li> 

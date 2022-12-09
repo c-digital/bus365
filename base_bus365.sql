@@ -2,30 +2,24 @@
 -- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 21-11-2022 a las 13:01:58
--- Versión del servidor: 5.7.40
--- Versión de PHP: 7.4.30
+-- Host: localhost:3306
+-- Generation Time: Dec 08, 2022 at 08:59 PM
+-- Server version: 5.7.40
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Base de datos: `base_bus365`
+-- Database: `base_bus`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `acc_account_name`
+-- Table structure for table `acc_account_name`
 --
 
 CREATE TABLE `acc_account_name` (
@@ -35,7 +29,7 @@ CREATE TABLE `acc_account_name` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `acc_account_name`
+-- Dumping data for table `acc_account_name`
 --
 
 INSERT INTO `acc_account_name` (`account_id`, `account_name`, `account_type`) VALUES
@@ -44,7 +38,7 @@ INSERT INTO `acc_account_name` (`account_id`, `account_name`, `account_type`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `acn_account_transaction`
+-- Table structure for table `acn_account_transaction`
 --
 
 CREATE TABLE `acn_account_transaction` (
@@ -59,7 +53,7 @@ CREATE TABLE `acn_account_transaction` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `agent_info`
+-- Table structure for table `agent_info`
 --
 
 CREATE TABLE `agent_info` (
@@ -83,7 +77,7 @@ CREATE TABLE `agent_info` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `agent_info`
+-- Dumping data for table `agent_info`
 --
 
 INSERT INTO `agent_info` (`agent_id`, `agent_first_name`, `agent_second_name`, `agent_company_name`, `agent_document_id`, `agent_pic_document`, `agent_picture`, `agent_phone`, `agent_mobile`, `agent_email`, `agent_address_line_1`, `agent_address_line_2`, `agent_address_city`, `agent_address_zip_code`, `agent_country`, `agent_commission`, `status`) VALUES
@@ -92,7 +86,7 @@ INSERT INTO `agent_info` (`agent_id`, `agent_first_name`, `agent_second_name`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `agent_ledger`
+-- Table structure for table `agent_ledger`
 --
 
 CREATE TABLE `agent_ledger` (
@@ -109,7 +103,7 @@ CREATE TABLE `agent_ledger` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `bank_info`
+-- Table structure for table `bank_info`
 --
 
 CREATE TABLE `bank_info` (
@@ -120,7 +114,7 @@ CREATE TABLE `bank_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `bank_info`
+-- Dumping data for table `bank_info`
 --
 
 INSERT INTO `bank_info` (`id`, `bank_name`, `account_name`, `account_number`) VALUES
@@ -129,7 +123,7 @@ INSERT INTO `bank_info` (`id`, `bank_name`, `account_name`, `account_number`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `bank_transaction`
+-- Table structure for table `bank_transaction`
 --
 
 CREATE TABLE `bank_transaction` (
@@ -148,7 +142,7 @@ CREATE TABLE `bank_transaction` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `booking_downtime`
+-- Table structure for table `booking_downtime`
 --
 
 CREATE TABLE `booking_downtime` (
@@ -158,7 +152,7 @@ CREATE TABLE `booking_downtime` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `booking_downtime`
+-- Dumping data for table `booking_downtime`
 --
 
 INSERT INTO `booking_downtime` (`id`, `reg_no`, `downtime`) VALUES
@@ -167,7 +161,7 @@ INSERT INTO `booking_downtime` (`id`, `reg_no`, `downtime`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `caja`
+-- Table structure for table `caja`
 --
 
 CREATE TABLE `caja` (
@@ -179,77 +173,69 @@ CREATE TABLE `caja` (
   `concepto` varchar(456) DEFAULT NULL,
   `saldo` varchar(456) DEFAULT NULL,
   `estado` varchar(456) DEFAULT NULL,
-  `cajero` varchar(256) DEFAULT NULL
+  `cajero` varchar(256) DEFAULT NULL,
+  `tipo` varchar(256) DEFAULT NULL,
+  `id_item` varchar(256) DEFAULT NULL,
+  `id_company` varchar(256) DEFAULT NULL,
+  `trip_assign_id` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `caja`
+-- Dumping data for table `caja`
 --
 
-INSERT INTO `caja` (`id`, `tipo_movimiento`, `fecha`, `monto`, `metodo_pago`, `concepto`, `saldo`, `estado`, `cajero`) VALUES
-(73, 'Salida', '2022-06-22 14:14:37', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja cerrada', 'Admin'),
-(74, 'Entrada', '2022-09-24 12:55:13', '100', 'Efectivo', 'Apertura de caja', '', 'Caja abierta', 'Admin'),
-(75, 'Entrada', '2022-09-24 12:55:26', '50', 'Efectivo', '123', '50', 'Caja abierta', 'Admin'),
-(76, 'Salida', '2022-09-24 12:57:25', '50', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
-(77, 'Entrada', '2022-09-27 21:00:58', '100', 'Efectivo', 'Apertura de caja', '', 'Caja abierta', 'Admin'),
-(78, 'Entrada', '2022-09-27 21:01:14', '200', 'Efectivo', 'teste', '200', 'Caja abierta', 'Admin'),
-(79, 'Salida', '2022-09-27 21:01:49', '50', 'Efectivo', 'teste', '150', 'Caja abierta', 'Admin'),
-(80, 'Salida', '2022-09-27 21:04:28', '150', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
-(82, 'Entrada', '2022-09-28 13:18:44', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin'),
-(83, 'Entrada', '2022-09-28 14:09:51', '250', 'Efectivo', 'teste', '350', 'Caja abierta', 'Admin'),
-(84, 'Entrada', '2022-09-28 14:10:10', '100', 'Transferencia', 'prueba', '450', 'Caja abierta', 'Admin'),
-(85, 'Salida', '2022-09-28 14:10:34', '100', 'Efectivo', 'PAgo', '350', 'Caja abierta', 'Admin'),
-(86, 'Salida', '2022-09-28 14:10:44', '350', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
-(87, 'Entrada', '2022-09-28 14:32:49', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin'),
-(88, 'Entrada', '2022-09-28 14:33:08', '100', 'Efectivo', '01', '200', 'Caja abierta', 'Admin'),
-(89, 'Entrada', '2022-09-28 14:33:25', '100', 'Efectivo', '02', '300', 'Caja abierta', 'Admin'),
-(90, 'Entrada', '2022-09-28 14:33:40', '100', 'Transferencia', '03', '400', 'Caja abierta', 'Admin'),
-(91, 'Entrada', '2022-09-28 14:33:57', '100', 'Cheque', '04', '500', 'Caja abierta', 'Admin'),
-(92, 'Salida', '2022-09-28 14:34:14', '50', 'Efectivo', '05', '450', 'Caja abierta', 'Admin'),
-(93, 'Salida', '2022-09-28 14:34:33', '50', 'Efectivo', '06', '400', 'Caja abierta', 'Admin'),
-(94, 'Salida', '2022-09-28 14:34:47', '400', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
-(95, 'Entrada', '2022-09-28 14:40:37', '10', 'Efectivo', 'Apertura de caja', '10', 'Caja abierta', 'Admin'),
-(97, 'Entrada', '2022-09-28 15:40:45', '15', 'Efectivo', 'Prueba 1', '25', 'Caja abierta', 'Admin'),
-(98, 'Salida', '2022-09-28 15:41:09', '5', 'Efectivo', 'Prueba 2', '20', 'Caja abierta', 'Admin'),
-(99, 'Entrada', '2022-09-28 15:41:32', '8', 'Transferencia', 'Prueba 3', '28', 'Caja abierta', 'Admin'),
-(100, 'Salida', '2022-09-28 15:41:50', '3', 'Transferencia', 'Prueba 4', '25', 'Caja abierta', 'Admin'),
-(101, 'Salida', '2022-09-28 15:42:57', '{\"efectivo\":\"10\",\"tarjeta\":\"0\",\"transferencia\":\"1\",\"cheque\":\"0\"}', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
-(102, 'Entrada', '2022-09-28 20:23:37', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin'),
-(103, 'Entrada', '2022-09-28 20:23:55', '100', 'Efectivo', 'teste 01', '200', 'Caja abierta', 'Admin'),
-(104, 'Entrada', '2022-09-28 20:24:20', '100', 'Efectivo', 'teste 02', '300', 'Caja abierta', 'Admin'),
-(105, 'Entrada', '2022-09-28 20:24:39', '100', 'Transferencia', 'teste 03\r\n', '400', 'Caja abierta', 'Admin'),
-(106, 'Entrada', '2022-09-28 20:25:03', '100', 'Cheque', 'teste 04', '500', 'Caja abierta', 'Admin'),
-(107, 'Salida', '2022-09-28 20:25:32', '50', 'Efectivo', 'salida teste', '450', 'Caja abierta', 'Admin'),
-(108, 'Salida', '2022-09-28 20:25:48', '50', 'Transferencia', 'teste', '400', 'Caja abierta', 'Admin'),
-(109, 'Salida', '2022-09-28 20:27:06', '{\"efectivo\":\"250\",\"tarjeta\":\"0\",\"transferencia\":\"50\",\"cheque\":\"50\"}', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin'),
-(110, 'Entrada', '2022-09-30 10:02:49', '50', 'Efectivo', 'Apertura de caja', '50', 'Caja abierta', 'Admin'),
-(111, 'Entrada', '2022-09-30 16:38:31', '26', 'Efectivo', 'Envio de mercadería #6', '76', 'Caja abierta', 'Admin'),
-(122, 'Entrada', '2022-10-17 16:54:27', '100', 'Efectivo', 'Venta de ticket #BYRX6HBV', '276', 'Caja abierta', ''),
-(123, 'Entrada', '2022-10-17 17:17:09', '100', 'Efectivo', 'Venta de ticket #BEU5BRSO', '376', 'Caja abierta', 'Admin'),
-(124, 'Entrada', '2022-10-17 17:46:32', '100', 'Efectivo', 'Venta de ticket #BDT7IUYH', '476', 'Caja abierta', 'Admin'),
-(125, 'Entrada', '2022-10-19 13:15:38', '100', 'Efectivo', 'Venta de ticket #BPACOH6V', '576', 'Caja abierta', ''),
-(126, 'Entrada', '2022-10-19 13:19:56', '100', 'Efectivo', 'Venta de ticket #BHYT99KR', '676', 'Caja abierta', 'Admin'),
-(127, 'Entrada', '2022-10-19 13:46:56', '100', 'Efectivo', 'Venta de ticket #BRG73NA8', '776', 'Caja abierta', 'Admin'),
-(128, 'Entrada', '2022-10-20 10:45:29', '100', 'Efectivo', 'Venta de ticket #BSSQCYV6', '876', 'Caja abierta', ''),
-(129, 'Entrada', '2022-10-20 10:47:38', '100', 'Efectivo', 'Venta de ticket #BYXG4CDD', '976', 'Caja abierta', ''),
-(130, 'Entrada', '2022-10-20 10:48:35', '100', 'Efectivo', 'Venta de ticket #BX663VI6', '1076', 'Caja abierta', ''),
-(131, 'Entrada', '2022-10-27 22:33:09', '100', 'Efectivo', 'Venta de ticket #BQOG49LB', '1176', 'Caja abierta', ''),
-(132, 'Entrada', '2022-11-10 18:55:57', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '1276', 'Caja abierta', ''),
-(133, 'Entrada', '2022-11-10 18:56:17', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '1376', 'Caja abierta', ''),
-(134, 'Entrada', '2022-11-10 18:56:22', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '1476', 'Caja abierta', ''),
-(135, 'Entrada', '2022-11-10 18:56:33', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '1576', 'Caja abierta', ''),
-(136, 'Entrada', '2022-11-10 18:56:45', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '1676', 'Caja abierta', ''),
-(137, 'Entrada', '2022-11-10 18:56:45', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '1776', 'Caja abierta', ''),
-(138, 'Entrada', '2022-11-10 18:56:45', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '1876', 'Caja abierta', ''),
-(139, 'Entrada', '2022-11-10 18:56:45', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '1976', 'Caja abierta', ''),
-(140, 'Entrada', '2022-11-10 18:56:46', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '2076', 'Caja abierta', ''),
-(141, 'Entrada', '2022-11-10 18:56:46', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '2176', 'Caja abierta', ''),
-(142, 'Entrada', '2022-11-10 18:56:46', '100', 'Efectivo', 'Venta de ticket #BZ7FSBHX', '2276', 'Caja abierta', '');
+INSERT INTO `caja` (`id`, `tipo_movimiento`, `fecha`, `monto`, `metodo_pago`, `concepto`, `saldo`, `estado`, `cajero`, `tipo`, `id_item`, `id_company`, `trip_assign_id`) VALUES
+(73, 'Salida', '2022-06-22 14:14:37', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja cerrada', 'Admin', NULL, NULL, '1', NULL),
+(74, 'Entrada', '2022-09-24 12:55:13', '100', 'Efectivo', 'Apertura de caja', '', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(75, 'Entrada', '2022-09-24 12:55:26', '50', 'Efectivo', '123', '50', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(76, 'Salida', '2022-09-24 12:57:25', '50', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin', NULL, NULL, '1', NULL),
+(77, 'Entrada', '2022-09-27 21:00:58', '100', 'Efectivo', 'Apertura de caja', '', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(78, 'Entrada', '2022-09-27 21:01:14', '200', 'Efectivo', 'teste', '200', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(79, 'Salida', '2022-09-27 21:01:49', '50', 'Efectivo', 'teste', '150', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(80, 'Salida', '2022-09-27 21:04:28', '150', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin', NULL, NULL, '1', NULL),
+(82, 'Entrada', '2022-09-28 13:18:44', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(83, 'Entrada', '2022-09-28 14:09:51', '250', 'Efectivo', 'teste', '350', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(84, 'Entrada', '2022-09-28 14:10:10', '100', 'Transferencia', 'prueba', '450', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(85, 'Salida', '2022-09-28 14:10:34', '100', 'Efectivo', 'PAgo', '350', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(86, 'Salida', '2022-09-28 14:10:44', '350', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin', NULL, NULL, '1', NULL),
+(87, 'Entrada', '2022-09-28 14:32:49', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(88, 'Entrada', '2022-09-28 14:33:08', '100', 'Efectivo', '01', '200', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(89, 'Entrada', '2022-09-28 14:33:25', '100', 'Efectivo', '02', '300', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(90, 'Entrada', '2022-09-28 14:33:40', '100', 'Transferencia', '03', '400', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(91, 'Entrada', '2022-09-28 14:33:57', '100', 'Cheque', '04', '500', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(92, 'Salida', '2022-09-28 14:34:14', '50', 'Efectivo', '05', '450', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(93, 'Salida', '2022-09-28 14:34:33', '50', 'Efectivo', '06', '400', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(94, 'Salida', '2022-09-28 14:34:47', '400', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin', NULL, NULL, '1', NULL),
+(95, 'Entrada', '2022-09-28 14:40:37', '10', 'Efectivo', 'Apertura de caja', '10', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(97, 'Entrada', '2022-09-28 15:40:45', '15', 'Efectivo', 'Prueba 1', '25', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(98, 'Salida', '2022-09-28 15:41:09', '5', 'Efectivo', 'Prueba 2', '20', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(99, 'Entrada', '2022-09-28 15:41:32', '8', 'Transferencia', 'Prueba 3', '28', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(100, 'Salida', '2022-09-28 15:41:50', '3', 'Transferencia', 'Prueba 4', '25', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(101, 'Salida', '2022-09-28 15:42:57', '{\"efectivo\":\"10\",\"tarjeta\":\"0\",\"transferencia\":\"1\",\"cheque\":\"0\"}', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin', NULL, NULL, '1', NULL),
+(102, 'Entrada', '2022-09-28 20:23:37', '100', 'Efectivo', 'Apertura de caja', '100', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(103, 'Entrada', '2022-09-28 20:23:55', '100', 'Efectivo', 'teste 01', '200', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(104, 'Entrada', '2022-09-28 20:24:20', '100', 'Efectivo', 'teste 02', '300', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(105, 'Entrada', '2022-09-28 20:24:39', '100', 'Transferencia', 'teste 03\r\n', '400', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(106, 'Entrada', '2022-09-28 20:25:03', '100', 'Cheque', 'teste 04', '500', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(107, 'Salida', '2022-09-28 20:25:32', '50', 'Efectivo', 'salida teste', '450', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(108, 'Salida', '2022-09-28 20:25:48', '50', 'Transferencia', 'teste', '400', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(109, 'Salida', '2022-09-28 20:27:06', '{\"efectivo\":\"250\",\"tarjeta\":\"0\",\"transferencia\":\"50\",\"cheque\":\"50\"}', NULL, 'Cierre de caja', '0', 'Caja cerrada', 'Admin', NULL, NULL, '1', NULL),
+(110, 'Entrada', '2022-09-30 10:02:49', '50', 'Efectivo', 'Apertura de caja', '50', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(111, 'Entrada', '2022-09-30 16:38:31', '26', 'Efectivo', 'Envio de mercadería #6', '76', 'Caja abierta', 'Admin', 'mercaderia', '6', '1', NULL),
+(122, 'Entrada', '2022-10-17 16:54:27', '100', 'Efectivo', 'Venta de ticket #BYRX6HBV', '276', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(123, 'Entrada', '2022-10-17 17:17:09', '100', 'Efectivo', 'Venta de ticket #BEU5BRSO', '376', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(124, 'Entrada', '2022-10-17 17:46:32', '100', 'Efectivo', 'Venta de ticket #BDT7IUYH', '476', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(125, 'Entrada', '2022-10-19 13:15:38', '100', 'Efectivo', 'Venta de ticket #BPACOH6V', '576', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(126, 'Entrada', '2022-10-19 13:19:56', '100', 'Efectivo', 'Venta de ticket #BHYT99KR', '676', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(127, 'Entrada', '2022-10-19 13:46:56', '100', 'Efectivo', 'Venta de ticket #BRG73NA8', '776', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(128, 'Entrada', '2022-10-20 10:45:29', '100', 'Efectivo', 'Venta de ticket #BSSQCYV6', '876', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(129, 'Entrada', '2022-10-20 10:47:38', '100', 'Efectivo', 'Venta de ticket #BYXG4CDD', '976', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL),
+(130, 'Entrada', '2022-10-20 10:48:35', '100', 'Efectivo', 'Venta de ticket #BX663VI6', '1076', 'Caja abierta', 'Admin', NULL, NULL, '1', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `companies`
+-- Table structure for table `companies`
 --
 
 CREATE TABLE `companies` (
@@ -262,7 +248,7 @@ CREATE TABLE `companies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `companies`
+-- Dumping data for table `companies`
 --
 
 INSERT INTO `companies` (`id`, `logo`, `nit`, `name`, `address`, `lane`) VALUES
@@ -271,7 +257,7 @@ INSERT INTO `companies` (`id`, `logo`, `nit`, `name`, `address`, `lane`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `couriers`
+-- Table structure for table `couriers`
 --
 
 CREATE TABLE `couriers` (
@@ -284,7 +270,7 @@ CREATE TABLE `couriers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `couriers`
+-- Dumping data for table `couriers`
 --
 
 INSERT INTO `couriers` (`id`, `nid`, `name`, `email`, `phone`, `date_birth`) VALUES
@@ -294,7 +280,7 @@ INSERT INTO `couriers` (`id`, `nid`, `name`, `email`, `phone`, `date_birth`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `email_config`
+-- Table structure for table `email_config`
 --
 
 CREATE TABLE `email_config` (
@@ -308,7 +294,7 @@ CREATE TABLE `email_config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `email_config`
+-- Dumping data for table `email_config`
 --
 
 INSERT INTO `email_config` (`id`, `protocol`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `mailtype`) VALUES
@@ -317,7 +303,7 @@ INSERT INTO `email_config` (`id`, `protocol`, `smtp_host`, `smtp_port`, `smtp_us
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `employee_history`
+-- Table structure for table `employee_history`
 --
 
 CREATE TABLE `employee_history` (
@@ -341,7 +327,7 @@ CREATE TABLE `employee_history` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `employee_history`
+-- Dumping data for table `employee_history`
 --
 
 INSERT INTO `employee_history` (`id`, `first_name`, `second_name`, `position`, `phone_no`, `email_no`, `document_id`, `document_pic`, `address_line_1`, `address_line_2`, `picture`, `blood_group`, `country`, `city`, `zip`, `status`, `is_assign`) VALUES
@@ -354,7 +340,7 @@ INSERT INTO `employee_history` (`id`, `first_name`, `second_name`, `position`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `employee_type`
+-- Table structure for table `employee_type`
 --
 
 CREATE TABLE `employee_type` (
@@ -365,7 +351,7 @@ CREATE TABLE `employee_type` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `employee_type`
+-- Dumping data for table `employee_type`
 --
 
 INSERT INTO `employee_type` (`type_id`, `type_name`, `details`, `status`) VALUES
@@ -377,7 +363,7 @@ INSERT INTO `employee_type` (`type_id`, `type_name`, `details`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `enquiry`
+-- Table structure for table `enquiry`
 --
 
 CREATE TABLE `enquiry` (
@@ -397,7 +383,7 @@ CREATE TABLE `enquiry` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fit_fitness`
+-- Table structure for table `fit_fitness`
 --
 
 CREATE TABLE `fit_fitness` (
@@ -409,7 +395,7 @@ CREATE TABLE `fit_fitness` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fleet_facilities`
+-- Table structure for table `fleet_facilities`
 --
 
 CREATE TABLE `fleet_facilities` (
@@ -420,7 +406,7 @@ CREATE TABLE `fleet_facilities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `fleet_facilities`
+-- Dumping data for table `fleet_facilities`
 --
 
 INSERT INTO `fleet_facilities` (`id`, `name`, `description`, `status`) VALUES
@@ -431,7 +417,7 @@ INSERT INTO `fleet_facilities` (`id`, `name`, `description`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fleet_registration`
+-- Table structure for table `fleet_registration`
 --
 
 CREATE TABLE `fleet_registration` (
@@ -450,7 +436,7 @@ CREATE TABLE `fleet_registration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `fleet_registration`
+-- Dumping data for table `fleet_registration`
 --
 
 INSERT INTO `fleet_registration` (`id`, `reg_no`, `fleet_type_id`, `engine_no`, `model_no`, `chasis_no`, `owner`, `owner_phone`, `company`, `ac_available`, `status`, `is_assign`) VALUES
@@ -460,7 +446,7 @@ INSERT INTO `fleet_registration` (`id`, `reg_no`, `fleet_type_id`, `engine_no`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fleet_type`
+-- Table structure for table `fleet_type`
 --
 
 CREATE TABLE `fleet_type` (
@@ -475,7 +461,7 @@ CREATE TABLE `fleet_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `fleet_type`
+-- Dumping data for table `fleet_type`
 --
 
 INSERT INTO `fleet_type` (`id`, `type`, `layout`, `lastseat`, `total_seat`, `seat_numbers`, `fleet_facilities`, `status`) VALUES
@@ -484,7 +470,7 @@ INSERT INTO `fleet_type` (`id`, `type`, `layout`, `lastseat`, `total_seat`, `sea
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ftn_fitness_period`
+-- Table structure for table `ftn_fitness_period`
 --
 
 CREATE TABLE `ftn_fitness_period` (
@@ -500,7 +486,7 @@ CREATE TABLE `ftn_fitness_period` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `how_to_use`
+-- Table structure for table `how_to_use`
 --
 
 CREATE TABLE `how_to_use` (
@@ -509,7 +495,7 @@ CREATE TABLE `how_to_use` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `how_to_use`
+-- Dumping data for table `how_to_use`
 --
 
 INSERT INTO `how_to_use` (`id`, `description`) VALUES
@@ -518,995 +504,703 @@ INSERT INTO `how_to_use` (`id`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `language`
+-- Table structure for table `language`
 --
 
 CREATE TABLE `language` (
   `id` int(11) NOT NULL,
   `phrase` varchar(100) NOT NULL,
   `english` varchar(255) NOT NULL,
-  `portuguese` text,
-  `spanish` text
+  `french` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `language`
+-- Dumping data for table `language`
 --
 
-INSERT INTO `language` (`id`, `phrase`, `english`, `portuguese`, `spanish`) VALUES
-(1, 'login', 'Login', 'Conecte-se', 'Acceso'),
-(2, 'email', 'Email', 'E-mail', 'Correo electrónico'),
-(3, 'password', 'Password', 'Senha', 'Contraseña'),
-(4, 'reset', 'Reset', 'Redefinir', 'Reiniciar'),
-(5, 'dashboard', 'Dashboard', 'Painel', 'Tablero'),
-(6, 'home', 'HOME', 'Inicio', 'Inicio'),
-(7, 'profile', 'Profile', 'Perfil', 'Perfil'),
-(8, 'profile_setting', 'Profile Setting', 'Configuração de perfil', 'Ajustes de perfil'),
-(9, 'firstname', 'First Name', 'Primeiro nome', 'Primer nombre'),
-(10, 'lastname', 'Last Name', 'Sobrenome', 'Apellido'),
-(11, 'about', 'About', 'Sobre', 'Sobre'),
-(12, 'preview', 'Preview', 'Visualizar', 'Avance'),
-(13, 'image', 'Image', 'Imagem', 'Imagen'),
-(14, 'save', 'Save', 'Salvar', 'Ahorrar'),
-(15, 'upload_successfully', 'Upload Successfully!', 'Carregar com sucesso!', '¡Cargar con éxito!'),
-(16, 'user_added_successfully', 'User Added Successfully!', 'Usuário adicionado com sucesso!', '¡Usuario agregado con éxito!'),
-(17, 'please_try_again', 'Please Try Again...', 'Por favor, tente novamente...', 'Inténtalo de nuevo...'),
-(18, 'inbox_message', 'Inbox Messages', 'Mensagens da caixa de entrada', 'Mensajes de la bandeja de entrada'),
-(19, 'sent_message', 'Sent Message', 'Mensagem enviada', 'Mensaje enviado'),
-(20, 'message_details', 'Message Details', 'detalhes da mensagem', 'Detalles del mensaje'),
-(21, 'new_message', 'New Message', 'Nova mensagem', 'Nuevo mensaje'),
-(22, 'receiver_name', 'Receiver Name', 'Nome do recebedor', 'Nombre del destinatario'),
-(23, 'sender_name', 'Sender Name', 'Nome do remetente', 'Nombre del remitente'),
-(24, 'subject', 'Subject', 'Sujeito', 'Tema'),
-(25, 'message', 'Message', 'Mensagem', 'Mensaje'),
-(26, 'message_sent', 'Message Sent!', 'Mensagem enviada!', '¡Mensaje enviado!'),
-(27, 'ip_address', 'IP Address', 'Endereço de IP', 'Dirección IP'),
-(28, 'last_login', 'Last Login', 'Último Login', 'Último acceso'),
-(29, 'last_logout', 'Last Logout', 'Último logout', 'Último cierre de sesión'),
-(30, 'status', 'Status', 'Status', 'Estado'),
-(31, 'delete_successfully', 'Delete Successfully!', 'Excluir com sucesso!', '¡Eliminar con éxito!'),
-(32, 'send', 'Send', 'Mandar', 'Enviar'),
-(33, 'date', 'Date', 'Encontro', 'Fecha'),
-(34, 'action', 'Action', 'Ação', 'Acción'),
-(35, 'sl_no', 'SL No.', 'Sim. Não.', 'Si. No.'),
-(36, 'are_you_sure', 'Are You Sure ? ', 'Tem certeza ?', 'Está seguro ?'),
-(37, 'application_setting', 'Application Setting', 'Configuração do aplicativo', 'Configuración de la aplicación'),
-(38, 'application_title', 'Application Title', 'Título da Candidatura', 'Titulo de la aplicación'),
-(39, 'address', 'Address', 'Endereço', 'Dirección'),
-(40, 'phone', 'Phone', 'Telefone', 'Teléfono'),
-(41, 'favicon', 'Favicon', 'Favicon', 'icono de favoritos'),
-(42, 'logo', 'Logo', 'Logotipo', 'Logo'),
-(43, 'language', 'Language', 'Linguagem', 'Idioma'),
-(44, 'left_to_right', 'Left To Right', 'Da esquerda para direita', 'De izquierda a derecha'),
-(45, 'right_to_left', 'Right To Left', 'Direita para esquerda', 'De derecha a izquierda'),
-(46, 'footer_text', 'Footer Text', 'Texto de rodapé', 'Texto de pie de página'),
-(47, 'site_align', 'Application Alignment', 'Alinhamento de aplicativos', 'Alineación de aplicaciones'),
-(48, 'welcome_back', 'Welcome Back!', 'Bem vindo de volta!', '¡Bienvenido de nuevo!'),
-(49, 'please_contact_with_admin', 'Please Contact With Admin', 'Entre em contato com o administrador', 'Póngase en contacto con el administrador'),
-(50, 'incorrect_email_or_password', 'Incorrect Email/Password', 'E-mail/senha incorretos', 'Correo electrónico/contraseña incorrectos'),
-(51, 'select_option', 'Select Option', 'Selecionar opção', 'Seleccionar opción'),
-(52, 'ftp_setting', 'Data Synchronize [FTP Setting]', 'Sincronização de dados [Configuração FTP]', 'Sincronización de datos [Configuración de FTP]'),
-(53, 'hostname', 'Host Name', 'Nome de anfitrião', 'Nombre de host'),
-(54, 'username', 'User Name', 'Nome de usuário', 'Nombre de usuario'),
-(55, 'ftp_port', 'FTP Port', 'Porta FTP', 'Puerto FTP'),
-(56, 'ftp_debug', 'FTP Debug', 'Depuração FTP', 'Depuración FTP'),
-(57, 'project_root', 'Project Root', 'Raiz do Projeto', 'Raíz del proyecto'),
-(58, 'update_successfully', 'Update Successfully', 'Atualizar com sucesso', 'Actualizar correctamente'),
-(59, 'save_successfully', 'Save Successfully!', 'Salvo com sucesso!', 'Guardar con éxito!'),
-(60, 'internet_connection', 'Internet Connection', 'Conexão de internet', 'Conexión a Internet'),
-(61, 'ok', 'Ok', 'OK', 'OK'),
-(62, 'not_available', 'Not Available', 'Não disponível', 'No disponible'),
-(63, 'available', 'Available', 'Disponível', 'Disponible'),
-(64, 'outgoing_file', 'Outgoing File', 'Arquivo de saída', 'Archivo saliente'),
-(65, 'incoming_file', 'Incoming File', 'Arquivo de entrada', 'Archivo entrante'),
-(66, 'data_synchronize', 'Data Synchronize', 'Sincronizar dados', 'Sincronizar datos'),
-(67, 'unable_to_upload_file_please_check_configuration', 'Unable to upload file! please check configuration', 'Não foi possível fazer o upload do arquivo! por favor verifique a configuração', '¡Incapaz de cargar el archivo! por favor revise la configuración'),
-(68, 'please_configure_synchronizer_settings', 'Please configure synchronizer settings', 'Por favor, defina as configurações do sincronizador', 'Configure los ajustes del sincronizador'),
-(69, 'download_successfully', 'Download Successfully', 'Baixar com sucesso', 'Descargar con éxito'),
-(70, 'unable_to_download_file_please_check_configuration', 'Unable to download file! please check configuration', 'Não foi possível baixar o arquivo! por favor verifique a configuração', '¡No se puede descargar el archivo! por favor revise la configuración'),
-(71, 'data_import_first', 'Data Import First', 'Importar dados primeiro', 'Importación de datos primero'),
-(72, 'data_import_successfully', 'Data Import Successfully!', 'Importação de dados com sucesso!', '¡Importación de datos exitosa!'),
-(73, 'unable_to_import_data_please_check_config_or_sql_file', 'Unable to import data! please check configuration / SQL file.', 'Não foi possível importar dados! verifique a configuração/arquivo SQL.', '¡No se pueden importar datos! por favor verifique la configuración/archivo SQL.'),
-(74, 'download_data_from_server', 'Download Data from Server', 'Baixar dados do servidor', 'Descargar datos del servidor'),
-(75, 'data_import_to_database', 'Data Import To Database', 'Importação de dados para banco de dados', 'Importación de datos a la base de datos'),
-(76, 'data_upload_to_server', 'Data Upload to Server', 'Upload de dados para o servidor', 'Carga de datos al servidor'),
-(77, 'please_wait', 'Please Wait...', 'Por favor, aguarde...', 'Espere por favor...'),
-(78, 'ooops_something_went_wrong', ' Ooops something went wrong...', ' Opa, algo deu errado...', ' Vaya, algo salió mal...'),
-(79, 'module_permission_list', 'Module Permission List', 'Lista de Permissões do Módulo', 'Lista de permisos del módulo'),
-(80, 'user_permission', 'User Permission', 'Permissão do usuário', 'Permiso de usuario'),
-(81, 'add_module_permission', 'Add Module Permission', 'Adicionar permissão de módulo', 'Añadir permiso de módulo'),
-(82, 'module_permission_added_successfully', 'Module Permission Added Successfully!', 'Permissão do módulo adicionada com sucesso!', '¡Permiso de módulo agregado con éxito!'),
-(83, 'update_module_permission', 'Update Module Permission', 'Atualizar permissão do módulo', 'Actualizar permiso del módulo'),
-(84, 'download', 'Download', 'Download', 'Descargar'),
-(85, 'module_name', 'Module Name', 'nome do módulo', 'Nombre del módulo'),
-(86, 'create', 'Create', 'Crio', 'Crear'),
-(87, 'read', 'Read', 'Ler', 'Leer'),
-(88, 'update', 'Update', 'Atualizar', 'Actualizar'),
-(89, 'delete', 'Delete', 'Excluir', 'Borrar'),
-(90, 'module_list', 'Module List', 'Lista de Módulos', 'Lista de módulos'),
-(91, 'add_module', 'Add Module', 'Adicionar módulo', 'Agregar módulo'),
-(92, 'directory', 'Module Direcotory', 'Diretório do Módulo', 'Directorio de módulos'),
-(93, 'description', 'Description', 'Descrição', 'Descripción'),
-(94, 'image_upload_successfully', 'Image Upload Successfully!', 'Carregamento de imagem com sucesso!', 'Carga de imagen con éxito!'),
-(95, 'module_added_successfully', 'Module Added Successfully', 'Módulo adicionado com sucesso', 'Módulo agregado con éxito'),
-(96, 'inactive', 'Inactive', 'Inativo', 'Inactivo'),
-(97, 'active', 'Active', 'Ativo', 'Activo'),
-(98, 'user_list', 'User List', 'Lista de usuários', 'Lista de usuarios'),
-(99, 'see_all_message', 'See All Messages', 'Ver todas as mensagens', 'Ver todos los mensajes'),
-(100, 'setting', 'Setting', 'Contexto', 'Ajuste'),
-(101, 'logout', 'LOGOUT', 'SAIR', 'CERRAR SESIÓN'),
-(102, 'admin', 'Admin', 'Administrador', 'Administración'),
-(103, 'add_user', 'Add User', 'Adicionar usuário', 'Agregar usuario'),
-(104, 'user', 'User', 'Do utilizador', 'Usuario'),
-(105, 'module', 'Module', 'Módulo', 'Módulo'),
-(106, 'new', 'New', 'Novo', 'Nuevo'),
-(107, 'inbox', 'Inbox', 'Caixa de entrada', 'Bandeja de entrada'),
-(108, 'sent', 'Sent', 'Enviado', 'Enviado'),
-(109, 'synchronize', 'Synchronize', 'Sincronizar', 'Sincronizar'),
-(110, 'data_synchronizer', 'Data Synchronizer', 'Sincronizador de dados', 'Sincronizador de datos'),
-(111, 'module_permission', 'Module Permission', 'Permissão do módulo', 'Permiso de módulo'),
-(112, 'backup_now', 'Backup Now!', 'Faça backup agora!', '¡Copia ahora!'),
-(113, 'restore_now', 'Restore Now!', 'Restaurar agora!', '¡Restaura ahora!'),
-(114, 'backup_and_restore', 'Data Backup', 'Backup de dados', 'Copias de seguridad'),
-(115, 'captcha', 'Captcha Word', 'Palavra Captcha', 'Palabra captcha'),
-(116, 'database_backup', 'Database Backup', 'Backup de banco de dados', 'Copia de seguridad de la base de datos'),
-(117, 'restore_successfully', 'Restore Successfully', 'Restaurar com sucesso', 'Restaurar con éxito'),
-(118, 'backup_successfully', 'Backup Successfully', 'Backup com sucesso', 'Copia de seguridad con éxito'),
-(119, 'filename', 'File Name', 'Nome do arquivo', 'Nombre del archivo'),
-(120, 'file_information', 'File Information', 'Informações do arquivo', 'Informacion del archivo'),
-(121, 'size', 'Size', 'Tamanho', 'Tamaño'),
-(122, 'backup_date', 'Backup Date', 'Data de Backup', 'Fecha de copia de seguridad'),
-(123, 'overwrite', 'Overwrite', 'Substituir', 'Sobrescribir'),
-(124, 'invalid_file', 'Invalid File!', 'Arquivo inválido!', '¡Archivo inválido!'),
-(125, 'invalid_module', 'Invalid Module', 'Módulo inválido', 'Módulo no válido'),
-(126, 'remove_successfully', 'Remove Successfully!', 'Remover com sucesso!', 'Eliminar con éxito!'),
-(127, 'install', 'Install', 'Instalar', 'Instalar'),
-(128, 'uninstall', 'Uninstall', 'Desinstalar', 'Desinstalar'),
-(129, 'tables_are_not_available_in_database', 'Tables are not available in database.sql', 'As tabelas não estão disponíveis em database.sql', 'Las tablas no están disponibles en base de datos.sql'),
-(130, 'no_tables_are_registered_in_config', 'No tables are registerd in config.php', 'Nenhuma tabela está registrada em config.php', 'No hay tablas registradas en config.php'),
-(131, 'enquiry', 'Enquiry', 'Investigação', 'Consulta'),
-(132, 'read_unread', 'Read/Unread', 'Lido/Não lido', 'Leído/No leído'),
-(133, 'enquiry_information', 'Enquiry Information', 'Informações de consulta', 'Información de consulta'),
-(134, 'user_agent', 'User Agent', 'Agente de usuário', 'Agente de usuario'),
-(135, 'checked_by', 'Checked By', 'Verificado por', 'Revisado por'),
-(136, 'new_enquiry', 'New Enquiry', 'Nova consulta', 'Nueva consulta'),
-(137, 'fleet', 'Fleet Management', 'Gestão de Frotas', 'Gestión de flotas'),
-(138, 'fleet_type', 'Fleet Type', 'Tipo de Frota', 'Tipo de flota'),
-(139, 'add', 'Add', 'Adicionar', 'Agregar'),
-(140, 'list', 'List', 'Lista', 'Lista'),
-(141, 'fleet_facilities', 'Fleet Facilities', 'Instalações da frota', 'Instalaciones de flota'),
-(142, 'fleet_registration', 'Vehicles', 'Veículos', 'vehículos'),
-(143, 'reg_no', 'Registration No.', 'Número de registro.', 'Número de registro.'),
-(144, 'model_no', 'Model No.', 'Nº do modelo', 'N º de Modelo.'),
-(145, 'engine_no', 'Engine No.', 'Nº do motor', 'Sin motor.'),
-(146, 'chasis_no', 'Chasis No.', 'Nº do chassi', 'Chasis No.'),
-(147, 'total_seat', 'Total Seat', 'Lugar total', 'Asiento total'),
-(148, 'seat_numbers', 'Seat Number', 'Número do assento', 'Número de asiento'),
-(149, 'owner', 'Owner', 'Proprietário', 'Dueño'),
-(150, 'company', 'Company Name', 'nome da empresa', 'nombre de empresa'),
-(151, 'trip', 'Trip Management', 'Gerenciamento de viagens', 'Gestión de viajes'),
-(152, 'location', 'Destination', 'Destino', 'Destino'),
-(153, 'route', 'Route', 'Rota', 'Ruta'),
-(154, 'assign', 'Assign', 'Atribuir', 'Asignar'),
-(155, 'close', 'Close Trip', 'Fechar viagem', 'Cerrar viaje'),
-(156, 'location_name', 'Destination Name', 'Nome do destino', 'Nombre del destino'),
-(157, 'google_map', 'Google Map', 'Mapa do Google', 'Mapa de Google'),
-(158, 'start_point', 'Start Point', 'Ponto de partida', 'Punto de partida'),
-(159, 'end_point', 'End Point', 'Ponto final', 'punto final'),
-(160, 'route_name', 'Route Name', 'Nome da rota', 'Nombre de ruta'),
-(161, 'distance', 'Distance', 'Distância', 'Distancia'),
-(162, 'approximate_time', 'Approximate Time', 'Tempo aproximado', 'Tiempo aproximado'),
-(163, 'stoppage_points', 'Stoppage Points', 'Pontos de Parada', 'Puntos de Paro'),
-(164, 'fleet_registration_no', 'Fleet Registration No.', 'Nº de registro da frota', 'Registro de flota No.'),
-(165, 'start_date', 'Start Date', 'Data de início', 'Fecha de inicio'),
-(166, 'end_date', 'End Date', 'Data final', 'Fecha final'),
-(167, 'driver_name', 'Driver Name', 'Nome do motorista', 'Nombre del conductor'),
-(168, 'assistants_ids', 'Assistants', 'Assistentes', 'asistentes'),
-(169, 'sold_ticket', 'Sold Ticket', 'Bilhete Vendido', 'Boleto vendido'),
-(170, 'total_income', 'Total Income', 'Renda total', 'Ingresos totales'),
-(171, 'total_expense', 'Total Expense', 'Custo total', 'Gasto total'),
-(172, 'total_fuel', 'Total Fuel', 'Combustível Total', 'Combustible total'),
-(173, 'trip_comment', 'Trip Comment', 'Comentário de viagem', 'Comentario de viaje'),
-(174, 'closed_by', 'Closed by', 'Fechado por', 'Cerrado por'),
-(175, 'ticket', 'Ticket Management', 'Gerenciamento de tickets', 'Gestión de entradas'),
-(176, 'passenger', 'Passenger', 'Passageiro', 'Pasajero'),
-(177, 'middle_name', 'Middle Name', 'Nome do meio', 'Segundo nombre'),
-(178, 'date_of_birth', 'Date of Birth', 'Data de nascimento', 'Fecha de nacimiento'),
-(179, 'passenger_id', 'Passenger ID.', 'Identificação do passageiro.', 'Identificación del pasajero.'),
-(180, 'address_line_1', 'Address Line 1', 'Endereço Linha 1', 'Dirección Línea 1'),
-(181, 'address_line_2', 'Address Line 2', 'endereço linha 2', 'Línea de dirección 2'),
-(182, 'zip_code', 'Zip Code', 'Código postal', 'Código postal'),
-(183, 'name', 'Name', 'Nome', 'Nombre'),
-(184, 'ac_available', 'AC available', 'AC disponível', 'CA disponible'),
-(185, 'trip_id', 'Trip ID.', 'ID da viagem.', 'Identificación de viaje.'),
-(186, 'book', 'Book', 'Livro', 'Libro'),
-(187, 'booking_id', 'Booking ID.', 'Identificação da reserva.', 'Identificación de la reserva.'),
-(188, 'available_seats', 'Available Seats', 'Assentos disponíveis', 'Asientos disponibles'),
-(189, 'select_seats', 'Select Seats', 'Selecionar assentos', 'Seleccionar asientos'),
-(190, 'time', 'Time', 'Tempo', 'Tiempo'),
-(191, 'offer_code', 'Offer Code', 'Código de oferta', 'Ofrece código'),
-(192, 'price', 'Price', 'Preço', 'Precio'),
-(193, 'discount', 'Discount', 'Desconto', 'Descuento'),
-(194, 'request_facilities', 'Request Facilities', 'Solicitar instalações', 'Solicitar Instalaciones'),
-(195, 'pickup_location', 'Pickup Location', 'Local de Recolha', 'Lugar de recogida'),
-(196, 'drop_location', 'Drop Location', 'Local de soltar', 'Ubicación de entrega'),
-(197, 'amount', 'Amount', 'Quantia', 'Monto'),
-(198, 'invalid_passenger_id', 'Invalid Passenger ID', 'ID de passageiro inválido', 'Identificación de pasajero no válida'),
-(199, 'invalid_input', 'Invalid Input', 'entrada inválida', 'entrada inválida'),
-(200, 'booking_date', 'Booking Date', 'Data da reserva', 'Fecha para registrarse'),
-(201, 'cancelation_fees', 'Cancelation Fees', 'Taxas de cancelamento', 'Tarifas de cancelación'),
-(202, 'causes', 'Causes', 'Causas', 'Causas'),
-(203, 'comment', 'Comment', 'Comente', 'Comentario'),
-(204, 'refund', 'Refund', 'Reembolso', 'Reembolso'),
-(205, 'refund_by', 'Refund by', 'Reembolso por', 'Reembolso por'),
-(206, 'feedback', 'Feedback', 'Comentários', 'Retroalimentación'),
-(207, 'rating', 'Rating', 'Avaliação', 'Clasificación'),
-(208, 'blood_group', 'Blood Group', 'Grupo sanguíneo', 'Grupo sanguíneo'),
-(209, 'religion', 'Religion', 'Religião', 'Religión'),
-(210, 'details', 'Details', 'Detalhes', 'Detalles'),
-(211, 'type_name', 'Type Name', 'Digite o nome', 'Escribe un nombre'),
-(212, 'view_details', 'View Details', 'Ver detalhes', 'Ver detalles'),
-(213, 'document_pic', 'Document Picture', 'Imagem do documento', 'Imagen del documento'),
-(214, 'fitness_list', 'Fitness List', 'Lista de condicionamento físico', 'Lista de ejercicios'),
-(215, 'fitness_name', 'Fitness Name', 'Nome do Fitness', 'Nombre de condición física'),
-(216, 'fitness_description', 'Description', 'Descrição', 'Descripción'),
-(217, 'successfully_updated', 'Your Data Successfully Updated', 'Seus dados atualizados com sucesso', 'Tus datos actualizados con éxito'),
-(218, 'fitness_period', 'Fitness Period List', 'Lista de períodos de condicionamento físico', 'Lista de periodos de fitness'),
-(219, 'fitness_id', 'Fitness Name', 'Nome do Fitness', 'Nombre de condición física'),
-(220, 'vehicle_id', 'Vehicles No', 'Veículos Não', 'Número de vehículos'),
-(221, 'start_milage', 'Start Milage', 'Iniciar milhagem', 'Kilometraje inicial'),
-(222, 'end_milage', 'End Milage', 'Fim da milhagem', 'Kilometraje final'),
-(223, 'agent', 'Agent', 'Agente', 'Agente'),
-(224, 'agent_first_name', 'First Name', 'Primeiro nome', 'Primer nombre'),
-(225, 'agent_second_name', 'LastName', 'Sobrenome', 'Apellido'),
-(226, 'agent_company_name', 'Company Name', 'nome da empresa', 'nombre de empresa'),
-(227, 'agent_document_id', 'Document ID', 'ID do documento', 'Identificación del documento'),
-(228, 'agent_pic_document', 'Document File', 'Arquivo de documento', 'archivo de documento'),
-(229, 'agent_phone', 'Phone', 'Telefone', 'Teléfono'),
-(230, 'agent_mobile', 'Mobile No', 'Número do celular', 'No móviles'),
-(231, 'agent_email', 'Email', 'E-mail', 'Correo electrónico'),
-(232, 'agent_address_line_1', 'Address Line 1', 'Endereço Linha 1', 'Dirección Línea 1'),
-(233, 'agent_address_line_2', 'Address Line 2', 'endereço linha 2', 'Línea de dirección 2'),
-(234, 'agent_address_city', 'City', 'Cidade', 'Ciudad'),
-(235, 'agent_address_zip_code', 'ZIP', 'fecho eclair', 'CÓDIGO POSTAL'),
-(236, 'agent_country', 'Country', 'País', 'País'),
-(237, 'sl', 'SL', 'SL', 'SL'),
-(238, 'route_id', 'Route Name', 'Nome da rota', 'Nombre de ruta'),
-(239, 'vehicle_type_id', 'Vehicle Type', 'Tipo de Veículo', 'tipo de vehiculo'),
-(240, 'group_price_per_person', 'Group Price Per Person', 'Preço de grupo por pessoa', 'Precio de grupo por persona'),
-(241, 'group_size', 'Group Members', 'Membros do grupo', 'Miembros del grupo'),
-(242, 'successfully_saved', 'Your Data Successfully Saved', 'Seus dados salvos com sucesso', 'Tus datos guardados con éxito'),
-(243, 'account', 'Account', 'Conta', 'Cuenta'),
-(244, 'account_name', 'Account Name', 'Nome da conta', 'Nombre de la cuenta'),
-(245, 'account_type', 'Account Type', 'tipo de conta', 'Tipo de cuenta'),
-(246, 'account_transaction', 'Account Transaction', 'Transação da conta', 'Transacción de cuenta'),
-(247, 'account_id', 'Account Name', 'Nome da conta', 'Nombre de la cuenta'),
-(248, 'transaction_description', 'Transaction Details', 'Detalhes da transação', 'Detalles de la transacción'),
-(249, 'pass_book_id', 'Passenger ID', 'ID do passageiro', 'Identificación del pasajero'),
-(250, 'payment_id', 'Payment ID', 'Código de pagamento', 'ID de pago'),
-(251, 'create_by_id', 'Created By', 'Criado por', 'Creado por'),
-(252, 'offer', 'Offer', 'Oferta', 'Oferta'),
-(253, 'offer_name', 'Offer Name', 'Nome da oferta', 'Nombre de la oferta'),
-(254, 'offer_start_date', 'Offer Start Date', 'Data de início da oferta', 'Fecha de inicio de la oferta'),
-(255, 'offer_end_date', 'Offer Last Date', 'Última data da oferta', 'Última fecha de la oferta'),
-(256, 'offer_discount', 'Discount', 'Desconto', 'Descuento'),
-(257, 'offer_terms', 'Offer Terms', 'Termos da oferta', 'Condiciones de la oferta'),
-(258, 'offer_route_id', 'Route Name', 'Nome da rota', 'Nombre de ruta'),
-(259, 'offer_number', 'Offer Number', 'Número da oferta', 'Número de oferta'),
-(260, 'seat_number', 'Seat No', 'Nº do assento', 'Número de asiento'),
-(261, 'available_seat', 'Available Seat', 'Assento disponível', 'Asiento disponible'),
-(262, 'owner_name', 'Owner Name', 'Nome do proprietário', 'Nombre del dueño'),
-(263, 'agent_picture', 'Picture', 'Foto', 'Imagen'),
-(264, 'account_add', 'Add Account', 'Adicionar Conta', 'Añadir cuenta'),
-(265, 'add_agent', 'Add Agent', 'Adicionar agente', 'Agregar agente'),
-(266, 'hr', 'Human Resource', 'Recursos humanos', 'Recursos humanos'),
-(267, 'create_hr', 'Add Employee', 'Adicionar funcionário', 'Agregar empleado'),
-(268, 'serial', 'Sl', 'Sl', 'SL'),
-(269, 'position', 'Position', 'Posição', 'Posición'),
-(270, 'phone_no', 'Phone No', 'Telefone não', 'Telefono no'),
-(271, 'email_no', 'Email', 'E-mail', 'Correo electrónico'),
-(272, 'picture', 'Picture', 'Foto', 'Imagen'),
-(273, 'first_name', 'First Name', 'Primeiro nome', 'Primer nombre'),
-(274, 'second_name', 'Last Name', 'Sobrenome', 'Apellido'),
-(275, 'document_id', 'Documet Id', 'ID do documento', 'ID del documento'),
-(276, 'country', 'Country', 'País', 'País'),
-(277, 'city', 'City', 'Cidade', 'Ciudad'),
-(278, 'zip', 'Zip ', 'Fecho eclair', 'Cremallera'),
-(279, 'add_passenger', 'Add Passenger', 'Adicionar passageiro', 'Agregar Pasajero'),
-(280, 'search_tiket', 'Search Ticket', 'Pesquisar ticket', 'Buscar boleto'),
-(281, 'slogan', 'Slogan', 'Slogan', 'Eslogan'),
-(282, 'website', 'Website', 'Local na rede Internet', 'Sitio web'),
-(283, 'submit', 'Submit', 'Enviar', 'Enviar'),
-(284, 'customer_service', 'Customer Service', 'Atendimento ao Cliente', 'Servicio al Cliente'),
-(285, 'submit_successfully', 'Submit Successfully!', 'Enviar com sucesso!', '¡Envíe con éxito!'),
-(286, 'add_to_website', 'Add to Website', 'Adicionar ao site', 'Agregar al sitio web'),
-(287, 'our_customers_say', 'Our Customers Say', 'Nossos clientes dizem', 'Nuestros Clientes Dicen'),
-(288, 'website_status', 'Website Status', 'Status do site', 'Estado del sitio web'),
-(289, 'title', 'Title', 'Título', 'Título'),
-(290, 'total_fleet', 'Total Fleet', 'Frota Total', 'Flota total'),
-(291, 'total_passenger', 'Total Passenger', 'Total de Passageiros', 'Pasajero total'),
-(292, 'travel_sub_slogan', 'It is not down in any map; true place naver are.', 'Não está em nenhum mapa; verdadeiro lugar naver são.', 'No está abajo en ningún mapa; verdadero lugar naver son.'),
-(293, 'login', 'Login', 'Conecte-se', 'Acceso'),
-(294, 'email', 'Email', 'E-mail', 'Correo electrónico'),
-(295, 'password', 'Password', 'Senha', 'Contraseña'),
-(296, 'reset', 'Reset', 'Redefinir', 'Reiniciar'),
-(297, 'dashboard', 'Dashboard', 'Painel', 'Tablero'),
-(298, 'home', 'HOME', 'Inicio', 'Inicio'),
-(299, 'profile', 'Profile', 'Perfil', 'Perfil'),
-(300, 'profile_setting', 'Profile Setting', 'Configuração de perfil', 'Ajustes de perfil'),
-(301, 'firstname', 'First Name', 'Primeiro nome', 'Primer nombre'),
-(302, 'lastname', 'Last Name', 'Sobrenome', 'Apellido'),
-(303, 'about', 'About', 'Sobre', 'Sobre'),
-(304, 'preview', 'Preview', 'Visualizar', 'Avance'),
-(305, 'image', 'Image', 'Imagem', 'Imagen'),
-(306, 'save', 'Save', 'Salvar', 'Ahorrar'),
-(307, 'upload_successfully', 'Upload Successfully!', 'Carregar com sucesso!', '¡Cargar con éxito!'),
-(308, 'user_added_successfully', 'User Added Successfully!', 'Usuário adicionado com sucesso!', '¡Usuario agregado con éxito!'),
-(309, 'please_try_again', 'Please Try Again...', 'Por favor, tente novamente...', 'Inténtalo de nuevo...'),
-(310, 'inbox_message', 'Inbox Messages', 'Mensagens da caixa de entrada', 'Mensajes de la bandeja de entrada'),
-(311, 'sent_message', 'Sent Message', 'Mensagem enviada', 'Mensaje enviado'),
-(312, 'message_details', 'Message Details', 'detalhes da mensagem', 'Detalles del mensaje'),
-(313, 'new_message', 'New Message', 'Nova mensagem', 'Nuevo mensaje'),
-(314, 'receiver_name', 'Receiver Name', 'Nome do recebedor', 'Nombre del destinatario'),
-(315, 'sender_name', 'Sender Name', 'Nome do remetente', 'Nombre del remitente'),
-(316, 'subject', 'Subject', 'Sujeito', 'Tema'),
-(317, 'message', 'Message', 'Mensagem', 'Mensaje'),
-(318, 'message_sent', 'Message Sent!', 'Mensagem enviada!', '¡Mensaje enviado!'),
-(319, 'ip_address', 'IP Address', 'Endereço de IP', 'Dirección IP'),
-(320, 'last_login', 'Last Login', 'Último Login', 'Último acceso'),
-(321, 'last_logout', 'Last Logout', 'Último logout', 'Último cierre de sesión'),
-(322, 'status', 'Status', 'Status', 'Estado'),
-(323, 'delete_successfully', 'Delete Successfully!', 'Excluir com sucesso!', '¡Eliminar con éxito!'),
-(324, 'send', 'Send', 'Mandar', 'Enviar'),
-(325, 'date', 'Date', 'Encontro', 'Fecha'),
-(326, 'action', 'Action', 'Ação', 'Acción'),
-(327, 'sl_no', 'SL No.', 'Sim. Não.', 'Si. No.'),
-(328, 'are_you_sure', 'Are You Sure ? ', 'Tem certeza ?', 'Está seguro ?'),
-(329, 'application_setting', 'Application Setting', 'Configuração do aplicativo', 'Configuración de la aplicación'),
-(330, 'application_title', 'Application Title', 'Título da Candidatura', 'Titulo de la aplicación'),
-(331, 'address', 'Address', 'Endereço', 'Dirección'),
-(332, 'phone', 'Phone', 'Telefone', 'Teléfono'),
-(333, 'favicon', 'Favicon', 'Favicon', 'icono de favoritos'),
-(334, 'logo', 'Logo', 'Logotipo', 'Logo'),
-(335, 'language', 'Language', 'Linguagem', 'Idioma'),
-(336, 'left_to_right', 'Left To Right', 'Da esquerda para direita', 'De izquierda a derecha'),
-(337, 'right_to_left', 'Right To Left', 'Direita para esquerda', 'De derecha a izquierda'),
-(338, 'footer_text', 'Footer Text', 'Texto de rodapé', 'Texto de pie de página'),
-(339, 'site_align', 'Application Alignment', 'Alinhamento de aplicativos', 'Alineación de aplicaciones'),
-(340, 'welcome_back', 'Welcome Back!', 'Bem vindo de volta!', '¡Bienvenido de nuevo!'),
-(341, 'please_contact_with_admin', 'Please Contact With Admin', 'Entre em contato com o administrador', 'Póngase en contacto con el administrador'),
-(342, 'incorrect_email_or_password', 'Incorrect Email/Password', 'E-mail/senha incorretos', 'Correo electrónico/contraseña incorrectos'),
-(343, 'select_option', 'Select Option', 'Selecionar opção', 'Seleccionar opción'),
-(344, 'ftp_setting', 'Data Synchronize [FTP Setting]', 'Sincronização de dados [Configuração FTP]', 'Sincronización de datos [Configuración de FTP]'),
-(345, 'hostname', 'Host Name', 'Nome de anfitrião', 'Nombre de host'),
-(346, 'username', 'User Name', 'Nome de usuário', 'Nombre de usuario'),
-(347, 'ftp_port', 'FTP Port', 'Porta FTP', 'Puerto FTP'),
-(348, 'ftp_debug', 'FTP Debug', 'Depuração FTP', 'Depuración FTP'),
-(349, 'project_root', 'Project Root', 'Raiz do Projeto', 'Raíz del proyecto'),
-(350, 'update_successfully', 'Update Successfully', 'Atualizar com sucesso', 'Actualizar correctamente'),
-(351, 'save_successfully', 'Save Successfully!', 'Salvo com sucesso!', 'Guardar con éxito!'),
-(352, 'internet_connection', 'Internet Connection', 'Conexão de internet', 'Conexión a Internet'),
-(353, 'ok', 'Ok', 'OK', 'OK'),
-(354, 'not_available', 'Not Available', 'Não disponível', 'No disponible'),
-(355, 'available', 'Available', 'Disponível', 'Disponible'),
-(356, 'outgoing_file', 'Outgoing File', 'Arquivo de saída', 'Archivo saliente'),
-(357, 'incoming_file', 'Incoming File', 'Arquivo de entrada', 'Archivo entrante'),
-(358, 'data_synchronize', 'Data Synchronize', 'Sincronizar dados', 'Sincronizar datos'),
-(359, 'unable_to_upload_file_please_check_configuration', 'Unable to upload file! please check configuration', 'Não foi possível fazer o upload do arquivo! por favor verifique a configuração', '¡Incapaz de cargar el archivo! por favor revise la configuración'),
-(360, 'please_configure_synchronizer_settings', 'Please configure synchronizer settings', 'Por favor, defina as configurações do sincronizador', 'Configure los ajustes del sincronizador'),
-(361, 'download_successfully', 'Download Successfully', 'Baixar com sucesso', 'Descargar con éxito'),
-(362, 'unable_to_download_file_please_check_configuration', 'Unable to download file! please check configuration', 'Não foi possível baixar o arquivo! por favor verifique a configuração', '¡No se puede descargar el archivo! por favor revise la configuración'),
-(363, 'data_import_first', 'Data Import First', 'Importar dados primeiro', 'Importación de datos primero'),
-(364, 'data_import_successfully', 'Data Import Successfully!', 'Importação de dados com sucesso!', '¡Importación de datos exitosa!'),
-(365, 'unable_to_import_data_please_check_config_or_sql_file', 'Unable to import data! please check configuration / SQL file.', 'Não foi possível importar dados! verifique a configuração/arquivo SQL.', '¡No se pueden importar datos! por favor verifique la configuración/archivo SQL.'),
-(366, 'download_data_from_server', 'Download Data from Server', 'Baixar dados do servidor', 'Descargar datos del servidor'),
-(367, 'data_import_to_database', 'Data Import To Database', 'Importação de dados para banco de dados', 'Importación de datos a la base de datos'),
-(368, 'data_upload_to_server', 'Data Upload to Server', 'Upload de dados para o servidor', 'Carga de datos al servidor'),
-(369, 'please_wait', 'Please Wait...', 'Por favor, aguarde...', 'Espere por favor...'),
-(370, 'ooops_something_went_wrong', ' Ooops something went wrong...', ' Opa, algo deu errado...', ' Vaya, algo salió mal...'),
-(371, 'module_permission_list', 'Module Permission List', 'Lista de Permissões do Módulo', 'Lista de permisos del módulo'),
-(372, 'user_permission', 'User Permission', 'Permissão do usuário', 'Permiso de usuario'),
-(373, 'add_module_permission', 'Add Module Permission', 'Adicionar permissão de módulo', 'Añadir permiso de módulo'),
-(374, 'module_permission_added_successfully', 'Module Permission Added Successfully!', 'Permissão do módulo adicionada com sucesso!', '¡Permiso de módulo agregado con éxito!'),
-(375, 'update_module_permission', 'Update Module Permission', 'Atualizar permissão do módulo', 'Actualizar permiso del módulo'),
-(376, 'download', 'Download', 'Download', 'Descargar'),
-(377, 'module_name', 'Module Name', 'nome do módulo', 'Nombre del módulo'),
-(378, 'create', 'Create', 'Crio', 'Crear'),
-(379, 'read', 'Read', 'Ler', 'Leer'),
-(380, 'update', 'Update', 'Atualizar', 'Actualizar'),
-(381, 'delete', 'Delete', 'Excluir', 'Borrar'),
-(382, 'module_list', 'Module List', 'Lista de Módulos', 'Lista de módulos'),
-(383, 'add_module', 'Add Module', 'Adicionar módulo', 'Agregar módulo'),
-(384, 'directory', 'Module Direcotory', 'Diretório do Módulo', 'Directorio de módulos'),
-(385, 'description', 'Description', 'Descrição', 'Descripción'),
-(386, 'image_upload_successfully', 'Image Upload Successfully!', 'Carregamento de imagem com sucesso!', 'Carga de imagen con éxito!'),
-(387, 'module_added_successfully', 'Module Added Successfully', 'Módulo adicionado com sucesso', 'Módulo agregado con éxito'),
-(388, 'inactive', 'Inactive', 'Inativo', 'Inactivo'),
-(389, 'active', 'Active', 'Ativo', 'Activo'),
-(390, 'user_list', 'User List', 'Lista de usuários', 'Lista de usuarios'),
-(391, 'see_all_message', 'See All Messages', 'Ver todas as mensagens', 'Ver todos los mensajes'),
-(392, 'setting', 'Setting', 'Contexto', 'Ajuste'),
-(393, 'logout', 'LOGOUT', 'SAIR', 'CERRAR SESIÓN'),
-(394, 'admin', 'Admin', 'Administrador', 'Administración'),
-(395, 'add_user', 'Add User', 'Adicionar usuário', 'Agregar usuario'),
-(396, 'user', 'User', 'Do utilizador', 'Usuario'),
-(397, 'module', 'Module', 'Módulo', 'Módulo'),
-(398, 'new', 'New', 'Novo', 'Nuevo'),
-(399, 'inbox', 'Inbox', 'Caixa de entrada', 'Bandeja de entrada'),
-(400, 'sent', 'Sent', 'Enviado', 'Enviado'),
-(401, 'synchronize', 'Synchronize', 'Sincronizar', 'Sincronizar'),
-(402, 'data_synchronizer', 'Data Synchronizer', 'Sincronizador de dados', 'Sincronizador de datos'),
-(403, 'module_permission', 'Module Permission', 'Permissão do módulo', 'Permiso de módulo'),
-(404, 'backup_now', 'Backup Now!', 'Faça backup agora!', '¡Copia ahora!'),
-(405, 'restore_now', 'Restore Now!', 'Restaurar agora!', '¡Restaura ahora!'),
-(406, 'backup_and_restore', 'Data Backup', 'Backup de dados', 'Copias de seguridad'),
-(407, 'captcha', 'Captcha Word', 'Palavra Captcha', 'Palabra captcha'),
-(408, 'database_backup', 'Database Backup', 'Backup de banco de dados', 'Copia de seguridad de la base de datos'),
-(409, 'restore_successfully', 'Restore Successfully', 'Restaurar com sucesso', 'Restaurar con éxito'),
-(410, 'backup_successfully', 'Backup Successfully', 'Backup com sucesso', 'Copia de seguridad con éxito'),
-(411, 'filename', 'File Name', 'Nome do arquivo', 'Nombre del archivo'),
-(412, 'file_information', 'File Information', 'Informações do arquivo', 'Informacion del archivo'),
-(413, 'size', 'Size', 'Tamanho', 'Tamaño'),
-(414, 'backup_date', 'Backup Date', 'Data de Backup', 'Fecha de copia de seguridad'),
-(415, 'overwrite', 'Overwrite', 'Substituir', 'Sobrescribir'),
-(416, 'invalid_file', 'Invalid File!', 'Arquivo inválido!', '¡Archivo inválido!'),
-(417, 'invalid_module', 'Invalid Module', 'Módulo inválido', 'Módulo no válido'),
-(418, 'remove_successfully', 'Remove Successfully!', 'Remover com sucesso!', 'Eliminar con éxito!'),
-(419, 'install', 'Install', 'Instalar', 'Instalar'),
-(420, 'uninstall', 'Uninstall', 'Desinstalar', 'Desinstalar'),
-(421, 'tables_are_not_available_in_database', 'Tables are not available in database.sql', 'As tabelas não estão disponíveis em database.sql', 'Las tablas no están disponibles en base de datos.sql'),
-(422, 'no_tables_are_registered_in_config', 'No tables are registerd in config.php', 'Nenhuma tabela está registrada em config.php', 'No hay tablas registradas en config.php'),
-(423, 'enquiry', 'Enquiry', 'Investigação', 'Consulta'),
-(424, 'read_unread', 'Read/Unread', 'Lido/Não lido', 'Leído/No leído'),
-(425, 'enquiry_information', 'Enquiry Information', 'Informações de consulta', 'Información de consulta'),
-(426, 'user_agent', 'User Agent', 'Agente de usuário', 'Agente de usuario'),
-(427, 'checked_by', 'Checked By', 'Verificado por', 'Revisado por'),
-(428, 'new_enquiry', 'New Enquiry', 'Nova consulta', 'Nueva consulta'),
-(429, 'fleet', 'Fleet Management', 'Gestão de Frotas', 'Gestión de flotas'),
-(430, 'fleet_type', 'Fleet Type', 'Tipo de Frota', 'Tipo de flota'),
-(431, 'add', 'Add', 'Adicionar', 'Agregar'),
-(432, 'list', 'List', 'Lista', 'Lista'),
-(433, 'fleet_facilities', 'Fleet Facilities', 'Instalações da frota', 'Instalaciones de flota'),
-(434, 'fleet_registration', 'Vehicles', 'Veículos', 'vehículos'),
-(435, 'reg_no', 'Registration No.', 'Número de registro.', 'Número de registro.'),
-(436, 'model_no', 'Model No.', 'Nº do modelo', 'N º de Modelo.'),
-(437, 'engine_no', 'Engine No.', 'Nº do motor', 'Sin motor.'),
-(438, 'chasis_no', 'Chasis No.', 'Nº do chassi', 'Chasis No.'),
-(439, 'total_seat', 'Total Seat', 'Lugar total', 'Asiento total'),
-(440, 'seat_numbers', 'Seat Number', 'Número do assento', 'Número de asiento'),
-(441, 'owner', 'Owner', 'Proprietário', 'Dueño'),
-(442, 'company', 'Company Name', 'nome da empresa', 'nombre de empresa'),
-(443, 'trip', 'Trip Management', 'Gerenciamento de viagens', 'Gestión de viajes'),
-(444, 'location', 'Destination', 'Destino', 'Destino'),
-(445, 'route', 'Route', 'Rota', 'Ruta'),
-(446, 'assign', 'Assign', 'Atribuir', 'Asignar'),
-(447, 'close', 'Close Trip', 'Fechar viagem', 'Cerrar viaje'),
-(448, 'location_name', 'Destination Name', 'Nome do destino', 'Nombre del destino'),
-(449, 'google_map', 'Google Map', 'Mapa do Google', 'Mapa de Google'),
-(450, 'start_point', 'Start Point', 'Ponto de partida', 'Punto de partida'),
-(451, 'end_point', 'End Point', 'Ponto final', 'punto final'),
-(452, 'route_name', 'Route Name', 'Nome da rota', 'Nombre de ruta'),
-(453, 'distance', 'Distance', 'Distância', 'Distancia'),
-(454, 'approximate_time', 'Approximate Time', 'Tempo aproximado', 'Tiempo aproximado'),
-(455, 'stoppage_points', 'Stoppage Points', 'Pontos de Parada', 'Puntos de Paro'),
-(456, 'fleet_registration_no', 'Fleet Registration No.', 'Nº de registro da frota', 'Registro de flota No.'),
-(457, 'start_date', 'Start Date', 'Data de início', 'Fecha de inicio'),
-(458, 'end_date', 'End Date', 'Data final', 'Fecha final'),
-(459, 'driver_name', 'Driver Name', 'Nome do motorista', 'Nombre del conductor'),
-(460, 'assistants_ids', 'Assistants', 'Assistentes', 'asistentes'),
-(461, 'sold_ticket', 'Sold Ticket', 'Bilhete Vendido', 'Boleto vendido'),
-(462, 'total_income', 'Total Income', 'Renda total', 'Ingresos totales'),
-(463, 'total_expense', 'Total Expense', 'Custo total', 'Gasto total'),
-(464, 'total_fuel', 'Total Fuel', 'Combustível Total', 'Combustible total'),
-(465, 'trip_comment', 'Trip Comment', 'Comentário de viagem', 'Comentario de viaje'),
-(466, 'closed_by', 'Closed by', 'Fechado por', 'Cerrado por'),
-(467, 'ticket', 'Ticket Management', 'Gerenciamento de tickets', 'Gestión de entradas'),
-(468, 'passenger', 'Passenger', 'Passageiro', 'Pasajero'),
-(469, 'middle_name', 'Middle Name', 'Nome do meio', 'Segundo nombre'),
-(470, 'date_of_birth', 'Date of Birth', 'Data de nascimento', 'Fecha de nacimiento'),
-(471, 'passenger_id', 'Passenger ID.', 'Identificação do passageiro.', 'Identificación del pasajero.'),
-(472, 'address_line_1', 'Address Line 1', 'Endereço Linha 1', 'Dirección Línea 1'),
-(473, 'address_line_2', 'Address Line 2', 'endereço linha 2', 'Línea de dirección 2'),
-(474, 'zip_code', 'Zip Code', 'Código postal', 'Código postal'),
-(475, 'name', 'Name', 'Nome', 'Nombre'),
-(476, 'ac_available', 'AC available', 'AC disponível', 'CA disponible'),
-(477, 'trip_id', 'Trip ID.', 'ID da viagem.', 'Identificación de viaje.'),
-(478, 'book', 'Book', 'Livro', 'Libro'),
-(479, 'booking_id', 'Booking ID.', 'Identificação da reserva.', 'Identificación de la reserva.'),
-(480, 'available_seats', 'Available Seats', 'Assentos disponíveis', 'Asientos disponibles'),
-(481, 'select_seats', 'Select Seats', 'Selecionar assentos', 'Seleccionar asientos'),
-(482, 'time', 'Time', 'Tempo', 'Tiempo'),
-(483, 'offer_code', 'Offer Code', 'Código de oferta', 'Ofrece código'),
-(484, 'price', 'Price', 'Preço', 'Precio'),
-(485, 'discount', 'Discount', 'Desconto', 'Descuento'),
-(486, 'request_facilities', 'Request Facilities', 'Solicitar instalações', 'Solicitar Instalaciones'),
-(487, 'pickup_location', 'Pickup Location', 'Local de Recolha', 'Lugar de recogida'),
-(488, 'drop_location', 'Drop Location', 'Local de soltar', 'Ubicación de entrega'),
-(489, 'amount', 'Amount', 'Quantia', 'Monto'),
-(490, 'invalid_passenger_id', 'Invalid Passenger ID', 'ID de passageiro inválido', 'Identificación de pasajero no válida'),
-(491, 'invalid_input', 'Invalid Input', 'entrada inválida', 'entrada inválida'),
-(492, 'booking_date', 'Booking Date', 'Data da reserva', 'Fecha para registrarse'),
-(493, 'cancelation_fees', 'Cancelation Fees', 'Taxas de cancelamento', 'Tarifas de cancelación'),
-(494, 'causes', 'Causes', 'Causas', 'Causas'),
-(495, 'comment', 'Comment', 'Comente', 'Comentario'),
-(496, 'refund', 'Refund', 'Reembolso', 'Reembolso'),
-(497, 'refund_by', 'Refund by', 'Reembolso por', 'Reembolso por'),
-(498, 'feedback', 'Feedback', 'Comentários', 'Retroalimentación'),
-(499, 'rating', 'Rating', 'Avaliação', 'Clasificación'),
-(500, 'blood_group', 'Blood Group', 'Grupo sanguíneo', 'Grupo sanguíneo'),
-(501, 'religion', 'Religion', 'Religião', 'Religión'),
-(502, 'details', 'Details', 'Detalhes', 'Detalles'),
-(503, 'type_name', 'Type Name', 'Digite o nome', 'Escribe un nombre'),
-(504, 'view_details', 'View Details', 'Ver detalhes', 'Ver detalles'),
-(505, 'document_pic', 'Document Picture', 'Imagem do documento', 'Imagen del documento'),
-(506, 'fitness_list', 'Fitness List', 'Lista de condicionamento físico', 'Lista de ejercicios'),
-(507, 'fitness_name', 'Fitness Name', 'Nome do Fitness', 'Nombre de condición física'),
-(508, 'fitness_description', 'Description', 'Descrição', 'Descripción'),
-(509, 'successfully_updated', 'Your Data Successfully Updated', 'Seus dados atualizados com sucesso', 'Tus datos actualizados con éxito'),
-(510, 'fitness_period', 'Fitness Period List', 'Lista de períodos de condicionamento físico', 'Lista de periodos de fitness'),
-(511, 'fitness_id', 'Fitness Name', 'Nome do Fitness', 'Nombre de condición física'),
-(512, 'vehicle_id', 'Vehicles No', 'Veículos Não', 'Número de vehículos'),
-(513, 'start_milage', 'Start Milage', 'Iniciar milhagem', 'Kilometraje inicial'),
-(514, 'end_milage', 'End Milage', 'Fim da milhagem', 'Kilometraje final'),
-(515, 'agent', 'Agent', 'Agente', 'Agente'),
-(516, 'agent_first_name', 'First Name', 'Primeiro nome', 'Primer nombre'),
-(517, 'agent_second_name', 'LastName', 'Sobrenome', 'Apellido'),
-(518, 'agent_company_name', 'Company Name', 'nome da empresa', 'nombre de empresa'),
-(519, 'agent_document_id', 'Document ID', 'ID do documento', 'Identificación del documento'),
-(520, 'agent_pic_document', 'Document File', 'Arquivo de documento', 'archivo de documento'),
-(521, 'agent_phone', 'Phone', 'Telefone', 'Teléfono'),
-(522, 'agent_mobile', 'Mobile No', 'Número do celular', 'No móviles'),
-(523, 'agent_email', 'Email', 'E-mail', 'Correo electrónico'),
-(524, 'agent_address_line_1', 'Address Line 1', 'Endereço Linha 1', 'Dirección Línea 1'),
-(525, 'agent_address_line_2', 'Address Line 2', 'endereço linha 2', 'Línea de dirección 2'),
-(526, 'agent_address_city', 'City', 'Cidade', 'Ciudad'),
-(527, 'agent_address_zip_code', 'ZIP', 'fecho eclair', 'CÓDIGO POSTAL'),
-(528, 'agent_country', 'Country', 'País', 'País'),
-(529, 'sl', 'SL', 'SL', 'SL'),
-(530, 'route_id', 'Route Name', 'Nome da rota', 'Nombre de ruta'),
-(531, 'vehicle_type_id', 'Vehicle Type', 'Tipo de Veículo', 'tipo de vehiculo'),
-(532, 'group_price_per_person', 'Group Price Per Person', 'Preço de grupo por pessoa', 'Precio de grupo por persona'),
-(533, 'group_size', 'Group Members', 'Membros do grupo', 'Miembros del grupo'),
-(534, 'successfully_saved', 'Your Data Successfully Saved', 'Seus dados salvos com sucesso', 'Tus datos guardados con éxito'),
-(535, 'account', 'Account', 'Conta', 'Cuenta'),
-(536, 'account_name', 'Account Name', 'Nome da conta', 'Nombre de la cuenta'),
-(537, 'account_type', 'Account Type', 'tipo de conta', 'Tipo de cuenta'),
-(538, 'account_transaction', 'Account Transaction', 'Transação da conta', 'Transacción de cuenta'),
-(539, 'account_id', 'Account Name', 'Nome da conta', 'Nombre de la cuenta'),
-(540, 'transaction_description', 'Transaction Details', 'Detalhes da transação', 'Detalles de la transacción'),
-(541, 'pass_book_id', 'Passenger ID', 'ID do passageiro', 'Identificación del pasajero'),
-(542, 'payment_id', 'Payment ID', 'Código de pagamento', 'ID de pago'),
-(543, 'create_by_id', 'Created By', 'Criado por', 'Creado por'),
-(544, 'offer', 'Offer', 'Oferta', 'Oferta'),
-(545, 'offer_name', 'Offer Name', 'Nome da oferta', 'Nombre de la oferta'),
-(546, 'offer_start_date', 'Offer Start Date', 'Data de início da oferta', 'Fecha de inicio de la oferta'),
-(547, 'offer_end_date', 'Offer Last Date', 'Última data da oferta', 'Última fecha de la oferta'),
-(548, 'offer_discount', 'Discount', 'Desconto', 'Descuento'),
-(549, 'offer_terms', 'Offer Terms', 'Termos da oferta', 'Condiciones de la oferta'),
-(550, 'offer_route_id', 'Route Name', 'Nome da rota', 'Nombre de ruta'),
-(551, 'offer_number', 'Offer Number', 'Número da oferta', 'Número de oferta'),
-(552, 'seat_number', 'Seat No', 'Nº do assento', 'Número de asiento'),
-(553, 'available_seat', 'Available Seat', 'Assento disponível', 'Asiento disponible'),
-(554, 'owner_name', 'Owner Name', 'Nome do proprietário', 'Nombre del dueño'),
-(555, 'agent_picture', 'Picture', 'Foto', 'Imagen'),
-(556, 'account_add', 'Add Account', 'Adicionar Conta', 'Añadir cuenta'),
-(557, 'add_agent', 'Add Agent', 'Adicionar agente', 'Agregar agente'),
-(558, 'hr', 'Human Resource', 'Recursos humanos', 'Recursos humanos'),
-(559, 'create_hr', 'Add Employee', 'Adicionar funcionário', 'Agregar empleado'),
-(560, 'serial', 'Sl', 'Sl', 'SL'),
-(561, 'position', 'Position', 'Posição', 'Posición'),
-(562, 'phone_no', 'Phone No', 'Telefone não', 'Telefono no'),
-(563, 'email_no', 'Email', 'E-mail', 'Correo electrónico'),
-(564, 'picture', 'Picture', 'Foto', 'Imagen'),
-(565, 'first_name', 'First Name', 'Primeiro nome', 'Primer nombre'),
-(566, 'second_name', 'Last Name', 'Sobrenome', 'Apellido'),
-(567, 'document_id', 'Documet Id', 'ID do documento', 'ID del documento'),
-(568, 'country', 'Country', 'País', 'País'),
-(569, 'city', 'City', 'Cidade', 'Ciudad'),
-(570, 'zip', 'Zip ', 'Fecho eclair', 'Cremallera'),
-(571, 'add_passenger', 'Add Passenger', 'Adicionar passageiro', 'Agregar Pasajero'),
-(572, 'search_tiket', 'Search Ticket', 'Pesquisar ticket', 'Buscar boleto'),
-(573, 'slogan', 'Slogan', 'Slogan', 'Eslogan'),
-(574, 'website', 'Website', 'Local na rede Internet', 'Sitio web'),
-(575, 'submit', 'Submit', 'Enviar', 'Enviar'),
-(576, 'customer_service', 'Customer Service', 'Atendimento ao Cliente', 'Servicio al Cliente'),
-(577, 'submit_successfully', 'Submit Successfully!', 'Enviar com sucesso!', '¡Envíe con éxito!'),
-(578, 'add_to_website', 'Add to Website', 'Adicionar ao site', 'Agregar al sitio web'),
-(579, 'our_customers_say', 'Our Customers Say', 'Nossos clientes dizem', 'Nuestros Clientes Dicen'),
-(580, 'website_status', 'Website Status', 'Status do site', 'Estado del sitio web'),
-(581, 'title', 'Title', 'Título', 'Título'),
-(582, 'total_fleet', 'Total Fleet', 'Frota Total', 'Flota total'),
-(583, 'total_passenger', 'Total Passenger', 'Total de Passageiros', 'Pasajero total'),
-(584, 'todays_trip', 'Todays Trip', 'Viagem de hoje', 'viaje de hoy'),
-(585, 'seats_available', 'Seats Available', 'Assentos Disponíveis', 'Asientos disponibles'),
-(586, 'no_trip_avaiable', 'No trip avaiable', 'Nenhuma viagem disponível', 'No hay viaje disponible'),
-(587, 'booking', 'Booking', 'Reserva', 'Reserva'),
-(588, 'something_went_worng', 'Something went worng!', 'Alguma coisa deu errado!', '¡Algo salió mal!'),
-(589, 'paypal_email', 'Paypal Email', 'Email do Paypal', 'e-mail de Paypal'),
-(590, 'currency', 'Currency', 'Moeda', 'Divisa'),
-(591, 'reports', 'Reports', 'Relatórios', 'Informes'),
-(592, 'search', 'Search', 'Procurar', 'Búsqueda'),
-(593, 'ticket_sold_by_company', 'Ticket sold by company', 'Bilhete vendido pela empresa', 'Billete vendido por empresa'),
-(594, 'go', 'Go', 'Vai', 'Vamos'),
-(595, 'all', 'All', 'Tudo', 'Todos'),
-(596, 'filter', 'Filter', 'Filtro', 'Filtrar'),
-(597, 'last_year_progress', 'Last Year Progress', 'Progresso do ano passado', 'Progreso del año pasado'),
-(598, 'download_document', 'Download Document', 'Baixar documento', 'Descargar documento'),
-(599, 'mobile', 'Mobile No.', 'Nº móvel', 'No móviles.'),
-(600, 'account_list', 'Account List', 'Lista de contas', 'Lista de cuentas'),
-(601, 'add_income', 'Add Income', 'Adicionar renda', 'Añadir ingresos'),
-(602, 'add_expense', 'Add Expense', 'Adicionar Despesa', 'Agregar gasto'),
-(603, 'agent_list', 'Agent List', 'Lista de agentes', 'Lista de agentes'),
-(604, 'add_fitness', 'Add Fitness', 'Adicionar condicionamento físico', 'Agregar condición física'),
-(605, 'fitness', 'Fitness', 'Ginástica', 'Aptitud física'),
-(606, 'add_fitness_period', 'Add Fitness Period', 'Adicionar período de condicionamento físico', 'Añadir período de fitness'),
-(607, 'employee_type', 'Employee Type', 'Tipo de funcionário', 'Tipo de empleado'),
-(608, 'employee_list', 'Employee List', 'Lista de empregados', 'Lista de empleados'),
-(609, 'add_offer', 'Add Offer', 'Adicionar oferta', 'Añadir oferta'),
-(610, 'offer_list', 'Offer List', 'Lista de Ofertas', 'Lista de ofertas'),
-(611, 'add_price', 'Add Price', 'Adicionar preço', 'Agregar precio'),
-(612, 'price_list', 'Price List', 'Lista de preços', 'Lista de precios'),
-(613, 'layout', 'Layout', 'Esquema', 'Diseño'),
-(614, 'last_seat_availabe', 'Last Seat Available', 'Último assento disponível', 'Último asiento disponible'),
-(615, 'paypal_transaction', 'Paypal Transaction', 'Transação Paypal', 'Transacción de Paypal'),
-(616, 'enable', 'Enable', 'Permitir', 'Habilitar'),
-(617, 'disable', 'Disable', 'Desativar', 'Deshabilitar'),
-(618, 'payment_gateway', 'Payment Gateway', 'Gateway de pagamento', 'Pasarela de pago'),
-(619, 'payment_type', 'Payment Type', 'Tipo de pagamento', 'Tipo de pago'),
-(620, 'payment_status', 'Payment Status', 'Status do pagamento', 'Estado de pago'),
-(621, 'downtime', 'Down Time', 'Tempo de inatividade', 'Tiempo de inactividad'),
-(622, 'select_bus', 'Select Bus', 'Selecionar ônibus', 'Seleccionar autobús'),
-(623, 'user_info', 'Passenger Information', 'Informações do passageiro', 'Información del pasajero'),
-(624, 'personal_info', 'Personal Information', 'Informação pessoal', 'Informacion personal'),
-(625, 'booking_info', 'Booking Information', 'Informações de reserva', 'Infomación sobre reservas'),
-(626, 'update_your_profile', 'Edit your Profile', 'Edite seu perfil', 'Edite su perfil'),
-(627, 'email_configue', 'Email Configuration', 'Configuração de e-mail', 'Configuración de correo electrónico'),
-(628, 'protocol', 'Protocol', 'Protocolo', 'Protocolo'),
-(629, 'smtp_host', 'SMTP Host', 'Host SMTP', 'Anfitrión SMTP'),
-(630, 'smtp_port', 'SMTP Port', 'Porta SMTP', 'Puerto SMTP'),
-(631, 'smtp_pass', 'SMTP Password', 'Senha SMTP', 'Contraseña SMTP'),
-(632, 'mailtype', 'Mail Type', 'Tipo de e-mail', 'Tipo de correo'),
-(633, 'smtp_user', 'SMTP User', 'Usuário SMTP', 'Usuario SMTP'),
-(634, 'html', 'Html', 'HTML', 'html'),
-(635, 'text', 'Text', 'Texto', 'Texto'),
-(636, 'email_send_to_passenger', ' Email Sent Sucessfully', ' E-mail enviado com sucesso', ' Correo electrónico enviado con éxito'),
-(637, 'bank', 'Bank Information', 'Informação bancária', 'Información bancaria'),
-(638, 'instruction', 'Instruction', 'Instrução', 'Instrucción'),
-(639, 'account_details', 'Account Details', 'Detalhes da conta', 'detalles de la cuenta'),
-(640, 'bank_logo', 'Bank Logo', 'Logo do Banco', 'logotipo del banco'),
-(641, 'bank_name', 'Bank Name', 'Nome do banco', 'Nombre del banco'),
-(642, 'bank_trans', 'Bank', 'Banco', 'Banco'),
-(643, 'transaction_successfully_send', 'Your Information successfully Send', 'Suas informações foram enviadas com sucesso', 'Tu información enviada con éxito'),
-(644, 'confirmation', 'Confirmation', 'Confirmação', 'Confirmación'),
-(645, 'account_no', 'Account No', 'Nº da conta', 'Número de cuenta'),
-(646, 'transaction_no', 'Transaction No', 'Nº da transação', 'Número de transacción'),
-(647, 'paypal', 'Paypal', 'Paypal', 'PayPal'),
-(648, 'cash', 'Cash', 'Dinheiro', 'Dinero');
-INSERT INTO `language` (`id`, `phrase`, `english`, `portuguese`, `spanish`) VALUES
-(649, 'paypal_checkout', 'Paypal Checkout', 'Pagamento Paypal', 'pago de paypal'),
-(650, 'confirm_banking', 'Confirm Banking', 'Confirmar banco', 'Confirmar Banca'),
-(651, 'payment_information', 'Payment Information', 'Informação de pagamento', 'Información del pago'),
-(652, 'email_gritting', 'Congratulation Mr.', 'Parabéns Sr.', 'Felicidades Sr.'),
-(653, 'email_ticket_idinfo', 'Your Purchase Ticket No-', 'Seu Bilhete de Compra Não-', 'Tu Ticket de Compra No-'),
-(654, 'ticket_confirmation', 'Unpaid Bank Booking List', 'Lista de reservas bancárias não pagas', 'Lista de reserva bancaria no pagada'),
-(655, 'deny', 'Deny', 'Negar', 'Negar'),
-(656, 'confirm', 'CONFIRM', 'CONFIRME', 'CONFIRMAR'),
-(657, 'note', 'Note', 'Observação', 'Nota'),
-(658, 'accournt_no', 'Account Number', 'Número da conta', 'Número de cuenta'),
-(659, 'payer_name', 'Payer Name', 'Nome do pagador', 'Nombre del pagador'),
-(660, 'accournt_non', 'Account Number', 'Número da conta', 'Número de cuenta'),
-(661, 'confirm_booking', 'Confirm Booking', 'Confirmar reserva', 'Reserva confirmada'),
-(662, 'account_num', 'Account Number', 'Número da conta', 'Número de cuenta'),
-(663, 'invalid_logo', 'Invalid Logo, Please upload gif|jpg|png|jpeg|ico type image', 'Logotipo inválido, faça upload de gif|jpg|png|jpeg|ico type image', 'Logotipo no válido, cargue la imagen tipo gif|jpg|png|jpeg|ico'),
-(664, 'invalid_favicon', 'Invalid Favicon, Please upload gif|jpg|png|jpeg|ico type image', 'Favicon inválido, por favor envie gif|jpg|png|jpe', 'Favicon no válido, cargue gif|jpg|png|jpe'),
-(665, 'print_ticket', 'Print Ticket', 'Imprimir Bilhete', 'Imprimir Ticket'),
-(666, 'cancel_ticket', 'Cancel Ticket', 'Cancelar Bilhete', 'Cancelar Ticket'),
-(667, 'email_not_send', 'Email Not Send', 'E-mail não enviado', 'Correo electrónico no enviado'),
-(668, 'timezone', 'Time Zone', 'Fuso horário', 'Zona horaria'),
-(669, 'menu_permission_form', 'Menu Permission Form', 'Formulário de permissão de menu', 'Formulario de permiso de menú'),
-(670, 'permission_setup', 'Permission setup', 'Configuração de permissão', 'Configuración de permisos'),
-(671, 'menu_permission_list', 'Menu Permission List', 'Lista de permissões do menu', 'Lista de permisos del menú'),
-(672, 'add_fleet_type', 'Add Fleet Type', 'Adicionar tipo de frota', 'Añadir tipo de flota'),
-(673, 'fleet_type_list', 'Fleet Type List', 'Lista de Tipos de Frota', 'Lista de tipos de flota'),
-(674, 'add_facilities', 'Add Facilities', 'Adicionar instalações', 'Agregar instalaciones'),
-(675, 'facilities_list', 'Facilities List', 'Lista de Instalações', 'Lista de instalaciones'),
-(676, 'add_registration', 'Add Vehicle', 'Adicionar veículo', 'Agregar vehículo'),
-(677, 'registration_list', 'Vehicle List', 'Lista de veículos', 'Lista de vehículos'),
-(678, 'refund_list', 'Refund List', 'Lista de reembolso', 'Lista de reembolsos'),
-(679, 'add_refund', 'Add Refund', 'Adicionar reembolso', 'Agregar reembolso'),
-(680, 'booking_list', 'Booking List', 'Lista de reservas', 'Lista de reservas'),
-(681, 'add_booking', 'Add Booking', 'Adicionar reserva', 'Agregar reserva'),
-(682, 'passenger_list', 'Passenger List', 'Lista de passageiros', 'Lista de pasajeros'),
-(683, 'assign_list', 'Assignment List', 'Lista de Tarefas', 'Lista de asignaciones'),
-(684, 'close_list', 'Close List', 'Fechar lista', 'Cerrar lista'),
-(685, 'add_assign', 'Assign Vehicle To Trip', 'Atribuir veículo à viagem', 'Asignar vehículo a viaje'),
-(686, 'route_list', 'Route List', 'Lista de rotas', 'Lista de rutas'),
-(687, 'add_route', 'Add Route', 'Adicionar rota', 'Agregar ruta'),
-(688, 'location_list', 'Destination List', 'Lista de destinos', 'Lista de destinos'),
-(689, 'add_location', 'Add Destination', 'Adicionar destino', 'Agregar destino'),
-(690, 'add_role', 'Add Role', 'Adicionar função', 'Agregar rol'),
-(691, 'add_bank', 'Add Bank', 'Adicionar banco', 'Agregar banco'),
-(692, 'bank_list', 'Bank List', 'Lista de Bancos', 'Lista de bancos'),
-(693, 'role_name', 'Role Name', 'Nome do papel', 'Nombre de rol'),
-(694, 'role_description', 'Role Description', 'Descrição do papel', 'Descripción del rol'),
-(695, 'role_list', 'Role List', 'Lista de funções', 'Lista de funciones'),
-(696, 'user_access_role', 'User Access Role', 'Função de acesso do usuário', 'Rol de acceso de usuario'),
-(697, 'role', 'Role', 'Função', 'Role'),
-(698, 'role_permission', 'Role Permission', 'Permissão de função', 'Permiso de rol'),
-(699, 'web_setting', 'Web Setting', 'Configuração da Web', 'Configuración web'),
-(700, 'ticket_offer', 'Ticket Offer', 'Oferta de ingressos', 'Oferta de entradas'),
-(701, 'shedules', 'Shedules', 'Horários', 'Horarios'),
-(702, 'add_shedule', 'Add Shedule', 'Adicionar Agenda', 'Añadir horario'),
-(703, 'shedule_list', 'Shedule LIst', 'Lista de agendamento', 'Lista de horarios'),
-(704, 'shedule_time', 'Shedule Time', 'Horário de agendamento', 'Horario de tiempo'),
-(705, 'travel_slogan', 'On the placess youll go', 'Nos lugares que você irá', 'En los lugares a los que irás'),
-(706, 'travel_sub_slogan', 'It is not down in any map; true place naver are.', 'Não está em nenhum mapa; verdadeiro lugar naver são.', 'No está abajo en ningún mapa; verdadero lugar naver son.'),
-(707, 'search_tour', 'Search Tours', 'Pesquisar passeios', 'Buscar recorridos'),
-(708, 'find_dream', 'Find your dream tour today!', 'Encontre o passeio dos seus sonhos hoje!', '¡Encuentra el tour de tus sueños hoy!'),
-(709, 'find_now', 'Find now!', 'Encontre agora!', '¡Encuentra ahora!'),
-(710, 'start', 'Start', 'Começar', 'comienzo'),
-(711, 'end', 'End', 'Fim', 'Final'),
-(712, 'paypal_payment_paynow', 'PAYPAL PAY NOW', 'PAGAMENTO PAGAMENTO AGORA', 'PAYPAL PAGAR AHORA'),
-(713, 'passenger_name', 'Passenger Name', 'Nome do passageiro', 'Nombre del pasajero'),
-(714, 'facilities', 'Facilities', 'Instalações', 'Comodidades'),
-(715, 'seat_name', 'Seat Name', 'Nome do assento', 'Nombre del asiento'),
-(716, 'adult', 'Adult', 'Adulto', 'Adulto'),
-(717, 'child', 'Child', 'Filho', 'Niño'),
-(718, 'special', 'Special', 'Especial', 'Especial'),
-(719, 'grand_total', 'Grand Total', 'Total geral', 'Gran total'),
-(720, 'book_for_one_hour', 'Book For One Hour', 'Reserve por uma hora', 'Reserva por una hora'),
-(721, 'unpaid_cash_booking_list', 'Unpaid Cash Booking List', 'Lista de reservas em dinheiro não pagas', 'Lista de reservas en efectivo sin pagar'),
-(722, 'bank_transaction', 'Bank Transaction', 'Transação bancária', 'Transacción bancaria'),
-(723, 'payment_term_andcondition', 'Payment Terms & Conditions', 'Termos e condições de pagamento', 'Términos y condiciones de pago'),
-(724, 'add_terms', 'Add Terms', 'Adicionar termos', 'Agregar términos'),
-(725, 'terms_list', 'Terms & Condition', 'Termos e Condições', 'Términos y Condiciones'),
-(726, 'how_to_pay', 'How to Pay', 'Como pagar', 'Como pagar'),
-(727, 'terms_and_condition', 'Terms And Conditions', 'Termos e Condições', 'Términos y condiciones'),
-(728, 'nid', 'National ID', 'identidade nacional', 'Identificación nacional'),
-(729, 'add_trip', 'Create Trip', 'Criar viagem', 'Crear viaje'),
-(730, 'trips', 'Trips', 'Viagens', 'Excursiones'),
-(731, 'trip_list', 'Trip LIst', 'Lista de viagens', 'Lista de viajes'),
-(732, 'trip_title', 'Trip Title', 'Título da viagem', 'Título del viaje'),
-(733, 'types', 'Types', 'Tipos', 'Tipos'),
-(734, 'assigns', 'Assign', 'Atribuir', 'Asignar'),
-(735, 'see_all', 'See All', 'Ver tudo', 'Ver todo'),
-(736, 'no_o_ticket', 'NO of Tickts', 'NÃO de tiques', 'NO de Entradas'),
-(737, 'seats', 'Seat(s)', 'Assento(s)', 'Asientos)'),
-(738, 'prices', 'Price(s)', 'Preço(s)', 'Precios)'),
-(739, 'group_price', 'Group Price', 'Preço do grupo', 'Precio de grupo'),
-(740, 'total', 'Total', 'Total', 'Total'),
-(741, 'passenger_details', 'Passenger Details', 'Detalhes do passageiro', 'detalles del pasajero'),
-(742, 'journey_details', 'Journey Details', 'Detalhes da jornada', 'Detalles del viaje'),
-(743, 'term_n_condition', 'Term & Condition', 'Termo e condição', 'Término y condición'),
-(744, 'enter_login_info', 'Enter Your Login Info', 'Insira suas informações de login', 'Ingrese su información de inicio de sesión'),
-(745, 'select_bank_name', 'Select Bank Name', 'Selecione o nome do banco', 'Seleccione el nombre del banco'),
-(746, 'enter_transaction_id', 'Enter Transaction Id', 'Insira o ID da transação', 'Ingrese la identificación de la transacción'),
-(747, 'booked_seat', 'Booked Seat', 'Lugar reservado', 'Asiento reservado'),
-(748, 'selected_seat', 'Selected Seat', 'Assento Selecionado', 'Asiento seleccionado'),
-(749, 'operator', 'Operator', 'Operador', 'Operador'),
-(750, 'fare', 'Fare', 'Tarifa', 'Tarifa'),
-(751, 'arrival', 'Arrival', 'Chegada', 'Llegada'),
-(752, 'departure', 'Departure', 'Partida', 'Partida'),
-(753, 'duration', 'Duration', 'Duração', 'Duración'),
-(754, 'no_of_ticket', 'No Of tickets', 'Nº de bilhetes', 'Nº de entradas'),
-(755, 'special_fare', 'Special Price', 'Preço especial', 'Precio especial'),
-(756, 'child_fare', 'Children Fare', 'Tarifa para crianças', 'Tarifa para niños'),
-(757, 'adult_fare', 'Adult Fare', 'Tarifa de adulto', 'Tarifa de adulto'),
-(758, 'ticket_information', 'Ticket Information', 'Informações do bilhete', 'información de entradas'),
-(759, 'brand_name', 'Brand Name', 'Marca', 'Nombre de la marca'),
-(760, 'children_seat', 'Children Seat', 'Cadeira de criança', 'Asiento para niños'),
-(761, 'special_seat', 'Special Seat', 'Assento Especial', 'Asiento especial'),
-(762, 'menu_item_list', 'Menu Item List', 'Lista de itens de menu', 'Lista de elementos del menú'),
-(763, 'parent_menu', 'Parent Menu', 'Menu pai', 'Menú principal'),
-(764, 'page_url', 'Page Url', 'URL da página', 'URL de la página'),
-(765, 'menu_title', 'Menu title', 'Título do menu', 'Título del menú'),
-(766, 'ins_menu_for_application', 'Insert Menu for the application', 'Inserir menu para o aplicativo', 'Insertar Menú para la aplicación'),
-(767, 'yearly_progressbar', 'Yearly Progress Bar', 'Barra de progresso anual', 'Barra de progreso anual'),
-(768, 'child_price', 'Child Price', 'Preço filho', 'Precio niño'),
-(769, 'adult_price', 'Adult Price', 'Preço adulto', 'Precio adulto'),
-(770, 'special_price', 'Special Price', 'Preço especial', 'Precio especial'),
-(771, 'how_to_use', 'HOW TO USE', 'COMO USAR', 'CÓMO UTILIZAR'),
-(772, 'bank_commission', 'Bank Commission', 'Comissão Bancária', 'Comisión Bancaria'),
-(773, 'bank_charge', 'Bank Charge', 'Taxa bancária', 'Interés bancario'),
-(774, 'type', 'Type', 'Modelo', 'Escribe'),
-(775, 'amount_paid', 'Amount Paid', 'Quantia paga', 'Cantidad pagada'),
-(776, 'txn_id', 'TXN ID', 'ID TXN', 'Identificación de TXN'),
-(777, 'item_number', 'Item Number', 'Número de item', 'Número de artículo'),
-(778, 'paument_success_message', 'Your Payment Successfully Paid', 'Seu pagamento foi pago com sucesso', 'Su pago se realizó con éxito'),
-(779, 'unpaid', 'Unpaid', 'Não pago', 'No pagado'),
-(780, 'paid', 'Paid', 'Pago', 'Pagado'),
-(781, 'trip_name', 'Trip Name', 'Nome da viagem', 'Nombre del viaje'),
-(782, 'account_number', 'Account Number', 'Número da conta', 'Número de cuenta'),
-(783, 'owner_phone', 'Owner Phone No', 'Telefone do Proprietário', 'Número de teléfono del propietario'),
-(784, 'passenger_email', 'Passenger Email', 'E-mail do passageiro', 'Correo electrónico del pasajero'),
-(785, 'child_no', 'Child', 'Filho', 'Niño'),
-(786, 'close_trip', 'Close Trip', 'Fechar viagem', 'Cerrar viaje'),
-(787, 'agent_commission', 'Agent Commission', 'Comissão do Agente', 'Comisión de Agente'),
-(788, 'credit', 'Credit', 'Crédito', 'Crédito'),
-(789, 'debit', 'Debit', 'Débito', 'Débito'),
-(790, 'balance', 'Balance', 'Equilíbrio', 'Balance'),
-(791, 'agent_log', 'Agent Log', 'Registro do agente', 'Registro de agente'),
-(792, 'total_ticket', 'Total Ticket', 'Bilhete Total', 'Ticket total'),
-(793, 'total_amount', 'Total Amount', 'Valor total', 'Cantidad total'),
-(794, 'total_commission', 'Total Commission', 'Comissão total', 'Comisión Total'),
-(795, 'select_agent_name', 'Select Agent Name', 'Selecione o nome do agente', 'Seleccione el nombre del agente'),
-(796, 'commission_amount', 'Commission Amout', 'Valor da Comissão', 'Importe de la comisión'),
-(797, 'total_price', 'Total Price', 'Preço total', 'Precio total'),
-(798, 'commission_rate', 'Commission Rate', 'Taxa de comissão', 'Porcentaje de comision'),
-(799, 'ticket_sales', 'Ticket Sale', 'Venda de ingressos', 'Venta de entradas'),
-(800, 'vehicle', 'Vehicle', 'Veículo', 'Vehículo'),
-(801, 'ticket_sales_report_for', 'Ticket Sales Report For', 'Relatório de vendas de ingressos para', 'Informe de venta de entradas para'),
-(802, 'agent_report', 'Agent Report', 'Relatório do agente', 'Informe de agente'),
-(803, 'agent_ledger', 'Agent Ledger', 'Razão do Agente', 'Libro mayor de agentes'),
-(804, 'booking_details', 'Journey Details', 'Detalhes da jornada', 'Detalles del viaje'),
-(805, 'websites', 'Go to Frontend', 'Ir para o front-end', 'Ir a la interfaz'),
-(806, 'backup_and_download', 'Backup && Download', 'Backup && Download', 'Copia de seguridad y descarga'),
-(807, 'distance_kmmile', '1 Km/Mile', '1 km/milha', '1 kilómetro/milla'),
-(808, 'children', 'Children', 'Crianças', 'Niños'),
-(809, 'login_info', 'Login Information', 'Informações de login', 'Información Entrar'),
-(810, 'please_configure_your_mail', 'Please configure your mail.', 'Por favor, configure seu e-mail.', 'Por favor configura tu correo.'),
-(811, 'error', 'Error', 'Erro', 'Error'),
-(812, 'settings_not_found', 'No Setting Here', 'Nenhuma configuração aqui', 'Sin configuración aquí'),
-(813, 'location_not_found', 'Location Not Found', 'Local não encontrado', 'Ubicación no encontrada'),
-(814, 'fleets_not_found', 'Fleets Not Found', 'Frotas não encontradas', 'Flotas no encontradas'),
-(815, 'image_not_found', 'Image Not Found', 'Imagem não encontrada', 'Imagen no encontrada'),
-(816, 'no_trip_available', 'No Trip Available', 'Nenhuma viagem disponível', 'No hay viaje disponible'),
-(817, 'required_field', 'Fields Are Required ', 'Os campos são obrigatórios', 'Los campos son obligatorios'),
-(818, 'successfully_login', 'Successfully Loged In', 'Logado com sucesso', 'Inicio de sesión exitoso'),
-(819, 'no_data_found', 'No Data Found', 'Nenhum dado encontrado', 'Datos no encontrados'),
-(820, 'registrantion', 'Registration', 'Cadastro', 'Registro'),
-(821, 'forgot_password', 'Forgot Password', 'Esqueceu a senha', 'Has olvidado tu contraseña'),
-(822, 'register', 'Register', 'Registro', 'Registro'),
-(823, 'location_details', 'Location Details', 'Detalhes do local', 'Detalles de ubicación'),
-(824, 'journey_date', 'Journey Date', 'Data da viagem', 'Fecha del viaje'),
-(825, 'select_start_point', 'Select Start Point', 'Selecione o ponto inicial', 'Seleccionar punto de inicio'),
-(826, 'select_end_point', 'Select End Point', 'Selecionar ponto final', 'Seleccionar punto final'),
-(827, 'select_fleet_type', 'Select Fleet Type', 'Selecione o tipo de frota', 'Seleccionar tipo de flota'),
-(828, 'total_seats', 'Total Seats', 'Total de assentos', 'Asientos totales'),
-(829, 'pickup_and_drop', 'Pickup and Drop', 'Pegar e largar', 'Recoger y dejar'),
-(830, 'select_pickup_location', 'Select Pickup Location', 'Selecione o local de retirada', 'Seleccione la ubicación de recogida'),
-(831, 'select_drop_location', 'Select Drop Location', 'Selecione o local de lançamento', 'Seleccione la ubicación de entrega'),
-(832, 'tap_to_select_seat', 'Tap To Select Seat', 'Toque para selecionar o assento', 'Toque para seleccionar asiento'),
-(833, 'seat_layout', 'Seat Layout', 'Disposição do assento', 'Disposición del asiento'),
-(834, 'continue', 'Continue', 'Continuar', 'Continuar'),
-(835, 'full_name', 'Full Name', 'Nome completo', 'Nombre completo'),
-(836, 'email_address', 'Email Address', 'Endereço de email', 'Dirección de correo electrónico'),
-(837, 'journery_details', 'Journey Details', 'Detalhes da jornada', 'Detalles del viaje'),
-(838, 'select_your_payment_method', 'Select Your Payment Method', 'Selecione seu metodo de pagamento', 'Selecciona tu forma de pago'),
-(839, 'bank_transfer', 'Bank Transfer', 'Transferência bancária', 'Transferencia bancaria'),
-(840, 'cash_payment', 'Cash Payment', 'Pagamento em dinheiro', 'Pago en efectivo'),
-(841, 'select_your_bank_first', 'Select Bank Name First', 'Selecione o nome do banco primeiro', 'Seleccione el nombre del banco primero'),
-(842, 'transaction_id', 'Transaction Id', 'Código da transação', 'ID de transacción'),
-(843, 'select_journey_date', 'Select Journey Date', 'Selecione a data da viagem', 'Seleccione la fecha del viaje'),
-(844, 'seat_details', 'Seat Details ', 'Detalhes do assento', 'Detalles del asiento'),
-(845, 'seat_n', 'Seat Number', 'Número do assento', 'Número de asiento'),
-(846, 'last_name', 'Last Name', 'Sobrenome', 'Apellido'),
-(847, 'confirm_password', 'Confirm Password', 'Confirme a Senha', 'Confirmar contraseña'),
-(848, 'no_facilities_available', 'No facilities Available', 'Não há instalações disponíveis', 'No hay instalaciones disponibles'),
-(849, 'must_put_email_pass', 'Must Put Email and Password', 'Deve Colocar Email e Senha', 'Debe poner correo electrónico y contraseña'),
-(850, 'havn_nt_acc', 'Have nt Account', 'Não tem conta', 'No tengo cuenta'),
-(851, 'email_and_password_d_match', 'Email And Password doesnt Match', 'E-mail e senha não correspondem', 'Correo electrónico y contraseña no coinciden'),
-(852, 'must_put_email', 'Must Put Your Email', 'Deve colocar seu e-mail', 'Debe poner su correo electrónico'),
-(853, 'select_pickup_and_drop_location', 'Select Pickup and Drop Location', 'Selecione o local de coleta e entrega', 'Seleccione la ubicación de recogida y entrega'),
-(854, 'select_your_seat_properly', 'Select Your', 'Selecione seu', 'Selecciona tu'),
-(855, 'check_term_and_condition', 'Check Terms and Condition', 'Verifique os termos e condições', 'Ver términos y condiciones'),
-(856, 'check_your_mail', 'Please Check Your Mail', 'Por favor cheque seu e-mail', 'Por favor revise su correo'),
-(857, 'plz_check_your_seat', 'Please Check Your Seat', 'Por favor, verifique seu assento', 'Por favor revise su asiento'),
-(858, 'no_rout_available', 'No rout Available', 'Nenhuma rota disponível', 'No hay ruta Disponible'),
-(859, 'your_booking_complete', 'Your Booking Successfully Completed', 'Sua reserva concluída com sucesso', 'Su reserva completada con éxito'),
-(860, 'bank_booking_message', 'Check Bank Name,Transaction ID', 'Verifique o nome do banco, ID da transação', 'Verifique el nombre del banco, la identificación de la transacción'),
-(861, 'seat_properly', 'Seat Properly', 'Assento corretamente', 'asiento correctamente'),
-(862, 'must_put_atlest_seat_num', 'You Must put Atleast 1 seat on adult/child/Special', 'Você deve colocar pelo menos 1 assento em adulto/criança/especial', 'Debe poner al menos 1 asiento en adulto/niño/especial'),
-(863, 'paypal_payment', 'Paypal Payment', 'Pagamento Paypal', 'Pago PayPal'),
-(864, 'bank_information', 'Bank Information', 'Informação bancária', 'Información bancaria'),
-(865, 'change_select_end_point', '& Change select end point', '& Alterar o ponto final seleccionado', '& Cambiar seleccionar punto final'),
-(866, 'must_put_your_mail', 'You must put your email', 'Você deve colocar seu e-mail', 'Debes poner tu correo'),
-(867, 'invalid_email_address', 'Invalid Email Address', 'Endereço de email invalido', 'Dirección de correo electrónico no válida'),
-(868, 'plz_check_your_mail_to_reset_passw', 'Please Check Your email to reset Password', 'Por favor, verifique seu e-mail para redefinir a senha', 'Por favor revise su correo electrónico para restablecer la contraseña'),
-(869, 'edit_profile', 'EDIT PROFILE', 'EDITAR PERFIL', 'EDITAR PERFIL'),
-(870, 'select_profile_image', 'Select Profile Image', 'Selecione a imagem do perfil', 'Seleccionar imagen de perfil'),
-(871, 'save_profile', 'Save Profile', 'Salvar perfil', 'Guardar perfil'),
-(872, 'view_profile', 'View Profile', 'Ver perfil', 'Ver perfil'),
-(873, 'developed_by_bdtask', 'Desarrollado por Criative Digital', 'Desarrollado por Criative Digital', 'Desarrollado por Criative Digital'),
-(874, 'use_new_password_to_update_password', 'Use New Password to Update Password', 'Use a nova senha para atualizar a senha', 'Usar nueva contraseña para actualizar la contraseña'),
-(875, 'pass_username_cant_be_empty', 'Password, First Name, Last Name cant empty. Use New password to update password , otherwise type old password', 'Senha, Nome, Sobrenome não podem esvaziar. Use Nova senha para atualizar a senha, caso contrário, digite a senha antiga', 'La contraseña, el nombre y el apellido no se pueden vaciar. Use Nueva contraseña para actualizar la contraseña; de lo contrario, escriba la contraseña anterior'),
-(876, 'no', 'NO', 'NÃO', 'NO'),
-(877, 'login_again', 'Data Save Successfully. Please Login Again', 'Dados salvos com sucesso. Por favor faça login novamente', 'Datos guardados con éxito. Inicie sesión de nuevo'),
-(878, 'companies', 'Companies', 'Empresas', 'Compañías'),
-(879, 'lane', 'Lane', 'Faixa', 'Carril'),
-(880, 'nit', 'NIT', 'NIT', 'NIT'),
-(881, 'driver_name_1', 'Driver name 1', 'Nome do motorista 1', 'Nombre del conductor 1'),
-(882, 'driver_name_2', 'Driver name 2', 'Nome do motorista 2', 'Nombre del conductor 2'),
-(883, 'sales', 'Sales', 'Vendas', 'Ventas'),
-(884, 'ci', 'CI', 'CI', 'CI'),
-(885, 'date_birth', 'Date birth', 'Data de nascimento', 'Fecha de nacimiento'),
-(886, 'seat_type', 'Seat type', 'Tipo de assento', 'Tipo de asiento'),
-(887, 'bill_details', 'Bill details', 'Detalhes da fatura', 'Detalles de la factura'),
-(888, 'passenger', 'Passenger', 'Passageiro', 'Pasajero'),
-(889, 'birth', 'Birth', 'Nascimento', 'Nacimiento'),
-(890, 'copy_passenger_data', 'Copy passenger data', 'Copiar dados do passageiro', 'Copiar datos de pasajeros'),
-(891, 'age', 'Age', 'Era', 'Años'),
-(892, 'outs', 'Outs', 'Saídas', 'salidas'),
-(893, 'ins', 'Ins', 'Entradas', 'Ins'),
-(894, 'money_in_cash', 'Money in cash', 'Dinheiro em espécie', 'Pago en efectivo'),
-(895, 'all', 'All', 'Tudo', 'Todos'),
-(896, 'date_start', 'Date start', 'Data de início', 'fecha de inicio'),
-(897, 'date_end', 'Date end', 'Data final', 'Fecha de finalización'),
-(898, 'payment_method', 'Payment method', 'Forma de pagamento', 'Método de pago'),
-(899, 'type_move', 'Type move', 'Tipo de movimento', 'Tipo mover'),
-(900, 'check', 'Check', 'Verificar', 'Controlar'),
-(901, 'transfer', 'Transfer', 'Transferir', 'Transferir'),
-(902, 'in', 'In', 'Dentro', 'En'),
-(903, 'out', 'Out', 'Fora', 'Afuera'),
-(904, 'casher', 'Casher', 'Caixa', 'Cajero'),
-(905, 'add_move', 'Add move', 'Adicionar movimento', 'Agregar movimiento'),
-(906, 'open_cash', 'Open cash', 'Dinheiro em aberto', 'efectivo abierto'),
-(907, 'id', 'ID', 'ID', 'ID'),
-(908, 'close_cash', 'Close cash', 'Fechar Caixa', 'Cierre de Caja'),
-(909, 'concept', 'Concept', 'Conceito', 'Concepto'),
-(910, 'close_modal', 'Close', 'Perto', 'Cerca'),
-(911, 'signature', 'Signature', 'Assinatura', 'Firma'),
-(912, 'back_to_cash', 'Back to cash', 'Devolver dinheiro', 'volver al efectivo'),
-(913, 'totals', 'Totals', 'Totais', 'Totales'),
-(914, 'moves', 'Moves', 'Movimentos', 'Mueve'),
-(915, 'travel_info', 'Travel info', 'Informações de viagem', 'Información de viaje'),
-(916, 'seat', 'Seat', 'Assento', 'Asiento'),
-(917, 'shipment', 'Shipment', 'Envio', 'Envío'),
-(918, 'disembarkation', 'Disembarkation', 'Desembarque', 'Desembarco'),
-(919, 'merchandise', 'Merchandise', 'Mercadoria', 'Mercancías'),
-(920, 'create_merchandise', 'Create merchandise', 'Criar mercadoria', 'Crear mercancía'),
-(921, 'courier', 'Courier', 'Correio', 'Envios'),
-(922, 'origin', 'Origin', 'Origem', 'Origen'),
-(923, 'destination', 'Destination', 'Destino', 'Destino'),
-(924, 'courier_details', 'Courier details', 'Detalhes do correio', 'Detalles del mensajero'),
-(925, 'package_details', 'Package details', 'Detalhes de embalagem', 'Detalles del paquete'),
-(926, 'package_description', 'Package description', 'Descrição do pacote', 'Descripción del paquete'),
-(927, 'price_per_kg', 'Price per kg', 'Preço por kg', 'Precio por kg'),
-(928, 'weight', 'Weight', 'Peso', 'Peso'),
-(929, 'recipient_details', 'Recipient details', 'Detalhes do destinatário', 'Detalles del destinatario'),
-(930, 'billing_details', 'Billing details', 'Detalhes de faturamento', 'Detalles de facturación'),
-(931, 'addresse', 'Addresse', 'Endereço', 'Dirección'),
-(932, 'receipt', 'Receipt', 'Recibo', 'Recibo'),
-(933, 'adjustment', 'Adjustment', 'Ajustamento', 'Ajustamiento'),
-(934, 'package_price', 'Package price', 'Preço do pacote', 'Precio del paquete'),
-(935, 'receipt', 'Receipt', 'Recibo', 'Recibo'),
-(936, 'receipt_phone', 'Receipt phone', 'Telefone de recibo', 'Teléfono del destinatario'),
-(937, 'billing_type', 'Billing type', 'Tipo de faturamento', 'tipo de facturación'),
-(938, 'add_merchandise', 'Add', 'Adicionar', 'Agregar'),
-(939, 'list_merchandise', 'List', 'Lista', 'Lista'),
-(940, 'price_per_kg', 'Price per kg', 'Preço por kg', 'Precio por kg'),
-(941, 'mark_as_delivered', 'Mark as delivered', 'Marcar como entregue', 'Marcar como entregado'),
-(942, 'assign_to_trip', 'Assign to trip', 'Atribuir a viagem', 'Asignar a viaje'),
-(943, 'view', 'View', 'Visão', 'Vista'),
-(944, 'assign_merchandise_to_trip', 'Assign merchandise to trip', 'Atribuir mercadoria à viagem', 'Asignar mercancía a viaje'),
-(945, 'select_trip', 'Select a trip', 'Selecione uma viagem', 'Seleccione un viaje'),
-(946, 'current_status', 'Current status', 'Status atual', 'Estado actual'),
-(947, 'start_trip', 'Start trip', 'Iniciar viagem', 'Iniciar viaje'),
-(948, 'check_in', 'Check in', 'Check-in', 'Registrarse'),
-(949, 'receipt_details', 'Receipt details', 'Detalhes do recibo', 'Detalles del recibo'),
-(950, 'passengers', 'Passengers', 'Passageiros', 'Pasajeros'),
-(951, 'trip1', 'Trip', 'Viagem', 'Viaje'),
-(952, 'no_fleet', 'No fleet', 'Sem frota', 'Sin flota'),
-(953, 'no_chasis', 'No chasis', 'Sem chassi', 'Sin chasis'),
-(954, 'driver_ci_1', 'Driver CI 1', 'RG Motorista 1', 'CI Conductor 1'),
-(955, 'driver_ci_2', 'Driver CI 2', 'RG Motorista 2', 'CI Conductor 2'),
-(956, 'assistant_name_1', 'Assistant name 1', 'Nome do assistente 1', 'Asistente nombre 1'),
-(957, 'assistant_name_2', 'Assistant name 2', 'Nome do assistente 2', 'Nombre del asistente 2'),
-(958, 'assistant_ci_1', 'Assistant CI 1', 'RG Assistente 1', 'C.I. Asistente  1'),
-(959, 'assistant_ci_2', 'Assistant CI 2', 'RG Assistente 2', 'C.I. Asistente  2'),
-(960, 'assistant_ci_3', 'Assistant CI 3', 'RG Assistente 3', 'C.I. Asistente  3'),
-(961, 'passengers_count', 'Passengers count', 'Contagem de passageiros', 'Conteo de pasajeros'),
-(962, 'ticket_no', 'Ticket nro.', 'Bilhete nº.', 'Ticket nro.'),
-(963, 'assistant_name_3', 'Assistant name 3', 'Nome do assistente 3', 'Nombre del asistente 3'),
-(964, 'ticket_sold_by_company', 'Ticket sold by company', 'Bilhete vendido pela empresa', 'Ticket vendido por empresa'),
-(965, 'check_ticket', 'Check ticket', 'Verificar bilhete', 'Ver Ticket'),
-(966, 'close1', 'Close', 'Perto', 'Cierre'),
-(967, 'enter_ticket_to_check', 'Enter ticket to check', 'Insira o ticket para verificar', 'Ingrese el Ticket para verificar');
+INSERT INTO `language` (`id`, `phrase`, `english`, `french`) VALUES
+(1, 'login', 'Login', 'Se connecter'),
+(2, 'email', 'Email', 'Email '),
+(3, 'password', 'Password', 'Mot de passe'),
+(4, 'reset', 'Reset', 'Reinitialiser'),
+(5, 'dashboard', 'Dashboard', 'Tableau de bord'),
+(6, 'home', 'HOME', 'Acceuil '),
+(7, 'profile', 'Profile', 'Profil'),
+(8, 'profile_setting', 'Profile Setting', 'Reglage du profil'),
+(9, 'firstname', 'First Name', 'Nom'),
+(10, 'lastname', 'Last Name', 'Prénom'),
+(11, 'about', 'About', 'A propos'),
+(12, 'preview', 'Preview', 'Visualiser'),
+(13, 'image', 'Image', 'Image'),
+(14, 'save', 'Save', 'Sauvegarder'),
+(15, 'upload_successfully', 'Upload Successfully!', 'Mise à jour reussi'),
+(16, 'user_added_successfully', 'User Added Successfully!', 'Utilisateur ajouté avec succès'),
+(17, 'please_try_again', 'Please Try Again...', 'SVP Essayez encore'),
+(18, 'inbox_message', 'Inbox Messages', 'Boite de reception message'),
+(19, 'sent_message', 'Sent Message', 'Envoyer un message'),
+(20, 'message_details', 'Message Details', 'Détails du message'),
+(21, 'new_message', 'New Message', 'Nouveau message'),
+(22, 'receiver_name', 'Receiver Name', 'Nom du recepteur'),
+(23, 'sender_name', 'Sender Name', 'Nom de l\'expediteur'),
+(24, 'subject', 'Subject', 'Sujet'),
+(25, 'message', 'Message', 'Message'),
+(26, 'message_sent', 'Message Sent!', 'Message envoyé'),
+(27, 'ip_address', 'IP Address', 'Adresse IP'),
+(28, 'last_login', 'Last Login', 'Dernière connexion'),
+(29, 'last_logout', 'Last Logout', 'Dernière déconnexion'),
+(30, 'status', 'Status', 'Status'),
+(31, 'delete_successfully', 'Delete Successfully!', 'Suppression réussi'),
+(32, 'send', 'Send', 'Envoyer'),
+(33, 'date', 'Date', 'Date'),
+(34, 'action', 'Action', 'Action'),
+(35, 'sl_no', 'SL No.', 'N° SL'),
+(36, 'are_you_sure', 'Are You Sure ? ', 'Etes-vous sure ?'),
+(37, 'application_setting', 'Application Setting', 'Reglages d\'application'),
+(38, 'application_title', 'Application Title', 'Titre d\'application'),
+(39, 'address', 'Address', 'Adresse'),
+(40, 'phone', 'Phone', 'Phone'),
+(41, 'favicon', 'Favicon', 'Favicon'),
+(42, 'logo', 'Logo', 'Logo'),
+(43, 'language', 'Language', 'Langue'),
+(44, 'left_to_right', 'Left To Right', 'Gauche vers droite'),
+(45, 'right_to_left', 'Right To Left', 'Droite vers la gauche'),
+(46, 'footer_text', 'Footer Text', 'Texte du footer'),
+(47, 'site_align', 'Application Alignment', 'Aligner le site'),
+(48, 'welcome_back', 'Welcome Back!', 'Bienvenue à nouveau'),
+(49, 'please_contact_with_admin', 'Please Contact With Admin', 'Veuillez contacter l\'administrateur'),
+(50, 'incorrect_email_or_password', 'Incorrect Email/Password', 'Mot de passe ou Email incorrect'),
+(51, 'select_option', 'Select Option', 'Option de selection'),
+(52, 'ftp_setting', 'Data Synchronize [FTP Setting]', 'Reglage FTP'),
+(53, 'hostname', 'Host Name', 'Hostname'),
+(54, 'username', 'User Name', 'Nom d\'utilisateur'),
+(55, 'ftp_port', 'FTP Port', 'Port FTP'),
+(56, 'ftp_debug', 'FTP Debug', 'Debogage FTP '),
+(57, 'project_root', 'Project Root', 'Racine du projet'),
+(58, 'update_successfully', 'Update Successfully', 'Mise à jour reussi'),
+(59, 'save_successfully', 'Save Successfully!', 'Sauvegarde réussie'),
+(61, 'internet_connection', 'Internet Connection', 'Connexion internet'),
+(62, 'ok', 'Ok', 'Ok'),
+(63, 'not_available', 'Not Available', 'Indisponible'),
+(64, 'available', 'Available', 'Disponible'),
+(65, 'outgoing_file', 'Outgoing File', 'Fichier sortant'),
+(66, 'incoming_file', 'Incoming File', 'Fichier entrant '),
+(67, 'data_synchronize', 'Data Synchronize', 'Synchroniser les données'),
+(68, 'unable_to_upload_file_please_check_configuration', 'Unable to upload file! please check configuration', 'Impossible de charger les données veuillez vérifier les configurations'),
+(69, 'please_configure_synchronizer_settings', 'Please configure synchronizer settings', 'Veuillez configurer les paramètres de synchronisation'),
+(70, 'download_successfully', 'Download Successfully', 'Téléchargement réussi'),
+(71, 'unable_to_download_file_please_check_configuration', 'Unable to download file! please check configuration', 'Téléchargement impossible, veuillez vérifier votre connexion internet'),
+(72, 'data_import_first', 'Data Import First', 'Importer d\'abord les données'),
+(73, 'data_import_successfully', 'Data Import Successfully!', 'Import de données réussi'),
+(74, 'unable_to_import_data_please_check_config_or_sql_file', 'Unable to import data! please check configuration / SQL file.', 'Impossible d\'importer les données, veuillez vérifier les configurations'),
+(75, 'download_data_from_server', 'Download Data from Server', 'Télécharger les données du serveur'),
+(76, 'data_import_to_database', 'Data Import To Database', 'Import de données dans la base de données'),
+(77, 'data_upload_to_server', 'Data Upload to Server', 'Charger les données dans le seveur'),
+(78, 'please_wait', 'Please Wait...', 'Veuillez patienter'),
+(79, 'ooops_something_went_wrong', ' Ooops something went wrong...', 'Oops, quelque chose a mal fonctionné'),
+(80, 'module_permission_list', 'Module Permission List', 'Liste de permission du module'),
+(81, 'user_permission', 'User Permission', 'Permission utilisateur'),
+(82, 'add_module_permission', 'Add Module Permission', 'Ajouter module de permission'),
+(83, 'module_permission_added_successfully', 'Module Permission Added Successfully!', 'Permission du module ajoutée avec succès'),
+(84, 'update_module_permission', 'Update Module Permission', 'Mettre à jour le module de permission'),
+(85, 'download', 'Download', 'Télécharger'),
+(86, 'module_name', 'Module Name', 'Nom du module'),
+(87, 'create', 'Create', 'Créer'),
+(88, 'read', 'Read', 'Lu'),
+(89, 'update', 'Update', 'Mettre à jour'),
+(90, 'delete', 'Delete', 'Supprimer '),
+(91, 'module_list', 'Module List', 'Liste de module'),
+(92, 'add_module', 'Add Module', 'Ajouter module'),
+(93, 'directory', 'Module Direcotory', 'Repertoire'),
+(94, 'description', 'Description', 'Description'),
+(95, 'image_upload_successfully', 'Image Upload Successfully!', 'Image mis à jour avec succès'),
+(96, 'module_added_successfully', 'Module Added Successfully', 'Module ajouté avec succès'),
+(97, 'inactive', 'Inactive', 'Inactif'),
+(98, 'active', 'Active', 'Actif'),
+(99, 'user_list', 'User List', 'Liste d\'utilisateur'),
+(100, 'see_all_message', 'See All Messages', 'Voir tous les messages'),
+(101, 'setting', 'Setting', 'Reglages'),
+(102, 'logout', 'LOGOUT', 'Déconnexion'),
+(103, 'admin', 'Admin', 'Administrateur'),
+(104, 'add_user', 'Add User', 'Ajouter un utilisateur'),
+(105, 'user', 'User', 'Utilisateur'),
+(106, 'module', 'Module', 'Module'),
+(107, 'new', 'New', 'Nouveau'),
+(108, 'inbox', 'Inbox', 'Boite de reception'),
+(109, 'sent', 'Sent', 'Envoyé'),
+(110, 'synchronize', 'Synchronize', 'Synchroniser'),
+(111, 'data_synchronizer', 'Data Synchronizer', 'Synchronisation de données'),
+(112, 'module_permission', 'Module Permission', 'Permission du module'),
+(113, 'backup_now', 'Backup Now!', 'Sauvegarder maintenant'),
+(114, 'restore_now', 'Restore Now!', 'Restaurer maintenant'),
+(115, 'backup_and_restore', 'Data Backup', 'Suavegarde et restauration'),
+(116, 'captcha', 'Captcha Word', 'Captcha'),
+(117, 'database_backup', 'Database Backup', 'Sauvegarde base de donnée'),
+(118, 'restore_successfully', 'Restore Successfully', 'Restauration réussi'),
+(119, 'backup_successfully', 'Backup Successfully', 'Sauvegarde réussi'),
+(120, 'filename', 'File Name', ' Nom du fichier'),
+(121, 'file_information', 'File Information', 'Info du fichier'),
+(122, 'size', 'Size', 'Taille'),
+(123, 'backup_date', 'Backup Date', 'Date de sauvegarde'),
+(124, 'overwrite', 'Overwrite', 'Ecraser'),
+(125, 'invalid_file', 'Invalid File!', 'Fichier invalide'),
+(126, 'invalid_module', 'Invalid Module', 'Module invalide'),
+(127, 'remove_successfully', 'Remove Successfully!', 'Retiré avec succès'),
+(128, 'install', 'Install', 'Installer'),
+(129, 'uninstall', 'Uninstall', 'Désinstaller'),
+(130, 'tables_are_not_available_in_database', 'Tables are not available in database.sql', 'Tables indisponibles dans les bases de données'),
+(131, 'no_tables_are_registered_in_config', 'No tables are registerd in config.php', 'Pas de tickets enregistrés dans les configurations'),
+(132, 'enquiry', 'Enquiry', 'Requetes'),
+(133, 'read_unread', 'Read/Unread', 'Lu et non lu'),
+(134, 'enquiry_information', 'Enquiry Information', 'info de requete'),
+(135, 'user_agent', 'User Agent', 'Utilisateur agent'),
+(136, 'checked_by', 'Checked By', 'Verifié par'),
+(137, 'new_enquiry', 'New Enquiry', 'Nouvelle requête'),
+(138, 'fleet', 'Fleet Management', 'Flotte'),
+(139, 'fleet_type', 'Fleet Type', 'Type de vehicule'),
+(140, 'add', 'Add', 'Ajouter'),
+(141, 'list', 'List', 'Liste'),
+(142, 'fleet_facilities', 'Fleet Facilities', 'Facilités du véhicule'),
+(143, 'fleet_registration', 'Vehicles', 'Enregistrement du véhicule'),
+(144, 'reg_no', 'Registration No.', 'N° de reg'),
+(145, 'model_no', 'Model No.', 'N° du modèle '),
+(146, 'engine_no', 'Engine No.', 'N° du moteur'),
+(147, 'chasis_no', 'Chasis No.', 'N° de chassis'),
+(148, 'total_seat', 'Total Seat', 'Sièges total'),
+(149, 'seat_numbers', 'Seat Number', 'Numéro des sièges'),
+(150, 'owner', 'Owner', 'Auteur'),
+(151, 'company', 'Company Name', 'Societé'),
+(152, 'trip', 'Trip Management', 'Voyage'),
+(153, 'location', 'Destination', 'Localication'),
+(154, 'route', 'Route', 'Ligne'),
+(155, 'assign', 'Assign', 'Assigner'),
+(156, 'close', 'Close Trip', 'Fermer'),
+(157, 'location_name', 'Destination Name', 'Nom de la localisation'),
+(158, 'google_map', 'Google Map', 'Google maps'),
+(159, 'start_point', 'Start Point', 'Point de départ'),
+(160, 'end_point', 'End Point', 'Point d\'arrivé'),
+(161, 'route_name', 'Route Name', 'Nom de la ligne'),
+(162, 'distance', 'Distance', 'Distance'),
+(163, 'approximate_time', 'Approximate Time', 'Temps approximatif'),
+(164, 'stoppage_points', 'Stoppage Points', 'Points d\'arrets'),
+(165, 'fleet_registration_no', 'Fleet Registration No.', 'N° d\'enregistrement du véhicule'),
+(166, 'start_date', 'Start Date', 'Date de début'),
+(167, 'end_date', 'End Date', 'Date de fin'),
+(168, 'driver_name', 'Driver Name', 'Nom du chauffeur'),
+(169, 'assistants_ids', 'Assistants', 'ID d\'assignations'),
+(170, 'sold_ticket', 'Sold Ticket', 'Tickets vendus'),
+(171, 'total_income', 'Total Income', 'Revenu total'),
+(172, 'total_expense', 'Total Expense', 'Total dépenses'),
+(173, 'total_fuel', 'Total Fuel', 'Total Fuel'),
+(174, 'trip_comment', 'Trip Comment', 'Commentaire du voyage'),
+(175, 'closed_by', 'Closed by', 'Fermé par '),
+(176, 'ticket', 'Ticket Management', 'Ticket'),
+(177, 'passenger', 'Passenger', 'Passager'),
+(178, 'middle_name', 'Middle Name', 'Autre nom'),
+(179, 'date_of_birth', 'Date of Birth', 'Date de naissance'),
+(180, 'passenger_id', 'Passenger ID.', 'ID du passager'),
+(181, 'address_line_1', 'Address Line 1', 'Adresse 1'),
+(182, 'address_line_2', 'Address Line 2', 'Adresse 1'),
+(184, 'zip_code', 'Zip Code', 'Code zip'),
+(186, 'name', 'Name', 'Nom'),
+(187, 'ac_available', 'AC available', 'Clim disponible'),
+(188, 'trip_id', 'Trip ID.', 'ID du voyage'),
+(189, 'book', 'Book', 'Reserver'),
+(190, 'booking_id', 'Booking ID.', 'ID de reservation'),
+(191, 'available_seats', 'Available Seats', 'Sièges disponibles'),
+(192, 'select_seats', 'Select Seats', 'Selectionner les sièges'),
+(193, 'time', 'Time', 'Temps'),
+(194, 'offer_code', 'Offer Code', 'Code de l\'offre'),
+(195, 'price', 'Price', 'Prix'),
+(196, 'discount', 'Discount', 'Remise'),
+(197, 'request_facilities', 'Request Facilities', 'Requêtes de facilités'),
+(198, 'pickup_location', 'Pickup Location', 'Localisation de depart'),
+(199, 'drop_location', 'Drop Location', 'Destination'),
+(200, 'amount', 'Amount', 'Montant'),
+(201, 'invalid_passenger_id', 'Invalid Passenger ID', 'ID du passager invalide'),
+(202, 'invalid_input', 'Invalid Input', 'Entrée invalide'),
+(203, 'booking_date', 'Booking Date', 'Date de reservation'),
+(204, 'cancelation_fees', 'Cancelation Fees', 'Frais d\'annulation'),
+(205, 'causes', 'Causes', 'Causes'),
+(206, 'comment', 'Comment', 'Commentaires'),
+(207, 'refund', 'Refund', 'Remboursement'),
+(208, 'refund_by', 'Refund by', 'Remboursé par'),
+(209, 'feedback', 'Feedback', 'Feedback'),
+(210, 'rating', 'Rating', 'Notes'),
+(211, 'blood_group', 'Blood Group', 'Groupe sanguin'),
+(212, 'religion', 'Religion', 'Religion'),
+(219, 'details', 'Details', 'Details'),
+(220, 'type_name', 'Type Name', 'Nom du type'),
+(221, 'view_details', 'View Details', 'Visualiser les détails'),
+(222, 'document_pic', 'Document Picture', 'Image du document'),
+(223, 'fitness_list', 'Fitness List', 'Liste fitness'),
+(226, 'fitness_name', 'Fitness Name', 'Nom fitness'),
+(227, 'fitness_description', 'Description', 'Description fitness'),
+(228, 'successfully_updated', 'Your Data Successfully Updated', 'Mise à jour reussi'),
+(229, 'fitness_period', 'Fitness Period List', 'Période fitness'),
+(230, 'fitness_id', 'Fitness Name', 'ID fitness'),
+(231, 'vehicle_id', 'Vehicles No', 'ID vehicule'),
+(234, 'start_milage', 'Start Milage', 'Commençer le kilometrage'),
+(235, 'end_milage', 'End Milage', 'Fin du KM'),
+(236, 'agent', 'Agent', 'Agent'),
+(237, 'agent_first_name', 'First Name', 'Nom Agent'),
+(238, 'agent_second_name', 'LastName', 'Autre Nom de l\'agent'),
+(239, 'agent_company_name', 'Company Name', 'Non Société d\'agent '),
+(240, 'agent_document_id', 'Document ID', 'ID Document agent'),
+(241, 'agent_pic_document', 'Document File', 'Doc photo agent'),
+(242, 'agent_phone', 'Phone', 'Téléphone agent'),
+(243, 'agent_mobile', 'Mobile No', 'Mobile Agent'),
+(244, 'agent_email', 'Email', 'Email Agent'),
+(245, 'agent_address_line_1', 'Address Line 1', 'Adresse d\'agent 1'),
+(246, 'agent_address_line_2', 'Address Line 2', 'Adresse d\'agent 2'),
+(247, 'agent_address_city', 'City', 'Adresse ville d\'agent'),
+(248, 'agent_address_zip_code', 'ZIP', 'Code zip agent'),
+(249, 'agent_country', 'Country', 'Pays d\'agent'),
+(252, 'sl', 'SL', 'sl'),
+(253, 'route_id', 'Route Name', 'ID de ligne'),
+(254, 'vehicle_type_id', 'Vehicle Type', 'ID type de véhicule'),
+(255, 'group_price_per_person', 'Group Price Per Person', 'Groupe de prix par personne'),
+(256, 'group_size', 'Group Members', 'Taille du groupe'),
+(257, 'successfully_saved', 'Your Data Successfully Saved', 'Sauvegardé avec succès'),
+(258, 'account', 'Account', 'Compte'),
+(259, 'account_name', 'Account Name', 'Nom du compte'),
+(260, 'account_type', 'Account Type', 'Type de compte'),
+(261, 'account_transaction', 'Account Transaction', 'Transaction du compte'),
+(262, 'account_id', 'Account Name', 'ID du compte'),
+(263, 'transaction_description', 'Transaction Details', 'Description de la transaction'),
+(265, 'pass_book_id', 'Passenger ID', 'ID pass de reservation'),
+(267, 'payment_id', 'Payment ID', 'ID de paiement '),
+(268, 'create_by_id', 'Created By', 'Créer l\'ID par'),
+(269, 'offer', 'Offer', 'Offres'),
+(270, 'offer_name', 'Offer Name', 'Nom de l\'offre'),
+(271, 'offer_start_date', 'Offer Start Date', 'Date de debut de l\'offre'),
+(272, 'offer_end_date', 'Offer Last Date', 'Datae de fin de l\'offre'),
+(274, 'offer_discount', 'Discount', 'Remise de l\'offre '),
+(275, 'offer_terms', 'Offer Terms', 'Termes de l\'offre'),
+(276, 'offer_route_id', 'Route Name', 'ID offre de voyage'),
+(277, 'offer_number', 'Offer Number', 'N° de l\'offre'),
+(280, 'seat_number', 'Seat No', 'N° du siège '),
+(281, 'available_seat', 'Available Seat', 'Siège disponible'),
+(282, 'owner_name', 'Owner Name', 'Nom de l\'auteur'),
+(283, 'agent_picture', 'Picture', 'Photo Agent'),
+(284, 'account_add', 'Add Account', 'Ajouter un compte'),
+(285, 'add_agent', 'Add Agent', 'Ajouter agent'),
+(286, 'hr', 'Human Resource', 'Ressource Humaine'),
+(287, 'create_hr', 'Add Employee', 'Créer l\'heure'),
+(288, 'serial', 'Sl', 'Serial'),
+(289, 'position', 'Position', 'Position'),
+(290, 'phone_no', 'Phone No', 'N° de téléphone'),
+(291, 'email_no', 'Email', 'N° Email'),
+(292, 'picture', 'Picture', 'Photo'),
+(293, 'first_name', 'First Name', 'Nom'),
+(294, 'second_name', 'Last Name', 'Deuxième nom'),
+(295, 'document_id', 'Documet Id', 'ID document'),
+(298, 'country', 'Country', 'Pays'),
+(299, 'city', 'City', 'Ville '),
+(300, 'zip', 'Zip ', 'Zip '),
+(393, 'add_passenger', 'Add Passenger', 'Ajouter un passager'),
+(394, 'search_tiket', 'Search Ticket', 'Rechercher le ticket'),
+(395, 'slogan', 'Slogan', 'Slogan'),
+(396, 'website', 'Website', 'Site web'),
+(397, 'submit', 'Submit', 'Envoyer'),
+(398, 'customer_service', 'Customer Service', 'Service client'),
+(399, 'submit_successfully', 'Submit Successfully!', 'Envoi reussi'),
+(400, 'add_to_website', 'Add to Website', 'Ajouter au site'),
+(401, 'our_customers_say', 'Our Customers Say', 'Ce que disent nos clients'),
+(402, 'website_status', 'Website Status', 'Status site web'),
+(403, 'title', 'Title', 'Titre'),
+(405, 'total_fleet', 'Total Fleet', 'Total flotte véhicules'),
+(406, 'total_passenger', 'Total Passenger', 'Total passagers'),
+(407, 'todays_trip', 'Today\'s Trip', 'Voyage d\'aujourd\'hui'),
+(408, 'seats_available', 'Seats Available', 'Sièges disponibles'),
+(409, 'no_trip_avaiable', 'No trip avaiable', 'Aucun voyage disponible'),
+(410, 'booking', 'Booking', 'Reservations'),
+(411, 'something_went_worng', 'Something went worng!', 'Quelque chose a mal fonctionné'),
+(412, 'paypal_email', 'Paypal Email', 'Email Paypal'),
+(413, 'currency', 'Currency', 'Dévise'),
+(414, 'reports', 'Reports', 'Rapports'),
+(415, 'search', 'Search', 'Rechercher'),
+(416, 'ticket_sold_by_company', 'Ticket sold by company', 'Ticket sold by company'),
+(417, 'go', 'Go', 'Lancer'),
+(418, 'all', 'All', 'Tout'),
+(419, 'filter', 'Filter', 'Filter'),
+(420, 'last_year_progress', 'Last Year Progress', 'Progrès l\'an dernier'),
+(421, 'download_document', 'Download Document', 'Télécharger le document'),
+(422, 'mobile', 'Mobile No.', 'Mobile '),
+(424, 'account_list', 'Account List', 'Liste de comptes'),
+(425, 'add_income', 'Add Income', 'Ajouter une entrée'),
+(426, 'add_expense', 'Add Expense', 'Ajouter une dépense'),
+(427, 'agent_list', 'Agent List', 'Liste d\'agent'),
+(428, 'add_fitness', 'Add Fitness', 'Ajouter fitness'),
+(429, 'fitness', 'Fitness', 'Fitness'),
+(430, 'add_fitness_period', 'Add Fitness Period', 'Ajouter Période fitness'),
+(431, 'employee_type', 'Employee Type', 'Type d\'employé'),
+(432, 'employee_list', 'Employee List', 'Liste d\'employé'),
+(433, 'add_offer', 'Add Offer', 'Ajouter une offre'),
+(434, 'offer_list', 'Offer List', 'Liste d\'offre'),
+(435, 'add_price', 'Add Price', 'Ajouter un prix'),
+(436, 'price_list', 'Price List', 'Liste de prix'),
+(437, 'layout', 'Layout', 'Aperçu'),
+(438, 'last_seat_availabe', 'Last Seat Available', 'Dernier siège disponible'),
+(439, 'paypal_transaction', 'Paypal Transaction', 'Transaction paypal'),
+(440, 'enable', 'Enable', 'Activer'),
+(441, 'disable', 'Disable', 'Desactiver'),
+(442, 'payment_gateway', 'Payment Gateway', 'Passerelle de paiement'),
+(443, 'payment_type', 'Payment Type', 'Type de paiement'),
+(444, 'payment_status', 'Payment Status', 'Status de paiement'),
+(445, 'downtime', 'Down Time', 'Temps hors service'),
+(446, 'select_bus', 'Select Bus', 'Selectionner le bus'),
+(447, 'user_info', 'Passenger Information', 'Informations d\'utilisateur'),
+(448, 'personal_info', 'Personal Information', 'Informations personnelles'),
+(449, 'booking_info', 'Booking Information', 'Info de reservation'),
+(450, 'update_your_profile', 'Edit your Profile', 'Mettre à jour votre profil'),
+(451, 'email_configue', 'Email Configuration', 'Reglage Email'),
+(452, 'protocol', 'Protocol', 'Protocol'),
+(453, 'smtp_host', 'SMTP Host', 'host smtp'),
+(454, 'smtp_port', 'SMTP Port', 'port smtp'),
+(455, 'smtp_pass', 'SMTP Password', 'pass smtp'),
+(456, 'mailtype', 'Mail Type', 'Type de mail'),
+(457, 'smtp_user', 'SMTP User', 'utilisateur smtp'),
+(458, 'html', 'Html', 'HTML'),
+(459, 'text', 'Text', 'Texte '),
+(460, 'email_send_to_passenger', ' Email Sent Sucessfully', 'Mail envoyé au passager'),
+(461, 'bank', 'Bank Information', 'Banque'),
+(462, 'instruction', 'Instruction', 'Instruction'),
+(463, 'account_details', 'Account Details', 'Details du compte'),
+(464, 'bank_logo', 'Bank Logo', 'Logo banque'),
+(465, 'bank_name', 'Bank Name', 'Nom de banque'),
+(466, 'bank_trans', 'Bank', 'Transation banque'),
+(467, 'transaction_successfully_send', 'Your Information successfully Send', 'Transaction envoyé avec succès'),
+(468, 'confirmation', 'Confirmation', 'Confirmation'),
+(469, 'account_no', 'Account No', 'N° du compte'),
+(470, 'transaction_no', 'Transaction No', 'N° de la transaction'),
+(471, 'paypal', 'Paypal', 'Paypal'),
+(472, 'cash', 'Cash', 'Cash'),
+(473, 'paypal_checkout', 'Paypal Checkout', 'Checkout Paypal'),
+(474, 'confirm_banking', 'Confirm Banking', 'Confirmation bancaire'),
+(475, 'payment_information', 'Payment Information', 'Informaition de paiement '),
+(476, 'email_gritting', 'Congratulation Mr.', 'Email personalisé'),
+(477, 'email_ticket_idinfo', 'Your Purchase Ticket No-', 'ID info email'),
+(478, 'ticket_confirmation', 'Unpaid Bank Booking List', 'Confirmation ticket'),
+(479, 'deny', 'Deny', 'Rejeter'),
+(480, 'confirm', 'CONFIRM', 'Confirmer'),
+(481, 'note', 'Note', 'Note'),
+(482, 'accournt_no', 'Account Number', 'N° Compte'),
+(483, 'payer_name', 'Payer Name', 'Nom du payeur'),
+(484, 'accournt_non', 'Account Number', 'N° Compte'),
+(485, 'confirm_booking', 'Confirm Booking', 'Confirmer la réservation'),
+(486, 'account_num', 'Account Number', 'Numéro du compte'),
+(487, 'invalid_logo', 'Invalid Logo, Please upload gif|jpg|png|jpeg|ico type image', 'Logo invalide'),
+(488, 'invalid_favicon', 'Invalid Favicon, Please upload gif|jpg|png|jpeg|ico type image', 'Favicon invalide'),
+(489, 'print_ticket', 'Print Ticket', 'Imprimmer le ticket'),
+(490, 'cancel_ticket', 'Cancel Ticket', 'Annuler le ticket'),
+(491, 'email_not_send', 'Email Not Send', 'Email non envoyé'),
+(492, 'timezone', 'Time Zone', 'Fuseau horaire'),
+(493, 'menu_permission_form', 'Menu Permission Form', 'Position du formulaire de menu'),
+(494, 'permission_setup', 'Permission setup', 'Reglage de permission'),
+(495, 'menu_permission_list', 'Menu Permission List', 'Liste de permission menu'),
+(496, 'add_fleet_type', 'Add Fleet Type', 'Ajouter type de flotte'),
+(497, 'fleet_type_list', 'Fleet Type List', 'LIste type de véhicule'),
+(498, 'add_facilities', 'Add Facilities', 'Ajouter les facilités'),
+(499, 'facilities_list', 'Facilities List', 'Liste de facilités'),
+(500, 'add_registration', 'Add Vehicle', 'Ajouter une souscription'),
+(501, 'registration_list', 'Vehicle List', 'Liste d\'enregistrement'),
+(502, 'refund_list', 'Refund List', 'Liste de remboursement'),
+(503, 'add_refund', 'Add Refund', 'Ajouter un remboursement'),
+(504, 'booking_list', 'Booking List', 'Liste de reservation'),
+(505, 'add_booking', 'Add Booking', 'Ajouter une réservation'),
+(506, 'passenger_list', 'Passenger List', 'Liste des passagers'),
+(507, 'assign_list', 'Assignment List', 'Liste d\'assignation'),
+(508, 'close_list', 'Close List', 'Liste fermé'),
+(509, 'add_assign', 'Assign Vehicle To Trip', 'Ajouter une assignation'),
+(510, 'route_list', 'Route List', 'Liste de ligne'),
+(511, 'add_route', 'Add Route', 'Ajouter une ligne'),
+(512, 'location_list', 'Destination List', 'Liste de localisation'),
+(513, 'add_location', 'Add Destination', 'Ajouter localisation'),
+(514, 'add_role', 'Add Role', 'Ajouter un role'),
+(515, 'add_bank', 'Add Bank', 'Ajouter une banque'),
+(516, 'bank_list', 'Bank List', 'Liste de banque'),
+(517, 'role_name', 'Role Name', 'Nom du role'),
+(518, 'role_description', 'Role Description', 'Description du role'),
+(519, 'role_list', 'Role List', 'Liste de role'),
+(520, 'user_access_role', 'User Access Role', 'Role d\'utilisateur'),
+(521, 'role', 'Role', 'Role'),
+(522, 'role_permission', 'Role Permission', 'Permission du role'),
+(523, 'web_setting', 'Web Setting', 'Reglages web'),
+(524, 'ticket_offer', 'Ticket Offer', 'Offre de tickets'),
+(525, 'shedules', 'Shedules', 'Horaires'),
+(526, 'add_shedule', 'Add Shedule', 'Ajouter un planning'),
+(527, 'shedule_list', 'Shedule LIst', 'Liste d\'horaires'),
+(528, 'shedule_time', 'Shedule Time', 'Temps de planning'),
+(529, 'travel_slogan', 'On the placess you\'ll go', 'Slogan du voyage'),
+(530, 'travel_sub_slogan', 'It is not down in any map; true place naver are.', 'Sous slogan du voyage'),
+(531, 'search_tour', 'Search Tours', 'Rechercher un voyage'),
+(532, 'find_dream', 'Find your dream tour today!', 'Rechercher reve'),
+(533, 'find_now', 'Find now!', 'Rechercher maintenant'),
+(534, 'start', 'Start', 'Demarrer '),
+(535, 'end', 'End', 'Fin'),
+(536, 'paypal_payment_paynow', 'PAYPAL PAY NOW', 'Paiement paypal Payer maintenant'),
+(537, 'passenger_name', 'Passenger Name', 'Nom du passager'),
+(538, 'facilities', 'Facilities', 'Facilités'),
+(539, 'seat_name', 'Seat Name', 'Nom du siège'),
+(540, 'adult', 'Adult', 'Adulte'),
+(541, 'child', 'Child', 'Enfant'),
+(542, 'special', 'Special', 'Special'),
+(543, 'grand_total', 'Grand Total', 'Grand Total'),
+(544, 'book_for_one_hour', 'Book For One Hour', 'Reserver pour une heure'),
+(545, 'unpaid_cash_booking_list', 'Unpaid Cash Booking List', 'Liste des réservations non payés'),
+(546, 'bank_transaction', 'Bank Transaction', 'Transaction de banque'),
+(547, 'payment_term_andcondition', 'Payment Terms & Conditions', 'Terms & conditions de paiement'),
+(548, 'add_terms', 'Add Terms', 'Ajouter les termes'),
+(549, 'terms_list', 'Terms & Condition', 'Liste de termes'),
+(550, 'how_to_pay', 'How to Pay', 'Comment Payer'),
+(551, 'terms_and_condition', 'Terms And Conditions', 'Termes et conditions'),
+(552, 'nid', 'National ID', 'N° ID'),
+(553, 'add_trip', 'Create Trip', 'Ajouter un voyage'),
+(554, 'trips', 'Trips', 'Voyages'),
+(555, 'trip_list', 'Trip LIst', 'Liste de voyage'),
+(556, 'trip_title', 'Trip Title', 'Titre du voyage'),
+(557, 'types', 'Types', 'Types'),
+(558, 'assigns', 'Assign', 'Assignation'),
+(559, 'see_all', 'See All', 'Voir tout'),
+(560, 'no_o_ticket', 'NO of Tickts', 'N° du ticket'),
+(561, 'seats', 'Seat(s)', 'Sièges'),
+(562, 'prices', 'Price(s)', 'Prix'),
+(563, 'group_price', 'Group Price', 'Groupe de prix'),
+(564, 'total', 'Total', 'Total'),
+(565, 'passenger_details', 'Passenger Details', 'Details du passager'),
+(566, 'journey_details', 'Journey Details', 'Details du voyage'),
+(567, 'term_n_condition', 'Term & Condition', 'Termes & Conditions'),
+(568, 'enter_login_info', 'Enter Your Login Info', 'Entrer les infos de connexion'),
+(569, 'select_bank_name', 'Select Bank Name', 'Selectionner le nom de la banque'),
+(570, 'enter_transaction_id', 'Enter Transaction Id', 'Entrer ID de la transaction'),
+(571, 'booked_seat', 'Booked Seat', 'Siège reservé'),
+(572, 'selected_seat', 'Selected Seat', 'Sièges selectionnés'),
+(573, 'operator', 'Operator', 'Operateur'),
+(574, 'fare', 'Fare', 'Flotte '),
+(575, 'arrival', 'Arrival', 'Arrivée'),
+(576, 'departure', 'Departure', 'Départ'),
+(577, 'duration', 'Duration', 'Durée'),
+(578, 'no_of_ticket', 'No Of tickets', 'N° du ticket'),
+(579, 'special_fare', 'Special Price', 'Tarif special'),
+(580, 'child_fare', 'Children Fare', 'Flotte pour enfant'),
+(581, 'adult_fare', 'Adult Fare', 'Tarif Adulte'),
+(582, 'ticket_information', 'Ticket Information', 'Information du ticket'),
+(583, 'brand_name', 'Brand Name', 'Nom de la marque'),
+(584, 'children_seat', 'Children Seat', 'Sièges pour enfant'),
+(585, 'special_seat', 'Special Seat', 'Siège spécial'),
+(586, 'menu_item_list', 'Menu Item List', 'Liste d\'élément du menu'),
+(587, 'parent_menu', 'Parent Menu', 'Menu parent'),
+(588, 'page_url', 'Page Url', 'URL de la page'),
+(589, 'menu_title', 'Menu title', 'Titre du menu'),
+(590, 'ins_menu_for_application', 'Insert Menu for the application', 'Menu instruction pour application'),
+(591, 'yearly_progressbar', 'Yearly Progress Bar', 'Bar annuelle de progesssion'),
+(592, 'child_price', 'Child Price', 'Prix pour enfant'),
+(593, 'adult_price', 'Adult Price', 'Prix adulte'),
+(594, 'special_price', 'Special Price', 'Prix spécial'),
+(595, 'how_to_use', 'HOW TO USE', 'Comment utiliser'),
+(596, 'bank_commission', 'Bank Commission', 'Commission de la banque'),
+(597, 'bank_charge', 'Bank Charge', 'Facturation de banque'),
+(598, 'type', 'Type', 'Type'),
+(599, 'amount_paid', 'Amount Paid', 'Montant payé'),
+(600, 'txn_id', 'TXN ID', 'ID tax'),
+(601, 'item_number', 'Item Number', 'Numéro de l\'élément'),
+(602, 'paument_success_message', 'Your Payment Successfully Paid', 'Message de paiement avec succès'),
+(603, 'unpaid', 'Unpaid', 'Non payé'),
+(604, 'paid', 'Paid', 'Payé'),
+(605, 'trip_name', 'Trip Name', 'Nom du voyage'),
+(606, 'account_number', 'Account Number', 'Numéro de compte'),
+(607, 'owner_phone', 'Owner Phone No', 'Numéro de l\'auteur'),
+(608, 'passenger_email', 'Passenger Email', 'Email du passager'),
+(609, 'child_no', 'Child', 'N° de l\'enfant'),
+(610, 'close_trip', 'Close Trip', 'Fermer le voyage'),
+(611, 'agent_commission', 'Agent Commission', 'Commission agent'),
+(612, 'credit', 'Credit', 'Crédit'),
+(613, 'debit', 'Debit', 'Débiter'),
+(614, 'balance', 'Balance', 'Solde'),
+(615, 'agent_log', 'Agent Log', 'Blog agent'),
+(616, 'total_ticket', 'Total Ticket', 'Ticket total'),
+(617, 'total_amount', 'Total Amount', 'Montant total'),
+(618, 'total_commission', 'Total Commission', 'Commission total'),
+(619, 'select_agent_name', 'Select Agent Name', 'Selectionner le nom de l\'agent'),
+(620, 'commission_amount', 'Commission Amout', 'Montant commission'),
+(621, 'total_price', 'Total Price', 'Prix total'),
+(622, 'commission_rate', 'Commission Rate', 'Taux de commission'),
+(623, 'ticket_sales', 'Ticket Sale', 'Ventes de tickets'),
+(624, 'vehicle', 'Vehicle', 'Vehicule'),
+(625, 'ticket_sales_report_for', 'Ticket Sales Report For', 'Rapport de vente de tickets pour'),
+(626, 'agent_report', 'Agent Report', 'Rapport agent'),
+(627, 'agent_ledger', 'Agent Ledger', 'Registre d\'agent'),
+(628, 'booking_details', 'Journey Details', 'Details de reservation'),
+(630, 'websites', 'Go to Frontend', 'Sites web'),
+(631, 'backup_and_download', 'Backup && Download', 'Sauvegarde et téléchargement'),
+(632, 'distance_kmmile', '1 Km/Mile', 'Distance kilometrique'),
+(633, 'children', 'Children', 'Enfants'),
+(634, 'login_info', 'Login Information', 'Login Information'),
+(635, 'please_configure_your_mail', 'Please configure your mail.', 'Please configure your mail.'),
+(636, 'error', 'Error', 'Erreur'),
+(637, 'settings_not_found', 'No Setting Here', 'Aucun paramètre ici'),
+(638, 'location_not_found', 'Location Not Found', ' emplacement non trouvé'),
+(639, 'fleets_not_found', 'Fleets Not Found', 'flotte non trouvée'),
+(640, 'image_not_found', 'Image Not Found', 'image non trouvée'),
+(641, 'no_trip_available', 'No Trip Available', 'Aucun voyage disponible'),
+(642, 'required_field', 'Fields Are Required ', 'Les champs sont obligatoires'),
+(643, 'successfully_login', 'Successfully Loged In', 'connecté avec succès'),
+(644, 'no_data_found', 'No Data Found', 'Aucune donnée disponible'),
+(645, 'registrantion', 'Registration', 'enregistrement'),
+(646, 'forgot_password', 'Forgot Password', 'mot de passe oublié'),
+(647, 'register', 'Register', ' registre'),
+(648, 'location_details', 'Location Details', 'Détails de l\'emplacement'),
+(649, 'journey_date', 'Journey Date', ' Date de voyage'),
+(650, 'select_start_point', 'Select Start Point', 'Sélectionnez le point de départ'),
+(651, 'select_end_point', 'Select End Point', ' Sélectionnez le point final'),
+(652, 'select_fleet_type', 'Select Fleet Type', ' Sélectionnez le type de flotte'),
+(653, 'total_seats', 'Total Seats', 'Nombre total de places'),
+(654, 'pickup_and_drop', 'Pickup and Drop', 'Pickup and Drop'),
+(655, 'select_pickup_location', 'Select Pickup Location', 'Sélectionnez l\'emplacement de ramassage'),
+(656, 'select_drop_location', 'Select Drop Location', 'Sélectionnez un lieu de dépôt'),
+(657, 'tap_to_select_seat', 'Tap To Select Seat', ' Appuyez sur pour sélectionner un siège'),
+(658, 'seat_layout', 'Seat Layout', 'Disposition du siège'),
+(659, 'continue', 'Continue', 'continuer'),
+(660, 'full_name', 'Full Name', 'Nom complet'),
+(661, 'email_address', 'Email Address', ' Adresse électronique'),
+(662, 'journery_details', 'Journey Details', 'Détails du voyage'),
+(663, 'select_your_payment_method', 'Select Your Payment Method', 'Sélectionnez le mode de paiement'),
+(664, 'bank_transfer', 'Bank Transfer', 'Virement bancaire'),
+(665, 'cash_payment', 'Cash Payment', 'Paiement en espèces'),
+(666, 'select_your_bank_first', 'Select Bank Name First', 'Sélectionnez le nom de la banque en premier'),
+(667, 'transaction_id', 'Transaction Id', 'Identifiant de transaction'),
+(668, 'select_journey_date', 'Select Journey Date', 'Sélectionnez la date du voyage'),
+(669, 'seat_details', 'Seat Details ', 'Détails du siège'),
+(670, 'seat_n', 'Seat Number', 'Numéro de siège'),
+(671, 'last_name', 'Last Name', 'Nom de famille'),
+(672, 'confirm_password', 'Confirm Password', 'Confirmez le mot de passe'),
+(673, 'no_facilities_available', 'No facilities Available', 'Aucun équipement disponible'),
+(674, 'must_put_email_pass', 'Must Put Email and Password', ' Doit mettre l\'email et le mot de passe'),
+(675, 'havn_nt_acc', 'Have n\'t Account', 'Je n\'ai pas de compte'),
+(676, 'email_and_password_d_match', 'Email And Password doesn\'t Match', ' Email ou mot de passe ne correspond pas'),
+(677, 'must_put_email', 'Must Put Your Email', 'Doit mettre un email'),
+(678, 'select_pickup_and_drop_location', 'Select Pickup and Drop Location', ' Sélectionnez le lieu de ramassage et de dépose'),
+(679, 'select_your_seat_properly', 'Select Your', 'Choisissez votre siège correctement'),
+(680, 'check_term_and_condition', 'Check Terms and Condition', 'Vérifier les termes et conditions'),
+(681, 'check_your_mail', 'Please Check Your Mail', 'Vérifier votre courrier'),
+(682, 'plz_check_your_seat', 'Please Check Your Seat', 'S\'il vous plaît vérifier votre siège'),
+(683, 'no_rout_available', 'No rout Available', 'Pas de déroute disponible'),
+(684, 'your_booking_complete', 'Your Booking Successfully Completed', 'Votre réservation effectuée avec succès'),
+(685, 'bank_booking_message', 'Check Bank Name,Transaction ID', 'Sélectionnez le nom de la banque, l\'identifiant de la transaction'),
+(686, 'seat_properly', 'Seat Properly', 'Bien assis'),
+(687, 'must_put_atlest_seat_num', 'You Must put Atleast 1 seat on adult/child/Special', 'Vous devez mettre au moins 1 siège sur adulte / enfant / spécial'),
+(688, 'paypal_payment', 'Paypal Payment', 'Paiement PayPal'),
+(689, 'bank_information', 'Bank Information', ' Information bancaire'),
+(690, 'change_select_end_point', '& Change select end point', '& Modifier le point d\'arrivée sélectionné'),
+(691, 'must_put_your_mail', 'You must put your email', 'Vous devez mettre votre email'),
+(692, 'invalid_email_address', 'Invalid Email Address', 'Adresse e-mail invalide'),
+(693, 'plz_check_your_mail_to_reset_passw', 'Please Check Your email to reset Password', 'Please Check Your email to reset Password'),
+(694, 'edit_profile', 'EDIT PROFILE', 'EDITER LE PROFIL'),
+(695, 'select_profile_image', 'Select Profile Image', 'Enregistrer l\'image de profil'),
+(696, 'save_profile', 'Save Profile', 'Enregistrer le profil'),
+(697, 'view_profile', 'View Profile', 'Voir le profil'),
+(698, 'developed_by_bdtask', 'Developed By BDTASK', ' Développé par BDTASK'),
+(699, 'use_new_password_to_update_password', 'Use New Password to Update Password', 'Utiliser un nouveau mot de passe pour mettre à jour le mot de passe'),
+(700, 'pass_username_cant_be_empty', 'Password, First Name, Last Name can\'t empty. Use New password to update password , otherwise type old password', 'Le mot de passe, le prénom et le nom de famille ne peuvent pas être vides. Utilisez Nouveau mot de passe pour mettre à jour le mot de passe, sinon tapez ancien mot de passe'),
+(701, 'no', 'NO', 'NON'),
+(702, 'login_again', 'Data Save Successfully. Please Login Again', 'Sauvegarde des données avec succès. Veuillez vous reconnecter'),
+(703, 'companies', 'Companies', 'Empresas'),
+(704, 'lane', 'Lane', 'Lane'),
+(705, 'nit', 'NIT', 'NIT'),
+(706, 'driver_name_1', 'Driver name 1', 'Driver name 1'),
+(707, 'driver_name_2', 'Driver name 2', 'Driver name 2'),
+(708, 'sales', 'Sales', 'Sales'),
+(709, 'ci', 'CI', 'CI'),
+(710, 'date_birth', 'Date birth', 'Date birth'),
+(711, 'seat_type', 'Seat type', 'Seat type'),
+(712, 'bill_details', 'Bill details', 'Bill details'),
+(713, 'passenger', 'Passenger', 'Passenger'),
+(714, 'birth', 'Birth', 'Birth'),
+(715, 'copy_passenger_data', 'Copy passenger data', 'Copy passenger data'),
+(716, 'age', 'Age', 'Age'),
+(717, 'outs', 'Outs', 'Outs'),
+(718, 'ins', 'Ins', 'Ins'),
+(719, 'money_in_cash', 'Money in cash', 'Money in cash'),
+(720, 'all', 'All', 'All'),
+(721, 'date_start', 'Date start', 'Date start'),
+(722, 'date_end', 'Date end', 'Date end'),
+(723, 'payment_method', 'Payment method', 'Payment method'),
+(724, 'type_move', 'Type move', 'Type move'),
+(725, 'check', 'Check', 'Check'),
+(726, 'transfer', 'Transfer', 'Transfer'),
+(727, 'in', 'In', 'In'),
+(728, 'out', 'Out', 'Out'),
+(729, 'casher', 'Casher', 'Casher'),
+(730, 'add_move', 'Add move', 'Add move'),
+(731, 'open_cash', 'Open cash', 'Open cash'),
+(732, 'id', 'ID', 'ID'),
+(733, 'close_cash', 'Close cash', 'Close cash'),
+(734, 'concept', 'Concept', 'Concept'),
+(735, 'close_modal', 'Close', 'Close'),
+(737, 'signature', 'Signature', 'Signature'),
+(738, 'back_to_cash', 'Back to cash', 'Back to cash'),
+(739, 'totals', 'Totals', 'Totals'),
+(740, 'moves', 'Moves', 'Moves'),
+(741, 'travel_info', 'Travel info', 'Travel info'),
+(742, 'seat', 'Seat', 'Seat'),
+(743, 'shipment', 'Shipment', 'Shipment'),
+(744, 'disembarkation', 'Disembarkation', 'Disembarkation'),
+(745, 'merchandise', 'Merchandise', 'Merchandise'),
+(746, 'create_merchandise', 'Create merchandise', 'Create merchandise'),
+(747, 'courier', 'Courier', 'Courier'),
+(748, 'origin', 'Origin', 'Origin'),
+(749, 'destination', 'Destination', 'Destination'),
+(750, 'courier_details', 'Courier details', 'Courier details'),
+(751, 'package_details', 'Package details', 'Package details'),
+(752, 'package_description', 'Package description', 'Package description'),
+(753, 'price_per_kg', 'Price per kg', 'Price per kg'),
+(754, 'weight', 'Weight', 'Price per kg'),
+(755, 'recipient_details', 'Recipient details', 'Recipient details'),
+(756, 'billing_details', 'Billing details', 'Billing details'),
+(757, 'addresse', 'Addresse', 'Addresse'),
+(758, 'receipt', 'Receipt', 'Receipt'),
+(759, 'adjustment', 'Adjustment', 'Adjustment'),
+(760, 'package_price', 'Package price', 'Package price'),
+(761, 'receipt', 'Receipt', 'Receipt'),
+(762, 'receipt_phone', 'Receipt phone', 'Receipt phone'),
+(763, 'billing_type', 'Billing type', 'Billing type'),
+(764, 'add_merchandise', 'Add', 'Add'),
+(765, 'list_merchandise', 'List', 'List'),
+(766, 'price_per_kg', 'Price per kg', 'Price per kg'),
+(767, 'mark_as_delivered', 'Mark as delivered', 'Mark as delivered'),
+(768, 'assign_to_trip', 'Assign to trip', 'Assign to trip'),
+(769, 'view', 'View', 'View'),
+(770, 'assign_merchandise_to_trip', 'Assign merchandise to trip', 'Assign merchandise to trip'),
+(771, 'select_trip', 'Select a trip', 'Select a trip'),
+(772, 'current_status', 'Current status', 'Current status'),
+(773, 'start_trip', 'Start trip', 'Start trip'),
+(774, 'check_in', 'Check in', 'Check in'),
+(775, 'receipt_details', 'Receipt details', 'Receipt details'),
+(776, 'passengers', 'Passengers', 'Passengers'),
+(777, 'trip1', 'Trip', 'Trip'),
+(778, 'no_fleet', 'No fleet', 'No fleet'),
+(779, 'no_chasis', 'No chasis', 'No chasis'),
+(780, 'driver_ci_1', 'Driver CI 1', 'Driver CI 1'),
+(781, 'driver_ci_2', 'Driver CI 2', 'Driver CI 2'),
+(782, 'assistant_name_1', 'Assistant name 1', 'Assistant name 1'),
+(783, 'assistant_name_2', 'Assistant name 2', 'Assistant name 2'),
+(784, 'assistant_ci_1', 'Assistant CI 1', 'Assistant CI 1'),
+(785, 'assistant_ci_2', 'Assistant CI 2', 'Assistant CI 2'),
+(786, 'assistant_ci_3', 'Assistant CI 3', 'Assistant CI 3'),
+(787, 'passengers_count', 'Passengers count', 'Passengers count'),
+(788, 'ticket_no', 'Ticket nro.', 'Ticket nro.'),
+(789, 'assistant_name_3', 'Assistant name 3', 'Assistant name 3'),
+(790, 'ticket_sold_by_company', 'Ticket sold by company', 'Ticket sold by company'),
+(791, 'check_ticket', 'Check ticket', 'Check ticket'),
+(792, 'close1', 'Close', 'Close'),
+(793, 'enter_ticket_to_check', 'Enter ticket to check', 'Enter ticket to check'),
+(794, 'sales_by_company', 'Sales by company', 'Sales by company'),
+(795, 'travel_id', 'Travel ID', 'Travel ID');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `merchandise`
+-- Table structure for table `merchandise`
 --
 
 CREATE TABLE `merchandise` (
@@ -1530,7 +1224,7 @@ CREATE TABLE `merchandise` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `merchandise`
+-- Dumping data for table `merchandise`
 --
 
 INSERT INTO `merchandise` (`id`, `trip_id`, `courier_id`, `package_origin`, `package_destination`, `package_description`, `package_weight`, `package_price`, `receipt_nid`, `receipt_name`, `receipt_email`, `receipt_phone`, `receipt_date_birth`, `billing_type`, `billing_discount`, `billing_total`, `status`) VALUES
@@ -1543,7 +1237,7 @@ INSERT INTO `merchandise` (`id`, `trip_id`, `courier_id`, `package_origin`, `pac
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `message`
+-- Table structure for table `message`
 --
 
 CREATE TABLE `message` (
@@ -1560,7 +1254,7 @@ CREATE TABLE `message` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `module`
+-- Table structure for table `module`
 --
 
 CREATE TABLE `module` (
@@ -1573,7 +1267,7 @@ CREATE TABLE `module` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `module`
+-- Dumping data for table `module`
 --
 
 INSERT INTO `module` (`id`, `name`, `description`, `image`, `directory`, `status`) VALUES
@@ -1582,7 +1276,7 @@ INSERT INTO `module` (`id`, `name`, `description`, `image`, `directory`, `status
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `module_permission`
+-- Table structure for table `module_permission`
 --
 
 CREATE TABLE `module_permission` (
@@ -1598,7 +1292,7 @@ CREATE TABLE `module_permission` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ofr_offer`
+-- Table structure for table `ofr_offer`
 --
 
 CREATE TABLE `ofr_offer` (
@@ -1616,7 +1310,7 @@ CREATE TABLE `ofr_offer` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `payment_informations`
+-- Table structure for table `payment_informations`
 --
 
 CREATE TABLE `payment_informations` (
@@ -1628,7 +1322,7 @@ CREATE TABLE `payment_informations` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `price_per_kg`
+-- Table structure for table `price_per_kg`
 --
 
 CREATE TABLE `price_per_kg` (
@@ -1637,7 +1331,7 @@ CREATE TABLE `price_per_kg` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `price_per_kg`
+-- Dumping data for table `price_per_kg`
 --
 
 INSERT INTO `price_per_kg` (`id`, `value`) VALUES
@@ -1646,7 +1340,7 @@ INSERT INTO `price_per_kg` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pri_price`
+-- Table structure for table `pri_price`
 --
 
 CREATE TABLE `pri_price` (
@@ -1661,7 +1355,7 @@ CREATE TABLE `pri_price` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `pri_price`
+-- Dumping data for table `pri_price`
 --
 
 INSERT INTO `pri_price` (`price_id`, `route_id`, `vehicle_type_id`, `price`, `children_price`, `special_price`, `group_price_per_person`, `group_size`) VALUES
@@ -1670,7 +1364,7 @@ INSERT INTO `pri_price` (`price_id`, `route_id`, `vehicle_type_id`, `price`, `ch
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sales`
+-- Table structure for table `sales`
 --
 
 CREATE TABLE `sales` (
@@ -1681,134 +1375,121 @@ CREATE TABLE `sales` (
   `name` varchar(256) DEFAULT NULL,
   `ci` varchar(256) DEFAULT NULL,
   `phone` varchar(256) DEFAULT NULL,
-  `birth` varchar(256) DEFAULT NULL,
-  `embarked` varchar(256) DEFAULT '0'
+  `birth` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `sales`
+-- Dumping data for table `sales`
 --
 
-INSERT INTO `sales` (`id`, `booking_id`, `seat_type`, `seat_number`, `name`, `ci`, `phone`, `birth`, `embarked`) VALUES
-(3, 'BKLCXZ5E', 'Adult', '4', 'Nisa Delgado', '24370873', '+58 246402701', '', '1'),
-(4, 'BVUZ7OLA', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(5, 'BVUZ7OLA', 'Adult', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08', '0'),
-(6, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(7, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(8, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '1993-10-01', '0'),
-(9, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(10, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(11, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '2022-09-17', '0'),
-(12, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(13, 'BN60ELPC', 'Adult', '9', 'Camile Vitoria', '010203', '71608981', '2016-11-08', '0'),
-(14, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '1993-10-01', '0'),
-(15, 'BER6J5Z2', 'Adult', '2', 'Nisa Delgado', '24370873', '04246402701', '1993-10-01', '0'),
-(16, 'BC2UZE8X', '', '', '', '', '', '', '0'),
-(17, 'BBQIIL15', 'Adult', '1', 'Nisa Delgado', '24370873', '04246402701', '1993-10-01', '0'),
-(18, 'BSUFGAJI', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', '', '0'),
-(19, 'B8O1TRF4', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', '', '0'),
-(20, 'BLKG0SCA', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', '', '0'),
-(21, 'BH1XZFAU', 'Child', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(22, 'BH1XZFAU', 'Child', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08', '0'),
-(23, 'BH1XZFAU', 'Child', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(24, 'BH1XZFAU', 'Child', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08', '0'),
-(25, 'B2RJLZZ3', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-09-20', '0'),
-(26, 'B2RJLZZ3', 'Adult', ' 2', 'Daiane Marques', '10756777', '75602777', '1989-01-09', '0'),
-(27, 'B1I7WCHD', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(28, 'B1I7WCHD', 'Adult', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08', '0'),
-(29, 'BLL7MK6V', '', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01', '0'),
-(30, 'BLL7MK6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01', '0'),
-(31, 'BLL7MK6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01', '0'),
-(32, 'BJF1KA15', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(33, 'B02LKS0X', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(34, 'B7MYNYH3', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(35, 'B7MYNYH3', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(36, 'BLSUM8JQ', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(37, 'BLSUM8JQ', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(38, 'B8NLSPEK', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(39, 'B2Z0RULX', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(40, 'B2Z0RULX', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(41, 'B2Z0RULX', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(42, 'B4M0XE7D', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(43, 'B4M0XE7D', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(44, 'BDEKYDG0', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(45, 'BDEKYDG0', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(46, 'BAZPJECG', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(47, 'BAZPJECG', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(48, 'BAZPJECG', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(49, 'B5NEW0OV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(50, 'B3UGV2PY', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(51, 'B3UGV2PY', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(52, 'BVLGO059', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(53, 'BBDF1ACZ', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(54, 'B307HX02', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(55, 'BL7P2TV2', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(56, 'BL7P2TV2', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(57, 'BDUGB0H5', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(58, 'B9ZEXQO1', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(59, 'BM9ELY86', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(60, 'BM9ELY86', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(61, 'BWERLF6M', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(62, 'BD47UD9K', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(63, 'BSPIMYTN', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(64, 'BS777URP', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(66, 'B56IHLDL', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(67, 'BV3C3GNK', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11', '0'),
-(68, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(69, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(70, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(71, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(72, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(73, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(74, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(75, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(76, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(77, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(78, 'BNDSNJP5', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(79, 'BNDSNJP5', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(80, 'BNDSNJP5', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(81, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(82, 'BUXVG5KG', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(83, 'BQMFO7FW', 'Child', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(84, 'BQMFO7FW', 'Child', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(85, 'B84X8CGX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(87, 'BF0JLJOW', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(88, 'BM3N5V3H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(89, 'BM3N5V3H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(90, 'BIH3HA0L', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(91, 'BIH3HA0L', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(92, 'BIH3HA0L', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(93, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(94, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(95, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(96, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(97, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(98, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(99, 'BEU5BRSO', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(100, 'BDT7IUYH', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04', '0'),
-(101, 'BPACOH6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(102, 'BHYT99KR', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(103, 'BRG73NA8', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(104, 'BSSQCYV6', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(105, 'BYXG4CDD', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(106, 'BX663VI6', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(107, 'BQOG49LB', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01', '0'),
-(108, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(109, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(110, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(111, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(112, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(113, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(114, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(115, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(116, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(117, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0'),
-(118, 'BZ7FSBHX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08', '0');
+INSERT INTO `sales` (`id`, `booking_id`, `seat_type`, `seat_number`, `name`, `ci`, `phone`, `birth`) VALUES
+(3, 'BKLCXZ5E', 'Adult', '4', 'Nisa Delgado', '24370873', '+58 246402701', ''),
+(4, 'BVUZ7OLA', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(5, 'BVUZ7OLA', 'Adult', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
+(6, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(7, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(8, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '1993-10-01'),
+(9, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(10, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(11, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '2022-09-17'),
+(12, 'BN60ELPC', 'Adult', '9', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(13, 'BN60ELPC', 'Adult', '9', 'Camile Vitoria', '010203', '71608981', '2016-11-08'),
+(14, 'BN60ELPC', 'Adult', ' 10', 'Nisa Delgado', '', '04246402701', '1993-10-01'),
+(15, 'BER6J5Z2', 'Adult', '2', 'Nisa Delgado', '24370873', '04246402701', '1993-10-01'),
+(16, 'BC2UZE8X', '', '', '', '', '', ''),
+(17, 'BBQIIL15', 'Adult', '1', 'Nisa Delgado', '24370873', '04246402701', '1993-10-01'),
+(18, 'BSUFGAJI', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', ''),
+(19, 'B8O1TRF4', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', ''),
+(20, 'BLKG0SCA', 'Adult', '3', 'Nisa Delgado', '24370873', '04246402701', ''),
+(21, 'BH1XZFAU', 'Child', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(22, 'BH1XZFAU', 'Child', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
+(23, 'BH1XZFAU', 'Child', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(24, 'BH1XZFAU', 'Child', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
+(25, 'B2RJLZZ3', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-09-20'),
+(26, 'B2RJLZZ3', 'Adult', ' 2', 'Daiane Marques', '10756777', '75602777', '1989-01-09'),
+(27, 'B1I7WCHD', 'Adult', '1', 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(28, 'B1I7WCHD', 'Adult', ' 2', 'Camile Vitoria', '010203', '7777-0000', '2016-11-08'),
+(29, 'BLL7MK6V', '', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01'),
+(30, 'BLL7MK6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01'),
+(31, 'BLL7MK6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '0424642701', '1993-10-01'),
+(32, 'BJF1KA15', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(33, 'B02LKS0X', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(34, 'B7MYNYH3', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(35, 'B7MYNYH3', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(36, 'BLSUM8JQ', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(37, 'BLSUM8JQ', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(38, 'B8NLSPEK', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(39, 'B2Z0RULX', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(40, 'B2Z0RULX', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(41, 'B2Z0RULX', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(42, 'B4M0XE7D', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(43, 'B4M0XE7D', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(44, 'BDEKYDG0', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(45, 'BDEKYDG0', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(46, 'BAZPJECG', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(47, 'BAZPJECG', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(48, 'BAZPJECG', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(49, 'B5NEW0OV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(50, 'B3UGV2PY', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(51, 'B3UGV2PY', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(52, 'BVLGO059', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(53, 'BBDF1ACZ', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(54, 'B307HX02', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(55, 'BL7P2TV2', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(56, 'BL7P2TV2', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(57, 'BDUGB0H5', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(58, 'B9ZEXQO1', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(59, 'BM9ELY86', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(60, 'BM9ELY86', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(61, 'BWERLF6M', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(62, 'BD47UD9K', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(63, 'BSPIMYTN', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(64, 'BS777URP', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(66, 'B56IHLDL', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(67, 'BV3C3GNK', 'Adult', NULL, 'Erick Santos', '10756777', '71608981', '1986-11-11'),
+(68, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(69, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(70, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(71, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(72, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(73, 'BSA9KM1H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(74, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(75, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(76, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(77, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(78, 'BNDSNJP5', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(79, 'BNDSNJP5', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(80, 'BNDSNJP5', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(81, 'BIYXORDJ', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(82, 'BUXVG5KG', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(83, 'BQMFO7FW', 'Child', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08'),
+(84, 'BQMFO7FW', 'Child', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08'),
+(85, 'B84X8CGX', 'Adult', NULL, 'Camile vitória ', '123456', '75602777', '2016-11-08'),
+(87, 'BF0JLJOW', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(88, 'BM3N5V3H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(89, 'BM3N5V3H', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(90, 'BIH3HA0L', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(91, 'BIH3HA0L', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(92, 'BIH3HA0L', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(93, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(94, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(95, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(96, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(97, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(98, 'BYRX6HBV', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(99, 'BEU5BRSO', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(100, 'BDT7IUYH', 'Adult', NULL, 'Erick Santos ', '10656777', '71608981 ', '2003-10-04'),
+(101, 'BPACOH6V', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(102, 'BHYT99KR', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(103, 'BRG73NA8', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(104, 'BSSQCYV6', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(105, 'BYXG4CDD', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01'),
+(106, 'BX663VI6', 'Adult', NULL, 'Nisa Delgado', '24370873', '+58 246402701', '1993-10-01');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sec_menu_item`
+-- Table structure for table `sec_menu_item`
 --
 
 CREATE TABLE `sec_menu_item` (
@@ -1823,7 +1504,7 @@ CREATE TABLE `sec_menu_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `sec_menu_item`
+-- Dumping data for table `sec_menu_item`
 --
 
 INSERT INTO `sec_menu_item` (`menu_id`, `menu_title`, `page_url`, `module`, `parent_menu`, `is_report`, `createby`, `createdate`) VALUES
@@ -1892,7 +1573,7 @@ INSERT INTO `sec_menu_item` (`menu_id`, `menu_title`, `page_url`, `module`, `par
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sec_role_permission`
+-- Table structure for table `sec_role_permission`
 --
 
 CREATE TABLE `sec_role_permission` (
@@ -1908,7 +1589,7 @@ CREATE TABLE `sec_role_permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `sec_role_permission`
+-- Dumping data for table `sec_role_permission`
 --
 
 INSERT INTO `sec_role_permission` (`id`, `role_id`, `menu_id`, `can_access`, `can_create`, `can_edit`, `can_delete`, `createby`, `createdate`) VALUES
@@ -2038,7 +1719,7 @@ INSERT INTO `sec_role_permission` (`id`, `role_id`, `menu_id`, `can_access`, `ca
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sec_role_tbl`
+-- Table structure for table `sec_role_tbl`
 --
 
 CREATE TABLE `sec_role_tbl` (
@@ -2051,7 +1732,7 @@ CREATE TABLE `sec_role_tbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `sec_role_tbl`
+-- Dumping data for table `sec_role_tbl`
 --
 
 INSERT INTO `sec_role_tbl` (`role_id`, `role_name`, `role_description`, `create_by`, `date_time`, `role_status`) VALUES
@@ -2061,7 +1742,7 @@ INSERT INTO `sec_role_tbl` (`role_id`, `role_name`, `role_description`, `create_
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sec_user_access_tbl`
+-- Table structure for table `sec_user_access_tbl`
 --
 
 CREATE TABLE `sec_user_access_tbl` (
@@ -2071,7 +1752,7 @@ CREATE TABLE `sec_user_access_tbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `sec_user_access_tbl`
+-- Dumping data for table `sec_user_access_tbl`
 --
 
 INSERT INTO `sec_user_access_tbl` (`role_acc_id`, `fk_role_id`, `fk_user_id`) VALUES
@@ -2086,7 +1767,7 @@ INSERT INTO `sec_user_access_tbl` (`role_acc_id`, `fk_role_id`, `fk_user_id`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `setting`
+-- Table structure for table `setting`
 --
 
 CREATE TABLE `setting` (
@@ -2103,16 +1784,16 @@ CREATE TABLE `setting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `setting`
+-- Dumping data for table `setting`
 --
 
 INSERT INTO `setting` (`id`, `title`, `address`, `email`, `phone`, `logo`, `favicon`, `language`, `site_align`, `footer_text`) VALUES
-(1, 'Grupo Unebus', 'ANDRES MANSO', 'CONTACTO@CRIATIVEDIGITAL.COM', '+59171608981', 'assets/img/icons/67a54c443752b05774d1c8f2a07b4564.png', 'assets/img/icons/59c0dd3ff93f83d957226fd026351962.png', 'portuguese', 'LTR', '©2022 Criative Digital');
+(1, 'Fleet Ticketing System', '98 Green Road, Farmgate, Dhaka-1215.', 'cta.pri.inn@gmail.com', '0123456789', 'assets/img/icons/faaeb1b5b873ede8817439fd25022719.png', '', 'english', 'LTR', '©2022 bdtask');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `shedule`
+-- Table structure for table `shedule`
 --
 
 CREATE TABLE `shedule` (
@@ -2123,7 +1804,7 @@ CREATE TABLE `shedule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `shedule`
+-- Dumping data for table `shedule`
 --
 
 INSERT INTO `shedule` (`shedule_id`, `start`, `end`, `duration`) VALUES
@@ -2133,7 +1814,7 @@ INSERT INTO `shedule` (`shedule_id`, `start`, `end`, `duration`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `synchronizer_setting`
+-- Table structure for table `synchronizer_setting`
 --
 
 CREATE TABLE `synchronizer_setting` (
@@ -2149,7 +1830,7 @@ CREATE TABLE `synchronizer_setting` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ticket_notification`
+-- Table structure for table `ticket_notification`
 --
 
 CREATE TABLE `ticket_notification` (
@@ -2169,7 +1850,7 @@ CREATE TABLE `ticket_notification` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tkt_booking`
+-- Table structure for table `tkt_booking`
 --
 
 CREATE TABLE `tkt_booking` (
@@ -2199,7 +1880,7 @@ CREATE TABLE `tkt_booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tkt_booking`
+-- Dumping data for table `tkt_booking`
 --
 
 INSERT INTO `tkt_booking` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `trip_route_id`, `pickup_trip_location`, `drop_trip_location`, `request_facilities`, `price`, `discount`, `adult`, `child`, `special`, `total_seat`, `seat_numbers`, `offer_code`, `tkt_refund_id`, `agent_id`, `booking_date`, `date`, `booking_type`, `payment_status`, `booked_by`) VALUES
@@ -2208,7 +1889,7 @@ INSERT INTO `tkt_booking` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tkt_feedback`
+-- Table structure for table `tkt_feedback`
 --
 
 CREATE TABLE `tkt_feedback` (
@@ -2223,7 +1904,7 @@ CREATE TABLE `tkt_feedback` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tkt_passenger`
+-- Table structure for table `tkt_passenger`
 --
 
 CREATE TABLE `tkt_passenger` (
@@ -2249,19 +1930,18 @@ CREATE TABLE `tkt_passenger` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tkt_passenger`
+-- Dumping data for table `tkt_passenger`
 --
 
 INSERT INTO `tkt_passenger` (`id`, `id_no`, `firstname`, `lastname`, `middle_name`, `phone`, `nid`, `email`, `password`, `password_reset_token`, `remember_token`, `image`, `address_line_1`, `address_line_2`, `city`, `zip_code`, `country`, `status`, `date_birth`) VALUES
 (1, 'PWX3YAMT', 'Erick', 'Santos', NULL, '71608981', '10756000', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'bus', NULL, NULL, NULL, NULL, 1, ''),
 (5, 'PQ5GFQOX', 'Nisa', 'Delgado', NULL, '0424642701', '24370873', 'nisadelgado@livee.com', '202cb962ac59075b964b07152d234b70', '', NULL, NULL, 'Nueva Via', NULL, NULL, NULL, NULL, 1, '1993-10-01'),
-(10, 'PDA9SUP6', 'Camile', 'Valeria', NULL, '71608981', '10756777', 'dr.ericksantos@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'Av Bush 590', NULL, NULL, NULL, NULL, 1, NULL),
-(11, 'PXG0XODG', 'Erick Santos ', 'Santos ', NULL, '+59175602777', '12345', 'contacto@criativedigital.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'Rua Castelo Branco, 773', NULL, NULL, NULL, NULL, 1, NULL);
+(10, 'PDA9SUP6', 'Camile', 'Valeria', NULL, '71608981', '10756777', 'dr.ericksantos@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '', NULL, NULL, 'Av Bush 590', NULL, NULL, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tkt_referal`
+-- Table structure for table `tkt_referal`
 --
 
 CREATE TABLE `tkt_referal` (
@@ -2273,7 +1953,7 @@ CREATE TABLE `tkt_referal` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tkt_refund`
+-- Table structure for table `tkt_refund`
 --
 
 CREATE TABLE `tkt_refund` (
@@ -2290,7 +1970,7 @@ CREATE TABLE `tkt_refund` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `trip`
+-- Table structure for table `trip`
 --
 
 CREATE TABLE `trip` (
@@ -2304,7 +1984,7 @@ CREATE TABLE `trip` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `trip`
+-- Dumping data for table `trip`
 --
 
 INSERT INTO `trip` (`trip_id`, `trip_title`, `type`, `route`, `shedule_id`, `weekend`, `status`) VALUES
@@ -2313,7 +1993,7 @@ INSERT INTO `trip` (`trip_id`, `trip_title`, `type`, `route`, `shedule_id`, `wee
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `trip_assign`
+-- Table structure for table `trip_assign`
 --
 
 CREATE TABLE `trip_assign` (
@@ -2340,7 +2020,7 @@ CREATE TABLE `trip_assign` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `trip_assign`
+-- Dumping data for table `trip_assign`
 --
 
 INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `company_id`, `assign_time`, `driver1_id`, `driver2_id`, `assistant_1`, `assistant_2`, `assistant_3`, `sold_ticket`, `total_income`, `total_expense`, `total_fuel`, `trip_comment`, `closed_by_id`, `date`, `status`, `check_in`) VALUES
@@ -2350,7 +2030,7 @@ INSERT INTO `trip_assign` (`id`, `id_no`, `fleet_registration_id`, `trip`, `comp
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `trip_location`
+-- Table structure for table `trip_location`
 --
 
 CREATE TABLE `trip_location` (
@@ -2363,7 +2043,7 @@ CREATE TABLE `trip_location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `trip_location`
+-- Dumping data for table `trip_location`
 --
 
 INSERT INTO `trip_location` (`id`, `name`, `description`, `google_map`, `image`, `status`) VALUES
@@ -2376,7 +2056,7 @@ INSERT INTO `trip_location` (`id`, `name`, `description`, `google_map`, `image`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `trip_route`
+-- Table structure for table `trip_route`
 --
 
 CREATE TABLE `trip_route` (
@@ -2394,7 +2074,7 @@ CREATE TABLE `trip_route` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `trip_route`
+-- Dumping data for table `trip_route`
 --
 
 INSERT INTO `trip_route` (`id`, `name`, `start_point`, `end_point`, `stoppage_points`, `distance`, `approximate_time`, `children_seat`, `special_seat`, `status`, `current_status`) VALUES
@@ -2404,7 +2084,7 @@ INSERT INTO `trip_route` (`id`, `name`, `start_point`, `end_point`, `stoppage_po
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -2424,39 +2104,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`, `password_reset_token`, `image`, `last_login`, `last_logout`, `ip_address`, `status`, `is_admin`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-11-20 14:46:02', '2022-11-17 19:25:12', '186.121.195.12', 1, 1),
+(1, 'Admin', NULL, NULL, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, '2022-12-08 23:29:02', '2022-09-13 17:41:05', '38.25.224.130', 1, 1),
 (2, 'Erick', 'Santos', NULL, 'criativedigitalbo@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, './application/modules/agent/assets/images/5ccf0a54b6f45f3cc4862a339556737a.png', '2022-09-11 06:26:29', NULL, '186.121.195.82', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users_app`
---
-
-CREATE TABLE `users_app` (
-  `id` int(11) NOT NULL,
-  `name` varchar(256) DEFAULT NULL,
-  `email` varchar(256) DEFAULT NULL,
-  `password` varchar(256) DEFAULT NULL,
-  `role` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `users_app`
---
-
-INSERT INTO `users_app` (`id`, `name`, `email`, `password`, `role`) VALUES
-(1, 'Nisa Delgado', 'user@user.com', '123', 'user'),
-(2, 'Erick Santos', 'admin@admin.com', '123', 'admin');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ws_booking_history`
+-- Table structure for table `ws_booking_history`
 --
 
 CREATE TABLE `ws_booking_history` (
@@ -2485,7 +2143,7 @@ CREATE TABLE `ws_booking_history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `ws_booking_history`
+-- Dumping data for table `ws_booking_history`
 --
 
 INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `trip_route_id`, `pickup_trip_location`, `drop_trip_location`, `request_facilities`, `price`, `discount`, `adult`, `child`, `special`, `total_seat`, `seat_numbers`, `offer_code`, `tkt_refund_id`, `agent_id`, `booking_date`, `date`, `status`, `dashboard`) VALUES
@@ -2644,17 +2302,15 @@ INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id
 (153, 'B6QCXJ9G', '1', 'PNBZ35JM', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-20 11:46:50', '2022-10-20 11:46:50', 0, 0),
 (154, 'BYXG4CDD', '1', 'P33NTGWK', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-20 11:47:29', '2022-10-20 11:47:29', 0, 0),
 (155, 'BX663VI6', '1', 'PQJCCDT8', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-20 11:48:24', '2022-10-20 11:48:24', 0, 0),
-(156, 'B82VYQHK', '1', 'PDG0NM1C', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '8, ', '', NULL, NULL, '2022-10-27 22:32:30', '2022-10-27 22:32:30', 0, 0),
-(157, 'BOLU01G3', '1', 'PURSZVBU', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '2, ', '', NULL, NULL, '2022-10-27 22:50:59', '2022-10-27 22:50:59', 0, 0),
-(158, 'BSZULEH3', '1', 'PW21E5ZP', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-27 23:02:16', '2022-10-27 23:02:16', 0, 0),
-(159, 'BN0J0EL1', '1', 'PL0DTFTA', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-27 23:03:25', '2022-10-27 23:03:25', 0, 0),
-(160, 'BQOG49LB', '1', 'P4XB85ZZ', 1, 'Santa', 'La', '', 100, 0, 1, 0, 0, 1, '3, ', '', NULL, NULL, '2022-10-27 23:31:57', '2022-10-27 23:31:57', 0, 0),
-(161, 'BZ7FSBHX', '1', 'PM4FJLEO', 1, 'Santa', 'La', 'CBBA, La Paz, Santa Cruz, ', 100, 0, 1, 0, 0, 1, '1, ', '', NULL, NULL, '2022-11-10 19:55:11', '2022-11-10 19:55:11', 0, 0);
+(156, 'BDTO2473', '1', 'P6O5JTGZ', 1, 'Santa', 'La', '', 180, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-12-08 16:58:28', '2022-12-08 16:58:28', 0, 0),
+(157, 'BOQO4FRB', '1', 'PFZU1UA8', 1, 'Santa', 'La', '', 180, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-12-08 16:58:42', '2022-12-08 16:58:42', 0, 0),
+(158, 'BRHUQPMF', '1', 'PBLLDUQE', 1, 'Santa', 'La', '', 180, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-12-08 16:59:04', '2022-12-08 16:59:04', 0, 0),
+(159, 'BFMMJPAU', '1', 'PBUZQK48', 1, 'Santa', 'La', '', 180, 0, 1, 0, 0, 1, '1, ', '', NULL, 1, '2022-12-08 16:59:49', '2022-12-08 16:59:49', 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ws_offer`
+-- Table structure for table `ws_offer`
 --
 
 CREATE TABLE `ws_offer` (
@@ -2664,18 +2320,10 @@ CREATE TABLE `ws_offer` (
   `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `ws_offer`
---
-
-INSERT INTO `ws_offer` (`id`, `title`, `position`, `image`) VALUES
-(1, 'Potosi', 1, 'application/modules/website/assets/images/offer/21007252ea02b32783350e101bb2ff5e.jpeg'),
-(2, 'Teste 2', 2, 'application/modules/website/assets/images/offer/12a21aa21ea5a7fac026580aa19f01f7.jpg');
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ws_payments`
+-- Table structure for table `ws_payments`
 --
 
 CREATE TABLE `ws_payments` (
@@ -2692,7 +2340,7 @@ CREATE TABLE `ws_payments` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ws_setting`
+-- Table structure for table `ws_setting`
 --
 
 CREATE TABLE `ws_setting` (
@@ -2716,660 +2364,644 @@ CREATE TABLE `ws_setting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `ws_setting`
+-- Dumping data for table `ws_setting`
 --
 
 INSERT INTO `ws_setting` (`id`, `title`, `slogan`, `address`, `email`, `phone`, `favicon`, `logo`, `status`, `timezone`, `about`, `description`, `payment_type`, `paypal_email`, `bank_commission`, `currency`, `google_map`) VALUES
-(1, 'Grupo Unebus', 'Junto en tu destino', 'Santa Cruz de la Sierra', 'info@grupounebus.com', '+591 71608981', 'application/modules/website/assets/images/icons/d30bd0e4c6f48ff64b5d91ab95c14b9b.png', 'application/modules/website/assets/images/icons/69546c6e86d8b9e4fc9b9891cea43d8b.png', 1, 'America/Sao_Paulo', '', '', 'disable', 'info@grupounebus.com', 3, 'USD', '<div style=\"width: 100%\"><iframe width=\"100%\" height=\"600\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Santa%20Cruz%20de%20la%20Sierra,%20Bolivia+(Grupo%20Unebus)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed\"><a href=\"https://www.gps.ie/car-satnav-gps/\">GPS devices</a></iframe></div>');
+(1, 'Bus 365', 'Bus 365', '123, demo street, demo-city, 0000', 'business@test.com', '0123456789', 'application/modules/website/assets/images/icons/e5a567074086228d72ee40cf50163276.png', 'application/modules/website/assets/images/icons/4b2915e727770499a6811a7b4f193ce5.png', 1, 'America/Sao_Paulo', '', '', 'disable', 'business@test.com', 3, 'USD', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.7724407117266!2d90.38595131408418!3d23.75549289450067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a4136c4b61%3A0x19549f5462616f04!2sBDTASK!5e0!3m2!1sen!2sbd!4v1531724548584\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `acc_account_name`
+-- Indexes for table `acc_account_name`
 --
 ALTER TABLE `acc_account_name`
   ADD PRIMARY KEY (`account_id`);
 
 --
--- Indices de la tabla `acn_account_transaction`
+-- Indexes for table `acn_account_transaction`
 --
 ALTER TABLE `acn_account_transaction`
   ADD PRIMARY KEY (`account_tran_id`);
 
 --
--- Indices de la tabla `agent_info`
+-- Indexes for table `agent_info`
 --
 ALTER TABLE `agent_info`
   ADD PRIMARY KEY (`agent_id`);
 
 --
--- Indices de la tabla `agent_ledger`
+-- Indexes for table `agent_ledger`
 --
 ALTER TABLE `agent_ledger`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `bank_info`
+-- Indexes for table `bank_info`
 --
 ALTER TABLE `bank_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `bank_transaction`
+-- Indexes for table `bank_transaction`
 --
 ALTER TABLE `bank_transaction`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `booking_downtime`
+-- Indexes for table `booking_downtime`
 --
 ALTER TABLE `booking_downtime`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `caja`
+-- Indexes for table `caja`
 --
 ALTER TABLE `caja`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `companies`
+-- Indexes for table `companies`
 --
 ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `couriers`
+-- Indexes for table `couriers`
 --
 ALTER TABLE `couriers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `email_config`
+-- Indexes for table `email_config`
 --
 ALTER TABLE `email_config`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `employee_history`
+-- Indexes for table `employee_history`
 --
 ALTER TABLE `employee_history`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `employee_type`
+-- Indexes for table `employee_type`
 --
 ALTER TABLE `employee_type`
   ADD PRIMARY KEY (`type_id`);
 
 --
--- Indices de la tabla `enquiry`
+-- Indexes for table `enquiry`
 --
 ALTER TABLE `enquiry`
   ADD PRIMARY KEY (`enquiry_id`);
 
 --
--- Indices de la tabla `fit_fitness`
+-- Indexes for table `fit_fitness`
 --
 ALTER TABLE `fit_fitness`
   ADD PRIMARY KEY (`fitness_id`);
 
 --
--- Indices de la tabla `fleet_facilities`
+-- Indexes for table `fleet_facilities`
 --
 ALTER TABLE `fleet_facilities`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `fleet_registration`
+-- Indexes for table `fleet_registration`
 --
 ALTER TABLE `fleet_registration`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `fleet_type`
+-- Indexes for table `fleet_type`
 --
 ALTER TABLE `fleet_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ftn_fitness_period`
+-- Indexes for table `ftn_fitness_period`
 --
 ALTER TABLE `ftn_fitness_period`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `how_to_use`
+-- Indexes for table `how_to_use`
 --
 ALTER TABLE `how_to_use`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `language`
+-- Indexes for table `language`
 --
 ALTER TABLE `language`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `merchandise`
+-- Indexes for table `merchandise`
 --
 ALTER TABLE `merchandise`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `message`
+-- Indexes for table `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `module`
+-- Indexes for table `module`
 --
 ALTER TABLE `module`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `module_permission`
+-- Indexes for table `module_permission`
 --
 ALTER TABLE `module_permission`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ofr_offer`
+-- Indexes for table `ofr_offer`
 --
 ALTER TABLE `ofr_offer`
   ADD PRIMARY KEY (`offer_id`);
 
 --
--- Indices de la tabla `payment_informations`
+-- Indexes for table `payment_informations`
 --
 ALTER TABLE `payment_informations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `price_per_kg`
+-- Indexes for table `price_per_kg`
 --
 ALTER TABLE `price_per_kg`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `pri_price`
+-- Indexes for table `pri_price`
 --
 ALTER TABLE `pri_price`
   ADD PRIMARY KEY (`price_id`);
 
 --
--- Indices de la tabla `sales`
+-- Indexes for table `sales`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `sec_menu_item`
+-- Indexes for table `sec_menu_item`
 --
 ALTER TABLE `sec_menu_item`
   ADD PRIMARY KEY (`menu_id`);
 
 --
--- Indices de la tabla `sec_role_permission`
+-- Indexes for table `sec_role_permission`
 --
 ALTER TABLE `sec_role_permission`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `sec_role_tbl`
+-- Indexes for table `sec_role_tbl`
 --
 ALTER TABLE `sec_role_tbl`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indices de la tabla `sec_user_access_tbl`
+-- Indexes for table `sec_user_access_tbl`
 --
 ALTER TABLE `sec_user_access_tbl`
   ADD PRIMARY KEY (`role_acc_id`);
 
 --
--- Indices de la tabla `setting`
+-- Indexes for table `setting`
 --
 ALTER TABLE `setting`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `shedule`
+-- Indexes for table `shedule`
 --
 ALTER TABLE `shedule`
   ADD PRIMARY KEY (`shedule_id`);
 
 --
--- Indices de la tabla `synchronizer_setting`
+-- Indexes for table `synchronizer_setting`
 --
 ALTER TABLE `synchronizer_setting`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ticket_notification`
+-- Indexes for table `ticket_notification`
 --
 ALTER TABLE `ticket_notification`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `tkt_booking`
+-- Indexes for table `tkt_booking`
 --
 ALTER TABLE `tkt_booking`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_no` (`id_no`);
 
 --
--- Indices de la tabla `tkt_feedback`
+-- Indexes for table `tkt_feedback`
 --
 ALTER TABLE `tkt_feedback`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `tkt_passenger`
+-- Indexes for table `tkt_passenger`
 --
 ALTER TABLE `tkt_passenger`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `tkt_referal`
+-- Indexes for table `tkt_referal`
 --
 ALTER TABLE `tkt_referal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `tkt_refund`
+-- Indexes for table `tkt_refund`
 --
 ALTER TABLE `tkt_refund`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_tkt_refund_tkt_booking` (`tkt_booking_id_no`);
 
 --
--- Indices de la tabla `trip`
+-- Indexes for table `trip`
 --
 ALTER TABLE `trip`
   ADD PRIMARY KEY (`trip_id`);
 
 --
--- Indices de la tabla `trip_assign`
+-- Indexes for table `trip_assign`
 --
 ALTER TABLE `trip_assign`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `trip_location`
+-- Indexes for table `trip_location`
 --
 ALTER TABLE `trip_location`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `trip_route`
+-- Indexes for table `trip_route`
 --
 ALTER TABLE `trip_route`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `users_app`
---
-ALTER TABLE `users_app`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `ws_booking_history`
+-- Indexes for table `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_no` (`id_no`);
 
 --
--- Indices de la tabla `ws_offer`
+-- Indexes for table `ws_offer`
 --
 ALTER TABLE `ws_offer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ws_payments`
+-- Indexes for table `ws_payments`
 --
 ALTER TABLE `ws_payments`
   ADD PRIMARY KEY (`payment_id`);
 
 --
--- Indices de la tabla `ws_setting`
+-- Indexes for table `ws_setting`
 --
 ALTER TABLE `ws_setting`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `acc_account_name`
+-- AUTO_INCREMENT for table `acc_account_name`
 --
 ALTER TABLE `acc_account_name`
   MODIFY `account_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `acn_account_transaction`
+-- AUTO_INCREMENT for table `acn_account_transaction`
 --
 ALTER TABLE `acn_account_transaction`
   MODIFY `account_tran_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `agent_info`
+-- AUTO_INCREMENT for table `agent_info`
 --
 ALTER TABLE `agent_info`
   MODIFY `agent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `agent_ledger`
+-- AUTO_INCREMENT for table `agent_ledger`
 --
 ALTER TABLE `agent_ledger`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `bank_info`
+-- AUTO_INCREMENT for table `bank_info`
 --
 ALTER TABLE `bank_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `bank_transaction`
+-- AUTO_INCREMENT for table `bank_transaction`
 --
 ALTER TABLE `bank_transaction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `booking_downtime`
+-- AUTO_INCREMENT for table `booking_downtime`
 --
 ALTER TABLE `booking_downtime`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `caja`
+-- AUTO_INCREMENT for table `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
--- AUTO_INCREMENT de la tabla `companies`
+-- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `couriers`
+-- AUTO_INCREMENT for table `couriers`
 --
 ALTER TABLE `couriers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `email_config`
+-- AUTO_INCREMENT for table `email_config`
 --
 ALTER TABLE `email_config`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `employee_history`
+-- AUTO_INCREMENT for table `employee_history`
 --
 ALTER TABLE `employee_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `employee_type`
+-- AUTO_INCREMENT for table `employee_type`
 --
 ALTER TABLE `employee_type`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de la tabla `enquiry`
+-- AUTO_INCREMENT for table `enquiry`
 --
 ALTER TABLE `enquiry`
   MODIFY `enquiry_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `fit_fitness`
+-- AUTO_INCREMENT for table `fit_fitness`
 --
 ALTER TABLE `fit_fitness`
   MODIFY `fitness_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `fleet_facilities`
+-- AUTO_INCREMENT for table `fleet_facilities`
 --
 ALTER TABLE `fleet_facilities`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `fleet_registration`
+-- AUTO_INCREMENT for table `fleet_registration`
 --
 ALTER TABLE `fleet_registration`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `fleet_type`
+-- AUTO_INCREMENT for table `fleet_type`
 --
 ALTER TABLE `fleet_type`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `ftn_fitness_period`
+-- AUTO_INCREMENT for table `ftn_fitness_period`
 --
 ALTER TABLE `ftn_fitness_period`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `how_to_use`
+-- AUTO_INCREMENT for table `how_to_use`
 --
 ALTER TABLE `how_to_use`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `language`
+-- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=968;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=796;
 
 --
--- AUTO_INCREMENT de la tabla `merchandise`
+-- AUTO_INCREMENT for table `merchandise`
 --
 ALTER TABLE `merchandise`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `message`
+-- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `module`
+-- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `module_permission`
+-- AUTO_INCREMENT for table `module_permission`
 --
 ALTER TABLE `module_permission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ofr_offer`
+-- AUTO_INCREMENT for table `ofr_offer`
 --
 ALTER TABLE `ofr_offer`
   MODIFY `offer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `payment_informations`
+-- AUTO_INCREMENT for table `payment_informations`
 --
 ALTER TABLE `payment_informations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `price_per_kg`
+-- AUTO_INCREMENT for table `price_per_kg`
 --
 ALTER TABLE `price_per_kg`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `pri_price`
+-- AUTO_INCREMENT for table `pri_price`
 --
 ALTER TABLE `pri_price`
   MODIFY `price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `sales`
+-- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
--- AUTO_INCREMENT de la tabla `sec_menu_item`
+-- AUTO_INCREMENT for table `sec_menu_item`
 --
 ALTER TABLE `sec_menu_item`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
--- AUTO_INCREMENT de la tabla `sec_role_permission`
+-- AUTO_INCREMENT for table `sec_role_permission`
 --
 ALTER TABLE `sec_role_permission`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1287;
 
 --
--- AUTO_INCREMENT de la tabla `sec_role_tbl`
+-- AUTO_INCREMENT for table `sec_role_tbl`
 --
 ALTER TABLE `sec_role_tbl`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `sec_user_access_tbl`
+-- AUTO_INCREMENT for table `sec_user_access_tbl`
 --
 ALTER TABLE `sec_user_access_tbl`
   MODIFY `role_acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `setting`
+-- AUTO_INCREMENT for table `setting`
 --
 ALTER TABLE `setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `shedule`
+-- AUTO_INCREMENT for table `shedule`
 --
 ALTER TABLE `shedule`
   MODIFY `shedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `synchronizer_setting`
+-- AUTO_INCREMENT for table `synchronizer_setting`
 --
 ALTER TABLE `synchronizer_setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ticket_notification`
+-- AUTO_INCREMENT for table `ticket_notification`
 --
 ALTER TABLE `ticket_notification`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tkt_booking`
+-- AUTO_INCREMENT for table `tkt_booking`
 --
 ALTER TABLE `tkt_booking`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `tkt_feedback`
+-- AUTO_INCREMENT for table `tkt_feedback`
 --
 ALTER TABLE `tkt_feedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tkt_passenger`
+-- AUTO_INCREMENT for table `tkt_passenger`
 --
 ALTER TABLE `tkt_passenger`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `tkt_referal`
+-- AUTO_INCREMENT for table `tkt_referal`
 --
 ALTER TABLE `tkt_referal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tkt_refund`
+-- AUTO_INCREMENT for table `tkt_refund`
 --
 ALTER TABLE `tkt_refund`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `trip`
+-- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
   MODIFY `trip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `trip_assign`
+-- AUTO_INCREMENT for table `trip_assign`
 --
 ALTER TABLE `trip_assign`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `trip_location`
+-- AUTO_INCREMENT for table `trip_location`
 --
 ALTER TABLE `trip_location`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `trip_route`
+-- AUTO_INCREMENT for table `trip_route`
 --
 ALTER TABLE `trip_route`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `users_app`
---
-ALTER TABLE `users_app`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `ws_booking_history`
+-- AUTO_INCREMENT for table `ws_booking_history`
 --
 ALTER TABLE `ws_booking_history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
--- AUTO_INCREMENT de la tabla `ws_offer`
+-- AUTO_INCREMENT for table `ws_offer`
 --
 ALTER TABLE `ws_offer`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ws_payments`
+-- AUTO_INCREMENT for table `ws_payments`
 --
 ALTER TABLE `ws_payments`
   MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ws_setting`
+-- AUTO_INCREMENT for table `ws_setting`
 --
 ALTER TABLE `ws_setting`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

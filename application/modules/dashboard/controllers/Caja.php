@@ -74,6 +74,8 @@ class Caja extends MX_Controller {
         $data['module'] = "dashboard";
         $data['page']   = "caja/index";
 
+        $data['travels'] = $this->db->query("SELECT * FROM trip_assign")->result();
+
 		echo Modules::run('template/layout', $data);
 	}
 
@@ -93,7 +95,7 @@ class Caja extends MX_Controller {
 
 		$cajero = $this->session->userdata('fullname');
 
-		$this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero) VALUES ('$tipo_movimiento', NOW(), '$monto', '$metodo_pago', '$concepto', '$saldo', 'Caja abierta', '$cajero')");
+		$this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero, trip_assign_id) VALUES ('$tipo_movimiento', NOW(), '$monto', '$metodo_pago', '$concepto', '$saldo', 'Caja abierta', '$cajero', '$trip_assign_id')");
 
 		$id = $this->db->insert_id();
 

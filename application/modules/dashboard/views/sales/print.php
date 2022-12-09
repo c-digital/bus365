@@ -94,10 +94,12 @@
 				<table>
 					<tr>
 						<th colspan="3"><?php echo display('route') ?>:</th>
+						<th colspan="3"><?php echo 'Número viaje' ?>:</th>
 					</tr>
 
 					<tr>
 						<td colspan="3"><?php echo $sale->route; ?></td>
+						<td colspan="3"><?php echo $sale->assign_id; ?></td>
 					</tr>
 
 					<tr>

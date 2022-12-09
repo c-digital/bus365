@@ -101,6 +101,8 @@ class Merchandise extends MX_Controller
 			$total = $post['billing_total'];
 			$concepto = 'Envio de mercadería #' . $this->db->insert_id();
 
+			$id_item = $this->db->insert_id();
+
 			$cajero = $this->session->userdata('fullname');
 
 			$caja = $this->db->query("SELECT * FROM caja WHERE cajero = '$cajero' ORDER BY fecha DESC")->row();
@@ -109,7 +111,7 @@ class Merchandise extends MX_Controller
 			$saldo = $caja->saldo + $total;
 
 			if ($estado == 'Caja abierta') {
-				$this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero) VALUES ('Entrada', NOW(), '$total', 'Efectivo', '$concepto', '$saldo', 'Caja abierta', '$cajero')");
+				$this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero, tipo, id_item) VALUES ('Entrada', NOW(), '$total', 'Efectivo', '$concepto', '$saldo', 'Caja abierta', '$cajero', 'mercaderia', '$id_item')");
 			}
 		}
 
@@ -180,7 +182,10 @@ class Merchandise extends MX_Controller
 		$trip_id = $this->input->post('trip_id');
 		$id = $this->input->post('id');
 
+		$id_company = $this->db->query("SELECT * FROM trip_assign WHERE trip = $trip_id")->row()->company_id;
+
 		$this->db->query("UPDATE merchandise SET trip_id = '$trip_id', status = 'assigned' WHERE id = $id");
+		$this->db->query("UPDATE caja SET id_company = '$id_company' WHERE id_item = $id");
 
 		return redirect('/dashboard/merchandise');
 	}

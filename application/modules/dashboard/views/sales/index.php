@@ -15,6 +15,7 @@
                         <thead>
                             <tr>
                                 <th><?php echo display('sl_no') ?></th>
+                                <th><?php echo display('travel_id') ?></th>
                                 <th><?php echo display('booking_id') ?></th>
                                 <th><?php echo display('seat_type') ?></th>
                                 <th><?php echo display('seat_number') ?></th>
@@ -35,6 +36,7 @@
 
                             <tr class="<?php echo (!empty($booking->tkt_refund_id) ? "bg-danger" : null ) ?>">
                                 <td><?php echo $sl++; ?></td>
+                                <td><?php echo $booking->assign_id; ?></td>
                                 <td><?php echo $booking->booking_id; ?></td>
                                 <td><?php echo $booking->seat_type; ?></td>
                                 <td><?php echo $booking->seat_number; ?></td>

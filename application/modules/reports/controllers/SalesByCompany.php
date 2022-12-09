@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cash extends MX_Controller
+class SalesByCompany extends MX_Controller
 {
 	public function __construct()
 	{
@@ -14,11 +14,9 @@ class Cash extends MX_Controller
 		$data['title']    = display('reports');
 
 		$data['module'] = "reports";
-		$data['page']   = "cash/index";
+		$data['page']   = "salesByCompany/index";
 
 		$data['empresas'] = $this->db->from('companies')->get()->result();
-		$data['viajes'] = $this->db->from('trip_assign')->get()->result();
-		$data['cajeros'] = $this->db->query("SELECT cajero FROM caja GROUP BY cajero")->result();
 
 		echo Modules::run('template/layout', $data); 
 	}
@@ -30,10 +28,8 @@ class Cash extends MX_Controller
 		ob_start();
 
 		$data['empresas'] = $this->db->from('companies')->get()->result();
-		$data['viajes'] = $this->db->from('trip_assign')->get()->result();
-		$data['cajeros'] = $this->db->query("SELECT cajero FROM caja GROUP BY cajero")->result();
 
-		$this->load->view('cash/export', $data);
+		$this->load->view('salesByCompany/export', $data);
 
 		$dompdf = new DOMPDF();
         $dompdf->load_html(utf8_encode(ob_get_clean()));
@@ -49,13 +45,11 @@ class Cash extends MX_Controller
 		$data['title']    = display('reports');
 
 		$data['module'] = "reports";
-		$data['page']   = "cash/index";
+		$data['page']   = "salesByCompany/index";
 
 		$data['empresas'] = $this->db->from('companies')->get()->result();
-		$data['viajes'] = $this->db->from('trip_assign')->get()->result();
-		$data['cajeros'] = $this->db->query("SELECT cajero FROM caja GROUP BY cajero")->result();
 
-		$this->load->view('cash/export', $data);
+		$this->load->view('salesByCompany/export', $data);
 	}
 
 	public function export()
@@ -63,12 +57,10 @@ class Cash extends MX_Controller
 		$data['title']    = display('reports');
 
 		$data['module'] = "reports";
-		$data['page']   = "cash/index";
+		$data['page']   = "salesByCompany/index";
 
 		$data['empresas'] = $this->db->from('companies')->get()->result();
-		$data['viajes'] = $this->db->from('trip_assign')->get()->result();
-		$data['cajeros'] = $this->db->query("SELECT cajero FROM caja GROUP BY cajero")->result();
 
-		$this->load->view('cash/export', $data);
+		$this->load->view('salesByCompany/export', $data);
 	}
 }

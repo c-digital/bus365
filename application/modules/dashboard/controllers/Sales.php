@@ -29,10 +29,17 @@ class Sales extends MX_Controller
  		$data['module'] = "dashboard";
 		$data['page']   = "sales/index";
 
-		$data['sales'] = $this->db->select('*')
-							->from('sales')
-							->get()
-							->result();
+		$sql = "
+			SELECT
+				s.*,
+				ta.id AS assign_id
+			FROM
+				sales s
+					LEFT JOIN ws_booking_history tktb ON tktb.id_no = s.booking_id
+					LEFT JOIN trip_assign ta ON ta.trip = tktb.trip_id_no
+		";
+
+		$data['sales'] = $this->db->query($sql)->result();
 
 		echo Modules::run('template/layout', $data);
  	}
@@ -139,7 +146,8 @@ class Sales extends MX_Controller
  			c.name AS title,
  			c.address,
  			c.nit,
- 			c.lane
+ 			c.lane,
+ 			ta.id AS assign_id
  		";
 
  		$data['sale'] = $this->db->select($select)

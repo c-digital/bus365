@@ -69,6 +69,7 @@
 				$route_id = $sale->route_id;
 				$ci =& get_instance();
 				$price = $ci->db->query("SELECT $seat_type FROM pri_price WHERE route_id = $route_id")->row()->$seat_type;
+				$discount = $ci->db->query("SELECT discount FROM tkt_booking WHERE id_no = '$id_no'")->row()->discount;
 			?>
 
 			<div class="text-center">
@@ -116,14 +117,16 @@
 
 					<tr>
 						<th><?php echo display('price') ?></th>
+						<th>Descuento</th>
+						<th>Monto pagado</th>
 						<th><?php echo display('payment_method') ?></th>
-						<th></th>
 					</tr>
 
 					<tr>
-						<td>BOB <?php echo $price; ?></td>
+						<td>BOB <?php echo number_format($price, 2); ?></td>
+						<td>BOB <?php echo number_format($discount, 2); ?></td>
+						<td>BOB <?php echo number_format($price - $discount, 2); ?></td>
 						<td>Efectivo</td>
-						<td></td>
 					</tr>
 				</table>
 

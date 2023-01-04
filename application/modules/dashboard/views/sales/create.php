@@ -460,6 +460,31 @@
 <script type="text/javascript">
 
 
+function discount() {
+    paypal_discount = $('[name=paypal_discount]').val();
+    bank_discount = $('[name=bank_discount]').val();
+    cash_discount = $('[name=cash_discount]').val();
+
+    if (paypal_discount != '0') {
+        paypal_total = $('.paypal_total').html();
+        total = paypal_total - paypal_discount;
+        $('.grand_total_paypal').html(total);
+    }
+
+    if (bank_discount != '0') {
+        bank_total = $('.bank_total').html();
+        total = bank_total - bank_discount;
+        $('.grand_total_bank').html(total);
+    }
+
+    if (cash_discount != '0') {
+        cash_total = $('.cash_total').html();
+        total = cash_total - cash_discount;
+        $('.grand_total_cash').html(total);
+    }
+}
+
+
     
 $(document).ready(function() {
 

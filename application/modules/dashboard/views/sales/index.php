@@ -17,7 +17,6 @@
                                 <th><?php echo display('sl_no') ?></th>
                                 <th><?php echo display('travel_id') ?></th>
                                 <th><?php echo display('booking_id') ?></th>
-                                <th><?php echo display('seat_type') ?></th>
                                 <th><?php echo display('seat_number') ?></th>
                                 <th><?php echo display('name') ?></th>
                                 <th><?php echo display('ci') ?></th>
@@ -39,7 +38,6 @@
                                 <td><?php echo $booking->assign_id; ?></td>
                                 <td><?php echo $booking->booking_id; ?></td>
                                 <td><?php echo $booking->seat_type; ?></td>
-                                <td><?php echo $booking->seat_number; ?></td>
                                 <td><?php echo $booking->name; ?></td>
                                 <td><?php echo $booking->ci; ?></td>
                                 <td><?php echo $booking->phone; ?></td>

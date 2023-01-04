@@ -323,22 +323,6 @@ class Search extends MX_Controller {
             ]);
         }
 
-        $caja = $this->db->query("SELECT * FROM caja ORDER BY id DESC")->row();
-
-        $id_no = $this->input->post('booking_id_no',true);
-        $booking = $this->db->query("SELECT wbh.id_no, ta.company_id FROM ws_booking_history wbh LEFT JOIN trip_assign ta ON wbh.trip_id_no = ta.trip WHERE wbh.id_no = '$id_no'")->row();
-
-        $tipo_movimiento = 'Entrada';
-        $monto = $booking->price;
-        $metodo_pago = 'Efectivo';
-        $concepto = 'Venta de ticket #' . $booking->id_no;
-
-        $saldo = (float) $caja->saldo + (float) $monto;
-
-        $cajero = $this->session->userdata('fullname');
-
-        $this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero, tipo, id_item, id_company) VALUES ('$tipo_movimiento', NOW(), '$monto', '$metodo_pago', '$concepto', '$saldo', 'Caja abierta', '$cajero', 'ticket', '{$booking->id_no}', '{$booking->company_id}')");
-
 
         if ($this->form_validation->run())
         {

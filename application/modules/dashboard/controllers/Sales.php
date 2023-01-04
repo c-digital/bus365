@@ -35,8 +35,10 @@ class Sales extends MX_Controller
 				ta.id AS assign_id
 			FROM
 				sales s
-					LEFT JOIN ws_booking_history tktb ON tktb.id_no = s.booking_id
+					LEFT JOIN tkt_booking tktb ON tktb.id_no = s.booking_id
 					LEFT JOIN trip_assign ta ON ta.trip = tktb.trip_id_no
+			GROUP BY
+				s.booking_id;
 		";
 
 		$data['sales'] = $this->db->query($sql)->result();
@@ -128,6 +130,8 @@ class Sales extends MX_Controller
  		if (!$this->session->userdata('isLogIn')) {
 			redirect('login');
 		}
+
+		$data['id_no'] = $id;
 		
  		$select = "
  			s.id,

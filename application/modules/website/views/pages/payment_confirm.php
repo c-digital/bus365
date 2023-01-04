@@ -164,15 +164,15 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                                         </tr>
             <tr>
                <td class="text-right"><?php echo display('total'); ?></td>
-                        <th class="text-right"><?php echo (!empty($booking->price)?$booking->price:0) ?></th>
+                        <th class="text-right paypal_total"><?php echo (!empty($booking->price)?$booking->price:0) ?></th>
                     </tr>
                     <tr>
                         <td class="text-right"><?php echo display('discount'); ?></td>
-                        <th class="text-right"><?php echo (!empty($booking->discount)?$booking->discount:0) ?></th>
+                        <th class="text-right"><input onkeyup="discount()" style="text-align: right" type="number" name="paypal_discount" class="form-control" value="<?php echo (!empty($booking->discount)?$booking->discount:0) ?>"></th>
                     </tr>
                     <tr>
                         <td class="text-right"><b><?php echo display('grand_total'); ?></b></td>
-                        <th class="text-right"><?php echo (!empty($booking->price)?($booking->price-$booking->discount):0) ?></th>
+                        <th class="text-right grand_total_paypal"><?php echo (!empty($booking->price)?($booking->price-$booking->discount):0) ?></th>
                     </tr>
                 </tbody>
             </table> 
@@ -229,11 +229,11 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                                         </tr>
                     <tr>
                         <td class="text-right"><?php echo display('total'); ?></td>
-                        <th class="text-right"><?php echo (!empty($booking->price)?$booking->price:0) ?></th>
+                        <th class="text-right bank_total"><?php echo (!empty($booking->price)?$booking->price:0) ?></th>
                     </tr>
                     <tr>
                         <td class="text-right"><?php echo display('discount'); ?></td>
-                        <th class="text-right"><?php echo (!empty($booking->discount)?$booking->discount:0) ?></th>
+                        <th class="text-right"><input onkeyup="discount()" style="text-align: right" type="number" name="bank_discount" class="form-control" value="<?php echo (!empty($booking->discount)?$booking->discount:0) ?>"></th>
                     </tr>
                      <tr>
                         <td class="text-right"><?php echo display('bank_charge'); ?></td>
@@ -242,7 +242,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                     </tr>
                     <tr>
                         <td class="text-right"><b><?php echo display('grand_total'); ?></b></td>
-                        <th class="text-right"><?php echo (!empty($booking->price)?($booking->price-$booking->discount+$b_commission):0) ?><input type="hidden" name="amount" value="<?php echo (!empty($booking->price)?($booking->price-$booking->discount):0) ?>"></th>
+                        <th class="text-right grand_total_bank"><?php echo (!empty($booking->price)?($booking->price-$booking->discount+$b_commission):0) ?><input type="hidden" name="amount" value="<?php echo (!empty($booking->price)?($booking->price-$booking->discount):0) ?>"></th>
                     </tr>
 
                     <tr>
@@ -353,15 +353,15 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
                                         </tr>
                     <tr>
                         <td class="text-right"><?php echo display('total'); ?></td>
-                        <th class="text-right"><?php echo (!empty($booking->price)?$booking->price:0) ?></th>
+                        <th class="text-right cash_total"><?php echo (!empty($booking->price)?$booking->price:0) ?></th>
                     </tr>
                     <tr>
                         <td class="text-right"><?php echo display('discount'); ?></td>
-                        <th class="text-right"><?php echo (!empty($booking->discount)?$booking->discount:0) ?></th>
+                        <th class="text-right"><input style="text-align: right" onkeyup="discount()" type="number" name="cash_discount" class="form-control" value="<?php echo (!empty($booking->discount)?$booking->discount:0) ?>"></th>
                     </tr>
                     <tr>
                         <td class="text-right"><b><?php echo display('grand_total'); ?></b></td>
-                        <th class="text-right"><?php echo (!empty($booking->price)?($booking->price-$booking->discount):0) ?></th>
+                        <th class="text-right grand_total_cash"><?php echo (!empty($booking->price)?($booking->price-$booking->discount):0) ?></th>
                     </tr>
                 </tbody>
             </table> 
@@ -378,6 +378,7 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
 
 <!-- bank js -->
 <script type="text/javascript">
+
 $(document).ready(function(){ 
 
     var checkoutbanform   = $("#check_bank_form");

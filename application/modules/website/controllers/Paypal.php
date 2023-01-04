@@ -180,6 +180,18 @@ class Paypal extends CI_Controller
             //get particular product data
             $this->load->model(array('website_model'));
             $ticket     = $this->website_model->getlocal($booking_id_no);
+
+            if ($this->input->post('paypal_discount')) {
+                $discount = $this->input->post('paypal_discount');
+            }
+
+            if ($this->input->post('bank_discount')) {
+                $discount = $this->input->post('bank_discount');
+            }
+
+            if ($this->input->post('cash_discount')) {
+                $discount = $this->input->post('cash_discount');
+            }
                 
             $data = array(
                 'pickup_trip_location' => $ticket->pickup_trip_location,
@@ -192,7 +204,7 @@ class Paypal extends CI_Controller
                 'request_facilities' => $ticket->request_facilities,
                 'price'   => $ticket->price,
                 'total_seat' => $ticket->quantity,
-                'discount' => $ticket->discount,
+                'discount' => $discount,
                 'seat_numbers' => $ticket->seat_serial,
                 'agent_id' => $ticket->agent_id,
                 'booking_date' => $ticket->booking_date,
@@ -222,9 +234,26 @@ class Paypal extends CI_Controller
              
                  if($insertdata){
 
+                    $caja = $this->db->query("SELECT * FROM caja ORDER BY id DESC")->row();
+
                     $query = $this->db->query("SELECT * FROM sales WHERE booking_id = '$booking_id_no'")->result();
 
                      if (count($query)) {
+
+                        $id_no = $booking_id_no;
+                        $booking = $this->db->query("SELECT wbh.id_no, ta.company_id, wbh.price, wbh.discount FROM tkt_booking wbh LEFT JOIN trip_assign ta ON wbh.trip_id_no = ta.trip WHERE wbh.id_no = '$id_no'")->row();
+
+                        $tipo_movimiento = 'Entrada';
+                        $monto = $booking->price - $booking->discount;
+                        $metodo_pago = 'Efectivo';
+                        $concepto = 'Venta de ticket #' . $booking->id_no;
+
+                        $saldo = (float) $caja->saldo + (float) $monto;
+
+                        $cajero = $this->session->userdata('fullname');
+
+                        $this->db->query("INSERT INTO caja (tipo_movimiento, fecha, monto, metodo_pago, concepto, saldo, estado, cajero, tipo, id_item, id_company) VALUES ('$tipo_movimiento', NOW(), '$monto', '$metodo_pago', '$concepto', '$saldo', 'Caja abierta', '$cajero', 'ticket', '{$booking->id_no}', '{$booking->company_id}')");
+
                         echo '<script>window.location.href="'.base_url().'dashboard/sales/ticket/'.$id.'"</script>';
                       } else {
                         echo '<script>window.location.href = "'.base_url().'website/Paypal/local_success/'. $id.'"</script>';

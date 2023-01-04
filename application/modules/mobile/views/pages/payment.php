@@ -406,6 +406,8 @@ $bank=$this->db->select('*')->from('bank_info')->get()->result();
             dataType: 'json',
             success: function(data)
             {
+                console.log(data);
+                return false;
               var pyatype=document.getElementById("paytype").value;
                 if (data.status == true)
                 {

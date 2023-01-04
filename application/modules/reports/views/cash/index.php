@@ -123,7 +123,7 @@
                             }
 
                             if (isset($_GET['viaje']) && $_GET['viaje'] != 'Todos') {
-                                $where[] = "viaje = '{$_GET['viaje']}'";
+                                $where[] = "trip_assign_id = '{$_GET['viaje']}'";
                             }
 
                             $where[] = '1';

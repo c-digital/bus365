@@ -20,15 +20,15 @@ class Sales extends MX_Controller
 
 		if (isset($_GET['inicio']) && $_GET['inicio']) {
 			$inicio = $_GET['inicio'];
-			$where[] = "DATE(fecha) >= $inicio";
+			$where[] = "DATE(booking_date) >= $inicio";
 		}
 
 		if (isset($_GET['fin']) && $_GET['fin']) {
 			$fin = $_GET['fin'];
-			$where[] = "DATE(fecha) <= $fin";
+			$where[] = "DATE(booking_date) <= $fin";
 		}
 
-		if (isset($_GET['empresa']) && $_GET['empresa']) {
+		if (isset($_GET['empresa']) && $_GET['empresa'] != 'Todas') {
 			$empresa = $_GET['empresa'];
 			$where[] = "empresa = '$empresa'";
 		}
@@ -47,10 +47,13 @@ class Sales extends MX_Controller
 				*
 			FROM
 				sales s
-					LEFT JOIN ws_booking_history wbh ON s.booking_id = wbh.id_no
+					LEFT JOIN tkt_booking wbh ON s.booking_id = wbh.id_no
 			WHERE
 				$where
 		";
+
+		echo $sql;
+		exit;
 
 		$data['sales'] = $this->db->query($sql);
 

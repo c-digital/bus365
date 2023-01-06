@@ -2,11 +2,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use BaconQrCode\Renderer\ImageRenderer;
-use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
-use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-use BaconQrCode\Writer;
-
 class Sales extends MX_Controller
 {
 	public function __construct()
@@ -35,7 +30,7 @@ class Sales extends MX_Controller
 				ta.id AS assign_id
 			FROM
 				sales s
-					LEFT JOIN tkt_booking tktb ON tktb.id_no = s.booking_id
+					LEFT JOIN ws_booking_history tktb ON tktb.id_no = s.booking_id
 					LEFT JOIN trip_assign ta ON ta.trip = tktb.trip_id_no
 			GROUP BY
 				s.booking_id;
@@ -164,7 +159,7 @@ class Sales extends MX_Controller
  			->join('companies c', 'ta.company_id = c.id', 'left')
  			->where('s.booking_id', $id)
  			->get()
- 			->row();
+ 			->result();
 
  		$data['bookings'] = $this->db->from('ws_booking_history')->where('id_no', $id)->get()->row();
 
@@ -174,16 +169,6 @@ class Sales extends MX_Controller
 
  		$data['module'] = "dashboard";
 		$data['page']   = "sales/print";
-
-		$renderer = new ImageRenderer(
-		    new RendererStyle(400),
-		    new ImagickImageBackEnd()
-		);
-
-		$id = $data['sale']->booking_id . '-' . $data['sale']->id;
-
-		$writer = new Writer($renderer);
-		$writer->writeFile("https://bus365.base-php.com/dashboard/sales/markedAsEmbarked/$id", 'qrcode.png');
 
 		echo Modules::run('template/layout', $data);
  	}

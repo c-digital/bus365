@@ -98,10 +98,10 @@ class Companies extends MX_Controller {
         $this->load->library('upload', $config);
         $this->upload->do_upload('logo');
 
-        if ($this->upload->data()['file_name'] != '') {
+        if ($_FILES['logo']['name'] != '') {
             $this->company_model->update([
                 'id' => $this->input->post('id'),
-                'filename' => $this->upload->data()['file_name']
+                'logo' => $_FILES['logo']['name']
             ]);
         }
 

@@ -236,17 +236,21 @@ class Paypal extends CI_Controller
 
                     $caja = $this->db->query("SELECT * FROM caja ORDER BY id DESC")->row();
 
+                    if ($caja->estado == 'Caja cerrada') {
+                        echo "<script>alert('La caja está cerrada');window.location.href='/dashboard/sales';</script>";
+                    }
+
                     $query = $this->db->query("SELECT * FROM sales WHERE booking_id = '$booking_id_no'")->result();
 
                      if (count($query)) {
 
                         $id_no = $booking_id_no;
-                        $booking = $this->db->query("SELECT wbh.id_no, ta.company_id, wbh.price, wbh.discount FROM tkt_booking wbh LEFT JOIN trip_assign ta ON wbh.trip_id_no = ta.trip WHERE wbh.id_no = '$id_no'")->row();
+                        $booking = $this->db->query("SELECT ta.assign_id, wbh.id_no, ta.company_id, wbh.price, wbh.discount FROM tkt_booking wbh LEFT JOIN trip_assign ta ON wbh.trip_id_no = ta.trip WHERE wbh.id_no = '$id_no'")->row();
 
                         $tipo_movimiento = 'Entrada';
                         $monto = $booking->price - $booking->discount;
                         $metodo_pago = 'Efectivo';
-                        $concepto = 'Venta de ticket #' . $booking->id_no;
+                        $concepto = 'Venta de ticket #' . $booking->id_no . ' | Número de viaje: ' . $booking->assign_id;
 
                         $saldo = (float) $caja->saldo + (float) $monto;
 

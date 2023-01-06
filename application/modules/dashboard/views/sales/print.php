@@ -1,3 +1,10 @@
+<?php
+	use BaconQrCode\Renderer\ImageRenderer;
+	use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+	use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+	use BaconQrCode\Writer;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,25 +62,42 @@
 	</a>
 
 	<div id="tickets">
-		<?php foreach ($seats as $seat): ?>
+		<?php $i = 0; foreach ($seats as $seat): ?>
 
 			<?php
-				$seat_type = strtolower($sale->seat_type);
+				$id = $sale[$i]->booking_id . '-' . $sale[$i]->id;
+
+				$renderer = new ImageRenderer(
+				    new RendererStyle(400),
+				    new ImagickImageBackEnd()
+				);
+
+				$writer = new Writer($renderer);
+				$writer->writeFile("https://bus365.base-php.com/dashboard/sales/markedAsEmbarked/$id", 'qrcode.png');
+
+				$seat_type = strtolower($sale[$i]->seat_type);
 
 				if ($seat_type == 'adult') {
 					$seat_type = 'price';
 				} else {
+
+					if ($seat_type == 'child') {
+						$seat_type = 'children';
+					}
+
 					$seat_type = $seat_type . '_price';
 				}
 
-				$route_id = $sale->route_id;
+				$route_id = $sale[$i]->route_id;
 				$ci =& get_instance();
 				$price = $ci->db->query("SELECT $seat_type FROM pri_price WHERE route_id = $route_id")->row()->$seat_type;
 				$discount = $ci->db->query("SELECT discount FROM tkt_booking WHERE id_no = '$id_no'")->row()->discount;
+
+				$count = count($seats);
 			?>
 
 			<div class="text-center">
-				<div><span class="font-weight-bold">Ticket Nro:</span> <?php echo $sale->booking_id . '-' . $sale->id; ?></div>
+				<div><span class="font-weight-bold">Ticket Nro:</span> <?php echo $sale[$i]->booking_id . '-' . $sale[$i]->id; ?></div>
 
 				<hr>
 
@@ -81,12 +105,12 @@
 
 				<hr>
 
-				<img width="300px" src="<?php echo base_url($sale->logo); ?>" alt="">
+				<img width="300px" src="<?php echo base_url('uploads/' . $sale[$i]->logo); ?>" alt="">
 
-				<div class="font-weight-bold"><?php echo $sale->title; ?></div>
-				<div><span class="font-weight-bold"><?php echo display('nit'); ?>:</span> <?php echo $sale->nit; ?></div>
-				<div><span class="font-weight-bold"><?php echo display('address'); ?>:</span> <?php echo $sale->address; ?></div>
-				<div><span class="font-weight-bold"><?php echo display('lane'); ?>:</span> <?php echo $sale->lane; ?></div>
+				<div class="font-weight-bold"><?php echo $sale[$i]->title; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('nit'); ?>:</span> <?php echo $sale[$i]->nit; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('address'); ?>:</span> <?php echo $sale[$i]->address; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('lane'); ?>:</span> <?php echo $sale[$i]->lane; ?></div>
 
 				<hr>
 
@@ -99,8 +123,8 @@
 					</tr>
 
 					<tr>
-						<td colspan="3"><?php echo $sale->route; ?></td>
-						<td colspan="3"><?php echo $sale->assign_id; ?></td>
+						<td colspan="3"><?php echo $sale[$i]->route; ?></td>
+						<td colspan="3"><?php echo $sale[$i]->assign_id; ?></td>
 					</tr>
 
 					<tr>
@@ -110,9 +134,9 @@
 					</tr>
 
 					<tr>
-						<td><?php echo $sale->date; ?></td>
-						<td><?php echo $sale->shipment; ?></td>
-						<td><?php echo $sale->disembarkation; ?></td>
+						<td><?php echo $sale[$i]->date; ?></td>
+						<td><?php echo $sale[$i]->shipment; ?></td>
+						<td><?php echo $sale[$i]->disembarkation; ?></td>
 					</tr>
 
 					<tr>
@@ -124,8 +148,8 @@
 
 					<tr>
 						<td>BOB <?php echo number_format($price, 2); ?></td>
-						<td>BOB <?php echo number_format($discount, 2); ?></td>
-						<td>BOB <?php echo number_format($price - $discount, 2); ?></td>
+						<td>BOB <?php echo number_format(($discount / $count), 2); ?></td>
+						<td>BOB <?php echo number_format($price - ($discount / $count), 2); ?></td>
 						<td>Efectivo</td>
 					</tr>
 				</table>
@@ -138,7 +162,7 @@
 					</tr>
 
 					<tr>
-						<td colspan="3"><?php echo $sale->name; ?></td>
+						<td colspan="3"><?php echo $sale[$i]->name; ?></td>
 					</tr>
 
 					<tr>
@@ -148,18 +172,18 @@
 					</tr>
 
 					<tr>
-						<td><?php echo $sale->ci; ?></td>
-						<td><?php echo $sale->age; ?></td>
+						<td><?php echo $sale[$i]->ci; ?></td>
+						<td><?php echo $sale[$i]->age; ?></td>
 						<td><?php echo $seat; ?></td>
 					</tr>
 				</table>
 
 				<hr>
 
-				<div><span class="font-weight-bold"><?php echo display('date') ?>:</span> <?php echo $sale->date; ?></div>
-				<div><span class="font-weight-bold"><?php echo display('agent') ?>:</span> <?php echo $sale->agent; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('date') ?>:</span> <?php echo $sale[$i]->date; ?></div>
+				<div><span class="font-weight-bold"><?php echo display('agent') ?>:</span> <?php echo $sale[$i]->agent; ?></div>
 			</div>
-		<?php endforeach; ?>
+		<?php $i = $i + 1; endforeach; ?>
 	</div>
 
 </body>

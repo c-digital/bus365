@@ -467,18 +467,21 @@ function discount() {
 
     if (paypal_discount != '0') {
         paypal_total = $('.paypal_total').html();
+        paypal_discount = paypal_discount ? paypal_discount : 0;
         total = paypal_total - paypal_discount;
         $('.grand_total_paypal').html(total);
     }
 
     if (bank_discount != '0') {
         bank_total = $('.bank_total').html();
+        bank_discount = bank_discount ? bank_discount : 0;
         total = bank_total - bank_discount;
         $('.grand_total_bank').html(total);
     }
 
     if (cash_discount != '0') {
         cash_total = $('.cash_total').html();
+        cash_discount = cash_discount ? cash_discount : 0;
         total = cash_total - cash_discount;
         $('.grand_total_cash').html(total);
     }
